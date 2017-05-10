@@ -1,0 +1,53 @@
+PODS:
+  - Alamofire (4.4.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - Canvas (0.1.2)
+  - CDAlertView (0.6.0)
+  - FBSDKCoreKit (4.19.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.19.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.19.0):
+    - FBSDKCoreKit
+  - InfiniteCollectionView (1.3.1)
+  - IQKeyboardManagerSwift (4.0.6)
+  - SwiftyJSON (3.1.4)
+  - SwiftyStarRatingView (1.0.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - AlamofireImage (~> 3.1)
+  - Canvas
+  - CDAlertView
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
+  - InfiniteCollectionView
+  - IQKeyboardManagerSwift (= 4.0.6)
+  - SwiftyJSON
+  - SwiftyStarRatingView
+
+SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Canvas: eb861e3b555d032648146c8ffda1a5dea40059ca
+  CDAlertView: e6f365fa0fac7349197e7ea4bd7810c069215cf4
+  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
+  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
+  InfiniteCollectionView: 77620e444c247434b8d5d6f7e4b3898495d26fe7
+  IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SwiftyStarRatingView: a2b0057700e0adeb8e7442c55d99cb53b531d2f4
+
+PODFILE CHECKSUM: 86ba64cdd58d510b3d8966aa275ffc340c5509c4
+
+COCOAPODS: 1.2.0

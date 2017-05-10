@@ -1,0 +1,210 @@
+
+/* Class = "UILabel"; text = "Football is my passion"; ObjectID = "0dV-K9-O63"; */
+
+/* Class = "UILabel"; text = "Field Name :"; ObjectID = "17U-jL-DzQ"; */
+"17U-jL-DzQ.text" = "اسم الملعب:";
+
+/* Class = "UILabel"; text = " "; ObjectID = "18C-tZ-VRj"; */
+"18C-tZ-VRj.text" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1tX-RI-iGm"; */
+"1tX-RI-iGm.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Book Field Now"; ObjectID = "22R-Nq-2Hc"; */
+"22R-Nq-2Hc.normalTitle" = "احجز الملعب الآن";
+
+/* Class = "UILabel"; text = "Academic Playing"; ObjectID = "2K4-aE-Ifm"; */
+"2K4-aE-Ifm.text" = " ";
+
+/* Class = "UILabel"; text = "I'm a Player"; ObjectID = "4G8-Hr-4b2"; */
+"4G8-Hr-4b2.text" = "حساب لاعب";
+
+/* Class = "UILabel"; text = "Don't have an account?"; ObjectID = "69z-en-KBg"; */
+"69z-en-KBg.text" = "ليس لديك حساب بعد؟";
+
+/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "6YR-On-7dz"; */
+"6YR-On-7dz.normalTitle" = "نسيت كلمه المرور؟";
+
+/* Class = "UILabel"; text = "I'm a player will Live"; ObjectID = "8Lv-mv-hUb"; */
+ 
+/* Class = "UILabel"; text = "Hero chan"; ObjectID = "9QO-3k-vuH"; */
+"9QO-3k-vuH.text" = " ";
+
+/* Class = "UILabel"; text = "Field Name :"; ObjectID = "B8B-O1-YHV"; */
+"B8B-O1-YHV.text" = "اسم الملعب:";
+
+/* Class = "UIButton"; normalTitle = "Booked Dates"; ObjectID = "Bqw-c5-B9B"; */
+"Bqw-c5-B9B.normalTitle" = "المواعيد المحجوزه";
+
+/* Class = "UILabel"; text = "Gada.SAE"; ObjectID = "BrA-cV-vXh"; */
+"BrA-cV-vXh.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "facebook Login"; ObjectID = "ECX-G0-QCb"; */
+"ECX-G0-QCb.normalTitle" = "تسجيل بالفيس بوك";
+
+/* Class = "UITextField"; placeholder = "City"; ObjectID = "GYE-bV-AZD"; */
+"GYE-bV-AZD.placeholder" = "المدينه";
+
+/* Class = "UIButton"; normalTitle = "Latest News"; ObjectID = "Gob-UM-4vd"; */
+"Gob-UM-4vd.normalTitle" = "آخر الاخبار";
+
+/* Class = "UILabel"; text = "7/7/2017"; ObjectID = "HOi-kJ-yc7"; */
+"HOi-kJ-yc7.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Register now"; ObjectID = "Hz9-Wy-nI8"; */
+"Hz9-Wy-nI8.normalTitle" = "سجل الآن";
+
+/* Class = "UILabel"; text = "60"; ObjectID = "I8J-W8-zd6"; */
+"I8J-W8-zd6.text" = " ";
+
+/* Class = "UILabel"; text = "Fields Added"; ObjectID = "IOZ-Iw-lmC"; */
+"IOZ-Iw-lmC.text" = "ملعب مضاف";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "IeI-8l-27j"; */
+"IeI-8l-27j.normalTitle" = "تخطي";
+
+/* Class = "UILabel"; text = "7/7/2017"; ObjectID = "Iw7-xL-WaQ"; */
+"Iw7-xL-WaQ.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "pm"; ObjectID = "LEN-cL-3Hl"; */
+"LEN-cL-3Hl.normalTitle" = "مساءا";
+
+/* Class = "UILabel"; text = " and i own Playfields."; ObjectID = "LtY-fQ-AOt"; */
+"LtY-fQ-AOt.text" = "تستطيع اضافه ومتابعه الحجوزات والتقارير الماليه الخاصه بالملاعب";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "MZj-G5-dOr"; */
+"MZj-G5-dOr.placeholder" = "كلمه السر";
+
+/* Class = "UILabel"; text = "60"; ObjectID = "Mby-7r-yht"; */
+"Mby-7r-yht.text" = "60";
+
+/* Class = "UILabel"; text = "I'm a Field Owner"; ObjectID = "O58-3s-Pfk"; */
+"O58-3s-Pfk.text" = "حساب صاحب ملعب";
+
+/* Class = "UILabel"; text = "No News Found!!"; ObjectID = "OcB-Jf-WUm"; */
+"OcB-Jf-WUm.text" = "لا توجد اخبار!!";
+
+/* Class = "UIButton"; normalTitle = "Select"; ObjectID = "Rcd-iz-XgC"; */
+"Rcd-iz-XgC.normalTitle" = "اختيار";
+
+/* Class = "UIButton"; normalTitle = "Nearby"; ObjectID = "ReY-rt-X1x"; */
+"ReY-rt-X1x.normalTitle" = "القريبه";
+
+/* Class = "UIButton"; normalTitle = "Details"; ObjectID = "S9p-5H-Htd"; */
+"S9p-5H-Htd.normalTitle" = "التفاصيل";
+
+/* Class = "UIButton"; normalTitle = "Signup"; ObjectID = "Tcl-9i-OQX"; */
+"Tcl-9i-OQX.normalTitle" = "انشاء حساب";
+
+/* Class = "UINavigationItem"; title = "Main"; ObjectID = "Vdi-Up-cNd"; */
+"Vdi-Up-cNd.title" = "الصفحه الرئيسيه";
+
+/* Class = "UIButton"; normalTitle = "Signin"; ObjectID = "WRh-c0-YO6"; */
+"WRh-c0-YO6.normalTitle" = "تسجيل الدخول";
+
+/* Class = "UILabel"; text = "Visitor"; ObjectID = "XAc-ok-9P6"; */
+"XAc-ok-9P6.text" = "زائر للموقع";
+
+/* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "XRc-HF-V9T"; */
+"XRc-HF-V9T.placeholder" = "رقم الهاتف: ";
+
+/* Class = "UILabel"; text = "Sat"; ObjectID = "XUj-Y4-eyU"; */
+"XUj-Y4-eyU.text" = " ";
+
+/* Class = "UILabel"; text = "Green Field"; ObjectID = "Y1o-Rd-yTI"; */
+"Y1o-Rd-yTI.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "am"; ObjectID = "YKy-d6-U22"; */
+"YKy-d6-U22.normalTitle" = "صباحا";
+
+/* Class = "UILabel"; text = "Sat"; ObjectID = "aMr-Rs-lwM"; */
+"aMr-Rs-lwM.text" = " ";
+
+/* Class = "UILabel"; text = "Rate The Field"; ObjectID = "aem-4P-Siv"; */
+"aem-4P-Siv.text" = "قيم الملعب";
+
+/* Class = "UIButton"; normalTitle = "Confirmed"; ObjectID = "bkL-y1-Tgz"; */
+"bkL-y1-Tgz.normalTitle" = "تاكيد";
+
+/* Class = "UIButton"; normalTitle = "Create Account"; ObjectID = "brJ-m4-X3V"; */
+"brJ-m4-X3V.normalTitle" = "انشاء حساب";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "d5F-Zr-BwH"; */
+"d5F-Zr-BwH.placeholder" = "كلمه السر";
+
+/* Class = "UILabel"; text = "Book Field"; ObjectID = "dAY-UM-xkm"; */
+"dAY-UM-xkm.text" = "حجز للملاعب";
+
+/* Class = "UILabel"; text = "Hero chan"; ObjectID = "dkX-oW-kv8"; */
+"dkX-oW-kv8.text" = " ";
+
+/* Class = "UITextField"; placeholder = "phone Number"; ObjectID = "g8J-W5-rgr"; */
+"g8J-W5-rgr.placeholder" = "رقم الهاتف";
+
+/* Class = "UILabel"; text = "No More Reviews"; ObjectID = "gNL-oT-MXB"; */
+"gNL-oT-MXB.text" = "لا توجد تقييمات اخري";
+
+/* Class = "UILabel"; text = "From 1 : 12"; ObjectID = "gaf-Va-gtB"; */
+"gaf-Va-gtB.text" = " ";
+
+/* Class = "UILabel"; text = "From 1 : 12"; ObjectID = "hj2-Vq-F6v"; */
+"hj2-Vq-F6v.text" = " ";
+
+/* Class = "UILabel"; text = "60"; ObjectID = "i0r-4a-HjV"; */
+"i0r-4a-HjV.text" = " ";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "k2e-PT-nib"; */
+"k2e-PT-nib.placeholder" = "الاسم";
+
+/* Class = "UIButton"; normalTitle = "am"; ObjectID = "mdD-1m-0zS"; */
+"mdD-1m-0zS.normalTitle" = "صباحا";
+
+/* Class = "UILabel"; text = "Hero chan"; ObjectID = "mzt-Wf-KGG"; */
+"mzt-Wf-KGG.text" = " ";
+
+/* Class = "UILabel"; text = "7/7/2017"; ObjectID = "on9-oi-ZhA"; */
+"on9-oi-ZhA.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "otb-VT-HAD"; */
+"otb-VT-HAD.normalTitle" = "تسجيل الدخول";
+
+/* Class = "UILabel"; text = "Field Name :"; ObjectID = "pPy-oq-rK7"; */
+"pPy-oq-rK7.text" = "اسم الملعب";
+
+/* Class = "UILabel"; text = "as a Player and Die As One."; ObjectID = "pTw-cb-zsj"; */
+"pTw-cb-zsj.text" = "تستطيع مشاهده اخر الملاعب المضافه والقيام بحجز المعاد الذي تفضله";
+
+/* Class = "UILabel"; text = "Hero chan"; ObjectID = "q1p-ZO-p8V"; */
+"q1p-ZO-p8V.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Hours Left"; ObjectID = "qEd-LW-ReQ"; */
+"qEd-LW-ReQ.normalTitle" = "الوقت المتاح";
+
+/* Class = "UIButton"; normalTitle = "unConfirmed"; ObjectID = "qGx-gK-U4R"; */
+"qGx-gK-U4R.normalTitle" = "غير مؤكده";
+
+/* Class = "UIButton"; normalTitle = "pm"; ObjectID = "rEg-pZ-hi0"; */
+"rEg-pZ-hi0.normalTitle" = "مساءا";
+
+/* Class = "UIButton"; normalTitle = "About field"; ObjectID = "rle-JK-eRU"; */
+"rle-JK-eRU.normalTitle" = "المعلومات";
+
+/* Class = "UITextField"; placeholder = "District"; ObjectID = "rmL-fy-hko"; */
+"rmL-fy-hko.placeholder" = "المنطقه";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ruN-kN-hGc"; */
+"ruN-kN-hGc.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "available to Book"; ObjectID = "svA-f0-CBC"; */
+"svA-f0-CBC.normalTitle" = "الملاعب المتاحه";
+
+/* Class = "UILabel"; text = "Field Name :"; ObjectID = "x3i-Ob-7GN"; */
+"x3i-Ob-7GN.text" = "اسم الملعب:";
+
+/* Class = "UIButton"; normalTitle = "Booked Fields"; ObjectID = "y2w-Lr-NfP"; */
+"y2w-Lr-NfP.normalTitle" = "الملاعب المحجوزه";
+
+
+"4op-SA-d6k.text" = "لديك حساب بالفعل؟";
+"V4W-bc-obL.normalTitle" = "قم بتسجيل الدخول الان";
+

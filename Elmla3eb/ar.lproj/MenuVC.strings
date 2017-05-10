@@ -1,0 +1,19 @@
+
+/* Class = "UILabel"; text = "Player Name"; ObjectID = "2lt-bX-B3q"; */
+"2lt-bX-B3q.text" = "Player Name";
+
+/* Class = "UILabel"; text = "Player"; ObjectID = "Aht-lp-z9r"; */
+"Aht-lp-z9r.text" = "Player";
+
+/* Class = "UIButton"; normalTitle = "Signout"; ObjectID = "BG8-HG-brn"; */
+"BG8-HG-brn.normalTitle" = "تسجيل خروج";
+
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "Ere-21-Kr3"; */
+"Ere-21-Kr3.normalTitle" = "البحث";
+
+/* Class = "UIButton"; normalTitle = "Home"; ObjectID = "bls-Me-wAT"; */
+"bls-Me-wAT.normalTitle" = "الصفحه الرئيسية";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "pfV-vf-DKx"; */
+"pfV-vf-DKx.normalTitle" = "الاعدادات";
+"Mqb-R9-hqM.normalTitle" = "تغيير اللغه";

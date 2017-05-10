@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoNetConnectionVC" customModule="Elmla3eb" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offline" translatesAutoresizingMaskIntoConstraints="NO" id="wtt-ow-8kf">
+                    <rect key="frame" x="0.0" y="96" width="375" height="375"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="wtt-ow-8kf" secondAttribute="height" multiplier="1:1" id="gXR-Ow-gCa"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZm-2M-xh6">
+                    <rect key="frame" x="134" y="448" width="108" height="23"/>
+                    <string key="text">You'r Offline
+  f</string>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxa-tQ-v6H">
+                    <rect key="frame" x="0.0" y="471" width="375" height="196"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <state key="normal" title="Try again!!!">
+                        <color key="titleColor" red="0.36124140020000001" green="0.68383032079999995" blue="0.15303236249999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="tryAgainBtnAct:" destination="-1" eventType="touchUpInside" id="JXq-k9-f4F"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wtt-ow-8kf" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="5Uh-He-JLu"/>
+                <constraint firstItem="UZm-2M-xh6" firstAttribute="bottom" secondItem="wtt-ow-8kf" secondAttribute="bottom" id="5j3-tD-x7K"/>
+                <constraint firstItem="fxa-tQ-v6H" firstAttribute="top" secondItem="UZm-2M-xh6" secondAttribute="bottom" id="a4p-n4-TGj"/>
+                <constraint firstAttribute="bottom" secondItem="fxa-tQ-v6H" secondAttribute="bottom" id="aXu-4o-SA3"/>
+                <constraint firstAttribute="trailing" secondItem="fxa-tQ-v6H" secondAttribute="trailing" id="b3x-3F-FAr"/>
+                <constraint firstItem="wtt-ow-8kf" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-50" id="dfi-PU-Z3F"/>
+                <constraint firstItem="UZm-2M-xh6" firstAttribute="centerX" secondItem="wtt-ow-8kf" secondAttribute="centerX" id="mhw-C7-b6x"/>
+                <constraint firstItem="fxa-tQ-v6H" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="n1N-Th-PkT"/>
+                <constraint firstItem="wtt-ow-8kf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nAq-ke-qSx"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="offline" width="1300" height="1300"/>
+    </resources>
+</document>

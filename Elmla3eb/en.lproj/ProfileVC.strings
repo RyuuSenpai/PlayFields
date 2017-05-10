@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "No Team yet"; ObjectID = "9rr-h7-eEz"; */
+"9rr-h7-eEz.text" = "No Team yet";
+
+/* Class = "UIButton"; normalTitle = "Check Players out"; ObjectID = "Eh8-93-yuc"; */
+"Eh8-93-yuc.normalTitle" = "Check Players out";
+
+/* Class = "UILabel"; text = "0 Points"; ObjectID = "JUw-mT-sTe"; */
+"JUw-mT-sTe.text" = "0 Points";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "QmM-fg-Dta"; */
+"QmM-fg-Dta.text" = "0";
+
+/* Class = "UILabel"; text = "Snap Chat :"; ObjectID = "Xx9-5b-lUt"; */
+"Xx9-5b-lUt.text" = "Snap Chat :";
+
+/* Class = "UILabel"; text = "No Position yet"; ObjectID = "YcD-qx-qv0"; */
+"YcD-qx-qv0.text" = "No Position yet";
+
+/* Class = "UILabel"; text = "User"; ObjectID = "k0a-Pe-WEn"; */
+"k0a-Pe-WEn.text" = "User";
+
+/* Class = "UILabel"; text = "Date of Birth :"; ObjectID = "ory-LF-7VW"; */
+"ory-LF-7VW.text" = "Date of Birth :";
+
+/* Class = "UILabel"; text = "Phone Number :"; ObjectID = "tHu-YV-R5U"; */
+"tHu-YV-R5U.text" = "Phone Number :";

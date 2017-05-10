@@ -1,0 +1,6 @@
+framework module Pods_Elmla3eb {
+  umbrella header "Pods-Elmla3eb-umbrella.h"
+
+  export *
+  module * { export * }
+}
