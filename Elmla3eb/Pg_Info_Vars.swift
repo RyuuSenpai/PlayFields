@@ -66,6 +66,7 @@ struct  AmPm_data {
     private var _am_pm : String?
     private var _fromDataTime : String?
     private var _to_datetime : String?
+    private var _time : String?
     private var _booked : Int?
     private let source = Constants.API.Parameters()
     
@@ -89,6 +90,14 @@ struct  AmPm_data {
         guard  let x = _to_datetime else { return "" }
         return x
     }
+    var time : String{
+        guard  let x = _time else { return "" }
+        if L102Language.currentAppleLanguage() == "ar" {
+            return "من الساعه" + " " + x
+        }else {
+                return "Time Range : \(x)"
+        }
+     }
     var isBooked : Bool{
         guard  let x = _booked , x == 1 else { return  false}
         return true
@@ -102,6 +111,8 @@ struct  AmPm_data {
         self._fromDataTime = json[source.from_datetime].stringValue
         self._to_datetime = json[source.to_datetime].stringValue
         self._booked = json[source.booked].intValue
+        self._time = json[source.time].stringValue
+
         
     }
 }
@@ -266,7 +277,7 @@ class Pg_Details_Data {
     var price : String{
         guard  let x = _price else { return "" }
         if L102Language.currentAppleLanguage() == "ar" {
-            return "ريال \(x)"
+            return "\(x) ريال"
 
         }
         return "\(x) SAR"

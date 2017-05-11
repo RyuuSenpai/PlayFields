@@ -106,7 +106,10 @@ class MenuVC: UIViewController {
             print("3rd Btn Settings")
             self.goTOProfileVC()
         case 3:
+            self.goTOProfileVC()
+        case -1 :
             changeLanguage()
+
         default :
 //            let x = ProfileVC()
 //            let navb = UINavigationController(rootViewController: x)
@@ -184,22 +187,22 @@ extension MenuVC {
             self.view.layoutIfNeeded()
         })
         
-        UIView.animate(withDuration: 1.3, delay: 0.8, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 1.1, delay: 0.9, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
             self.searchBtnCenterX.constant   = self.searchBtnLoc
             self.view.layoutIfNeeded()
         })
         
-        UIView.animate(withDuration: 1.3, delay: 1.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.9, delay: 1.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
             self.settingsBtnCenterX.constant  = self.settingBtnLoc
             self.view.layoutIfNeeded()
         })
         
-        UIView.animate(withDuration: 1.3, delay: 1.3, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.7, delay: 1.2, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
             self.changeLangBtnCenterX.constant = self.changeLangLoc
             self.view.layoutIfNeeded()
         })
         
-        UIView.animate(withDuration: 1.3, delay: 1.6, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.5, delay: 1.3, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn , .allowUserInteraction], animations: {
             self.signoutBottomConstant.constant = self.signoutBtnLocation
             self.view.layoutIfNeeded()
         }){ (true ) in

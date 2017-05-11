@@ -166,7 +166,7 @@ class Constants  {
                              " Points ":"نقطه",
                              "Invalid username or password":"خطا في رقم الهاتف او كلمة المرور",
                              "Phone Number Already Exists":"رقم الهاتف مستخدم من قبل",
-//                             "":"",
+                             "There's no Dates to pick":"لا توجد اوقات متوفره حاليا",
 //                             "":"",
 //                             "":"",
 //                             "":"",

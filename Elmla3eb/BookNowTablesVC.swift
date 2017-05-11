@@ -135,7 +135,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         self.am = [String]()
         if  let amA = sTime.am_class {
             for x in amA {
-                self.am.append("\(x.fromDataTime): \(x.toDataTime)")
+                self.am.append("\(x.time)")
                 self.selected_AmTimes_ID.append(x.id)
             }
         }
@@ -143,7 +143,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
             self.pm = [String]()
             for y in pmA {
 //                self.pm.append("\(y.fromDataTime): \(y.toDataTime)")
-                self.pm.append("\(y.fromDataTime): \(y.toDataTime)")
+                self.pm.append("\(y.time)")
                 self.selected_PmTimes_ID.append(y.id)
             }
         }

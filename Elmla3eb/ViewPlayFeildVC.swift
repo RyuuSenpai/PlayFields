@@ -322,7 +322,12 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                     
                 })
             }else { //no data in array 
-                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message: langDicClass().getLocalizedTitle("You didn't pick Booking Date"), type: .error)
+                print("day arary :\(bookNowDays) \(bookNowDays.count)")
+                var sms  = "You didn't pick Booking Date"
+                if bookNowDays.count < 1 {
+                 sms = "There's no Dates to pick"
+                }
+                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message: langDicClass().getLocalizedTitle(sms), type: .error)
                 alert.show()
                 
             }

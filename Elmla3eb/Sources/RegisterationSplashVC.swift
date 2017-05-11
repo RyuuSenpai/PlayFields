@@ -45,7 +45,7 @@ import CDAlertView
         self.playerViewBtn.isEnabled = true
         self.ownerViewBtn.isEnabled = true
     }
-    let cities = ["cairo","Alex"]
+    var cities = [String]()
     let districts = ["1","2","3","4"]
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var districtsPickerV: UIPickerView!
@@ -54,7 +54,6 @@ import CDAlertView
         super.viewDidLoad()
        setupPickerV()
 
-        
         let tapped = UITapGestureRecognizer(target: self, action: #selector(self.closekeyBoard(_:)))
         
         self.view.addGestureRecognizer(tapped)
@@ -71,7 +70,17 @@ import CDAlertView
         self.playerViewOriginalHeight = self.playerViewHeightConstant.constant
         self.registerViewOriginalTopSpace = self.registerationViewBottomSpaceToView.constant
         self.registerationViewBottomSpaceToView.constant = self.view.bounds.height * -1
-
+        if cities.count < 1 {
+        self.view.squareLoading.start(0)
+            readJson()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       self.playerViewHeightConstant.constant = self.playerViewOriginalHeight
+       self.registerationViewBottomSpaceToView.constant = self.registerViewOriginalTopSpace
+  
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -199,7 +208,7 @@ import CDAlertView
         guard  let userName = userNameText.text,!userName.isEmpty  else { return"User name Field can't be Empty" }
         guard  let password = passwordText.text, !password.isEmpty else { return"password Field can't be Empty" }
         guard   let mobile = self.phoneNumText.text,!password.isEmpty  else { return "Mobile Field can't be Empty" }
-//        guard  let city = cityTxt.text, !city.isEmpty  else { return"City Field can't be Empty" }
+        guard  let city = cityTxt.text, !city.isEmpty  else { return"City Field can't be Empty" }
 //        guard  let district = districtTxt.text, !district.isEmpty  else { return"District Field can't be Empty" }
         guard mobile.validPhoneNumber else {
             return "Phone Number isn't in the right Format"
@@ -277,6 +286,62 @@ import CDAlertView
         
     }
     
+    
+    
+    private func readJson() {
+         DispatchQueue.global().async {
+
+        do {
+         
+            
+            if let file = Bundle.main.url(forResource: "cities", withExtension: "json") {
+                let data = try Data(contentsOf: file)
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                if let object = json as? [String: Any] {
+                    // json is a dictionary
+                    print(object)
+                } else if let object = json as? [Any] {
+                    // json is an array
+//                    print(object)
+                    var citiesAraName = [String]()
+                     var citiesEngName = [String]()
+                    for cityObject in object {
+//                        print("that's the city : \(cityObject)")
+                        if let name = cityObject as? [String:Any] {
+                            if let cityName = name["name"] as? [String:String] {
+                                print("that's the cityName : \(cityName)")
+                                print("that's the cityName  ara : \(cityName["ar"])")
+                                print("that's the cityName Eng : \(cityName["en"])")
+                                citiesAraName.append(cityName["ar"]!)
+                                citiesEngName.append(cityName["en"]!)
+                            }
+                         }
+                    }
+                    DispatchQueue.main.async {
+                       
+                        if L102Language.currentAppleLanguage() == "ar" {
+                             self.cities = citiesAraName.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+                            
+                        }else {
+                            self.cities = citiesEngName.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
+
+                        }
+                          self.view.squareLoading.stop(0)
+                    }
+                   
+
+                    
+                } else {
+                    print("JSON is invalid")
+                }
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    }
 }
 
 

@@ -13,6 +13,7 @@
 		520044A51EC1CAAC0030B772 /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */; };
 		520044AA1EC1D5060030B772 /* SearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044AC1EC1D5060030B772 /* SearchVC.xib */; };
 		520044B51EC1DE300030B772 /* NoNetConnectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044B71EC1DE300030B772 /* NoNetConnectionVC.xib */; };
+		52178C8F1EC47D8900181384 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 52178C8E1EC47D8900181384 /* cities.json */; };
 		521DBE7A1EAF4082005D06A5 /* NoNetConnectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */; };
 		522AAC8E1E88054700E0AC5B /* GetpgInfosWebServ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AAC8D1E88054700E0AC5B /* GetpgInfosWebServ.swift */; };
 		522AAC901E880A1600E0AC5B /* GlobalFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AAC8F1E880A1600E0AC5B /* GlobalFuncs.swift */; };
@@ -105,6 +106,7 @@
 		520044B41EC1D8990030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		520044B61EC1DE300030B772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoNetConnectionVC.xib; sourceTree = "<group>"; };
 		520044B91EC1DE330030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/NoNetConnectionVC.strings; sourceTree = "<group>"; };
+		52178C8E1EC47D8900181384 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetConnectionVC.swift; sourceTree = "<group>"; };
 		522AAC8D1E88054700E0AC5B /* GetpgInfosWebServ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetpgInfosWebServ.swift; sourceTree = "<group>"; };
 		522AAC8F1E880A1600E0AC5B /* GlobalFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFuncs.swift; sourceTree = "<group>"; };
@@ -241,8 +243,8 @@
 		525BEFFC1E83CB97003FE82E /* V */ = {
 			isa = PBXGroup;
 			children = (
-				52A6C7461EA43A3400DD4352 /* AASquaresLoading.swift */,
 				52F985881EB6176B001DA530 /* Xibs */,
+				52A6C7461EA43A3400DD4352 /* AASquaresLoading.swift */,
 				521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */,
 				520044B71EC1DE300030B772 /* NoNetConnectionVC.xib */,
 				52BCB8781EBB2D42007298D4 /* ratingCell.swift */,
@@ -270,6 +272,7 @@
 		52850AB71E87AC0300C54168 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				52178C8E1EC47D8900181384 /* cities.json */,
 				52355ECF1EB8A1A6005A9217 /* Helper */,
 				52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */,
 				52E9DF5D1EACCC43004563CA /* DownloadImages.swift */,
@@ -598,6 +601,7 @@
 				714AECF61E6303EF001127CE /* LaunchScreen.storyboard in Resources */,
 				71F06C5C1E6598D2008FBD28 /* sarawut-intarob-19.jpg in Resources */,
 				718993F61E644DDE001D61C6 /* GoogleService-Info.plist in Resources */,
+				52178C8F1EC47D8900181384 /* cities.json in Resources */,
 				520044A51EC1CAAC0030B772 /* ForgotPasswordVC.xib in Resources */,
 				714AECF31E6303EF001127CE /* Assets.xcassets in Resources */,
 				520044B51EC1DE300030B772 /* NoNetConnectionVC.xib in Resources */,

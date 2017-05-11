@@ -113,7 +113,7 @@
                         <action selector="signouBtnAct:" destination="-1" eventType="touchUpInside" id="8Ja-qW-GRB"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzr-lD-e5t">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzr-lD-e5t" userLabel="ProfileImage">
                     <rect key="frame" x="85" y="70" width="150" height="150"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="rzr-lD-e5t" secondAttribute="height" multiplier="1:1" id="xHJ-Av-bpO"/>
@@ -129,7 +129,7 @@
                         <constraint firstAttribute="height" constant="30" id="t9e-JW-Imo"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqb-R9-hqM">
+                <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqb-R9-hqM">
                     <rect key="frame" x="0.0" y="435" width="320" height="45"/>
                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
