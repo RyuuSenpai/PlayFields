@@ -48,6 +48,56 @@ class GLOBAL {
         }
     }
  
+      func readJson(langIs : String , completed : @escaping ([String])->()) {
+        DispatchQueue.global().async {
+            
+            do {
+                
+                
+                if let file = Bundle.main.url(forResource: "cities", withExtension: "json") {
+                    let data = try Data(contentsOf: file)
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    if let object = json as? [String: Any] {
+                        // json is a dictionary
+                     } else if let object = json as? [Any] {
+                        // json is an array
+                        //                    print(object)
+                        var citiesAraName = [String]()
+                        var citiesEngName = [String]()
+                        for cityObject in object {
+                            //                        print("that's the city : \(cityObject)")
+                            if let name = cityObject as? [String:Any] {
+                                if let cityName = name["name"] as? [String:String] {
+                                      citiesAraName.append(cityName["ar"]!)
+                                    citiesEngName.append(cityName["en"]!)
+                                }
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            
+                            if langIs  == "ar" {
+                             completed ( citiesAraName.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending } )
+                                
+                                
+                            }else {
+                               completed ( citiesEngName.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending } )
+                                
+                            }
+                        }
+                        
+                        
+                        
+                    } else {
+                        print("JSON is invalid")
+                    }
+                } else {
+                    print("no file")
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
 //    
 //        func getImagesDict(imageString : String ) -> UIImage {
 //    

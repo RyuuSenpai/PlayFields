@@ -69,15 +69,20 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         pmBtn.addTarget(self, action: #selector(self.pmBtnClicked), for: .touchUpInside )
         currentArray = am
         dayTitle.text = ""
-        if let sms = times_msg {
-            self.invalidDaysLbl.text = sms
-        }
+        
         // Do any additional setup after loading the view.
         
         if L102Language.currentAppleLanguage() == "ar" {
             isAraLang = true
             backToDatesTableBtnOL.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
 
+        }
+        if let sms = times_msg, sms != "" {
+            if isAraLang {
+                self.invalidDaysLbl.text = "لا يوجد ايام للحجز"
+            }else {
+                self.invalidDaysLbl.text = sms
+            }
         }
     }
     override func viewWillAppear(_ animated: Bool) {

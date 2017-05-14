@@ -196,6 +196,17 @@ class LoginVC: MirroringViewController {
         
     }
     
+    @IBAction func signupBtnAct(_ sender: UIButton) {
+        
+        guard   let parent = self.presentingViewController ,parent.isKind(of: RegisterationSplashVC.self)else {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "RegisterationSplashVC") as! RegisterationSplashVC
+            self.present(vc, animated: true, completion: nil)
+            return
+        }
+        dismiss(animated: true, completion: nil)
+
+    }
+    
     func degreesToRadians( _ degree : Double) -> CGFloat {
         return  CGFloat(degree * .pi / 180)
     }

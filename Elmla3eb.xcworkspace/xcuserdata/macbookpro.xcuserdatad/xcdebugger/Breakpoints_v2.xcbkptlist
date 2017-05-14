@@ -254,12 +254,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
+            timestampString = "516456747.65901"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "readJson()"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "backBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -270,12 +270,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
+            timestampString = "516456630.553598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "readJson()"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "signInBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -285,44 +285,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
+            filePath = "Elmla3eb/LoginVC.swift"
+            timestampString = "516456926.059449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
-            landmarkName = "readJson()"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "signupBtnAct(_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.RegisterationSplashVC.((readJson in _F3FB9F23D3850EA16ADE145A5A152BFB) () -&gt; ()).(closure #1)"
+                  symbolName = "Elmla3eb.LoginVC.signupBtnAct (__ObjC.UIButton) -&gt; ()"
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/Sources/RegisterationSplashVC.swift"
-                  timestampString = "516206204.616753"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
+                  timestampString = "516465788.478026"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "302"
-                  endingLineNumber = "302"
-                  offsetFromSymbolStart = "2368">
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "712">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.RegisterationSplashVC.((readJson in _F3FB9F23D3850EA16ADE145A5A152BFB) () -&gt; ()).(closure #1)"
+                  symbolName = "Elmla3eb.LoginVC.signupBtnAct (__ObjC.UIButton) -&gt; ()"
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/Sources/RegisterationSplashVC.swift"
-                  timestampString = "516206204.619562"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
+                  timestampString = "516465788.479799"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "302"
-                  endingLineNumber = "302"
-                  offsetFromSymbolStart = "2691">
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "1433">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -333,46 +333,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
+            filePath = "Elmla3eb/LoginVC.swift"
+            timestampString = "516456926.763225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
-            landmarkName = "readJson()"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "signupBtnAct(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.RegisterationSplashVC.((readJson in _F3FB9F23D3850EA16ADE145A5A152BFB) () -&gt; ()).(closure #1)"
-                  moduleName = "Elmla3eb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/Sources/RegisterationSplashVC.swift"
-                  timestampString = "516206204.626224"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "302"
-                  endingLineNumber = "302"
-                  offsetFromSymbolStart = "2368">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.RegisterationSplashVC.((readJson in _F3FB9F23D3850EA16ADE145A5A152BFB) () -&gt; ()).(closure #1)"
-                  moduleName = "Elmla3eb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/Sources/RegisterationSplashVC.swift"
-                  timestampString = "516206204.629448"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "302"
-                  endingLineNumber = "302"
-                  offsetFromSymbolStart = "2691">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -381,13 +349,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
+            filePath = "Elmla3eb/LoginVC.swift"
+            timestampString = "516456927.547154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
-            landmarkName = "readJson()"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "signupBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -398,12 +366,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
+            timestampString = "516456953.218869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
-            landmarkName = "readJson()"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -414,28 +382,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
+            timestampString = "516456955.657208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
-            landmarkName = "readJson()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/Sources/RegisterationSplashVC.swift"
-            timestampString = "516208426.58991"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
-            landmarkName = "readJson()"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

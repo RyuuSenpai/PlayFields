@@ -50,6 +50,10 @@ import CDAlertView
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var districtsPickerV: UIPickerView!
 
+    private var dissmissedLogin = false
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        setupPickerV()
@@ -60,6 +64,8 @@ import CDAlertView
         title =  langDicClass().getLocalizedTitle("Registration")
 
      }
+    
+    
     func closekeyBoard(_ tapped : UITapGestureRecognizer) {
         
         view.endEditing(true)
@@ -67,26 +73,45 @@ import CDAlertView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if !dissmissedLogin {
         self.playerViewOriginalHeight = self.playerViewHeightConstant.constant
         self.registerViewOriginalTopSpace = self.registerationViewBottomSpaceToView.constant
         self.registerationViewBottomSpaceToView.constant = self.view.bounds.height * -1
         if cities.count < 1 {
         self.view.squareLoading.start(0)
-            readJson()
+            
+            let global = GLOBAL()
+            let langIs = L102Language.currentAppleLanguage()
+            global.readJson(langIs: langIs, completed: { [weak self] (data) in
+                
+                self?.cities = data
+                self?.view.squareLoading.stop(0)
+            })
+            
+        }
+        
+        
+        dissmissedLogin = true
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       self.playerViewHeightConstant.constant = self.playerViewOriginalHeight
-       self.registerationViewBottomSpaceToView.constant = self.registerViewOriginalTopSpace
-  
-    }
+ 
+      }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
  
 //        self.ownerViewImageBk.image = #imageLiteral(resourceName: "BackGround")
+        print("that' the self.presentingViewController : \(self.presentingViewController)")
+        print("that' the self.presentingViewController nibName  : \(self.presentingViewController?.nibName)")
+        print("that' the self.presentingViewController title  : \(self.presentingViewController?.title)")
+       
+     
+
     }
+ 
     
 
     override func viewDidLayoutSubviews() {
@@ -96,10 +121,19 @@ import CDAlertView
     }
 
     
+    @IBAction func signInBtnAct(_ sender: UIButton) {
+    
+        guard   let parent = self.presentingViewController ,parent.isKind(of: LoginVC.self)else {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            self.present(vc, animated: true, completion: nil)
+            return
+        }
+        dismiss(animated: true, completion: nil)
+     }
     
     @IBAction func ownerBtnAct(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        self.disableButtons
+          self.disableButtons
           if sender.isSelected {
             UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [.curveEaseIn , .allowUserInteraction], animations: {
                 self.playerViewHeightConstant.constant -= ( self.view.bounds.height * 0.13 )
@@ -127,7 +161,8 @@ import CDAlertView
             // Your code with delay
     self.enableButtons
         }
-    }
+        
+     }
     
     @IBAction func playerBtnAct(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -288,60 +323,7 @@ import CDAlertView
     
     
     
-    private func readJson() {
-         DispatchQueue.global().async {
 
-        do {
-         
-            
-            if let file = Bundle.main.url(forResource: "cities", withExtension: "json") {
-                let data = try Data(contentsOf: file)
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                if let object = json as? [String: Any] {
-                    // json is a dictionary
-                    print(object)
-                } else if let object = json as? [Any] {
-                    // json is an array
-//                    print(object)
-                    var citiesAraName = [String]()
-                     var citiesEngName = [String]()
-                    for cityObject in object {
-//                        print("that's the city : \(cityObject)")
-                        if let name = cityObject as? [String:Any] {
-                            if let cityName = name["name"] as? [String:String] {
-                                print("that's the cityName : \(cityName)")
-                                print("that's the cityName  ara : \(cityName["ar"])")
-                                print("that's the cityName Eng : \(cityName["en"])")
-                                citiesAraName.append(cityName["ar"]!)
-                                citiesEngName.append(cityName["en"]!)
-                            }
-                         }
-                    }
-                    DispatchQueue.main.async {
-                       
-                        if L102Language.currentAppleLanguage() == "ar" {
-                             self.cities = citiesAraName.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
-                            
-                        }else {
-                            self.cities = citiesEngName.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
-
-                        }
-                          self.view.squareLoading.stop(0)
-                    }
-                   
-
-                    
-                } else {
-                    print("JSON is invalid")
-                }
-            } else {
-                print("no file")
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    }
 }
 
 

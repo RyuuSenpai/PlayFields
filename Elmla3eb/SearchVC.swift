@@ -22,11 +22,12 @@ class SearchVC: ToSideMenuClass , UITextFieldDelegate{
     
     @IBOutlet weak var toTxt: UITextField!
         
-    let cities = ["cairo","Alex"]
+    var cities = ["cairo","Alex"]
     let rateList = ["1","2","3","4","5"]
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var ratePickerV: UIPickerView!
     var isFromDate = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title =  langDicClass().getLocalizedTitle("Search")
@@ -46,6 +47,16 @@ class SearchVC: ToSideMenuClass , UITextFieldDelegate{
         ratePickerV.dataSource = self
         ratePickerV.delegate = self
         rateTxt.inputView = ratePickerV
+        
+        self.view.squareLoading.start(0)
+        let global = GLOBAL()
+        let langIs = L102Language.currentAppleLanguage()
+        global.readJson(langIs: langIs, completed: { [weak self] (data) in
+            
+            self?.cities = data
+            self?.view.squareLoading.stop(0)
+        })
+
     }
 
     override func toSidemenuVC() {

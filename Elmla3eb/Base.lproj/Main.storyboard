@@ -14,7 +14,7 @@
         <!--LoginVC-->
         <scene sceneID="0Ze-5m-LB0">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="dBd-QK-nkD" customClass="LoginVC" customModule="Elmla3eb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" automaticallyAdjustsScrollViewInsets="NO" id="dBd-QK-nkD" customClass="LoginVC" customModule="Elmla3eb" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vg1-h9-9In"/>
                         <viewControllerLayoutGuide type="bottom" id="1dv-Tg-wIT"/>
@@ -24,22 +24,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackGround" translatesAutoresizingMaskIntoConstraints="NO" id="ge8-jz-5lo">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ball_splash" translatesAutoresizingMaskIntoConstraints="NO" id="cqN-8h-Nrw">
-                                <rect key="frame" x="50" y="30" width="220" height="220"/>
+                                <rect key="frame" x="46" y="30" width="228" height="228"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cqN-8h-Nrw" secondAttribute="height" multiplier="1:1" id="425-yQ-SRD"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ball_pic" translatesAutoresizingMaskIntoConstraints="NO" id="xZk-FE-YDt">
-                                <rect key="frame" x="112" y="92" width="96" height="96"/>
+                                <rect key="frame" x="112" y="96" width="96" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xZk-FE-YDt" secondAttribute="height" multiplier="1:1" id="JvE-PZ-KsO"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8EJ-1a-XxA">
-                                <rect key="frame" x="0.0" y="207" width="320" height="361"/>
+                                <rect key="frame" x="0.0" y="215" width="320" height="353"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oV2-3T-1aQ">
                                         <rect key="frame" x="27" y="19" width="266" height="75"/>
@@ -123,13 +123,13 @@
                                                     <color key="titleColor" red="0.071469672024250031" green="0.34551560878753662" blue="0.14779239892959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="vBN-L5-ekA" kind="show" id="2R6-1o-3bl"/>
+                                                    <action selector="signupBtnAct:" destination="dBd-QK-nkD" eventType="touchUpInside" id="QTf-Ij-9gC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXJ-0V-a2b">
-                                        <rect key="frame" x="0.0" y="326" width="320" height="35"/>
+                                        <rect key="frame" x="0.0" y="318" width="320" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="ICJ-rc-XBs"/>
                                         </constraints>
@@ -213,12 +213,13 @@
                             <constraint firstItem="1dv-Tg-wIT" firstAttribute="top" secondItem="8EJ-1a-XxA" secondAttribute="bottom" id="fBA-WR-wOP"/>
                             <constraint firstItem="1dv-Tg-wIT" firstAttribute="top" secondItem="ge8-jz-5lo" secondAttribute="bottom" id="hJB-uK-huK"/>
                             <constraint firstItem="xZk-FE-YDt" firstAttribute="centerY" secondItem="cqN-8h-Nrw" secondAttribute="centerY" id="jHc-Rh-UJJ"/>
-                            <constraint firstItem="ge8-jz-5lo" firstAttribute="top" secondItem="vg1-h9-9In" secondAttribute="bottom" id="mUO-0J-jEz"/>
+                            <constraint firstItem="ge8-jz-5lo" firstAttribute="top" secondItem="vg1-h9-9In" secondAttribute="bottom" constant="-20" id="mUO-0J-jEz"/>
                             <constraint firstAttribute="trailing" secondItem="8EJ-1a-XxA" secondAttribute="trailing" id="nU6-IP-HZC"/>
                             <constraint firstItem="cqN-8h-Nrw" firstAttribute="centerX" secondItem="ge8-jz-5lo" secondAttribute="centerX" id="v6M-El-xsV"/>
                             <constraint firstItem="9fM-gq-lZ2" firstAttribute="leading" secondItem="oKB-aJ-QYa" secondAttribute="leadingMargin" id="zLR-FC-LT7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="D7u-KS-35w"/>
                     <connections>
                         <outlet property="backBtn" destination="9fM-gq-lZ2" id="h4U-mC-dLq"/>
                         <outlet property="ballImageCenterX" destination="UO5-x6-Dfu" id="uzk-Di-qDs"/>
@@ -239,7 +240,7 @@
         <!--Registeration SplashVC-->
         <scene sceneID="k4v-p0-dFK">
             <objects>
-                <viewController id="vBN-L5-ekA" customClass="RegisterationSplashVC" customModule="Elmla3eb" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterationSplashVC" id="vBN-L5-ekA" customClass="RegisterationSplashVC" customModule="Elmla3eb" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sbP-OT-1o4"/>
                         <viewControllerLayoutGuide type="bottom" id="UY4-UD-Btf"/>
@@ -536,7 +537,7 @@
                                                                     <color key="titleColor" red="0.07146967202" green="0.34551560879999998" blue="0.14779239890000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <segue destination="dBd-QK-nkD" kind="showDetail" id="uvF-5O-daY"/>
+                                                                    <action selector="signInBtnAct:" destination="vBN-L5-ekA" eventType="touchUpInside" id="yeJ-ES-qDa"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -982,7 +983,7 @@
                             </collectionViewFlowLayout>
                             <cells>
                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ratingCell" id="cli-zT-Kg3" customClass="ratingCell" customModule="Elmla3eb" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="1" width="276" height="274"/>
+                                    <rect key="frame" x="0.0" y="0.5" width="276" height="274"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="274"/>
@@ -1445,7 +1446,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="290" height="35"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qo5-Mz-JEX" id="u6x-2J-Vop">
-                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news_icon" translatesAutoresizingMaskIntoConstraints="NO" id="7sQ-6O-JTh">
@@ -1866,7 +1867,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="290" height="253"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XwW-t9-ehN" id="zHr-JE-GkX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="252"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="253"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-9F-43S">
@@ -2163,7 +2164,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dvi-X9-eNI" id="Zma-Oo-qJO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZj-vS-Otv">
@@ -2241,7 +2242,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xb-ZJ-7Gw" id="O1X-lQ-hbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-QM-GgM">
@@ -2304,7 +2305,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="NZO-rw-mfG">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -2475,8 +2476,6 @@
         <image name="true_icon" width="47" height="47"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Dcr-HH-oXr"/>
-        <segue reference="2R6-1o-3bl"/>
-        <segue reference="uvF-5O-daY"/>
+        <segue reference="C93-MD-lNq"/>
     </inferredMetricsTieBreakers>
 </document>
