@@ -46,7 +46,7 @@ import CDAlertView
         self.ownerViewBtn.isEnabled = true
     }
     var cities = [String]()
-    let districts = ["1","2","3","4"]
+//    let districts = ["1","2","3","4"]
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var districtsPickerV: UIPickerView!
 
@@ -244,7 +244,7 @@ import CDAlertView
         guard  let password = passwordText.text, !password.isEmpty else { return"password Field can't be Empty" }
         guard   let mobile = self.phoneNumText.text,!password.isEmpty  else { return "Mobile Field can't be Empty" }
         guard  let city = cityTxt.text, !city.isEmpty  else { return"City Field can't be Empty" }
-//        guard  let district = districtTxt.text, !district.isEmpty  else { return"District Field can't be Empty" }
+        guard  let district = districtTxt.text, !district.isEmpty  else { return"District Field can't be Empty" }
         guard mobile.validPhoneNumber else {
             return "Phone Number isn't in the right Format"
         }
@@ -255,7 +255,7 @@ import CDAlertView
 
         let user = MUserData()
         
-        user.postRegisterUser(name: "", mobile: mobile, city: "   ", area: "  ", pgType: self.playFieldType, email: "", password: password) { [weak weakSelf = self ] (data) in
+        user.postRegisterUser(name: userName, mobile: mobile, city: city, area: district, pgType: self.playFieldType, email: "", password: password) { [weak weakSelf = self ] (data) in
             print("that is the registeration response : \(data)")
             if data.1 , let x = data.0  {
                 
@@ -343,9 +343,9 @@ extension RegisterationSplashVC :  UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard pickerView == citiesPickerV else {
-            return districts.count
-        }
+//        guard pickerView == citiesPickerV else {
+//            return districts.count
+//        }
         return cities.count
     }
     //    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -353,11 +353,11 @@ extension RegisterationSplashVC :  UIPickerViewDelegate, UIPickerViewDataSource 
     //    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard pickerView == citiesPickerV else {
-            districtTxt.text = districts[row]
-            self.view.endEditing(true)
-            return
-        }
+//        guard pickerView == citiesPickerV else {
+//            districtTxt.text = districts[row]
+//            self.view.endEditing(true)
+//            return
+//        }
         cityTxt.text = cities[row]
         self.view.endEditing(true)
     }
@@ -369,10 +369,10 @@ extension RegisterationSplashVC :  UIPickerViewDelegate, UIPickerViewDataSource 
         label.tag = 20
         label.textAlignment = .center
         
-        guard pickerView == citiesPickerV else {
-            label.text = districts[row]
-            return label
-        }
+//        guard pickerView == citiesPickerV else {
+//            label.text = districts[row]
+//            return label
+//        }
         label.text = cities[row]
         return label
     }
@@ -385,10 +385,10 @@ extension RegisterationSplashVC :  UIPickerViewDelegate, UIPickerViewDataSource 
         citiesPickerV.delegate = self
         cityTxt.inputView = citiesPickerV
         
-        districtsPickerV = UIPickerView()
-        districtsPickerV.dataSource = self
-        districtsPickerV.delegate = self
-        districtTxt.inputView = districtsPickerV
+//        districtsPickerV = UIPickerView()
+//        districtsPickerV.dataSource = self
+//        districtsPickerV.delegate = self
+//        districtTxt.inputView = districtsPickerV
     }
     
     
@@ -396,10 +396,11 @@ extension RegisterationSplashVC :  UIPickerViewDelegate, UIPickerViewDataSource 
     if  textField == cityTxt ,  textField.text == "" {
             textField.text = cities[0]
             
-        }else  if  textField == districtTxt ,  textField.text == "" {
-            textField.text = districts[0]
-            
         }
+//    else  if  textField == districtTxt ,  textField.text == "" {
+//            textField.text = districts[0]
+//            
+//        }
     }
     
     

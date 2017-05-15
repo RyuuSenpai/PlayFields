@@ -480,7 +480,7 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="District" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmL-fy-hko">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="District" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmL-fy-hko">
                                                                 <rect key="frame" x="0.0" y="180" width="285" height="35"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -983,7 +983,7 @@
                             </collectionViewFlowLayout>
                             <cells>
                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ratingCell" id="cli-zT-Kg3" customClass="ratingCell" customModule="Elmla3eb" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.5" width="276" height="274"/>
+                                    <rect key="frame" x="0.0" y="1" width="276" height="274"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="274"/>
@@ -1432,9 +1432,9 @@
                                         <rect key="frame" x="0.0" y="50" width="320" height="205"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No News Found!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcB-Jf-WUm">
-                                                <rect key="frame" x="20" y="20" width="280" height="165"/>
+                                                <rect key="frame" x="20" y="-13" width="280" height="198"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                                 <color key="textColor" red="0.36078431370000003" green="0.68235294120000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1446,7 +1446,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="290" height="35"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qo5-Mz-JEX" id="u6x-2J-Vop">
-                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news_icon" translatesAutoresizingMaskIntoConstraints="NO" id="7sQ-6O-JTh">
@@ -1486,7 +1486,7 @@
                                             <constraint firstItem="OcB-Jf-WUm" firstAttribute="leading" secondItem="UVg-t5-ztt" secondAttribute="leading" constant="20" id="Gp8-xD-rmk"/>
                                             <constraint firstItem="sKZ-Em-Otw" firstAttribute="top" secondItem="UVg-t5-ztt" secondAttribute="top" constant="15" id="W4z-fj-hKq"/>
                                             <constraint firstAttribute="trailing" secondItem="OcB-Jf-WUm" secondAttribute="trailing" constant="20" id="e9o-Ja-YHg"/>
-                                            <constraint firstItem="OcB-Jf-WUm" firstAttribute="top" secondItem="UVg-t5-ztt" secondAttribute="top" constant="20" id="lfw-CG-lHc"/>
+                                            <constraint firstItem="OcB-Jf-WUm" firstAttribute="top" secondItem="UVg-t5-ztt" secondAttribute="top" constant="-13" id="lfw-CG-lHc"/>
                                             <constraint firstAttribute="trailing" secondItem="sKZ-Em-Otw" secondAttribute="trailing" constant="15" id="rPf-ch-9lW"/>
                                             <constraint firstAttribute="bottom" secondItem="sKZ-Em-Otw" secondAttribute="bottom" id="wlO-xh-JEF"/>
                                         </constraints>
@@ -1867,7 +1867,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="290" height="253"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XwW-t9-ehN" id="zHr-JE-GkX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="253"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="252"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-9F-43S">
@@ -2164,7 +2164,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dvi-X9-eNI" id="Zma-Oo-qJO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZj-vS-Otv">
@@ -2242,7 +2242,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xb-ZJ-7Gw" id="O1X-lQ-hbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-QM-GgM">
@@ -2304,7 +2304,7 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="NZO-rw-mfG">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2476,6 +2476,6 @@
         <image name="true_icon" width="47" height="47"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="C93-MD-lNq"/>
+        <segue reference="Dcr-HH-oXr"/>
     </inferredMetricsTieBreakers>
 </document>
