@@ -302,12 +302,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
-                  timestampString = "516465788.478026"
+                  timestampString = "516619908.443088"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
                   endingLineNumber = "202"
-                  offsetFromSymbolStart = "712">
+                  offsetFromSymbolStart = "572">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -317,12 +317,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
-                  timestampString = "516465788.479799"
+                  timestampString = "516619908.444855"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
                   endingLineNumber = "202"
-                  offsetFromSymbolStart = "1433">
+                  offsetFromSymbolStart = "1172">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -388,6 +388,22 @@
             startingLineNumber = "74"
             endingLineNumber = "74"
             landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/AppDelegate.swift"
+            timestampString = "516619873.20523"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

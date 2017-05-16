@@ -65,6 +65,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()    
         }
+        
+        let notificationTypes : UIUserNotificationType = [.alert, .badge, .sound]
+        let notificationSettings : UIUserNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+        
+        
         return true
     }
     
@@ -92,6 +98,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         }
 
          }
+    
+    
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)
+    {
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+ 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print(token)
+    }
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        
+    }
+    
+    //@End Notification 
+    
+    
+    
     
     func userOffline(_ view : UIViewController?) {
         guard let view = view else {
