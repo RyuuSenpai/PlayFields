@@ -20,8 +20,8 @@ class GetPlayGroundsData {
     
     func getPlayFieldsData(completed : @escaping (MainPage_Data?)->()) {
         
-        let url = "http://appstest.xyz/api/homedatas"
-        //        let url = source.GET_PLAY_GROUNDS_ALL + source.API_TOKEN
+//        let url = "http://appstest.xyz/api/homedatas"
+                let url = source.GET_PLAY_GROUNDS_ALL + source.API_TOKEN
         print("URL: is getPlayFieldsData  : \(url)")
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             print(response.result)

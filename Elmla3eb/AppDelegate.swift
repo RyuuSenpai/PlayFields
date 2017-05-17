@@ -9,6 +9,8 @@
 import UIKit
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
+import Firebase
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate  {
@@ -46,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         setNavigatiobColor()
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
 
-
+        FIRApp.configure()
         let x = self.isUserLoggedIn()
         if x {
             
@@ -70,7 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         let notificationSettings : UIUserNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
         
-        
+        print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
+ 
+
         return true
     }
     
@@ -115,7 +119,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        
+        print("that's the userInfo : \(userInfo)")
+        print("that's the message Id  : \(userInfo["gcm_message_id"]!)")
+
     }
     
     //@End Notification 

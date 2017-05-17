@@ -51,6 +51,10 @@
     }
     
     }
+    
+    var refreshControl:UIRefreshControl!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          collectionView.delegate = self
@@ -73,9 +77,20 @@
         
     
 //        setupRatingView()
-    
+        refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+        collectionView.alwaysBounceVertical = true
         
     }
+    
+    func refreshData()
+    {
+        //DO
+        updateUI()
+    }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -150,7 +165,7 @@
     func updateUI() {
         getData.getPlayFieldsData { [weak   self ](data) in
             guard let i = data ,let pg = i.playGrounds , let statics = i.staticsdata , let pagerData = i.pagerData else {
-                self?.view.squareLoading.stop(0.0)
+                self?.stopRefresher()
                 weak var weakself = self
                 ad.userOffline(weakself)
                 return    }
@@ -168,18 +183,25 @@
             //            print("that's the ÷addedStatics of fields : \( weakSelf?.addedStatics)")
             //
             //            print("that's the ÷bookedStatics of fields : \( weakSelf?.bookedStatics)")
-            
+            self?.stopRefresher()
             //            }
             //            weakSelf?.bookedFieldsLbl.text = "\(statics.bookedFields)"
             //            weakSelf?.visitorsLbl.text = "\(statics.visitors)"
             //            weakSelf?.fieldsAddedLbl.text = "\(statics.fieldAdded)"
             //            weakSelf?.collectionView.sub
-            self?.view.squareLoading.stop(0.0)
+         
+            
             self?.menuBtn.isEnabled = true
             self?.menuBtn.image = UIImage(named: "Menu_Btn")
         
             self?.collectionView.reloadData()
         }
+    }
+    
+    func stopRefresher()
+    {
+        self.refreshControl.endRefreshing()
+        self.view.squareLoading.stop(0.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView{

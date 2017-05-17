@@ -13,6 +13,7 @@ class Constants  {
 
     class API {
        private static let main_url = "http://appstest.xyz/api/"
+        //       private static let main_url = "http://amtechs.site/"
 
         class URLS {
              let API_TOKEN = "?api_token=776645543"
@@ -44,9 +45,9 @@ class Constants  {
             let GET_PG_TIMES_BY_ID = API.main_url + "pgtimes/"
             //////////////
             //PLAY_GROUNDS
-            let POST_PLAY_GROUNDS_DATA = API.main_url + "playgrounds"
-            let GET_PLAY_GROUNDS_ALL = API.main_url + "playgrounds"
-            let GET_PLAY_GROUNDS_ID = API.main_url + "playgrounds/"
+            let POST_PLAY_GROUNDS_DATA = API.main_url + "homedatas"
+            let GET_PLAY_GROUNDS_ALL = API.main_url + "homedatas"
+            let GET_PLAY_GROUNDS_ID = API.main_url + "homedatas/"
             //////////////
             //SETTINGS
             let POST_SETTINGS_DATA = API.main_url + "settings"

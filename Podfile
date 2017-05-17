@@ -19,4 +19,7 @@ pod "CDAlertView"
 pod 'AlamofireImage', '~> 3.1'
  pod "InfiniteCollectionView"
 
+pod “Firebase”
+pod "Firebase/Messaging”
+
 end

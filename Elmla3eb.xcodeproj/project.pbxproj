@@ -57,6 +57,9 @@
 		52AFAA961E828318009F6467 /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */; };
 		52AFAA981E82955D009F6467 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA971E82955D009F6467 /* MenuVC.swift */; };
 		52BA8A7D1E92925300BFDC3C /* SplashLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */; };
+		52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52BBF11C1ECB3659002AE6EA /* GoogleService-Info.plist */; };
+		52BBF1201ECB4CFF002AE6EA /* CheckPhoneValidVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */; };
+		52BBF1211ECB4CFF002AE6EA /* CheckPhoneValidVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BBF11F1ECB4CFF002AE6EA /* CheckPhoneValidVC.xib */; };
 		52BCB8791EBB2D42007298D4 /* ratingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCB8781EBB2D42007298D4 /* ratingCell.swift */; };
 		52C0E3661E8A635F005ABCAD /* BookedFieldsDatesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0E3651E8A635F005ABCAD /* BookedFieldsDatesCell.swift */; };
 		52C0E3681E8A8950005ABCAD /* BookNowTablesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0E3671E8A8950005ABCAD /* BookNowTablesVC.swift */; };
@@ -86,7 +89,6 @@
 		714AED081E632170001127CE /* MirroringLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AED041E632170001127CE /* MirroringLabel.swift */; };
 		714AED091E632170001127CE /* MirroringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AED051E632170001127CE /* MirroringViewController.swift */; };
 		714AED0C1E6321E4001127CE /* FBLoggin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AED0B1E6321E4001127CE /* FBLoggin.swift */; };
-		718993F61E644DDE001D61C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 718993F51E644DDE001D61C6 /* GoogleService-Info.plist */; };
 		71F06C5C1E6598D2008FBD28 /* sarawut-intarob-19.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71F06C5B1E6598D2008FBD28 /* sarawut-intarob-19.jpg */; };
 		71F06C631E65D042008FBD28 /* soccer-player-aged-pixel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71F06C621E65D042008FBD28 /* soccer-player-aged-pixel.jpg */; };
 /* End PBXBuildFile section */
@@ -150,6 +152,9 @@
 		52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
 		52AFAA971E82955D009F6467 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashLoginVC.swift; sourceTree = "<group>"; };
+		52BBF11C1ECB3659002AE6EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckPhoneValidVC.swift; sourceTree = "<group>"; };
+		52BBF11F1ECB4CFF002AE6EA /* CheckPhoneValidVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckPhoneValidVC.xib; sourceTree = "<group>"; };
 		52BCB8781EBB2D42007298D4 /* ratingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ratingCell.swift; sourceTree = "<group>"; };
 		52C0E3651E8A635F005ABCAD /* BookedFieldsDatesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookedFieldsDatesCell.swift; sourceTree = "<group>"; };
 		52C0E3671E8A8950005ABCAD /* BookNowTablesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookNowTablesVC.swift; sourceTree = "<group>"; };
@@ -182,7 +187,6 @@
 		714AED051E632170001127CE /* MirroringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MirroringViewController.swift; sourceTree = "<group>"; };
 		714AED0B1E6321E4001127CE /* FBLoggin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoggin.swift; sourceTree = "<group>"; };
 		718993EF1E644BED001D61C6 /* Elmla3eb-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Elmla3eb-Bridging-Header.h"; sourceTree = "<group>"; };
-		718993F51E644DDE001D61C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		719A99881E64737C00B3ED2A /* Elmla3eb.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Elmla3eb.entitlements; sourceTree = "<group>"; };
 		71F06C5B1E6598D2008FBD28 /* sarawut-intarob-19.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sarawut-intarob-19.jpg"; sourceTree = "<group>"; };
 		71F06C621E65D042008FBD28 /* soccer-player-aged-pixel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "soccer-player-aged-pixel.jpg"; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 				520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */,
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
 				520044AC1EC1D5060030B772 /* SearchVC.xib */,
+				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
+				52BBF11F1ECB4CFF002AE6EA /* CheckPhoneValidVC.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 		711EA1851E641A71009EC821 /* 3rd party lib */ = {
 			isa = PBXGroup;
 			children = (
+				52BBF11C1ECB3659002AE6EA /* GoogleService-Info.plist */,
 				714AED001E632113001127CE /* MaterialView.swift */,
 				52AFAA801E8282CC009F6467 /* XView */,
 				523956951E76BECE005B2D1E /* Sources */,
@@ -491,7 +498,6 @@
 				52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */,
 				714AECF41E6303EF001127CE /* LaunchScreen.storyboard */,
 				714AECF71E6303EF001127CE /* Info.plist */,
-				718993F51E644DDE001D61C6 /* GoogleService-Info.plist */,
 				52AF589F1E769E4A001284DD /* Delete */,
 				711EA1851E641A71009EC821 /* 3rd party lib */,
 				718993EF1E644BED001D61C6 /* Elmla3eb-Bridging-Header.h */,
@@ -566,7 +572,13 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -600,7 +612,6 @@
 				52AF58A31E769EB0001284DD /* 3-star-rating.png in Resources */,
 				714AECF61E6303EF001127CE /* LaunchScreen.storyboard in Resources */,
 				71F06C5C1E6598D2008FBD28 /* sarawut-intarob-19.jpg in Resources */,
-				718993F61E644DDE001D61C6 /* GoogleService-Info.plist in Resources */,
 				52178C8F1EC47D8900181384 /* cities.json in Resources */,
 				520044A51EC1CAAC0030B772 /* ForgotPasswordVC.xib in Resources */,
 				714AECF31E6303EF001127CE /* Assets.xcassets in Resources */,
@@ -611,6 +622,8 @@
 				52D7C4331E82D60C00F34B77 /* FieldsCell.xib in Resources */,
 				71F06C631E65D042008FBD28 /* soccer-player-aged-pixel.jpg in Resources */,
 				5200449B1EC1C31F0030B772 /* ProfileVC.xib in Resources */,
+				52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */,
+				52BBF1211ECB4CFF002AE6EA /* CheckPhoneValidVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +733,7 @@
 				523956A31E76BECE005B2D1E /* FSPageViewTransformer.swift in Sources */,
 				523956A51E76C232005B2D1E /* HPHeaderVC.swift in Sources */,
 				714AED071E632170001127CE /* L102Language.swift in Sources */,
+				52BBF1201ECB4CFF002AE6EA /* CheckPhoneValidVC.swift in Sources */,
 				52A6C7451EA38A3700DD4352 /* Pg_Info_Vars.swift in Sources */,
 				52AF58971E7692AB001284DD /* MainPageVC.swift in Sources */,
 				52AFAA981E82955D009F6467 /* MenuVC.swift in Sources */,

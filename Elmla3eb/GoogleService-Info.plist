@@ -2,27 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>1024243421954-lt708i5rrnr5ub5pj675d7lsva32n6hm.apps.googleusercontent.com</string>
+	<string>522604848119-ulkgurgbj6tgv1vq94q9bo0pakq7vbk9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1024243421954-lt708i5rrnr5ub5pj675d7lsva32n6hm</string>
+	<string>com.googleusercontent.apps.522604848119-ulkgurgbj6tgv1vq94q9bo0pakq7vbk9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDvmXpufC8kVQvNUCSC5Im8mSljSpb_MlE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>522604848119</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.elmla3eb.sae</string>
+	<string>com.smt.elmala3eb</string>
 	<key>PROJECT_ID</key>
-	<string>elmla3ebb</string>
+	<string>nokhbat-al-mala3eb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nokhbat-al-mala3eb.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
 	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<false/>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1024243421954:ios:1449dafcd4d48215</string>
+	<string>1:522604848119:ios:4402c9f6843ac6b2</string>
+	<key>DATABASE_URL</key>
+	<string>https://nokhbat-al-mala3eb.firebaseio.com</string>
 </dict>
 </plist>
