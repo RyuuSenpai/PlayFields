@@ -114,6 +114,54 @@ class MUserData {
             }
         }
     }
+    
+    
+    func userFCMToken(userID: Int , token:String ,completed : @escaping ((Bool,String))->()) {
+        let parameters : Parameters = [parSource.user_id : userID , parSource.token : token ]
+        print("that is the parameters in userFCMToken : \(parameters)")
+        
+        
+        //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
+        
+        //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
+        let url = source.USER_FCM_TOKEN + source.API_TOKEN
+        print("URL: is userFCMToken   : \(url)")
+        
+        Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+                
+                
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: userFCMToken success : \(success) STATUS:\(state) , sms: \(sms)")
+                
+                
+                completed((state,sms))
+                break
+            case .failure(_) :
+                print("that is fail i n getting the userFCMToken Mate : %@",response.result.error)
+                completed((false, "Network Time out" ))
+                break
+            }
+        }
+    }
+    
+    
+    
 }
 
 

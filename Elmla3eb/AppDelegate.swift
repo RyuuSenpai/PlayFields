@@ -111,8 +111,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
  
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print(token)
+//        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+//        print(token)
+
+        
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            if UserDefaults.standard.value(forKey: "userId") == nil {
+                UserDefaults.standard.setValue(nil, forKey: "FCMToken")
+            }
+            if   let userID = UserDefaults.standard.value(forKey: "userId") as? Int     ,  UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
+                print("found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? String)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
+
+                UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
+                let userFCM = MUserData()
+                userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
+                    
+                    
+                })
+            }else {
+             print("found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
+            }
+        }
     }
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error.localizedDescription)
@@ -139,6 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     func saveUserLogginData(email:String?,photoUrl : String? , uid : Int?,name:String?) {
         print("saving User Data email: \(email) , photoUrl: \(photoUrl),uid: \(uid)")
+     
         if   let email = email   {
             UserDefaults.standard.setValue(email, forKey: "userEmail")
         }else{
@@ -156,6 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             UserDefaults.standard.setValue(uid, forKey: "userId")
         }else {
             UserDefaults.standard.setValue(nil, forKey: "userId")
+            UserDefaults.standard.setValue(nil, forKey: "FCMToken")
         }
         
         if let name = name {
@@ -165,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         }
         
     }
-    
+ 
     func isUserLoggedIn() -> Bool {
         if (UserDefaults.standard.value(forKey: "userId") != nil) {
             return true

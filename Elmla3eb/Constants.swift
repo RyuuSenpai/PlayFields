@@ -64,6 +64,8 @@ class Constants  {
             let POST_Register_USER_DATA = API.main_url + "users"
             let GET_USER_ALL = API.main_url + "users"
             let GET_USER_BY_ID = API.main_url + "users/"
+            
+            let USER_FCM_TOKEN = "http://amtechs.site/api/fcm"
             //////////////
             
         }
@@ -120,6 +122,7 @@ class Constants  {
             let pg_BookingNumbers = "pg_BookingNumbers"
             let date = "date"
             let times_msg = "times_msg"
+            let token = "token"
         }
   
     }
