@@ -12,8 +12,8 @@ class Constants  {
     static let screenSize: CGRect = UIScreen.main.bounds
 
     class API {
-       private static let main_url = "http://appstest.xyz/api/"
-        //       private static let main_url = "http://amtechs.site/"
+//       private static let main_url = "http://appstest.xyz/api/"
+         private static let main_url = "http://amtechs.site/api/"
 
         class URLS {
              let API_TOKEN = "?api_token=776645543"
