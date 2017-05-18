@@ -22,7 +22,7 @@ class LoginVC: MirroringViewController {
     @IBOutlet weak var fbBtn: UIButton!
     @IBOutlet weak var ballImageCenterX: NSLayoutConstraint!
     @IBOutlet weak var backBtn: UIButton!
-
+    
     var genderCenter : CGPoint!
     var addImageCenter : CGPoint!
     var shieldOnCenter : CGPoint!
@@ -34,15 +34,15 @@ class LoginVC: MirroringViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         title =  langDicClass().getLocalizedTitle("Login")
         
     }
     
     
     func setUIEnabled(enabled:Bool) {
-//        self.fbSigninBtnOL.isEnabled = enabled
-//        self.googleSigninBtnOL.isEnabled = enabled
+        //        self.fbSigninBtnOL.isEnabled = enabled
+        //        self.googleSigninBtnOL.isEnabled = enabled
         //        self.signBtnOL.isEnabled = enabled
         //        self.dissMissView.isEnabled = enabled
         
@@ -69,9 +69,9 @@ class LoginVC: MirroringViewController {
             backBtn.alpha = 0.5
             backBtn.isEnabled = false
             signBtn.isEnabled = false
-             fbBtn.isEnabled = false
-             registerBtn.isEnabled = false
-             signBtn.isEnabled = false
+            fbBtn.isEnabled = false
+            registerBtn.isEnabled = false
+            signBtn.isEnabled = false
             emailText.isEnabled = false
             passwordText.isEnabled = false
             //            signBtnOL.alpha = 0.5
@@ -106,7 +106,7 @@ class LoginVC: MirroringViewController {
             
         }
         //@Test_back_End
-////        TestBackEnd.HOmePage()
+        ////        TestBackEnd.HOmePage()
         //        TestBackEnd.PLayField_INfo()
         //        TestBackEnd.PlaygNews()
         //        TestBackEnd.playgTimes()
@@ -114,13 +114,13 @@ class LoginVC: MirroringViewController {
         //        TestBackEnd.playgTeams()
         //        TestBackEnd.User()
         //@End_Test_back_End
-
+        
     }
     
     @IBAction func backBtnAct(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     
     @IBAction func showPassword(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -147,15 +147,15 @@ class LoginVC: MirroringViewController {
             //            alert.add(action: nevermindAction)
             alert.show()
             self.setUIEnabled(enabled: true)
-                
+            
         }else {
             
         }
     }
     
-     
+    
     @IBAction func forgotPasswordBtnAct(_ sender: UIButton) {
-
+        
         let vc = ForgotPasswordVC()
         
         self.present(vc, animated: true, completion: nil)
@@ -167,7 +167,7 @@ class LoginVC: MirroringViewController {
         self.setUIEnabled(enabled: false)
         guard   let password = passwordText.text, let mobile = self.emailText.text else { return "Empty_Field" }
         guard  !password.isEmpty,!mobile.isEmpty else { return"All Fields are Required" }
-           guard password.doesNOTcontainSpecialCharacters else { return "Password Can't Contain Special Characters" }
+        guard password.doesNOTcontainSpecialCharacters else { return "Password Can't Contain Special Characters" }
         guard mobile.doesNOTcontainSpecialCharacters else { return "Phone Number Can't Contain Special Characters" }
         let user = MUserData()
         
@@ -175,11 +175,20 @@ class LoginVC: MirroringViewController {
             print("that is the login response : \(data)")
             if data.1 {
                 if  let x = data.0 {
-                    let id = x.id
-                    ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:  id , name : x.name)
+                   
+                    ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
+                    
+                    weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
+                    
                 }
-                weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
                 self.setUIEnabled(enabled: true)
+            }else if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
+                let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
+                vc.modalTransitionStyle = .crossDissolve
+                vc.userId = id
+                vc.userName = name
+                self.present(vc, animated: true, completion: nil)
+                
             }else {
                 if data.2 == "User not found" {
                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Invalid username or password"), message: "", type: .error)
@@ -204,7 +213,7 @@ class LoginVC: MirroringViewController {
             return
         }
         dismiss(animated: true, completion: nil)
-
+        
     }
     
     func degreesToRadians( _ degree : Double) -> CGFloat {

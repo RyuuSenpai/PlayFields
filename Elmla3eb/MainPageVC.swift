@@ -76,7 +76,7 @@
         
         
     
-//        setupRatingView()
+        setupRatingView()
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)

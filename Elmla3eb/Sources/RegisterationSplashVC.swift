@@ -255,28 +255,27 @@ import CDAlertView
 
         let user = MUserData()
         
-        user.postRegisterUser(name: userName, mobile: mobile, city: city, area: district, pgType: self.playFieldType, email: "", password: password) { [weak weakSelf = self ] (data) in
+        user.postRegisterUser(name: userName, mobile: mobile, city: city, area: district, pgType: self.playFieldType, email: "", password: password) {  (data) in
             print("that is the registeration response : \(data)")
             if data.1 , let x = data.0  {
                 
-                    let id = x.id
-                ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:userName)
                 
-                weakSelf?.performSegue(withIdentifier: "SignedupSegue", sender: weakSelf)
+//                weakSelf?.performSegue(withIdentifier: "SignedupSegue", sender: weakSelf)
+                let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
+                vc.modalTransitionStyle = .crossDissolve
+                vc.userId = x.id
+                vc.userName = userName
+                self.present(vc, animated: true, completion: nil)
                 self.setUIEnabled(enabled: true)
             }else {
-                if data.2 == "user already exists" {
-                    let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Phone Number Already Exists"), message: "", type: .error)
+                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Error with ") + "\(data.2)", message: "", type: .error)
                     DispatchQueue.main.async {
                         alert.show()
                         self.setUIEnabled(enabled: true)
                         
                     }
                 }
-                
-            }
-            
-        }
+          }
         return "Done"
     
 }

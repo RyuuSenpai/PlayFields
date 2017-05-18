@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckPhoneValidVC" customModule="Elmla3eb" customModuleProvider="target">
             <connections>
+                <outlet property="activeOL" destination="g1F-jm-jf7" id="yjR-dk-w8z"/>
+                <outlet property="confirmationCodeTxt" destination="Pqc-yq-2Ea" id="x6Z-RI-ylM"/>
+                <outlet property="resendBtnOL" destination="e3H-od-MeJ" id="bFw-mX-a7P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="Ufe-Is-T4c">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_main" translatesAutoresizingMaskIntoConstraints="NO" id="Ufe-Is-T4c">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dir-Fi-fqV">
@@ -27,15 +30,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03H-5F-Aww">
-                                <rect key="frame" x="-4" y="-32" width="383" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03H-5F-Aww">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akj-mw-DEk">
+                                        <rect key="frame" x="15" y="15" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="IE2-hg-NIR"/>
+                                            <constraint firstAttribute="width" constant="44" id="pYH-bJ-bJc"/>
+                                        </constraints>
+                                        <state key="normal" image="Circled Left_ffffff_32"/>
+                                        <connections>
+                                            <action selector="resetAppBtnAct:" destination="-1" eventType="touchUpInside" id="wMJ-I5-AcI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.072673343119999997" green="0.217590481" blue="0.34663116929999999" alpha="0.1757544948630137" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="rHE-4B-S5E"/>
+                                    <constraint firstItem="Akj-mw-DEk" firstAttribute="top" secondItem="03H-5F-Aww" secondAttribute="top" constant="15" id="REl-hh-Q3D"/>
+                                    <constraint firstItem="Akj-mw-DEk" firstAttribute="leading" secondItem="03H-5F-Aww" secondAttribute="leading" constant="15" id="U1g-1g-k1e"/>
+                                    <constraint firstAttribute="height" constant="64" id="rHE-4B-S5E"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I4I-fp-U8P">
-                                <rect key="frame" x="15" y="162.5" width="345" height="53.5"/>
+                                <rect key="frame" x="15" y="161.5" width="345" height="53.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYS-CQ-XZu">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="18.5"/>
@@ -57,7 +75,7 @@
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, Enter activation code that was sent to you by sms to activate your account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w45-xh-XCj">
-                                <rect key="frame" x="10" y="83" width="355" height="69.5"/>
+                                <rect key="frame" x="10" y="82" width="355" height="69.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -76,7 +94,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62j-BP-Bes">
                                                         <rect key="frame" x="-0.5" y="0.0" width="142.5" height="52"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Ba-xe-5eV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <blurEffect style="dark"/>
@@ -87,6 +105,9 @@
                                                         <state key="normal" title="Active">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="btnAct:" destination="-1" eventType="touchUpInside" id="f3V-WN-SHQ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,17 +145,20 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D3-VW-2aK">
                                                         <rect key="frame" x="0.5" y="0.0" width="142.5" height="52"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="476-gp-jKv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="142" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <blurEffect style="dark"/>
                                                     </visualEffectView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3H-od-MeJ">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3H-od-MeJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                         <state key="normal" title="Resend">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="btnAct:" destination="-1" eventType="touchUpInside" id="PZl-E9-ShL"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -171,16 +195,16 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="w45-xh-XCj" secondAttribute="trailing" constant="10" id="0EW-xg-hhb"/>
-                            <constraint firstItem="03H-5F-Aww" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" constant="-4" id="4vb-ia-9h8"/>
-                            <constraint firstAttribute="trailing" secondItem="03H-5F-Aww" secondAttribute="trailing" constant="-4" id="7XQ-38-psf"/>
+                            <constraint firstItem="03H-5F-Aww" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" id="4vb-ia-9h8"/>
+                            <constraint firstAttribute="trailing" secondItem="03H-5F-Aww" secondAttribute="trailing" id="7XQ-38-psf"/>
                             <constraint firstAttribute="trailing" secondItem="I4I-fp-U8P" secondAttribute="trailing" constant="15" id="Gb9-Nh-mG9"/>
                             <constraint firstAttribute="trailing" secondItem="2eo-dY-uFJ" secondAttribute="trailing" constant="20" id="JWo-3e-ua9"/>
                             <constraint firstItem="I4I-fp-U8P" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" constant="15" id="NDJ-BZ-2nf"/>
-                            <constraint firstItem="w45-xh-XCj" firstAttribute="top" secondItem="03H-5F-Aww" secondAttribute="bottom" constant="15" id="ZaN-SQ-Hjn"/>
+                            <constraint firstItem="w45-xh-XCj" firstAttribute="top" secondItem="03H-5F-Aww" secondAttribute="bottom" constant="18" id="ZaN-SQ-Hjn"/>
                             <constraint firstAttribute="bottom" secondItem="2eo-dY-uFJ" secondAttribute="bottom" constant="20" id="Zir-K9-Dqa"/>
                             <constraint firstItem="I4I-fp-U8P" firstAttribute="top" secondItem="w45-xh-XCj" secondAttribute="bottom" constant="10" id="Zqi-U1-P5Y"/>
                             <constraint firstItem="2eo-dY-uFJ" firstAttribute="centerX" secondItem="t7Y-zd-kvP" secondAttribute="centerX" id="eMr-9u-Y9E"/>
-                            <constraint firstItem="03H-5F-Aww" firstAttribute="top" secondItem="t7Y-zd-kvP" secondAttribute="top" constant="-32" id="meW-FK-4gb"/>
+                            <constraint firstItem="03H-5F-Aww" firstAttribute="top" secondItem="t7Y-zd-kvP" secondAttribute="top" id="meW-FK-4gb"/>
                             <constraint firstItem="2eo-dY-uFJ" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" constant="20" id="vGk-Kc-YPW"/>
                             <constraint firstItem="w45-xh-XCj" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" constant="10" id="xZ1-f0-CF8"/>
                         </constraints>
@@ -203,6 +227,7 @@
         </view>
     </objects>
     <resources>
-        <image name="splash" width="1242" height="2208"/>
+        <image name="Circled Left_ffffff_32" width="26" height="26"/>
+        <image name="bg_main" width="1242" height="2208"/>
     </resources>
 </document>

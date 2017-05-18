@@ -14,10 +14,11 @@ class ProfileVC: ToSideMenuClass {
     @IBOutlet weak var playerPosition: UILabel!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var pointslbl: UILabel!
-    @IBOutlet weak var phoneNumberLbl: UILabel!
-    @IBOutlet weak var dateOfBirthLbl: UILabel!
-    @IBOutlet weak var snapChatLbl: UILabel!
+ 
+    @IBOutlet weak var phoneNumTxt: UITextFieldX!
+    @IBOutlet weak var birthDateTxt: UITextFieldX!
     
+    @IBOutlet weak var snapCTxt: UITextFieldX!
     @IBOutlet weak var userName: UILabel!{
         didSet {
             if let name = UserDefaults.standard.value(forKey: "userName") as? String{
@@ -27,11 +28,26 @@ class ProfileVC: ToSideMenuClass {
             }
     }
     }
+    var disableTxts = false  {
+        didSet {
+            if disableTxts {
+                phoneNumTxt.isEnabled = false
+                birthDateTxt.isEnabled = false
+                snapCTxt.isEnabled = false
+            }else {
+           phoneNumTxt.isEnabled = true
+            birthDateTxt.isEnabled = true
+            snapCTxt.isEnabled = true
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        disableTxts = true
         title =  langDicClass().getLocalizedTitle("Profile")
         self.pointslbl.text = "0" + langDicClass().getLocalizedTitle(" Points ")
+        emptyFields()
+        
     }
     
     override func toSidemenuVC() {
@@ -41,11 +57,30 @@ class ProfileVC: ToSideMenuClass {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func emptyFields() {
+        if  let _ =  phoneNumTxt.text?.isEmpty  {
+            phoneNumTxt.placeholder = "Empty"
+        }
+        if  let _ =  snapCTxt.text?.isEmpty   {
+            snapCTxt.placeholder = "Empty"
+        }
+        if  let _ =  birthDateTxt.text?.isEmpty   {
+            birthDateTxt.placeholder = "Empty"
+        }
     }
     
+    @IBAction func editButtonAct(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            disableTxts = false
+            sender.setImage(UIImage(named:"Delete_5d5e61_32"), for: .normal)
+        }else {
+            disableTxts = true
+            sender.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+
+        }
+    }
 
     /*
     // MARK: - Navigation

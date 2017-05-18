@@ -11,12 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVC" customModule="Elmla3eb" customModuleProvider="target">
             <connections>
-                <outlet property="dateOfBirthLbl" destination="28W-om-waN" id="gk0-TU-rBf"/>
+                <outlet property="birthDateTxt" destination="aex-xe-mkE" id="qgN-Ww-xLd"/>
                 <outlet property="favPoints" destination="QmM-fg-Dta" id="rPj-dq-MU8"/>
-                <outlet property="phoneNumberLbl" destination="5l9-Dj-cOw" id="iMq-xL-WdX"/>
+                <outlet property="phoneNumTxt" destination="RRw-sR-yjA" id="kyD-bd-oqV"/>
                 <outlet property="playerPosition" destination="YcD-qx-qv0" id="Qfi-tV-7wb"/>
                 <outlet property="pointslbl" destination="JUw-mT-sTe" id="AUq-xs-wsF"/>
-                <outlet property="snapChatLbl" destination="hj3-yD-vxF" id="Q3k-4G-ueC"/>
+                <outlet property="snapCTxt" destination="ZZ4-zI-BcD" id="sCV-ak-4wE"/>
                 <outlet property="teamName" destination="9rr-h7-eEz" id="svO-zd-AVo"/>
                 <outlet property="userName" destination="k0a-Pe-WEn" id="ICV-hf-aU8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -164,28 +164,37 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="5l9-Dj-cOw">
-                                            <rect key="frame" x="162.5" y="10" width="112.5" height="17.5"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="RRw-sR-yjA" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
+                                            <rect key="frame" x="155.5" y="4" width="122.5" height="30"/>
+                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.16133347602739725" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                            </variation>
-                                        </label>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="GiR-Go-bVT" secondAttribute="bottom" constant="10" id="2QD-3n-jK4"/>
-                                        <constraint firstAttribute="bottom" secondItem="5l9-Dj-cOw" secondAttribute="bottom" constant="10" id="3CF-rI-67f"/>
+                                        <constraint firstAttribute="bottom" secondItem="RRw-sR-yjA" secondAttribute="bottom" constant="4" id="5l8-C9-3Kz"/>
                                         <constraint firstItem="tHu-YV-R5U" firstAttribute="leading" secondItem="GiR-Go-bVT" secondAttribute="trailing" constant="8" id="7ZY-3t-dzW"/>
                                         <constraint firstItem="GiR-Go-bVT" firstAttribute="leading" secondItem="4tR-qe-nXI" secondAttribute="leading" constant="10" id="7jj-JC-qyP"/>
+                                        <constraint firstAttribute="trailing" secondItem="RRw-sR-yjA" secondAttribute="trailing" constant="2" id="8tS-gg-ewc"/>
+                                        <constraint firstItem="RRw-sR-yjA" firstAttribute="top" secondItem="4tR-qe-nXI" secondAttribute="top" constant="4" id="Eu4-54-Dbe"/>
                                         <constraint firstAttribute="bottom" secondItem="tHu-YV-R5U" secondAttribute="bottom" constant="10" id="I0d-dl-qIb"/>
-                                        <constraint firstItem="5l9-Dj-cOw" firstAttribute="leading" secondItem="tHu-YV-R5U" secondAttribute="trailing" constant="10" id="bdR-gw-nGD"/>
                                         <constraint firstItem="GiR-Go-bVT" firstAttribute="top" secondItem="4tR-qe-nXI" secondAttribute="top" constant="10" id="c60-Ek-ODV"/>
-                                        <constraint firstAttribute="trailing" secondItem="5l9-Dj-cOw" secondAttribute="trailing" constant="5" id="kbK-uK-CPa"/>
+                                        <constraint firstItem="RRw-sR-yjA" firstAttribute="leading" secondItem="tHu-YV-R5U" secondAttribute="trailing" constant="3" id="kLY-1j-yVY"/>
                                         <constraint firstItem="tHu-YV-R5U" firstAttribute="top" secondItem="4tR-qe-nXI" secondAttribute="top" constant="10" id="ppV-ba-qfq"/>
-                                        <constraint firstItem="5l9-Dj-cOw" firstAttribute="top" secondItem="4tR-qe-nXI" secondAttribute="top" constant="10" id="sqh-4k-yee"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
@@ -204,13 +213,13 @@
                                     <rect key="frame" x="0.0" y="52.5" width="280" height="38"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calender_icon" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-jc-xfi">
-                                            <rect key="frame" x="10" y="10" width="17.5" height="18"/>
+                                            <rect key="frame" x="10" y="10" width="17" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="kgP-jc-xfi" secondAttribute="height" multiplier="1:1" id="rgF-IP-5aR"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ory-LF-7VW">
-                                            <rect key="frame" x="35.5" y="10" width="99" height="18"/>
+                                            <rect key="frame" x="35" y="10" width="99" height="18"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -218,27 +227,33 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="28W-om-waN">
-                                            <rect key="frame" x="144.5" y="10" width="130.5" height="18"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="aex-xe-mkE" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
+                                            <rect key="frame" x="136.5" y="4" width="141.5" height="30"/>
+                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.16133347602739725" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                            </variation>
-                                        </label>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="ory-LF-7VW" firstAttribute="leading" secondItem="kgP-jc-xfi" secondAttribute="trailing" constant="8" id="9Ll-3D-CqU"/>
-                                        <constraint firstAttribute="bottom" secondItem="28W-om-waN" secondAttribute="bottom" constant="10" id="ATh-18-ICZ"/>
-                                        <constraint firstItem="28W-om-waN" firstAttribute="top" secondItem="MEB-2A-tir" secondAttribute="top" constant="10" id="Igc-qh-sd7"/>
+                                        <constraint firstItem="aex-xe-mkE" firstAttribute="top" secondItem="MEB-2A-tir" secondAttribute="top" constant="4" id="NA3-U9-Oqu"/>
                                         <constraint firstItem="kgP-jc-xfi" firstAttribute="leading" secondItem="MEB-2A-tir" secondAttribute="leading" constant="10" id="Q19-L1-psL"/>
-                                        <constraint firstItem="28W-om-waN" firstAttribute="leading" secondItem="ory-LF-7VW" secondAttribute="trailing" constant="10" id="QPK-DC-nZR"/>
                                         <constraint firstAttribute="bottom" secondItem="ory-LF-7VW" secondAttribute="bottom" constant="10" id="SFE-Jh-cs0"/>
+                                        <constraint firstAttribute="trailing" secondItem="aex-xe-mkE" secondAttribute="trailing" constant="2" id="V4H-ON-gCY"/>
                                         <constraint firstItem="ory-LF-7VW" firstAttribute="top" secondItem="MEB-2A-tir" secondAttribute="top" constant="10" id="ZFv-Gt-4dY"/>
+                                        <constraint firstAttribute="bottom" secondItem="aex-xe-mkE" secondAttribute="bottom" constant="4" id="maP-GU-3WC"/>
                                         <constraint firstAttribute="bottom" secondItem="kgP-jc-xfi" secondAttribute="bottom" constant="10" id="pIM-sO-Pg7"/>
-                                        <constraint firstAttribute="trailing" secondItem="28W-om-waN" secondAttribute="trailing" constant="5" id="wvy-nQ-lP8"/>
+                                        <constraint firstItem="aex-xe-mkE" firstAttribute="leading" secondItem="ory-LF-7VW" secondAttribute="trailing" constant="3" id="zR5-lY-J0d"/>
                                         <constraint firstItem="kgP-jc-xfi" firstAttribute="top" secondItem="MEB-2A-tir" secondAttribute="top" constant="10" id="zhv-xn-KCd"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -272,25 +287,31 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                             </variation>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="hj3-yD-vxF">
-                                            <rect key="frame" x="130.5" y="10" width="144.5" height="17.5"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-zI-BcD" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
+                                            <rect key="frame" x="123.5" y="4" width="154.5" height="30"/>
+                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.16133347602739725" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                            </variation>
-                                        </label>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="Xx9-5b-lUt" firstAttribute="top" secondItem="CjA-aw-Wqh" secondAttribute="top" constant="10" id="3I2-4s-BWH"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZZ4-zI-BcD" secondAttribute="bottom" constant="4" id="445-6v-lj8"/>
                                         <constraint firstAttribute="bottom" secondItem="4pq-53-XdI" secondAttribute="bottom" constant="10" id="9c0-ga-Pxa"/>
-                                        <constraint firstItem="hj3-yD-vxF" firstAttribute="top" secondItem="CjA-aw-Wqh" secondAttribute="top" constant="10" id="R3j-DD-WV2"/>
-                                        <constraint firstItem="hj3-yD-vxF" firstAttribute="leading" secondItem="Xx9-5b-lUt" secondAttribute="trailing" constant="10" id="cg1-bq-RFR"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZZ4-zI-BcD" secondAttribute="trailing" constant="2" id="QRh-UX-JhF"/>
+                                        <constraint firstItem="ZZ4-zI-BcD" firstAttribute="leading" secondItem="Xx9-5b-lUt" secondAttribute="trailing" constant="3" id="QfS-wR-Twb"/>
                                         <constraint firstItem="4pq-53-XdI" firstAttribute="top" secondItem="CjA-aw-Wqh" secondAttribute="top" constant="10" id="cuH-x1-93M"/>
-                                        <constraint firstAttribute="bottom" secondItem="hj3-yD-vxF" secondAttribute="bottom" constant="10" id="ff1-3h-Ntk"/>
-                                        <constraint firstAttribute="trailing" secondItem="hj3-yD-vxF" secondAttribute="trailing" constant="5" id="lLi-iT-UaI"/>
+                                        <constraint firstItem="ZZ4-zI-BcD" firstAttribute="top" secondItem="CjA-aw-Wqh" secondAttribute="top" constant="4" id="l3X-u0-Ypd"/>
                                         <constraint firstItem="Xx9-5b-lUt" firstAttribute="leading" secondItem="4pq-53-XdI" secondAttribute="trailing" constant="8" id="phs-T1-Cec"/>
                                         <constraint firstAttribute="bottom" secondItem="Xx9-5b-lUt" secondAttribute="bottom" constant="10" id="sEk-p9-4Xe"/>
                                         <constraint firstItem="4pq-53-XdI" firstAttribute="leading" secondItem="CjA-aw-Wqh" secondAttribute="leading" constant="10" id="wop-mb-Xw2"/>
@@ -376,7 +397,10 @@
                         <constraint firstAttribute="height" constant="35" id="nGr-Yv-91O"/>
                         <constraint firstAttribute="width" constant="35" id="oxN-Kc-byj"/>
                     </constraints>
-                    <state key="normal" image="setting_icon"/>
+                    <state key="normal" image="Edit User Male_5d5e61_32"/>
+                    <connections>
+                        <action selector="editButtonAct:" destination="-1" eventType="touchUpInside" id="fmF-TI-R0A"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -407,11 +431,11 @@
     </objects>
     <resources>
         <image name="BackGround" width="1242" height="2208"/>
+        <image name="Edit User Male_5d5e61_32" width="32" height="32"/>
         <image name="calender_icon" width="47" height="47"/>
         <image name="like_heart_icon" width="52" height="48"/>
         <image name="mob_icon" width="37" height="61"/>
         <image name="nobody_m.original" width="1024" height="1024"/>
-        <image name="setting_icon" width="88" height="86"/>
         <image name="snapchat_icon" width="52" height="48"/>
     </resources>
 </document>
