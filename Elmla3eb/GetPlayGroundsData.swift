@@ -18,10 +18,12 @@ class GetPlayGroundsData {
     private  let source = Constants.API.URLS()
     private  let parSource = Constants.API.Parameters()
     
-    func getPlayFieldsData(completed : @escaping (MainPage_Data?)->()) {
-        
+    func getPlayFieldsData(completed : @escaping (MainPage_Data?,Bool, String)->()) {
+ 
+//        let parameters : Parameters = [parSource.user_id : userID ]
+
 //        let url = "http://appstest.xyz/api/homedatas"
-                let url = source.GET_PLAY_GROUNDS_ALL + source.API_TOKEN
+                let url = source.GET_PLAY_GROUNDS_ALL + source.API_TOKEN + "&user_id=\(USER_ID)"
         print("URL: is getPlayFieldsData  : \(url)")
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             print(response.result)
@@ -44,6 +46,7 @@ class GetPlayGroundsData {
                 //                print("KILLVA: _GetPlayFieldsData STATUS:\(success) , sms: \(sms) data : \(json)\n")
                 
                 let jsonData = json[self.parSource.data]
+                let nonrated_playgrounds =  jsonData[self.parSource.nonrated_playgrounds]
                 let playgroundsJsonData = jsonData[self.parSource.playgrounds]
                 let pagerJsonData = jsonData[self.parSource.images]
                 let staticsJsonData = jsonData[self.parSource.statistics]
@@ -57,6 +60,11 @@ class GetPlayGroundsData {
                 print("that is  pagerJsonData getting the data Mate : %@", pagerJsonData)
                 print("that is  staticsJsonData getting the data Mate : %@", staticsJsonData)
                 
+                var ratePg_Data = [RatePg_Data]()
+                for i in 0..<nonrated_playgrounds.count {
+                    let x = RatePg_Data(json: playgroundsJsonData[i])
+                    ratePg_Data.append(x)
+                }
                 
                 for i in 0..<playgroundsJsonData.count {
                     let x = PlayGroundsData_Data(json: playgroundsJsonData[i])
@@ -76,7 +84,7 @@ class GetPlayGroundsData {
                 }
                 
                 
-                
+                mainPageData.ratePg_Data = ratePg_Data
                 mainPageData.playGrounds = playGrounds
                 mainPageData.pagerData = pagerData
                 mainPageData.staticsdata = staticsdata
@@ -97,13 +105,13 @@ class GetPlayGroundsData {
                 let  state =  success == 1 ? true : false
                 print("KILLVA: _GetPlayFieldsData STATUS:\(state) , sms: \(sms) playGroundsCount : \(mainPageData.playGrounds?.count) pagerData : \(mainPageData.pagerData?.count) \n")
                 
-                completed(mainPageData)
+                completed(mainPageData,state,sms)
                 
                 
                 break
             case .failure(_) :
                 print("that is fail i n getting the data Mate : \(response.result.error.debugDescription)")
-                completed(nil)
+                completed(nil,false,"")
                 break
             }
         }
@@ -185,7 +193,49 @@ class GetPlayGroundsData {
 //}
     
     
-   
+    
+    func postPlay_gRateing(pg_id:Int , ratingValue : Int,completed:@escaping (Bool) -> ()) {
+        let parameters : Parameters = [parSource.user_id : USER_ID,parSource.pg_id : pg_id,parSource.value : ratingValue  ]
+        
+        
+        let url = source.POST_PLAY_GROUND_RATE + source.API_TOKEN
+        print("postPlay_gRateing URL: \(url)")
+        Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+                
+                
+                let data = response.result.value
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                
+                print("KILLVA: postPlay_gRateing STATUS:\(state) , sms: \(sms) data : \(data) \n")
+                
+                //                let xUser = PostLoginVars(jsonData: data)
+                
+                completed(state)
+                
+                break
+            case .failure(_) :
+                print("that is fail postPlay_gRateing i n getting the data Mate : \(response.result.error)")
+                completed(false)
+                break
+            }
+        }
+    }
     
     
 

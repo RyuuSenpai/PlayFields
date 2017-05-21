@@ -19,7 +19,13 @@ let langDicClass = {
        return  Constants.LanguagesDict()
 }
 
-
+var USER_ID :Int {
+    guard  let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
+        print("error fetching userId from NSUserD.userId")
+        return 0
+    }
+    return userID
+}
 class GLOBAL {
     
     

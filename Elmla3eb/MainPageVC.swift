@@ -9,14 +9,17 @@
  import UIKit
  import AlamofireImage
  import InfiniteCollectionView
+ import SwiftyStarRatingView
+
  //protocol homePagestaticsAndPagerData : class  {
  //    func headerDataRetriver(statics : Statics_Data, pager:[HomePagerData_Data])
  //    func playPauseDidTap()
  //
  //}
- class MainPageVC: UIViewController  , UIGestureRecognizerDelegate,InfiniteCollectionViewDelegate,InfiniteCollectionViewDataSource {
+ class MainPageVC: UIViewController  , UIGestureRecognizerDelegate {
     
     //Outer RatingView
+    @IBOutlet weak var ratingActivityIndector: UIActivityIndicatorView!
     @IBOutlet var ratingView: UIView!
     @IBOutlet weak var ratingCollectionView: InfiniteCollectionView!
 
@@ -30,30 +33,37 @@
     var playGroundData : [PlayGroundsData_Data]?
     let getData = GetPlayGroundsData()
     var pagerData : [HomePagerData_Data]?
-    
+    var rateData : [RatePg_Data]!{
+        didSet {
+            if rateData.count < 1 {
+                self.noRatingFoundLbl?.alpha = 1
+                self.ratingCollectionView?.isUserInteractionEnabled = false
+                self.ratingCollectionView.alpha = 0
+            }else{
+                self.ratingPageeControl?.numberOfPages = rateData.count
+            }
+        }
+    }
+    var ratePg_Data : [RatePg_Data]? {
+        didSet {
+            if  let data = ratePg_Data , data.count > 0 , firstLaunch{
+                rateData = ratePg_Data
+                ratingDict = [Int:CGFloat]()
+                setupRatingView()
+                firstLaunch = false
+            }
+        }
+    }
     let headerView = HPHeaderVC()
     var addedStatics  = 0
     var bookedStatics = 0
     var visitorsStatics = 0
-    
+    var firstLaunch = true
     var backGroundBlackView : UIView!
     var ratingPageeControl : UIPageControl!
-
-    var ratingFieldsList = [1,2,3,4,5]{
-        didSet {
-            if ratingFieldsList == [] {
-            self.noRatingFoundLbl?.alpha = 1
-                self.ratingCollectionView?.isUserInteractionEnabled = false 
-                self.ratingCollectionView.alpha = 0
-            }else{
-                self.ratingPageeControl?.numberOfPages = ratingFieldsList.count
-        }
-    }
-    
-    }
     
     var refreshControl:UIRefreshControl!
-
+    var ratingDict : [Int:CGFloat]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +86,6 @@
         
         
     
-        setupRatingView()
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -119,6 +128,7 @@
         ratingView.frame = CGRect(x: 0, y: 60, width: 315 , height: 315 )
         ratingView.clipsToBounds = true
         ratingView.center = view.center
+        ratingView.alpha = 1
         
         self.navigationController?.view.addSubview(ratingView)
         
@@ -128,7 +138,7 @@
         
         
         ratingPageeControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
-        ratingPageeControl.numberOfPages = ratingFieldsList.count
+        ratingPageeControl.numberOfPages = rateData.count
         ratingPageeControl.currentPage = 0
         ratingPageeControl.tintColor = UIColor.green
         ratingPageeControl.currentPageIndicatorTintColor  = UIColor.black
@@ -151,7 +161,7 @@
             self.backGroundBlackView.alpha = 0
             self.ratingView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             self.ratingView.alpha = 0
-            
+            self.ratingActivityIndector.stopAnimating()
         }) { [weak self ] (true ) in
             
             self?.ratingView.removeFromSuperview()
@@ -163,8 +173,27 @@
     
     
     func updateUI() {
-        getData.getPlayFieldsData { [weak   self ](data) in
-            guard let i = data ,let pg = i.playGrounds , let statics = i.staticsdata , let pagerData = i.pagerData else {
+        getData.getPlayFieldsData { [weak   self ] (data) in
+            if !data.1 , data.2 == "User is banned"   {
+                DispatchQueue.main.async {
+                 ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
+                ad.reloadApp()
+                }
+                return
+            }
+            guard data.1   else {
+                DispatchQueue.main.async {
+                    self?.stopRefresher()
+//                    self?.menuBtn.isEnabled = true
+//                    self?.menuBtn.image = UIImage(named: "Menu_Btn")
+                    weak var weakself = self
+                    ad.userOffline(weakself)
+
+                }
+                 return
+            }
+           
+            guard let i = data.0 ,let pg = i.playGrounds , let statics = i.staticsdata , let pagerData = i.pagerData else {
                 self?.stopRefresher()
                 weak var weakself = self
                 ad.userOffline(weakself)
@@ -174,7 +203,11 @@
             self?.bookedStatics = statics.bookedFields
             self?.visitorsStatics = statics.visitors
             self?.pagerData = pagerData
-            //            weakSelf?.delegate?.headerDataRetriver(statics: statics, pager: pagerData)
+            if let rating = i.ratePg_Data {
+                self?.ratePg_Data = [RatePg_Data]()
+                 self?.ratePg_Data = rating
+             }
+             //            weakSelf?.delegate?.headerDataRetriver(statics: statics, pager: pagerData)
             //            weakSelf?.delegate?.playPauseDidTap()
             //            for x in pg {
             
@@ -183,18 +216,18 @@
             //            print("that's the ÷addedStatics of fields : \( weakSelf?.addedStatics)")
             //
             //            print("that's the ÷bookedStatics of fields : \( weakSelf?.bookedStatics)")
-            self?.stopRefresher()
             //            }
             //            weakSelf?.bookedFieldsLbl.text = "\(statics.bookedFields)"
             //            weakSelf?.visitorsLbl.text = "\(statics.visitors)"
             //            weakSelf?.fieldsAddedLbl.text = "\(statics.fieldAdded)"
             //            weakSelf?.collectionView.sub
-         
-            
-            self?.menuBtn.isEnabled = true
-            self?.menuBtn.image = UIImage(named: "Menu_Btn")
-        
-            self?.collectionView.reloadData()
+            DispatchQueue.main.async {
+                 self?.stopRefresher()
+                self?.menuBtn.isEnabled = true
+                self?.menuBtn.image = UIImage(named: "Menu_Btn")
+                 self?.collectionView.reloadData()
+             }
+
         }
     }
     
@@ -202,6 +235,7 @@
     {
         self.refreshControl.endRefreshing()
         self.view.squareLoading.stop(0.0)
+        self.ratingActivityIndector.stopAnimating()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView{
@@ -226,8 +260,7 @@
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if ratingCollectionView == collectionView {
-            print("that's ittttttt")
-        
+         
         return CGSize(width: 320, height: 320)
         }else {
             return CGSize(width: 320, height: 320)
@@ -264,27 +297,72 @@
         
     }
     //Rating
+
+    
+    
+ }
+ 
+ 
+ extension MainPageVC : InfiniteCollectionViewDelegate,InfiniteCollectionViewDataSource {
     
     func number(ofItems collectionView: UICollectionView) -> Int {
-        return ratingFieldsList.count
+        return rateData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, dequeueForItemAt dequeueIndexPath: IndexPath, cellForItemAt usableIndexPath: IndexPath) -> UICollectionViewCell {
-        
+        print("that's the rating view \(rateData[usableIndexPath.row].pg_name) , \(usableIndexPath.row)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ratingCell", for: usableIndexPath) as! ratingCell
         cell.tag = usableIndexPath.row
-        cell.skipBtn.tag = cell.tag
+        cell.fieldName.text = rateData[usableIndexPath.row].pg_name
+//        cell.skipBtn.tag = cell.tag
+        cell.ratingStarsView.tag = usableIndexPath.row
+        
+         cell.ratingStarsView.addTarget(self, action: #selector(self.rateField(_:)), for: [.touchUpOutside,.touchUpInside])
         cell.skipBtn.addTarget(self, action: #selector(skipRating(_:)), for: .touchUpInside)
         return cell
     }
     
-    func skipRating(_ sender : UIButton) {
-        print("skipRating index : \(sender.tag + 1)")
-     
-        ratingFieldsList.remove(at: sender.tag)
-        ratingCollectionView.reloadData()
-        print("ratingFieldsList index : \(ratingFieldsList)")
+ 
+    func rateField(_ sender : SwiftyStarRatingView ) {
+        print(print("that's the state \(sender.state)"))
+        self.view.isUserInteractionEnabled = false
+        self.ratingActivityIndector.startAnimating()
+        print("that's the sender value : \(sender.value) and that's the id:  \(rateData[sender.tag].id) ,name: \(rateData[sender.tag].pg_name)")
+        getData.postPlay_gRateing(pg_id: rateData[sender.tag].id , ratingValue: Int(sender.value)) { [weak self ] (response) in
+            
+            if response {
+                if let count = self?.rateData.count , sender.tag <= count {
+                    print("removed the :\(self?.rateData[sender.tag].pg_name), rating")
+                    self?.rateData.remove(at: sender.tag)
+                    DispatchQueue.main.async {
+                        self?.ratingActivityIndector.stopAnimating()
+                        self?.ratingCollectionView.reloadData()
+                        self?.view.isUserInteractionEnabled = true
 
+                    }
+                }
+
+//                let pg_rate = self.rateData.index(after: sender.tag)
+//                if  , pg_rate == rateData[sender.tag] {
+//                    
+//                }
+               
+                 /*
+                 if let index = selectedDates.index(of: xcz[sender.tag]) {
+                 selectedDates.remove(at: index)
+                 }
+  */
+            }else {
+                DispatchQueue.main.async {
+                        self?.ratingActivityIndector.stopAnimating()
+                     self?.view.isUserInteractionEnabled = true
+                    
+                }            }
+            
+        }
+    }
+    func skipRating(_ sender : UIButton) {
+        self.dismissView()
     }
     
     func scrollView(_ scrollView: UIScrollView, pageIndex: Int) {
@@ -292,10 +370,7 @@
         ratingPageeControl.currentPage = pageIndex
     }
     
-    
-    
  }
- 
  
  
  

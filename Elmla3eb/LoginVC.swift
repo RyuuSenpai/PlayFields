@@ -140,15 +140,7 @@ class LoginVC: MirroringViewController {
         let x = signinFunFunctionailty()
         if x != "Done" {
             
-            let alert = CDAlertView(title: langDicClass().getLocalizedTitle(""), message: langDicClass().getLocalizedTitle("Error with ") + "\(x)" , type: .warning)
-            //            let doneAction = CDAlertViewAction(title: "Sure!")
-            //            alert.add(action: doneAction)
-            //            let nevermindAction = CDAlertViewAction(title: "Nevermind")
-            //            alert.add(action: nevermindAction)
-            alert.show()
-            self.setUIEnabled(enabled: true)
-            
-        }else {
+            showAlert("", langDicClass().getLocalizedTitle("Error with ") + "\(x)")
             
         }
     }
@@ -175,7 +167,7 @@ class LoginVC: MirroringViewController {
             print("that is the login response : \(data)")
             if data.1 {
                 if  let x = data.0 {
-                   
+                    
                     ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
                     
                     weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
@@ -191,11 +183,12 @@ class LoginVC: MirroringViewController {
                 
             }else {
                 if data.2 == "User not found" {
-                    let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Invalid username or password"), message: "", type: .error)
                     DispatchQueue.main.async {
-                        alert.show()
-                        self.setUIEnabled(enabled: true)
-                        
+                        self.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
+                    }
+                }else {
+                    DispatchQueue.main.async {
+                        self.showAlert( langDicClass().getLocalizedTitle(" Network Time out "), "")
                     }
                 }
                 
@@ -203,6 +196,14 @@ class LoginVC: MirroringViewController {
         }
         return "Done"
         
+    }
+    
+    
+    func showAlert(_ title : String,_ sms : String) {
+        
+        let alert = CDAlertView(title: title, message:sms , type: .warning)
+        alert.show()
+        self.setUIEnabled(enabled: true)
     }
     
     @IBAction func signupBtnAct(_ sender: UIButton) {

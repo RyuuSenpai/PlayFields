@@ -16,6 +16,7 @@ class MainPage_Data {
     var playGrounds : [PlayGroundsData_Data]?
     var pagerData :  [HomePagerData_Data]?
     var staticsdata :  Statics_Data?
+    var ratePg_Data : [RatePg_Data]?
     private  var _sms : String?
     private   let source = Constants.API.Parameters()
     
@@ -192,6 +193,34 @@ class Statics_Data {
 }
 
 
+//---------------------------------------------------------------------
+
+class  RatePg_Data {
+    
+    private var _pg_name : String?
+    private var _rating : Int?
+    private var _id : Int?
+     private   let source = Constants.API.Parameters()
+    
+    var pg_name : String {
+        guard  let x = _pg_name else { return "" }
+        return x
+    }
+    var rating : Int{
+        guard  let x = _rating else { return 0 }
+        return x
+    }
+    var id : Int{
+        guard  let x = _id else { return 0 }
+        return x
+    }
+ 
+    init(json:JSON) {
+         self._pg_name = json[source.pg_name].stringValue
+        self._rating = json[source.rating].intValue
+        self._id = json[source.id].intValue
+    }
+}
 
 
 //---------------------------------------------------------------------

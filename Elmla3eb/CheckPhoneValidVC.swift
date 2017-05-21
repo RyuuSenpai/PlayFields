@@ -24,7 +24,7 @@ class CheckPhoneValidVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(myUpdate), userInfo: nil, repeats: true)
+//        myTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(myUpdate), userInfo: nil, repeats: true)
 
         // Do any additional setup after loading the view.
  

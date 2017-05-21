@@ -10,20 +10,20 @@ import Foundation
 import UIKit
 class Constants  {
     static let screenSize: CGRect = UIScreen.main.bounds
-
+    
     class API {
-//       private static let main_url = "http://appstest.xyz/api/"
-         private static let main_url = "http://amtechs.site/api/"
-       
-
+        //       private static let main_url = "http://appstest.xyz/api/"
+        private static let main_url = "http://amtechs.site/api/"
+        
+        
         class URLS {
-             let API_TOKEN = "?api_token=776645543"
-                let IMAGES_URL = "http://appstest.xyz/"
-
+            let API_TOKEN = "?api_token=776645543"
+            let IMAGES_URL = "http://appstest.xyz/"
+            
             //ARTICLES
-//            let POST_ARTICLES_DATA = API.main_url + "articles"
-//            let GET_ARTICLES_ALL = API.main_url + "articles"
-//            let GET_ARTICLES_DATA_BY_ID = API.main_url + "articles/"
+            //            let POST_ARTICLES_DATA = API.main_url + "articles"
+            //            let GET_ARTICLES_ALL = API.main_url + "articles"
+            //            let GET_ARTICLES_DATA_BY_ID = API.main_url + "articles/"
             //////////////
             //HOMEDATA
             let POST_HOME_DATA = API.main_url + "homedatas"
@@ -49,6 +49,7 @@ class Constants  {
             let POST_PLAY_GROUNDS_DATA = API.main_url + "homedatas"
             let GET_PLAY_GROUNDS_ALL = API.main_url + "homedatas"
             let GET_PLAY_GROUNDS_ID = API.main_url + "homedatas/"
+            let POST_PLAY_GROUND_RATE = API.main_url + "playgrounds/rating"
             //////////////
             //SETTINGS
             let POST_SETTINGS_DATA = API.main_url + "settings"
@@ -67,14 +68,14 @@ class Constants  {
             let GET_USER_BY_ID = API.main_url + "users/"
             let GET_CONFIRMATION_CODE =  API.main_url + "users/confirm"
             
-            let USER_FCM_TOKEN = "http://amtechs.site/api/fcm"
+            let USER_FCM_TOKEN =   "http://amtechs.site/api/fcm"
             //////////////
             
         }
-
+        
         class Parameters {
             
- 
+            
             let success = "success"
             let message = "message"
             let data = "data"
@@ -126,8 +127,11 @@ class Constants  {
             let times_msg = "times_msg"
             let token = "token"
             let username = "username"
+            let nonrated_playgrounds = "nonrated_playgrounds"
+            let rating = "rating"
+            let value = "value"
         }
-  
+        
     }
     
     
@@ -141,11 +145,11 @@ class Constants  {
         
         static  let black = UIColor(colorLiteralRed: 40/255, green: 40/255, blue: 40/255, alpha: 1)    //   #282828
         static  let lightGray = UIColor(colorLiteralRed: 175/255, green: 175/255, blue: 175/255, alpha: 1)     //   #989898
-
+        
         static  let gray = UIColor(colorLiteralRed: 152/255, green: 152/255, blue: 152/255, alpha: 1)     //   #989898
         
         static  let darkGreen = UIColor(colorLiteralRed: 74/255, green: 139/255, blue: 32/255, alpha: 1)     //   #4A8B20
-
+        
         //    static  let yellow = UIColor(colorLiteralRed: 152/255, green: 152/255, blue: 152/255, alpha: 1)  //   #d8c800
     }
     
@@ -174,23 +178,24 @@ class Constants  {
                              "Invalid username or password":"خطا في رقم الهاتف او كلمة المرور",
                              "Phone Number Already Exists":"رقم الهاتف مستخدم من قبل",
                              "There's no Dates to pick":"لا توجد اوقات متوفره حاليا",
-                             "Code Field is Empty" : "حقل رمز التاكيد فارغ"
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
-//                             "":"",
+                             "Code Field is Empty" : "حقل رمز التاكيد فارغ",
+                             " Network Time out " : " خطأ في الاتصال "
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
+            //                             "":"",
             
-                             ]
-
- 
+        ]
+        
+        
         func getLocalizedTitle(_ title : String) -> String {
             if L102Language.currentAppleLanguage() == "ar" {
                 if let arTitle = dict[title] {
@@ -202,7 +207,7 @@ class Constants  {
             return title
         }
         
-       
+        
     }
     
     
