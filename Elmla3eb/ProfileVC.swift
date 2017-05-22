@@ -13,6 +13,7 @@ class ProfileVC: ToSideMenuClass {
 
     @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var favPoints: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var playerPosition: UILabel!
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var pointslbl: UILabel!
@@ -32,6 +33,8 @@ class ProfileVC: ToSideMenuClass {
 //            }
 //    }
 //    }
+    let user = Profile_Model()
+
     var disableTxts = false  {
         didSet {
             if disableTxts {
@@ -56,7 +59,6 @@ class ProfileVC: ToSideMenuClass {
         self.pointslbl.text = "0" + langDicClass().getLocalizedTitle(" Points ")
         emptyFields()
         
-         let user = Profile_Model()
         
         user.getProfileData { [weak self] (data, sms, state) in
             
@@ -113,13 +115,24 @@ class ProfileVC: ToSideMenuClass {
         if sender.isSelected {
             disableTxts = false
             sender.setImage(UIImage(named:"Delete_5d5e61_32"), for: .normal)
+            
+            self.doneButton.alpha = 1
+            self.doneButton.isEnabled = true
         }else {
             disableTxts = true
             sender.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
-
+            self.doneButton.alpha = 0
+            self.doneButton.isEnabled = false
         }
     }
 
+    @IBAction func doneBtnAct(_ sender: UIButton) {
+        
+        user.postProfileData(name: userName.text, mobile: phoneNumTxt.text, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: nil) { (state, sms) in
+            
+            
+        }
+    }
     /*
     // MARK: - Navigation
 

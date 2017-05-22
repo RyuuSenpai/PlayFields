@@ -162,7 +162,7 @@ class MUserData {
                 completed((state,sms))
                 break
             case .failure(_) :
-                print("that is fail i n getting the userFCMToken Mate : %@",response.result.error)
+                print("that is fail i n getting the userFCMToken Mate : \(response.result.error))")
                 completed((false, "Network Time out" ))
                 break
             }
@@ -297,9 +297,12 @@ class PostLoginVars {
         guard let x = _id else { return 1 }
         return x
     }
-    var points : Int {
-        guard let x = _points else { return 0 }
-        return x
+    var points : String {
+        guard let x = _points else { return "unknown" }
+        guard  L102Language.currentAppleLanguage() == "ar" else {
+            return "\(x) نقطه "
+        }
+        return "\(x)" + " Point "
     }
     var birth_date  : String {
         guard let x = _birth_date else { return "unknown" }

@@ -59,6 +59,55 @@ class Profile_Model {
         
         
     }
+    
+    
+    
+    
+    func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String? , completed : @escaping (Bool,String) -> ()) {
+        let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "" ]
+        print("that is the parameters in postProfileData : \(parameters)")
+   
+        let url = source.POST_PROFILE_DATA + source.API_TOKEN
+        print("URL: is postProfileData   : \(url)")
+        
+        Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url postProfileData")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+                
+                
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)")
+                
+                
+                completed( state,sms )
+                break
+            case .failure(_) :
+                print("that is fail i n getting the postProfileData Mate :\(response.result.error)")
+                completed( false, "Network Time out" )
+                break
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
 }
 
 
