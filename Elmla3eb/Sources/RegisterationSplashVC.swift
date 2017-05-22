@@ -70,7 +70,9 @@ import CDAlertView
         
         view.endEditing(true)
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true) //This will hide the keyboard
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !dissmissedLogin {

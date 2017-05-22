@@ -32,26 +32,26 @@ class MirroringLabel: UILabel {
 
 }
 
-//extension UIAlertController {
-//    
-//    func changeAlignment(view:UIView) {
-//        for item in view.subviews {
-//            if item.isKind(of: UICollectionView.self) {
-//                let col = item as! UICollectionView
-//                for  row in col.subviews{
-//                    changeAlignment(view: row)
-//                }
-//            }
-//            if item.isKind(of: UILabel.self) {
-//                let label = item as! UILabel
-//                label.tag = 50
-//            }else {
-//                changeAlignment(view: item)
-//            }
-//         }
-//    }
-//    open override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        changeAlignment(view: self.view)
-//    }
-//}
+extension UIAlertController {
+    
+    func changeAlignment(view:UIView) {
+        for item in view.subviews {
+            if item.isKind(of: UICollectionView.self) {
+                let col = item as! UICollectionView
+                for  row in col.subviews{
+                    changeAlignment(view: row)
+                }
+            }
+            if item.isKind(of: UILabel.self) {
+                let label = item as! UILabel
+                label.tag = 50
+            }else {
+                changeAlignment(view: item)
+            }
+         }
+    }
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        changeAlignment(view: self.view)
+    }
+}

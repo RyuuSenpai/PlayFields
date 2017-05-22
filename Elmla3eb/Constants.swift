@@ -183,7 +183,9 @@ class Constants  {
                              "Phone Number Already Exists":"رقم الهاتف مستخدم من قبل",
                              "There's no Dates to pick":"لا توجد اوقات متوفره حاليا",
                              "Code Field is Empty" : "حقل رمز التاكيد فارغ",
-                             " Network Time out " : " خطأ في الاتصال "
+                             " Network Time out " : " خطأ في الاتصال ",
+                             "Failed to Upload Changes" : "فشل في تجديد البيانات",
+                             "Confirm" :"تاكيد"
             //                             "":"",
             //                             "":"",
             //                             "":"",

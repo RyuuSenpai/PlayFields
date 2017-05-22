@@ -198,6 +198,9 @@ class LoginVC: MirroringViewController {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true) //This will hide the keyboard
+    }
     
     func showAlert(_ title : String,_ sms : String) {
         

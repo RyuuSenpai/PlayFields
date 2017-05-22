@@ -208,7 +208,7 @@ class MUserData {
                 completed( state,sms )
                 break
             case .failure(_) :
-                print("that is fail i n getting the getPhoneConfirmation Mate : %@",response.result.error)
+                print("that is fail i n getting the getPhoneConfirmation Mate : \(response.result.error)")
                 completed( false, "Network Time out" )
                 break
             }
@@ -266,7 +266,7 @@ class PostLoginVars {
     }
     
     var name  : String {
-        guard let x = _name else { return "unknown" }
+        guard let x = _name , x != "" , x != " " else { return "unknown" }
         return x
     }
     var mobile  : String {
@@ -300,9 +300,10 @@ class PostLoginVars {
     var points : String {
         guard let x = _points else { return "unknown" }
         guard  L102Language.currentAppleLanguage() == "ar" else {
-            return "\(x) نقطه "
-        }
-        return "\(x)" + " Point "
+            return "\(x)" + " Point "
+           }
+        return "\(x) نقطه "
+
     }
     var birth_date  : String {
         guard let x = _birth_date else { return "unknown" }
@@ -351,16 +352,16 @@ class PostLoginVars {
     }
     
     var teamName : String {
-        guard let x = _team , x == "" , x == " " else { return "unknown" }
+        guard let x = _team , x != "" , x != " " else { return "unknown" }
         return x
     }
     var positionName : String {
-        guard let x = _position , x == "" , x == " "  else { return "unknown" }
+        guard let x = _position , x != "" , x != " "  else { return "unknown" }
          return x
     }
     var snapChat : String {
-        guard let x = _snap_chat , x == "" , x == " "  else { return "unknown" }
-        return x
+         guard let x = _snap_chat , x != "" , x != " "  else { return "unknown" }
+         return x
     }
     //]
     
@@ -372,17 +373,17 @@ class PostLoginVars {
 //    convenience init(name:String?,email:String?,city:String?,type:String?) {
 //        self.init(name : nil,mobile:nil, city:nil,area:nil,ph_type:nil, map_lon:nil,map_lat:nil,email:nil,password:nil,rememberToken:nil,apiToken:nil,createdAt:nil,updatedAt:nil,deletedAt:nil,success:nil,message:nil)
     init(jsonData : JSON) {
-        self._name = jsonData[source.pg_name].stringValue
+        self._name = jsonData[source.name].stringValue
         self._email = jsonData[source.email].stringValue
         self._city = jsonData[source.city].stringValue
         self._pg_type = jsonData[source.pg_type].stringValue
         self._id = jsonData[source.id].intValue
-        self._mobile = jsonData[source.mobile].string
+        self._mobile = jsonData[source.mobile].stringValue
         self._points = jsonData[source.points].intValue
-        self._team = jsonData[source.team].string
-        self._position = jsonData[source.position].string
-        self._snap_chat = jsonData[source.snap_chat].string
-
+        self._team = jsonData[source.team].stringValue
+        self._position = jsonData[source.position].stringValue
+        self._snap_chat = jsonData[source.snap_chat].stringValue
+ 
 
     }
     

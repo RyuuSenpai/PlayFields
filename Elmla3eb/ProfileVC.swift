@@ -11,19 +11,28 @@ import CDAlertView
 
 class ProfileVC: ToSideMenuClass {
 
+    @IBOutlet weak var cityTxt: UITextField!
+    
+    @IBOutlet weak var positionTxt: UITextField!
+    
+    @IBOutlet weak var editProfileBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var favPoints: UILabel!
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var playerPosition: UILabel!
-    @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var pointslbl: UILabel!
- 
+
+    @IBOutlet weak var playerPosition: UILabel!
+    
+    @IBOutlet weak var teamName: UILabel!
+    
+    @IBOutlet weak var userName: UILabel!
+    
+    @IBOutlet weak var cityLbl: UILabel!
+
     @IBOutlet weak var phoneNumTxt: UITextFieldX!
     @IBOutlet weak var birthDateTxt: UITextFieldX!
     
     @IBOutlet weak var snapCTxt: UITextFieldX!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var cityLbl: UILabel!
 //        {
 //        didSet {
 //            if let name = UserDefaults.standard.value(forKey: "userName") as? String{
@@ -33,7 +42,13 @@ class ProfileVC: ToSideMenuClass {
 //            }
 //    }
 //    }
+    var positions =  [String]()
+    
+    
+    fileprivate var citiesPickerV: UIPickerView!
+    fileprivate var positionPickerV: UIPickerView!
     let user = Profile_Model()
+    var cities = [String]()
 
     var disableTxts = false  {
         didSet {
@@ -58,8 +73,13 @@ class ProfileVC: ToSideMenuClass {
         title =  langDicClass().getLocalizedTitle("Profile")
         self.pointslbl.text = "0" + langDicClass().getLocalizedTitle(" Points ")
         emptyFields()
-        
-        
+        print("that's positions : \(positions)")
+        if  L102Language.currentAppleLanguage() != "ar"   {
+            positions =  ["Goalkeeper","Defence","Striker","Midfield"]
+        }else {
+          positions =  ["حارس مرمي","مدافع","مهاجم","وسط"]
+        }
+            setupPickerV()
         user.getProfileData { [weak self] (data, sms, state) in
             
            
@@ -74,6 +94,19 @@ class ProfileVC: ToSideMenuClass {
                 self?.favPoints.text =  "\(data.points)"
                 self?.cityLbl.text = data.city
                 self?.phoneNumTxt.text = data.mobile
+                    self?.positionTxt.text = data.positionName
+                    self?.cityTxt.text = data.city
+                    if  let count = self?.cities.count , count < 1 {
+                        
+                        let global = GLOBAL()
+                        let langIs = L102Language.currentAppleLanguage()
+                        global.readJson(langIs: langIs, completed: { [weak self] (data) in
+                            
+                            self?.cities = data
+                         })
+                        
+                    }
+                    
                     self?.view.squareLoading.stop(0)
                 }
             }else {
@@ -81,6 +114,11 @@ class ProfileVC: ToSideMenuClass {
                 self?.showAlert("Network Error", "failed to get Data")
             }
         }
+
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true) //This will hide the keyboard
     }
     
     override func toSidemenuVC() {
@@ -128,10 +166,50 @@ class ProfileVC: ToSideMenuClass {
 
     @IBAction func doneBtnAct(_ sender: UIButton) {
         
-        user.postProfileData(name: userName.text, mobile: phoneNumTxt.text, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: nil) { (state, sms) in
+        user.postProfileData(name: userName.text, mobile: phoneNumTxt.text, city: cityLbl.text, team: teamName.text, birthD: nil, lon: nil, lat: nil, image: nil,snap_chat:snapCTxt.text) { [weak self](state, sms) in
             
-            
+            if state {
+                DispatchQueue.main.async {
+                    
+                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
+                alert.show()
+                self?.disableTxts = true
+                self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+                self?.doneButton.alpha = 0
+                self?.doneButton.isEnabled = false
+                }
+            }else {
+                DispatchQueue.main.async {
+
+                self?.showAlert(langDicClass().getLocalizedTitle("Failed Uploading Changes"), langDicClass().getLocalizedTitle("try again!!"))
+                }
+            }
         }
+     }
+    
+    func presentAlert(_ title : String,_ sms : String,_ placeHolder : String,_ label : UILabel) {//"Please input your email:"
+        let alertController = UIAlertController(title: title, message: sms, preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: langDicClass().getLocalizedTitle("Confirm"), style: .default) { (_) in
+            if let field = alertController.textFields?[0] , let txt = field.text ,!txt.isEmpty{
+                // store your data
+                //                    UserDefaults.standard.synchronize()
+                label.text = txt
+            } else {
+                // user did not fill field
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = placeHolder
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
@@ -143,4 +221,104 @@ class ProfileVC: ToSideMenuClass {
     }
     */
 
+
+    @IBAction func LabelTapAction(_ sender: UIButton) {
+        guard   !disableTxts else { return }
+        self.view.endEditing(true) //This will hide the keyboard
+        switch sender.tag {
+        case 1 :
+           print("city")
+            cityTxt.becomeFirstResponder()
+        case 2:
+            presentAlert("Team", "Team Name", "Team Name", teamName)
+        case 3 :
+            print("Position")
+            positionTxt.becomeFirstResponder()
+        default :
+            presentAlert("name", "enter your nickname", "nickname", userName)
+        }
+    }
 }
+
+
+
+
+extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
+    
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+                guard pickerView == positionPickerV else {
+                    return cities.count
+                }
+        return positions.count
+    }
+    //    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    //        return cities[row]
+    //    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+                guard pickerView == citiesPickerV else {
+                    positionTxt.text = positions[row]
+                    self.view.endEditing(true)
+                    return
+                }
+        cityTxt.text = cities[row]
+        self.view.endEditing(true)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        let label = UILabel()
+        label.font = UIFont(name: "Times New Roman", size: 22.0)
+        label.tag = 20
+        label.textAlignment = .center
+        
+                guard pickerView == citiesPickerV else {
+                    label.text = positions[row]
+                    return label
+                }
+        label.text = cities[row]
+        return label
+    }
+    
+    
+    
+    func setupPickerV() {
+        cityTxt.delegate = self
+        positionTxt.delegate = self
+        citiesPickerV = UIPickerView()
+        citiesPickerV.dataSource = self
+        citiesPickerV.delegate = self
+        cityTxt.inputView = citiesPickerV
+        
+                positionPickerV = UIPickerView()
+                positionPickerV.dataSource = self
+                positionPickerV.delegate = self
+                positionTxt.inputView = positionPickerV
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if  textField == cityTxt ,  textField.text == "" {
+            textField.text = cities[0]
+            
+        } else  if  textField == positionTxt ,  textField.text == "" {
+                    textField.text = positions[0]
+                }
+        
+        cityLbl.text = cityTxt.text
+        playerPosition.text = positionTxt.text
+    }
+    
+    
+    
+    
+}
+
+
+
