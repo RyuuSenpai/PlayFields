@@ -235,8 +235,8 @@ class PostLoginVars {
     private var _area  : String?
     private var _pg_type : String?
     private var _type  : String?
-    private var _team :Int?
-    private var _likes : Int?
+    private var _team :String?
+    private var _points : Int?
     private var _birth_date  : String?
     private var _map_lon  : String?
     private var _map_lat  : String?
@@ -248,6 +248,9 @@ class PostLoginVars {
     private var _updated_at  : String?
     private var _deleted_at  : String?
     
+     private var _position  : String?
+    private var _snap_chat  : String?
+
     private  var _message  : String?
     //]
     
@@ -263,19 +266,19 @@ class PostLoginVars {
     }
     
     var name  : String {
-        guard let x = _name else { return "" }
+        guard let x = _name else { return "unknown" }
         return x
     }
     var mobile  : String {
-        guard let x = _mobile else { return "" }
+        guard let x = _mobile else { return "unknown" }
         return x
     }
     var city : String {
-        guard let x = _city else { return "" }
+        guard let x = _city else { return "unknown" }
         return x
     }
     var area  : String {
-        guard let x = _area else { return "" }
+        guard let x = _area else { return "unknown" }
         return x
     }
     var pg_type : String {
@@ -286,20 +289,20 @@ class PostLoginVars {
         guard let x = _type else { return "" }
         return x
     }
-    var team :Int {
-        guard let x = _team else { return 0 }
+    var team :String {
+        guard let x = _team else { return "unknown" }
         return x
     }
     var id :Int {
         guard let x = _id else { return 1 }
         return x
     }
-    var likes : Int {
-        guard let x = _likes else { return 0 }
+    var points : Int {
+        guard let x = _points else { return 0 }
         return x
     }
     var birth_date  : String {
-        guard let x = _birth_date else { return "" }
+        guard let x = _birth_date else { return "unknown" }
         return x
     }
     var map_lon  : String {
@@ -311,7 +314,7 @@ class PostLoginVars {
         return x
     }
     var email : String {
-        guard let x = _email else { return "" }
+        guard let x = _email else { return "unknown" }
         return x
     }
     var password  : String {
@@ -343,6 +346,19 @@ class PostLoginVars {
         guard let x = _message else { return "" }
         return x
     }
+    
+    var teamName : String {
+        guard let x = _team , x == "" , x == " " else { return "unknown" }
+        return x
+    }
+    var positionName : String {
+        guard let x = _position , x == "" , x == " "  else { return "unknown" }
+         return x
+    }
+    var snapChat : String {
+        guard let x = _snap_chat , x == "" , x == " "  else { return "unknown" }
+        return x
+    }
     //]
     
 //    init(name : String?,mobile:String?, city:String?,area:String?,ph_type:String?, map_lon:Double?,map_lat:Double?,email:String?,password:String?,rememberToken:String?,apiToken:String?,createdAt:String?,updatedAt:String?,deletedAt:String?,success:Bool?,message:String?) {
@@ -358,6 +374,13 @@ class PostLoginVars {
         self._city = jsonData[source.city].stringValue
         self._pg_type = jsonData[source.pg_type].stringValue
         self._id = jsonData[source.id].intValue
+        self._mobile = jsonData[source.mobile].string
+        self._points = jsonData[source.points].intValue
+        self._team = jsonData[source.team].string
+        self._position = jsonData[source.position].string
+        self._snap_chat = jsonData[source.snap_chat].string
+
+
     }
     
     

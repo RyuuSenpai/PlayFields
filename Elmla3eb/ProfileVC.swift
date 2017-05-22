@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CDAlertView
 
 class ProfileVC: ToSideMenuClass {
 
+    @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var favPoints: UILabel!
     @IBOutlet weak var playerPosition: UILabel!
     @IBOutlet weak var teamName: UILabel!
@@ -19,15 +21,17 @@ class ProfileVC: ToSideMenuClass {
     @IBOutlet weak var birthDateTxt: UITextFieldX!
     
     @IBOutlet weak var snapCTxt: UITextFieldX!
-    @IBOutlet weak var userName: UILabel!{
-        didSet {
-            if let name = UserDefaults.standard.value(forKey: "userName") as? String{
-            userName?.text = name
-            }else  if let email = UserDefaults.standard.value(forKey: "userEmail") as? String{
-                userName?.text = email
-            }
-    }
-    }
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var cityLbl: UILabel!
+//        {
+//        didSet {
+//            if let name = UserDefaults.standard.value(forKey: "userName") as? String{
+//            userName?.text = name
+//            }else  if let email = UserDefaults.standard.value(forKey: "userEmail") as? String{
+//                userName?.text = email
+//            }
+//    }
+//    }
     var disableTxts = false  {
         didSet {
             if disableTxts {
@@ -41,13 +45,40 @@ class ProfileVC: ToSideMenuClass {
             }
         }
     }
+    
+    var profileData : PostLoginVars?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.squareLoading.start(0)
         disableTxts = true
         title =  langDicClass().getLocalizedTitle("Profile")
         self.pointslbl.text = "0" + langDicClass().getLocalizedTitle(" Points ")
         emptyFields()
         
+         let user = Profile_Model()
+        
+        user.getProfileData { [weak self] (data, sms, state) in
+            
+           
+            if state , let data = data  {
+                DispatchQueue.main.async {
+            self?.userName.text = data.name
+                self?.snapCTxt.text = data.snapChat
+                self?.birthDateTxt.text = data.birth_date
+                self?.pointslbl.text = "\(data.points)"
+                self?.teamName.text = data.team
+                self?.playerPosition.text = data.positionName
+                self?.favPoints.text =  "\(data.points)"
+                self?.cityLbl.text = data.city
+                self?.phoneNumTxt.text = data.mobile
+                    self?.view.squareLoading.stop(0)
+                }
+            }else {
+                self?.view.squareLoading.stop(0)
+                self?.showAlert("Network Error", "failed to get Data")
+            }
+        }
     }
     
     override func toSidemenuVC() {
@@ -67,6 +98,13 @@ class ProfileVC: ToSideMenuClass {
         if  let _ =  birthDateTxt.text?.isEmpty   {
             birthDateTxt.placeholder = "Empty"
         }
+    }
+    
+    func showAlert(_ title : String,_ sms : String) {
+        
+        let alert = CDAlertView(title: title, message:sms , type: .warning)
+        alert.show()
+//        self.setUIEnabled(enabled: true)
     }
     
     @IBAction func editButtonAct(_ sender: UIButton) {

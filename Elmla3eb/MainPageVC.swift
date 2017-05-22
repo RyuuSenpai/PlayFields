@@ -39,8 +39,12 @@
                 self.noRatingFoundLbl?.alpha = 1
                 self.ratingCollectionView?.isUserInteractionEnabled = false
                 self.ratingCollectionView.alpha = 0
-            }else{
+            }else{ // the problem occur when only 1 or 2 cells left
                 self.ratingPageeControl?.numberOfPages = rateData.count
+                self.ratingCollectionView.reloadData()
+                self.ratingCollectionView?.layoutIfNeeded()
+        
+
             }
         }
     }
@@ -48,8 +52,7 @@
         didSet {
             if  let data = ratePg_Data , data.count > 0 , firstLaunch{
                 rateData = ratePg_Data
-                ratingDict = [Int:CGFloat]()
-                setupRatingView()
+                 setupRatingView()
                 firstLaunch = false
             }
         }
@@ -63,7 +66,6 @@
     var ratingPageeControl : UIPageControl!
     
     var refreshControl:UIRefreshControl!
-    var ratingDict : [Int:CGFloat]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -337,7 +339,6 @@
                     self?.rateData.remove(at: sender.tag)
                     DispatchQueue.main.async {
                         self?.ratingActivityIndector.stopAnimating()
-                        self?.ratingCollectionView.reloadData()
                         self?.view.isUserInteractionEnabled = true
 
                     }
@@ -367,7 +368,7 @@
     }
     
     func scrollView(_ scrollView: UIScrollView, pageIndex: Int) {
-        print("index : \(pageIndex)")
+//        print("index : \(pageIndex)")
         ratingPageeControl.currentPage = pageIndex
     }
     

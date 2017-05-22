@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,10 +12,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileVC" customModule="Elmla3eb" customModuleProvider="target">
             <connections>
                 <outlet property="birthDateTxt" destination="aex-xe-mkE" id="qgN-Ww-xLd"/>
+                <outlet property="cityLbl" destination="xtd-oM-g0i" id="jBg-NN-rmd"/>
                 <outlet property="favPoints" destination="QmM-fg-Dta" id="rPj-dq-MU8"/>
                 <outlet property="phoneNumTxt" destination="RRw-sR-yjA" id="kyD-bd-oqV"/>
                 <outlet property="playerPosition" destination="YcD-qx-qv0" id="Qfi-tV-7wb"/>
                 <outlet property="pointslbl" destination="JUw-mT-sTe" id="AUq-xs-wsF"/>
+                <outlet property="profileImage" destination="WZo-ro-ceR" id="2VG-vA-yqw"/>
                 <outlet property="snapCTxt" destination="ZZ4-zI-BcD" id="sCV-ak-4wE"/>
                 <outlet property="teamName" destination="9rr-h7-eEz" id="svO-zd-AVo"/>
                 <outlet property="userName" destination="k0a-Pe-WEn" id="ICV-hf-aU8"/>

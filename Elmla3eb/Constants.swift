@@ -64,8 +64,8 @@ class Constants  {
             //USER
             let POST_login_USER_DATA = API.main_url + "users/login"
             let POST_Register_USER_DATA = API.main_url + "users"
-            let GET_USER_ALL = API.main_url + "users"
-            let GET_USER_BY_ID = API.main_url + "users/"
+//            let GET_USER_ALL = API.main_url + "users"
+//            let GET_USER_BY_ID = API.main_url + "users/"
             let GET_CONFIRMATION_CODE =  API.main_url + "users/confirm"
             
             let USER_FCM_TOKEN =   "http://amtechs.site/api/fcm"
@@ -130,6 +130,9 @@ class Constants  {
             let nonrated_playgrounds = "nonrated_playgrounds"
             let rating = "rating"
             let value = "value"
+            let points = "points"
+            let snap_chat = "snap_chat"
+            let position = "position"
         }
         
     }

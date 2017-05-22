@@ -79,6 +79,7 @@
 		52F8B1371E8CFB920091FE09 /* Pg_Times.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B1361E8CFB920091FE09 /* Pg_Times.swift */; };
 		52F8B13B1E8D04FB0091FE09 /* MPlaygTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B13A1E8D04FB0091FE09 /* MPlaygTeams.swift */; };
 		52F985861EB601E8001DA530 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F985841EB601E8001DA530 /* ProfileVC.swift */; };
+		714141EF1ED2DAEE008EBE2E /* Profile_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714141EE1ED2DAEE008EBE2E /* Profile_Model.swift */; };
 		714AECEC1E6303EF001127CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AECEB1E6303EF001127CE /* AppDelegate.swift */; };
 		714AECF11E6303EF001127CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714AECEF1E6303EF001127CE /* Main.storyboard */; };
 		714AECF31E6303EF001127CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714AECF21E6303EF001127CE /* Assets.xcassets */; };
@@ -174,6 +175,7 @@
 		52F8B1361E8CFB920091FE09 /* Pg_Times.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pg_Times.swift; sourceTree = "<group>"; };
 		52F8B13A1E8D04FB0091FE09 /* MPlaygTeams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPlaygTeams.swift; sourceTree = "<group>"; };
 		52F985841EB601E8001DA530 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		714141EE1ED2DAEE008EBE2E /* Profile_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile_Model.swift; sourceTree = "<group>"; };
 		714AECE81E6303EF001127CE /* Elmla3eb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elmla3eb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		714AECEB1E6303EF001127CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		714AECF01E6303EF001127CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				5291BC831E8AB583008132BC /* MUserData.swift */,
+				714141EE1ED2DAEE008EBE2E /* Profile_Model.swift */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				52BCB8791EBB2D42007298D4 /* ratingCell.swift in Sources */,
 				52AF5ECE1E759DEA00A3A39A /* Constants.swift in Sources */,
 				52AF589A1E769852001284DD /* HPDelegate.swift in Sources */,
+				714141EF1ED2DAEE008EBE2E /* Profile_Model.swift in Sources */,
 				522AAC901E880A1600E0AC5B /* GlobalFuncs.swift in Sources */,
 				5291BC841E8AB583008132BC /* MUserData.swift in Sources */,
 				52F016791EC08D4A008962AF /* ForgotPasswordVC.swift in Sources */,
