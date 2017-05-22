@@ -103,7 +103,8 @@
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("Vowala")
+       
+        
     }
     
     
@@ -316,7 +317,7 @@
         cell.fieldName.text = rateData[usableIndexPath.row].pg_name
 //        cell.skipBtn.tag = cell.tag
         cell.ratingStarsView.tag = usableIndexPath.row
-        
+            cell.ratingStarsView.value = 3
          cell.ratingStarsView.addTarget(self, action: #selector(self.rateField(_:)), for: [.touchUpOutside,.touchUpInside])
         cell.skipBtn.addTarget(self, action: #selector(skipRating(_:)), for: .touchUpInside)
         return cell
