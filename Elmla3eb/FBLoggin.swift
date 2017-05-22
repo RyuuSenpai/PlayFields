@@ -71,10 +71,15 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                     let imageString : String =  "\(imageURL!)"
                     print("that is facebook data \(id) \(fName) \(email) \(imageString)")
                     //                    self.afterLogginView.fadeIn(duration: 1.5, delay: 0, completion: { (finished: Bool) in
-                    
-                    ad.saveUserLogginData(email: email, photoUrl: imageString , uid : 0,name: fName)
+                    let user = MUserData()
+                    user.postFaceBLogin(mobile: "0506541598", email: email, completed: { (data, state, sms ) in
+                        
+                        
+                    })
+                    //Gon Commit
+//                    ad.saveUserLogginData(email: email, photoUrl: imageString , uid : 0,name: fName)
 //                    ad.reloadApp()
-                    self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
+//                    self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
 
                     //                    })
                 }

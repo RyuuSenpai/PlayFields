@@ -43,10 +43,6 @@
                 self.ratingPageeControl?.numberOfPages = rateData.count
                 self.ratingCollectionView.reloadData()
                 self.ratingCollectionView?.layoutIfNeeded()
-//                if rateData.count == 1 {
-//                    self.ratingCollectionView.scro
-//                }
-        
 
             }
         }

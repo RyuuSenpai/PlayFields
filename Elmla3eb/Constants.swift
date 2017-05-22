@@ -69,6 +69,7 @@ class Constants  {
             let GET_CONFIRMATION_CODE =  API.main_url + "users/confirm"
             let POST_PROFILE_DATA =  API.main_url + "users/profile"
             let USER_FCM_TOKEN =   API.main_url + "fcm"
+            let FACEBOOK_USER_LOGIN = "users/fb-login"
             //////////////
             
         }
