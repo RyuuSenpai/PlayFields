@@ -64,12 +64,12 @@ class Constants  {
             //USER
             let POST_login_USER_DATA = API.main_url + "users/login"
             let POST_Register_USER_DATA = API.main_url + "users"
-//            let GET_USER_ALL = API.main_url + "users"
-//            let GET_USER_BY_ID = API.main_url + "users/"
+            //            let GET_USER_ALL = API.main_url + "users"
+            //            let GET_USER_BY_ID = API.main_url + "users/"
             let GET_CONFIRMATION_CODE =  API.main_url + "users/confirm"
             let POST_PROFILE_DATA =  API.main_url + "users/profile"
             let USER_FCM_TOKEN =   API.main_url + "fcm"
-            let FACEBOOK_USER_LOGIN = "users/fb-login"
+            let FACEBOOK_USER_LOGIN =  API.main_url + "users/fb-login"
             //////////////
             
         }
@@ -135,6 +135,7 @@ class Constants  {
             let snap_chat = "snap_chat"
             let position = "position"
             let name = "name"
+            let fb_user_id = "fb_user_id"
         }
         
     }
@@ -186,8 +187,8 @@ class Constants  {
                              "Code Field is Empty" : "حقل رمز التاكيد فارغ",
                              " Network Time out " : " خطأ في الاتصال ",
                              "Failed to Upload Changes" : "فشل في تجديد البيانات",
-                             "Confirm" :"تاكيد"
-            //                             "":"",
+                             "Confirm" :"تاكيد",
+                             "Phone number isn't in a Correct Format":"رقم التلفون غير صحيح"
             //                             "":"",
             //                             "":"",
             //                             "":"",

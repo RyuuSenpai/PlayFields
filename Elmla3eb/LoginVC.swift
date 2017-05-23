@@ -9,9 +9,13 @@
 import UIKit
 import CDAlertView
 
-class LoginVC: MirroringViewController {
+class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     
+    //fbView
+    @IBOutlet var fbLoginMobileVerifView: UIViewX!
+    @IBOutlet weak var fbPhoneTxt: UITextField!
     
+    //
     @IBOutlet weak var ballImageView: UIImageView!
     @IBOutlet weak var inkStinkImageView: UIImageView!
     
@@ -26,7 +30,11 @@ class LoginVC: MirroringViewController {
     var genderCenter : CGPoint!
     var addImageCenter : CGPoint!
     var shieldOnCenter : CGPoint!
-    
+    var backGroundBlackView : UIView!
+    var fbId : String?
+    var fbImage : String?
+    var fbEmail : String?
+    var fbMobile : String?
     
     //TESTS
     
@@ -36,7 +44,7 @@ class LoginVC: MirroringViewController {
         super.viewDidLoad()
         
         title =  langDicClass().getLocalizedTitle("Login")
-        
+        setupRatingView()
     }
     
     
@@ -115,6 +123,11 @@ class LoginVC: MirroringViewController {
         //        TestBackEnd.User()
         //@End_Test_back_End
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.cancelFbMobileVerif()
     }
     
     @IBAction func backBtnAct(_ sender: UIButton) {
@@ -223,14 +236,54 @@ class LoginVC: MirroringViewController {
     func degreesToRadians( _ degree : Double) -> CGFloat {
         return  CGFloat(degree * .pi / 180)
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+ 
+    
+    
+    
+    
+    func setupRatingView() {
+        
+        backGroundBlackView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenSize.width, height: Constants.screenSize.height))
+        backGroundBlackView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        
+        self.view.addSubview(backGroundBlackView)
+        
+         fbLoginMobileVerifView.frame = CGRect(x: 0, y: 60, width: 294 , height: 193 )
+        fbLoginMobileVerifView.clipsToBounds = true
+        fbLoginMobileVerifView.center = view.center
+        fbLoginMobileVerifView.alpha = 1
+        self.view.addSubview(fbLoginMobileVerifView)
+        
+  
+    }
+    
+    
+    func dismissView(sender: UITapGestureRecognizer? = nil) {
+         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+            self.backGroundBlackView.alpha = 0
+            self.fbLoginMobileVerifView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            self.fbLoginMobileVerifView.alpha = 0
+         }) { [weak self ] (true ) in
+            self?.fbLoginMobileVerifView.transform = CGAffineTransform.identity
+            self?.fbLoginMobileVerifView.removeFromSuperview()
+            self?.backGroundBlackView.removeFromSuperview()
+        }
+        
+    }
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

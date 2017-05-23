@@ -165,7 +165,7 @@
             self.ratingView.alpha = 0
             self.ratingActivityIndector.stopAnimating()
         }) { [weak self ] (true ) in
-            
+            self?.ratingView.transform = CGAffineTransform.identity
             self?.ratingView.removeFromSuperview()
             self?.backGroundBlackView.removeFromSuperview()
         }

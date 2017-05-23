@@ -47,13 +47,13 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
         
         showFbEmailAddress()
     }
-    
+   
     func showFbEmailAddress(){
         self.setUIEnabled(enabled: false)
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"id, name, email,first_name,last_name,picture"]).start { (connection, result, err) in
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields":"id, name, email,first_name,last_name,picture"]).start { [ weak self ] (connection, result, err) in
             
             if err != nil {
-                self.setUIEnabled(enabled: true)
+                self?.setUIEnabled(enabled: true)
                 print("failed to start graph request :  \(err)")
                 
             }else {
@@ -62,20 +62,23 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                 if let result = resultD {
                     
                     guard let id = result["id"] as? String , let fName = result["first_name"] as? String ,let email  = result["email"] as? String  else {
-                        self.setUIEnabled(enabled: false )
+                        self?.setUIEnabled(enabled: false )
                         return
                     }
                     print(id)
                     //                    self.afterLogginUserName.text = fName.capitalized
-                    let imageURL = URL(string: "http://graph.facebook.com/\(id)/picture?type=large")
-                    let imageString : String =  "\(imageURL!)"
-                    print("that is facebook data \(id) \(fName) \(email) \(imageString)")
+                    let url = "http://graph.facebook.com/\(id)/picture?type=large"
+//                    let imageURL = URL(string: url )
+//                    let imageString : String =  "\(imageURL!)"
+                    self?.fbId = id
+                    self?.fbImage = url
+                    self?.fbEmail = email
+                    print("that is facebook data \(id) \(fName) \(email) ")
+                    DispatchQueue.main.async {
+                        self?.setupFbLogin()
+                    }
                     //                    self.afterLogginView.fadeIn(duration: 1.5, delay: 0, completion: { (finished: Bool) in
-                    let user = MUserData()
-                    user.postFaceBLogin(mobile: "0506541598", email: email, completed: { (data, state, sms ) in
-                        
-                        
-                    })
+                   
                     //Gon Commit
 //                    ad.saveUserLogginData(email: email, photoUrl: imageString , uid : 0,name: fName)
 //                    ad.reloadApp()
@@ -89,7 +92,45 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
     
     //@End FB Delegate
     
+    @IBAction func cancelFbMobileVerif(_ sender: UIButtonX? = nil ) {
+        dismissView()
+        ad.saveUserLogginData(email: nil, photoUrl: nil , uid : nil, name : nil )
+        print("that is the facToken : \(FBSDKAccessToken.current()) )")
+        if FBSDKAccessToken.current() != nil {
+        let manager = FBSDKLoginManager()
+        manager.logOut()
+        FBSDKAccessToken.setCurrent(nil)
+        FBSDKProfile.setCurrent(nil)
+        }
+        setUIEnabled(enabled: true)
+    }
+    
+    @IBAction func sendFbData(_ sender: UIButtonX) {
+        
+        if let phone =  fbPhoneTxt.text, phone.validPhoneNumber {
+            fbMobile = phone
+            setupFbLogin()
+        }else {
+            showAlert(langDicClass().getLocalizedTitle("Something Went Wrong"), langDicClass().getLocalizedTitle("Phone number isn't in a Correct Format"))
+        }
+        
+    }
     
     
+    func setupFbLogin() {
+        if fbMobile == nil , let email = fbEmail , email.validPhoneNumber {
+         fbMobile = email
+        }
+        guard let mobile = fbMobile ,let image = fbImage , let id = fbId else {
+            self.setupRatingView()
+            return
+        }
+        let user = MUserData()
+
+        user.postFaceBLogin(mobile: mobile, image: image, fbID:id , completed: { (data, state, sms ) in
+            
+            
+        })
+    }
     
 }

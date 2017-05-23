@@ -216,15 +216,22 @@ class MUserData {
     }
     
     
-    func postFaceBLogin(mobile: String , email :String ,completed : @escaping (PostLoginVars?,Bool,String)->()) {
-        let parameters : Parameters = [ parSource.mobile : mobile , parSource.email : email ]
+    func postFaceBLogin(mobile: String , image :String,fbID : String ,completed : @escaping (PostLoginVars?,Bool,String)->()) {
+        let parameters : Parameters = [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ]
         print("that is the parameters in postFaceBLogin : \(parameters)")
-        
+        /*
+         {
+         "fb_user_id": "string",
+         "mobile": "string",
+         "image": "string",
+         "test": "string"
+         }
+ */
         
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
         
         //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
-        let url = source.POST_login_USER_DATA + source.API_TOKEN
+        let url = source.FACEBOOK_USER_LOGIN + source.API_TOKEN
         print("URL: is postFaceBLogin RL : \(url)")
         
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in

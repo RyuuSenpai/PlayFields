@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FBSDKLoginKit
 class MenuVC: UIViewController {
     
     @IBOutlet weak var homeBtnCenterX: NSLayoutConstraint!
@@ -85,6 +85,11 @@ class MenuVC: UIViewController {
     
     @IBAction func signouBtnAct(_ sender: UIButton) {
         ad.saveUserLogginData(email: nil, photoUrl: nil , uid : nil, name : nil )
+        print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current())")
+        let manager = FBSDKLoginManager()
+        manager.logOut()
+        FBSDKAccessToken.setCurrent(nil)
+        FBSDKProfile.setCurrent(nil)
         ad.reloadApp()
         
     }
