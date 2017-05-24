@@ -13,6 +13,8 @@ import UIKit
 extension MainPageVC : UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard collectionView != ratingCollectionView else {
+            return }
         let id = self.playGroundData?[indexPath.row].id
 //       performSegue(withIdentifier: "ToPlayField", sender: id)
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
@@ -27,7 +29,11 @@ extension MainPageVC : UICollectionViewDelegate , UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+        guard collectionView != ratingCollectionView else {
+//            let x =  collectionView.frame.height * 0.24
+            
+            return CGSize(width: 276, height: 274) // The size of one cell
+        }
         let x =  collectionView.frame.height * 0.24
         
         return CGSize(width: x + 14, height: x) // The size of one cell

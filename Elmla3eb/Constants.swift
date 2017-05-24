@@ -70,6 +70,9 @@ class Constants  {
             let POST_PROFILE_DATA =  API.main_url + "users/profile"
             let USER_FCM_TOKEN =   API.main_url + "fcm"
             let FACEBOOK_USER_LOGIN =  API.main_url + "users/fb-login"
+            let RESEND_VERIFICATION_CODE = API.main_url + "users/resend-code"
+            let POST_FORGOT_PASSWORD = API.main_url + "users/forget-password"
+            let POST_LOGOUT = "/users/logout"
             //////////////
             
         }
@@ -188,7 +191,20 @@ class Constants  {
                              " Network Time out " : " خطأ في الاتصال ",
                              "Failed to Upload Changes" : "فشل في تجديد البيانات",
                              "Confirm" :"تاكيد",
-                             "Phone number isn't in a Correct Format":"رقم التلفون غير صحيح"
+                             "Phone number isn't in a Correct Format":"رقم التلفون غير صحيح",
+                             "Please, Enter activation code that was sent to you by sms to activate your account." : "من فضلك قم بادخال الرمز الذي تم ارساله اليك  لتفعيل الاكونت.",
+                             "Code" : "الرمز",
+                             "Phone Number" : "رقم الهاتف",
+                             "  Verfication Code :" : "ادخل رمز التفعيل :",
+                             "  Phone Number :" : "ادخل رقم الهاتف :",
+                             "Please, Enter The Phone Number To Complete the Process" : "من فضلك، قم بادخال رقم الهاتف لاتمام العمليه",
+                             "Activate" : "تفعيل",
+                             "All Fields are Required" : "جميع الحقول مطلوبه",
+                             "Send" : "ارسال",
+                             "Invalid Mobile Number ":"خطا في رقم الهاتف ",
+
+
+                             
             //                             "":"",
             //                             "":"",
             //                             "":"",

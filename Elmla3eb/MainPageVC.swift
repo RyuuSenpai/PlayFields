@@ -8,7 +8,7 @@
  
  import UIKit
  import AlamofireImage
- import InfiniteCollectionView
+// import InfiniteCollectionView
  import SwiftyStarRatingView
 
  //protocol homePagestaticsAndPagerData : class  {
@@ -21,7 +21,7 @@
     //Outer RatingView
     @IBOutlet weak var ratingActivityIndector: UIActivityIndicatorView!
     @IBOutlet var ratingView: UIView!
-    @IBOutlet weak var ratingCollectionView: InfiniteCollectionView!
+    @IBOutlet weak var ratingCollectionView: UICollectionView!
 
     @IBOutlet weak var noRatingFoundLbl: UILabel!
     //@end View
@@ -33,29 +33,32 @@
     var playGroundData : [PlayGroundsData_Data]?
     let getData = GetPlayGroundsData()
     var pagerData : [HomePagerData_Data]?
-    var rateData : [RatePg_Data]!{
+    
+    var ratePg_Data : [RatePg_Data]? {
         didSet {
+            if  let data = ratePg_Data , data.count > 0 , firstLaunch{
+                rateData = ratePg_Data
+                setupRatingView()
+                firstLaunch = false
+            }
+        }
+    }
+    var rateData : [RatePg_Data]?{
+        didSet {
+            guard let rateData = rateData else { return }
             if rateData.count < 1 {
                 self.noRatingFoundLbl?.alpha = 1
                 self.ratingCollectionView?.isUserInteractionEnabled = false
                 self.ratingCollectionView.alpha = 0
             }else{ // the problem occur when only 1 or 2 cells left
                 self.ratingPageeControl?.numberOfPages = rateData.count
-                self.ratingCollectionView.reloadData()
+                self.ratingCollectionView?.reloadData()
                 self.ratingCollectionView?.layoutIfNeeded()
 
             }
         }
     }
-    var ratePg_Data : [RatePg_Data]? {
-        didSet {
-            if  let data = ratePg_Data , data.count > 0 , firstLaunch{
-                rateData = ratePg_Data
-                 setupRatingView()
-                firstLaunch = false
-            }
-        }
-    }
+
     let headerView = HPHeaderVC()
     var addedStatics  = 0
     var bookedStatics = 0
@@ -82,10 +85,12 @@
         self.menuBtn.image = UIImage(named: "")
         self.view.squareLoading.start(0.0)
         self.updateUI()
-        ratingCollectionView.infiniteDataSource = self
-        ratingCollectionView.infiniteDelegate = self
-        
-        
+        ratingCollectionView.delegate = self
+        ratingCollectionView.dataSource = self
+//        let nib = UINib(nibName: "ratingCell", bundle:nil)
+//        self.ratingCollectionView.register(nib, forCellWithReuseIdentifier: "ratingCell")
+//        ratingCollectionView.register(ratingCell.self, forCellWithReuseIdentifier: "ratingCell")
+
     
         refreshControl = UIRefreshControl()
         refreshControl.tintColor = .white
@@ -138,9 +143,9 @@
         tapped.delegate = self
         backGroundBlackView.addGestureRecognizer(tapped)
         
-        
+ 
         ratingPageeControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
-        ratingPageeControl.numberOfPages = rateData.count
+        ratingPageeControl.numberOfPages = rateData == nil ? 0 : rateData!.count
         ratingPageeControl.currentPage = 0
         ratingPageeControl.tintColor = UIColor.green
         ratingPageeControl.currentPageIndicatorTintColor  = UIColor.black
@@ -304,42 +309,33 @@
     
  }
  
- 
- extension MainPageVC : InfiniteCollectionViewDelegate,InfiniteCollectionViewDataSource {
+ //Rate
+ extension MainPageVC  {
     
-    func number(ofItems collectionView: UICollectionView) -> Int {
-        return rateData.count
-    }
+//    func number(ofItems collectionView: UICollectionView) -> Int {
+//        return rateData.count
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, dequeueForItemAt dequeueIndexPath: IndexPath, cellForItemAt usableIndexPath: IndexPath) -> UICollectionViewCell {
-        print("that's the rating view \(rateData[usableIndexPath.row].pg_name) , \(usableIndexPath.row)")
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ratingCell", for: usableIndexPath) as! ratingCell
-        cell.tag = usableIndexPath.row
-        cell.fieldName.text = rateData[usableIndexPath.row].pg_name
-//        cell.skipBtn.tag = cell.tag
-        cell.ratingStarsView.tag = usableIndexPath.row
-            cell.ratingStarsView.value = 3
-         cell.ratingStarsView.addTarget(self, action: #selector(self.rateField(_:)), for: [.touchUpOutside,.touchUpInside])
-        cell.skipBtn.addTarget(self, action: #selector(skipRating(_:)), for: .touchUpInside)
-        return cell
-    }
+//    func collectionView(_ collectionView: UICollectionView, dequeueForItemAt dequeueIndexPath: IndexPath, cellForItemAt usableIndexPath: IndexPath) -> UICollectionViewCell {
+//       
+//    }
     
  
     func rateField(_ sender : SwiftyStarRatingView ) {
         print(print("that's the state \(sender.state)"))
         self.view.isUserInteractionEnabled = false
         self.ratingActivityIndector.startAnimating()
-        print("that's the sender value : \(sender.value) and that's the id:  \(rateData[sender.tag].id) ,name: \(rateData[sender.tag].pg_name)")
+//        print("that's the sender value : \(sender.value) and that's the id:  \(rateData[sender.tag].id) ,name: \(rateData[sender.tag].pg_name)")
+        guard let rateData = rateData else { return }
         getData.postPlay_gRateing(pg_id: rateData[sender.tag].id , ratingValue: Int(sender.value)) { [weak self ] (response) in
             
             if response {
-                if let count = self?.rateData.count , sender.tag <= count {
-                    print("removed the :\(self?.rateData[sender.tag].pg_name), rating")
-                    self?.rateData.remove(at: sender.tag)
+                if  let data = self?.rateData , sender.tag <= data.count {
+//                    print("removed the :\(self?.rateData[sender.tag].pg_name), rating")
+                    self?.rateData!.remove(at: sender.tag)
                     DispatchQueue.main.async {
                         self?.ratingActivityIndector.stopAnimating()
                         self?.view.isUserInteractionEnabled = true
-
                     }
                 }
 
@@ -365,15 +361,41 @@
     func skipRating(_ sender : UIButton) {
         self.dismissView()
     }
-    
-    func scrollView(_ scrollView: UIScrollView, pageIndex: Int) {
-//        print("index : \(pageIndex)")
-        ratingPageeControl.currentPage = pageIndex
-        if rateData.count == 1 {
-            self.ratingCollectionView.scrollsToTop = true
+    /*
+  - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{  
+     for (UICollectionViewCell *cell in [self.mainImageCollection visibleCells]) {   
+     NSIndexPath *indexPath = [self.mainImageCollection indexPathForCell:cell];        NSLog(@"%@",indexPath);    }}
+  */
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//        for cell in ratingCollectionView.visibleCells  as [UICollectionViewCell]    {
+//            let indexPath = ratingCollectionView.indexPath(for: cell as UICollectionViewCell)
+//            if let index = indexPath?.row {
+//                ratingPageeControl.currentPage = index
+//            }
+//            print(" scoll : \(indexPath?.row)")
+//        }
+//    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print(" scoll : \(scrollView)")
+        for cell in ratingCollectionView.visibleCells  as [UICollectionViewCell]    {
+            let indexPath = ratingCollectionView.indexPath(for: cell as UICollectionViewCell)
+            if let index = indexPath?.row {
+                ratingPageeControl.currentPage = index
+            }
+//            print(" scoll : \(indexPath?.row - 1)")
         }
+
     }
-    
+//    func scrollView(_ scrollView: UIScrollView, pageIndex: Int) {
+//        print("index : \(pageIndex) , scoll : \(scrollView)")
+//        if scrollView == ratingCollectionView {
+//         ratingPageeControl.currentPage = pageIndex
+////        if rateData.count == 1 {
+////            self.ratingCollectionView.scrollsToTop = true
+////        }
+//    }
+//    }
  }
  
  

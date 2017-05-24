@@ -11,6 +11,9 @@ import UIKit
 class ForgotPasswordVC: MirroringViewController {
 
     @IBOutlet weak var phoneNumTxt: UITextField!
+    
+    let user = MUserData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +26,8 @@ class ForgotPasswordVC: MirroringViewController {
     }
     
     @IBAction func senderData(_ sender: UIButton) {
+        phoneNumTxt.isEnabled = false
+        sender.isEnabled = false
     }
     @IBAction func backBtnAct(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)

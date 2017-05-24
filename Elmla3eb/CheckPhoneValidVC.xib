@@ -11,8 +11,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckPhoneValidVC" customModule="Elmla3eb" customModuleProvider="target">
             <connections>
                 <outlet property="activeOL" destination="g1F-jm-jf7" id="yjR-dk-w8z"/>
+                <outlet property="activityIndector" destination="fSo-in-WJN" id="nvt-qH-Ec2"/>
                 <outlet property="confirmationCodeTxt" destination="Pqc-yq-2Ea" id="x6Z-RI-ylM"/>
+                <outlet property="passwordCenterX" destination="d9k-jA-9nI" id="2wO-8y-paa"/>
+                <outlet property="passwordStack" destination="EnX-oM-AY2" id="Cvb-kD-Pv1"/>
+                <outlet property="passwordText" destination="fGE-ei-IYQ" id="KFR-12-5Ig"/>
                 <outlet property="resendBtnOL" destination="e3H-od-MeJ" id="bFw-mX-a7P"/>
+                <outlet property="sendPhoneNumBtn" destination="oGU-tP-N7D" id="geE-cl-yke"/>
+                <outlet property="topLbl" destination="w45-xh-XCj" id="WGo-du-Gzg"/>
+                <outlet property="validationLbl" destination="DYS-CQ-XZu" id="PEJ-q8-as9"/>
+                <outlet property="verficationStack" destination="2eo-dY-uFJ" id="MHq-Aj-qOb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -74,6 +82,28 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
+                            <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EnX-oM-AY2" userLabel="password">
+                                <rect key="frame" x="15" y="237" width="345" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDH-cL-bi5">
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="18.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="0.40000000000000002"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fGE-ei-IYQ">
+                                        <rect key="frame" x="0.0" y="23.5" width="345" height="30.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, Enter activation code that was sent to you by sms to activate your account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w45-xh-XCj">
                                 <rect key="frame" x="10" y="82" width="355" height="69.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
@@ -82,7 +112,7 @@
                                 <color key="shadowColor" red="0.072673343119999997" green="0.217590481" blue="0.34663116929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="0.0" height="1.2"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="2eo-dY-uFJ">
+                            <stackView opaque="NO" alpha="0.0" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="2eo-dY-uFJ">
                                 <rect key="frame" x="20" y="595" width="335" height="52"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q7L-Xf-9mv">
@@ -145,7 +175,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D3-VW-2aK">
                                                         <rect key="frame" x="0.5" y="0.0" width="142.5" height="52"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="476-gp-jKv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="142" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <blurEffect style="dark"/>
@@ -192,21 +222,58 @@
                                     <constraint firstAttribute="height" constant="52" id="IPk-Ch-hTv"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fSo-in-WJN">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGU-tP-N7D" customClass="UIButtonX" customModule="Elmla3eb" customModuleProvider="target">
+                                <rect key="frame" x="20" y="595" width="335" height="52"/>
+                                <color key="backgroundColor" red="0.13254925608634949" green="0.23581457138061523" blue="0.080523662269115448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="sendPhoneNumBtnAct:" destination="-1" eventType="touchUpInside" id="J1a-rG-ReK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="w45-xh-XCj" secondAttribute="trailing" constant="10" id="0EW-xg-hhb"/>
+                            <constraint firstItem="EnX-oM-AY2" firstAttribute="width" secondItem="I4I-fp-U8P" secondAttribute="width" id="3o7-br-pzE"/>
+                            <constraint firstItem="oGU-tP-N7D" firstAttribute="height" secondItem="2eo-dY-uFJ" secondAttribute="height" id="4Ce-xH-bFS"/>
                             <constraint firstItem="03H-5F-Aww" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" id="4vb-ia-9h8"/>
                             <constraint firstAttribute="trailing" secondItem="03H-5F-Aww" secondAttribute="trailing" id="7XQ-38-psf"/>
+                            <constraint firstItem="oGU-tP-N7D" firstAttribute="width" secondItem="2eo-dY-uFJ" secondAttribute="width" id="7fc-HS-C03"/>
+                            <constraint firstItem="EnX-oM-AY2" firstAttribute="height" secondItem="I4I-fp-U8P" secondAttribute="height" id="Bh0-Vx-o0W"/>
+                            <constraint firstItem="fSo-in-WJN" firstAttribute="centerX" secondItem="t7Y-zd-kvP" secondAttribute="centerX" id="Eng-yt-eiV"/>
                             <constraint firstAttribute="trailing" secondItem="I4I-fp-U8P" secondAttribute="trailing" constant="15" id="Gb9-Nh-mG9"/>
                             <constraint firstAttribute="trailing" secondItem="2eo-dY-uFJ" secondAttribute="trailing" constant="20" id="JWo-3e-ua9"/>
                             <constraint firstItem="I4I-fp-U8P" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" constant="15" id="NDJ-BZ-2nf"/>
                             <constraint firstItem="w45-xh-XCj" firstAttribute="top" secondItem="03H-5F-Aww" secondAttribute="bottom" constant="18" id="ZaN-SQ-Hjn"/>
                             <constraint firstAttribute="bottom" secondItem="2eo-dY-uFJ" secondAttribute="bottom" constant="20" id="Zir-K9-Dqa"/>
                             <constraint firstItem="I4I-fp-U8P" firstAttribute="top" secondItem="w45-xh-XCj" secondAttribute="bottom" constant="10" id="Zqi-U1-P5Y"/>
+                            <constraint firstItem="EnX-oM-AY2" firstAttribute="centerX" secondItem="I4I-fp-U8P" secondAttribute="centerX" id="d9k-jA-9nI"/>
                             <constraint firstItem="2eo-dY-uFJ" firstAttribute="centerX" secondItem="t7Y-zd-kvP" secondAttribute="centerX" id="eMr-9u-Y9E"/>
+                            <constraint firstItem="oGU-tP-N7D" firstAttribute="centerX" secondItem="2eo-dY-uFJ" secondAttribute="centerX" id="iNK-LN-ihi"/>
+                            <constraint firstItem="fSo-in-WJN" firstAttribute="centerY" secondItem="t7Y-zd-kvP" secondAttribute="centerY" id="iTE-MK-NBI"/>
                             <constraint firstItem="03H-5F-Aww" firstAttribute="top" secondItem="t7Y-zd-kvP" secondAttribute="top" id="meW-FK-4gb"/>
+                            <constraint firstItem="EnX-oM-AY2" firstAttribute="top" secondItem="I4I-fp-U8P" secondAttribute="bottom" constant="22" id="myL-FQ-Xv7"/>
                             <constraint firstItem="2eo-dY-uFJ" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" constant="20" id="vGk-Kc-YPW"/>
                             <constraint firstItem="w45-xh-XCj" firstAttribute="leading" secondItem="t7Y-zd-kvP" secondAttribute="leading" constant="10" id="xZ1-f0-CF8"/>
+                            <constraint firstItem="oGU-tP-N7D" firstAttribute="centerY" secondItem="2eo-dY-uFJ" secondAttribute="centerY" id="zCc-wc-fQu"/>
                         </constraints>
                     </view>
                     <blurEffect style="dark"/>

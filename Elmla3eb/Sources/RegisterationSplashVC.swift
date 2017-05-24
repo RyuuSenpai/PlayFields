@@ -259,14 +259,15 @@ import CDAlertView
         
         user.postRegisterUser(name: userName, mobile: mobile, city: city, area: district, pgType: self.playFieldType, email: "", password: password) {  (data) in
             print("that is the registeration response : \(data)")
-            if data.1 , let x = data.0  {
+          if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
                 
                 
 //                weakSelf?.performSegue(withIdentifier: "SignedupSegue", sender: weakSelf)
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
-                vc.userId = x.id
-                vc.userName = userName
+                vc.userId = id
+                vc.userName = name
+                vc.codeVerfication = true 
                 self.present(vc, animated: true, completion: nil)
                 self.setUIEnabled(enabled: true)
             }else {

@@ -196,11 +196,20 @@
                                     <action selector="backBtnAct:" destination="dBd-QK-nkD" eventType="touchUpInside" id="0sR-gF-2wX"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wUC-11-uak">
+                                <rect key="frame" x="142" y="265.5" width="37" height="37"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.47557255993150682" colorSpace="calibratedRGB"/>
+                                <color key="color" red="0.36078431370000003" green="0.68235294120000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ge8-jz-5lo" secondAttribute="trailing" id="2bC-IF-3SE"/>
                             <constraint firstItem="8EJ-1a-XxA" firstAttribute="leading" secondItem="oKB-aJ-QYa" secondAttribute="leading" id="2eb-L8-Qoi"/>
+                            <constraint firstItem="wUC-11-uak" firstAttribute="centerX" secondItem="oKB-aJ-QYa" secondAttribute="centerX" id="8gx-0L-Rc0"/>
                             <constraint firstItem="xZk-FE-YDt" firstAttribute="width" secondItem="ge8-jz-5lo" secondAttribute="width" multiplier="0.3" id="9YK-7Q-Lls">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-100"/>
                             </constraint>
@@ -211,6 +220,7 @@
                             <constraint firstItem="9fM-gq-lZ2" firstAttribute="top" secondItem="vg1-h9-9In" secondAttribute="bottom" constant="15" id="VJ2-gr-7xZ"/>
                             <constraint firstItem="cqN-8h-Nrw" firstAttribute="top" secondItem="vg1-h9-9In" secondAttribute="bottom" constant="10" id="YuX-l5-Pce"/>
                             <constraint firstItem="1dv-Tg-wIT" firstAttribute="top" secondItem="8EJ-1a-XxA" secondAttribute="bottom" id="fBA-WR-wOP"/>
+                            <constraint firstItem="wUC-11-uak" firstAttribute="centerY" secondItem="oKB-aJ-QYa" secondAttribute="centerY" id="fVV-Uy-oIi"/>
                             <constraint firstItem="1dv-Tg-wIT" firstAttribute="top" secondItem="ge8-jz-5lo" secondAttribute="bottom" id="hJB-uK-huK"/>
                             <constraint firstItem="xZk-FE-YDt" firstAttribute="centerY" secondItem="cqN-8h-Nrw" secondAttribute="centerY" id="jHc-Rh-UJJ"/>
                             <constraint firstItem="ge8-jz-5lo" firstAttribute="top" secondItem="vg1-h9-9In" secondAttribute="bottom" constant="-20" id="mUO-0J-jEz"/>
@@ -225,6 +235,7 @@
                         <outlet property="ballImageCenterX" destination="UO5-x6-Dfu" id="uzk-Di-qDs"/>
                         <outlet property="ballImageView" destination="xZk-FE-YDt" id="qd2-8M-kRz"/>
                         <outlet property="emailText" destination="g8J-W5-rgr" id="1OV-SG-58v"/>
+                        <outlet property="fbActivityInd" destination="wUC-11-uak" id="auW-1x-myx"/>
                         <outlet property="fbBtn" destination="ECX-G0-QCb" id="EMe-tu-vfI"/>
                         <outlet property="fbLoginMobileVerifView" destination="hFh-j5-MHD" id="9Gh-lo-47u"/>
                         <outlet property="fbPhoneTxt" destination="VyZ-Hs-RTk" id="dM7-G8-2MN"/>
@@ -247,7 +258,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your Phone Number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="uge-HE-haX">
-                                        <rect key="frame" x="20" y="15" width="254" height="58"/>
+                                        <rect key="frame" x="20" y="16" width="254" height="58"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="58" id="K9A-YF-ZVi"/>
                                         </constraints>
@@ -258,7 +269,7 @@
                                         <size key="shadowOffset" width="0.0" height="0.80000000000000004"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VyZ-Hs-RTk">
-                                        <rect key="frame" x="20" y="81.5" width="254" height="30"/>
+                                        <rect key="frame" x="20" y="82" width="254" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1111,7 +1122,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackGround" translatesAutoresizingMaskIntoConstraints="NO" id="aIW-GI-unQ">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="315"/>
                         </imageView>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UGW-3t-JEI" customClass="InfiniteCollectionView" customModule="InfiniteCollectionView">
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UGW-3t-JEI">
                             <rect key="frame" x="20" y="20" width="275" height="275"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pJ5-xU-oRb">

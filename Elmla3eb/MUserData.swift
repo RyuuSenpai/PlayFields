@@ -54,8 +54,8 @@ class MUserData {
                 print("KILLVA: _PostLoginData success : \(success) STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
 
                 if sms == "User not confirmed" {
-                    let userId = json[self.parSource.user_id].intValue
-                    let name = json[self.parSource.username].string
+                    let userId = data[self.parSource.id].intValue
+                    let name = data[self.parSource.name].string
                     let dict : [String : Any] = ["id":userId,"name":name ?? ""]
                     completed((nil,state,sms,dict))
                  }else {
@@ -73,7 +73,7 @@ class MUserData {
         }
     }
     
-    func postRegisterUser(name:String , mobile:String, city:String, area: String, pgType: Int,email:String,password:String  , completed:@escaping ((PostLoginVars?,Bool,String)) -> ()) {
+    func postRegisterUser(name:String , mobile:String, city:String, area: String, pgType: Int,email:String,password:String  , completed:@escaping ((PostLoginVars?,Bool,String,[String:Any]?)) -> ()) {
         let parameters : Parameters = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password ,"test":"test"]
         
 //        let parameters : Parameters = [  parSource.mobile : mobile  , parSource.pg_type : pgType == 0 ? "player" : "owner" , parSource.password : password ,"test":"test"]
@@ -107,18 +107,22 @@ class MUserData {
                 
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
+                
+                let userId = data[self.parSource.id].intValue
+                 let dict : [String : Any] = ["id":userId,"name":name ]
+                
                 let  state =  success == 1 ? true : false
                 print("KILLVA: _postRegisterUser STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
 
-                let xUser = PostLoginVars(jsonData: data)
+//                let xUser = PostLoginVars(jsonData: data)
                 
-                completed((xUser,state,sms))
+                completed((nil,state,sms,dict))
                 
                 break
             case .failure(_) :
                 print("response.result.value : : \(response.result.value)")
                 print("that is fail i n getting the data Mate : %@",response.result.error.debugDescription)
-                completed((nil,false,"Network Time out"))
+                completed((nil,false,"Network Time out",nil))
                 break
             }
         }
@@ -216,22 +220,11 @@ class MUserData {
     }
     
     
-    func postFaceBLogin(mobile: String , image :String,fbID : String ,completed : @escaping (PostLoginVars?,Bool,String)->()) {
-        let parameters : Parameters = [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ]
+    func postFaceBLogin(mobile: String , image :String,fbID : String ,completed : @escaping ([String:Any]?,Bool,String)->()) {
+        let parameters : Parameters = [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ,"test":"test"]
+
         print("that is the parameters in postFaceBLogin : \(parameters)")
-        /*
-         {
-         "fb_user_id": "string",
-         "mobile": "string",
-         "image": "string",
-         "test": "string"
-         }
- */
-        
-        //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
-        
-        //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
-        let url = source.FACEBOOK_USER_LOGIN + source.API_TOKEN
+         let url = source.FACEBOOK_USER_LOGIN + source.API_TOKEN
         print("URL: is postFaceBLogin RL : \(url)")
         
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
@@ -250,25 +243,26 @@ class MUserData {
                 //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
-//                let data = json[self.parSource.data]
+                let data = json[self.parSource.data]
                 
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                
-                print("KILLVA: postFaceBLogin success : \(success) STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
-                
-                if sms == "User not confirmed" {
-                    let userId = json[self.parSource.user_id].intValue
-                    let name = json[self.parSource.username].string
-                    let dict : [String : Any] = ["id":userId,"name":name ?? ""]
-                    completed(nil,state,sms)
-                }else {
-                    
-//                    let xUser = PostLoginVars(jsonData: data)
-                    
-                    completed(nil,state,sms )
-                }
+                let codeD = data["code"].intValue
+                let  code =  codeD == 1 ? true : false
+
+                print("KILLVA: postFaceBLogin success : \(success) STATUS:\(state), CodeVerification : \(code), sms: \(sms) data : \(response.result.value)\n")
+//                if !code {
+                    let userId = data[self.parSource.id].intValue
+                    let name = data[self.parSource.username].string
+                    let dict : [String : Any] = ["id":userId,"name":name ?? "" ]
+                    completed(dict,code,sms)
+//                }else {
+//                    
+////                    let xUser = PostLoginVars(jsonData: data)
+//                    
+//                    completed(nil,code,sms )
+//                }
                 break
             case .failure(_) :
                 print("that is fail i n getting the postFaceBLogin data Mate : \(response.result.error)")
@@ -277,6 +271,139 @@ class MUserData {
             }
         }
     }
+    
+    
+    
+    func postResendVerificationCode( user_id: Int ,completed : @escaping ( String,Bool)->()) {
+        let parameters : Parameters = [ parSource.user_id : user_id  ,"test":"test"]
+
+        let url = source.RESEND_VERIFICATION_CODE  + source.API_TOKEN
+        print("postResendVerificationCode URL: \(url)")
+        //        let request = GLOBAL.alamoRequest(query_url: url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url postResendVerificationCode")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                print("that is  postResendVerificationCode getting the data Mate : %@", response.result.value!)
+                
+                
+//                let data = json["data"]
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: postResendVerificationCode STATUS:\(state) , sms: \(sms) \n")
+                
+                
+                completed(sms,state)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the postResendVerificationCode data Mate : \(response.result.error)")
+                completed( "Network Error",false)
+                break
+            }
+        }
+        
+        
+        
+    }
+
+    
+    func postForgotPassword( mobile: String ,completed : @escaping ( String,Bool)->()) {
+        let parameters : Parameters = [ parSource.mobile : mobile  ,"test":"test"]
+        
+        let url = source.POST_FORGOT_PASSWORD  + source.API_TOKEN
+        print("postForgotPassword URL: \(url)")
+        //        let request = GLOBAL.alamoRequest(query_url: url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url postForgotPassword")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                print("that is  postForgotPassword getting the data Mate : %@", response.result.value!)
+                
+                
+                //                let data = json["data"]
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: postForgotPassword STATUS:\(state) , sms: \(sms) \n")
+                
+                
+                completed(sms,state)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the postForgotPassword data Mate : \(response.result.error)")
+                completed( "Network Error",false)
+                break
+            }
+        }
+        
+        
+        
+    }
+ 
+   
+    func postLogout( completed : @escaping ( String,Bool)->()) {
+        let parameters : Parameters = [ parSource.user_id : USER_ID ]
+        
+        let url = source.POST_LOGOUT  + source.API_TOKEN
+        print("postLogout URL: \(url)")
+        //        let request = GLOBAL.alamoRequest(query_url: url)
+        
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url postLogout")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                print("that is  postLogout getting the data Mate : %@", response.result.value!)
+                
+                
+                //                let data = json["data"]
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: postLogout STATUS:\(state) , sms: \(sms) \n")
+                
+                
+                completed(sms,state)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the postLogout data Mate : \(response.result.error)")
+                completed( "Network Error",false)
+                break
+            }
+        }
+     }
     
 }
 

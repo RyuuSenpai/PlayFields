@@ -84,6 +84,8 @@ class MenuVC: UIViewController {
     
     
     @IBAction func signouBtnAct(_ sender: UIButton) {
+        let user = MUserData()
+        
         ad.saveUserLogginData(email: nil, photoUrl: nil , uid : nil, name : nil )
         print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current())")
         let manager = FBSDKLoginManager()
@@ -149,6 +151,7 @@ class MenuVC: UIViewController {
         mainwindow.backgroundColor = UIColor(hue: 0.6477, saturation: 0.6314, brightness: 0.6077, alpha: 0.8)
         UIView.transition(with: mainwindow, duration: 0.55001, options: transition, animations: { () -> Void in
         }) { (finished) -> Void in
+            
             
         }
     }

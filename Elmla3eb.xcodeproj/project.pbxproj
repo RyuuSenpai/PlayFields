@@ -270,6 +270,7 @@
 				52F985841EB601E8001DA530 /* ProfileVC.swift */,
 				52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */,
 				52355ECB1EB8933C005A9217 /* SearchVC.swift */,
+				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
 				52355EC91EB88D86005A9217 /* Owner */,
 			);
 			name = C;
@@ -438,7 +439,6 @@
 				520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */,
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
 				520044AC1EC1D5060030B772 /* SearchVC.xib */,
-				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
 				52BBF11F1ECB4CFF002AE6EA /* CheckPhoneValidVC.xib */,
 			);
 			name = Xibs;

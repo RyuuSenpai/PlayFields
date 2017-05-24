@@ -15,6 +15,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     @IBOutlet var fbLoginMobileVerifView: UIViewX!
     @IBOutlet weak var fbPhoneTxt: UITextField!
     
+    @IBOutlet weak var fbActivityInd: UIActivityIndicatorView!
     //
     @IBOutlet weak var ballImageView: UIImageView!
     @IBOutlet weak var inkStinkImageView: UIImageView!
@@ -44,7 +45,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
         super.viewDidLoad()
         
         title =  langDicClass().getLocalizedTitle("Login")
-        setupRatingView()
+
     }
     
     
@@ -127,7 +128,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.cancelFbMobileVerif()
+        fbLogOut()
     }
     
     @IBAction func backBtnAct(_ sender: UIButton) {
@@ -161,7 +162,10 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     
     @IBAction func forgotPasswordBtnAct(_ sender: UIButton) {
         
-        let vc = ForgotPasswordVC()
+        let vc = CheckPhoneValidVC()
+        vc.userId = USER_ID
+        vc.userName = ""
+        vc.codeVerfication = false
         
         self.present(vc, animated: true, completion: nil)
         
@@ -178,30 +182,33 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
         
         user.postLoginData(mobileNum: mobile , userPassword: password) { [weak weakSelf = self ] (data) in
             print("that is the login response : \(data)")
-            if data.1 {
-                if  let x = data.0 {
-                    
+            if data.1 , let x = data.0 {
+                
                     ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
                     
                     weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
                     
-                }
-                self.setUIEnabled(enabled: true)
-            }else if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
+                                 self.setUIEnabled(enabled: true)
+                let data = data.3
+ 
+                print("that is the login response : \(data?["id"] as? Int)")
+                print("that is the login response : \(data?["name"] as? String)")
+            }else if let data = data.3 , let id = data["id"] as? Int, let name = data["name"] as? String   {
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id
                 vc.userName = name
+                vc.codeVerfication = true 
                 self.present(vc, animated: true, completion: nil)
                 
             }else {
                 if data.2 == "User not found" {
                     DispatchQueue.main.async {
-                        self.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
+                        weakSelf?.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
                     }
                 }else {
                     DispatchQueue.main.async {
-                        self.showAlert( langDicClass().getLocalizedTitle(" Network Time out "), "")
+                        weakSelf?.showAlert( langDicClass().getLocalizedTitle(" Network Time out "), "")
                     }
                 }
                 
@@ -241,7 +248,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     
     
     
-    func setupRatingView() {
+    func setupfbMobileNumView() {
         
         backGroundBlackView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenSize.width, height: Constants.screenSize.height))
         backGroundBlackView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
@@ -258,7 +265,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     }
     
     
-    func dismissView(sender: UITapGestureRecognizer? = nil) {
+    func dismissView() {
          UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
             self.backGroundBlackView.alpha = 0
             self.fbLoginMobileVerifView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)

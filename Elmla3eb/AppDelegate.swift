@@ -11,6 +11,7 @@ import FBSDKCoreKit
 import IQKeyboardManagerSwift
 import Firebase
 import FirebaseMessaging
+import CDAlertView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate  {
@@ -50,9 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
         FIRApp.configure()
         let x = self.isUserLoggedIn()
-        if x {
-            
-        }else {
+        if !x { 
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
             // In project directory storyboard looks like Main.storyboard,
@@ -65,7 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             let viewController = storyboard.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
  
             self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()    
+            self.window?.makeKeyAndVisible()
+            //test Nib
+//           let initialViewController  = CheckPhoneValidVC(nibName:"CheckPhoneValidVC",bundle:nil)
+//            
+//            let frame = UIScreen.main.bounds
+//            window = UIWindow(frame: frame)
+//            
+//            window!.rootViewController = initialViewController
+//            window!.makeKeyAndVisible()
+            //@end test end
         }
         
         let notificationTypes : UIUserNotificationType = [.alert, .badge, .sound]
@@ -147,7 +155,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     //@End Notification 
     
     
-    
+    func showAlert(_ title : String,_ sms : String) {
+        guard title != "default" else {
+             let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message:langDicClass().getLocalizedTitle("try again!!") , type: .warning)
+            alert.show()
+            return
+        }
+        let alert = CDAlertView(title: title, message:sms , type: .warning)
+        alert.show()
+    }
     
     func userOffline(_ view : UIViewController?) {
         guard let view = view else {
