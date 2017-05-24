@@ -74,9 +74,14 @@ class MUserData {
     }
     
     func postRegisterUser(name:String , mobile:String, city:String, area: String, pgType: Int,email:String,password:String  , completed:@escaping ((PostLoginVars?,Bool,String,[String:Any]?)) -> ()) {
-        let parameters : Parameters = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password ,"test":"test"]
-        
-//        let parameters : Parameters = [  parSource.mobile : mobile  , parSource.pg_type : pgType == 0 ? "player" : "owner" , parSource.password : password ,"test":"test"]
+        var parameters : Parameters!
+        if ad.production {
+              parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password  ]
+
+        }else {
+            let parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password ,"test":"test" ]
+
+        }
 
         
 //        print("that is the parameters in getReviewRequesData : \(parameters)")
@@ -221,7 +226,15 @@ class MUserData {
     
     
     func postFaceBLogin(mobile: String , image :String,fbID : String ,completed : @escaping ([String:Any]?,Bool,String)->()) {
-        let parameters : Parameters = [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ,"test":"test"]
+        var parameters : Parameters!
+        if ad.production {
+
+              parameters =  [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ]
+
+        }else {
+              parameters = [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ,"test":"test"]
+
+        }
 
         print("that is the parameters in postFaceBLogin : \(parameters)")
          let url = source.FACEBOOK_USER_LOGIN + source.API_TOKEN
@@ -275,7 +288,13 @@ class MUserData {
     
     
     func postResendVerificationCode( user_id: Int ,completed : @escaping ( String,Bool)->()) {
-        let parameters : Parameters = [ parSource.user_id : user_id  ,"test":"test"]
+        var parameters : Parameters!
+        if ad.production {
+
+              parameters  = [ parSource.user_id : user_id   ]
+          }else {
+              parameters = [ parSource.user_id : user_id  ,"test":"test"]
+         }
 
         let url = source.RESEND_VERIFICATION_CODE  + source.API_TOKEN
         print("postResendVerificationCode URL: \(url)")
@@ -320,7 +339,13 @@ class MUserData {
 
     
     func postForgotPassword( mobile: String ,completed : @escaping ( String,Bool)->()) {
-        let parameters : Parameters = [ parSource.mobile : mobile  ,"test":"test"]
+        var parameters : Parameters!
+        if ad.production {
+
+              parameters  = [ parSource.mobile : mobile ]
+         }else {
+              parameters = [ parSource.mobile : mobile  ,"test":"test"]
+         }
         
         let url = source.POST_FORGOT_PASSWORD  + source.API_TOKEN
         print("postForgotPassword URL: \(url)")

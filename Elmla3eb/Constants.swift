@@ -13,7 +13,7 @@ class Constants  {
     
     class API {
         //       private static let main_url = "http://appstest.xyz/api/"
-        private static let main_url = "http://amtechs.site/api/"
+        private static let main_url = "http://almala3b.com/api/"
         
         
         class URLS {
@@ -72,7 +72,7 @@ class Constants  {
             let FACEBOOK_USER_LOGIN =  API.main_url + "users/fb-login"
             let RESEND_VERIFICATION_CODE = API.main_url + "users/resend-code"
             let POST_FORGOT_PASSWORD = API.main_url + "users/forget-password"
-            let POST_LOGOUT = "/users/logout"
+            let POST_LOGOUT = API.main_url + "users/logout"
             //////////////
             
         }
