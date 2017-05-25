@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -65,14 +65,14 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0z-Xs-NsU" userLabel="Name">
                     <rect key="frame" x="15" y="208" width="290" height="30"/>
-                    <color key="backgroundColor" red="0.55807034650905307" green="1" blue="0.42008899083360507" alpha="0.13254154624277456" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <action selector="LabelTapAction:" destination="-1" eventType="touchUpInside" id="HBs-CO-e69"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="211-ai-ejT" userLabel="City">
                     <rect key="frame" x="15" y="246" width="290" height="30"/>
-                    <color key="backgroundColor" red="0.55807034650905307" green="1" blue="0.42008899083360507" alpha="0.13254154624277456" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
                         <action selector="LabelTapAction:" destination="-1" eventType="touchUpInside" id="t0s-he-ZCA"/>
                     </connections>
@@ -204,7 +204,7 @@
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="RRw-sR-yjA" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
                                             <rect key="frame" x="155" y="4" width="122.5" height="30"/>
-                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.16133347602739725" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.075717037671232876" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -267,7 +267,7 @@
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="aex-xe-mkE" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
                                             <rect key="frame" x="137.5" y="4" width="140" height="30"/>
-                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.16133347602739725" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.075717037671232876" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -327,7 +327,7 @@
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-zI-BcD" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
                                             <rect key="frame" x="123" y="4" width="154.5" height="30"/>
-                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.16133347602739725" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.075717037671232876" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -529,7 +529,7 @@
         <image name="BackGround" width="1242" height="2208"/>
         <image name="Edit User Male_5d5e61_32" width="32" height="32"/>
         <image name="calender_icon" width="47" height="47"/>
-        <image name="like_heart_icon" width="52" height="48"/>
+        <image name="like_heart_icon" width="75" height="75"/>
         <image name="mob_icon" width="37" height="61"/>
         <image name="nobody_m.original" width="1024" height="1024"/>
         <image name="snapchat_icon" width="52" height="48"/>

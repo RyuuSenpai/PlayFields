@@ -63,8 +63,8 @@ class Profile_Model {
     
     
     
-    func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String? , completed : @escaping (Bool,String) -> ()) {
-        let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "2017-05-02",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? ""]
+    func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String?,position:String? , completed : @escaping (Bool,String) -> ()) {
+        let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "2017-05-02",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position]
         print("that is the parameters in postProfileData : \(parameters)")
    
         let url = source.POST_PROFILE_DATA + source.API_TOKEN

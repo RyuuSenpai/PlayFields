@@ -166,7 +166,7 @@ class ProfileVC: ToSideMenuClass {
 
     @IBAction func doneBtnAct(_ sender: UIButton) {
         
-        user.postProfileData(name: userName.text, mobile: phoneNumTxt.text, city: cityLbl.text, team: teamName.text, birthD: nil, lon: nil, lat: nil, image: nil,snap_chat:snapCTxt.text) { [weak self](state, sms) in
+        user.postProfileData(name: userName.text, mobile: phoneNumTxt.text, city: cityLbl.text, team: teamName.text, birthD: nil, lon: nil, lat: nil, image: nil,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
             
             if state {
                 DispatchQueue.main.async {
@@ -295,7 +295,7 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
         citiesPickerV.dataSource = self
         citiesPickerV.delegate = self
         cityTxt.inputView = citiesPickerV
-        
+        birthDateTxt.delegate = self
                 positionPickerV = UIPickerView()
                 positionPickerV.dataSource = self
                 positionPickerV.delegate = self
@@ -311,14 +311,40 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
                     textField.text = positions[0]
                 }
         
+        if   textField == birthDateTxt ,  textField.text == "" {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy"
+            let date  = formatter.string(from: NSDate() as Date)
+            textField.text = date
+            
+        }
         cityLbl.text = cityTxt.text
         playerPosition.text = positionTxt.text
     }
     
     
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == birthDateTxt  {
     
+            
+            let datePicker = UIDatePicker()
+//            datePicker.minimumDate = Date()
+            
+            let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
+            datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
+            
+            datePicker.datePickerMode = UIDatePickerMode.date
+            textField.inputView = datePicker
+            datePicker.addTarget(self, action: #selector(self.timePickerChanged(_:)), for: .valueChanged)
+        }
+    }
+    
+    func timePickerChanged(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+             birthDateTxt.text = formatter.string(from: sender.date)
+ }
+
 }
-
-
 
