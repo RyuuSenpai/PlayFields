@@ -18,7 +18,7 @@ class Constants  {
         
         class URLS {
             let API_TOKEN = "?api_token=776645543"
-            let IMAGES_URL = "http://appstest.xyz/"
+            let IMAGES_URL = "http://almala3b.com/"
             
             //ARTICLES
             //            let POST_ARTICLES_DATA = API.main_url + "articles"

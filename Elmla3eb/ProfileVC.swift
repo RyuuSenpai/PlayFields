@@ -8,6 +8,8 @@
 
 import UIKit
 import CDAlertView
+import Alamofire
+import AlamofireImage
 
 class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
 
@@ -44,8 +46,20 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
 //    }
 //    }
     var positions =  [String]()
-
-    
+    var imageUrl = "" {
+        didSet {
+            print("thatis the image url : \(imageUrl)")
+            guard let url = URL(string: imageUrl ) else { return }
+            profileImage.af_setImage(
+                withURL: url,
+                placeholderImage: UIImage(named: "nobody_m.original"),
+                filter: nil,
+                imageTransition: .crossDissolve(0.2)
+            )
+        }
+    }
+var changedImage = false
+    var base64String = ""
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var positionPickerV: UIPickerView!
     let user = Profile_Model()
@@ -99,6 +113,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                 self?.phoneNumTxt.text = data.mobile
                     self?.positionTxt.text = data.positionName
                     self?.cityTxt.text = data.city
+                    self?.imageUrl = data.image
                     if  let count = self?.cities.count , count < 1 {
                         
                         let global = GLOBAL()
@@ -169,7 +184,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
 
     @IBAction func doneBtnAct(_ sender: UIButton) {
         
-        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: nil,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
+        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageUrl ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
             
             if state {
                 DispatchQueue.main.async {
@@ -241,6 +256,66 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             presentAlert("name", "enter your nickname", "nickname", userName)
         }
     }
+    
+    
+    
+    
+    // MARK: - UIImagePickerControllerDelegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        print("DONEnenenewnewnewnnew")
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profileImage.contentMode = .scaleAspectFill
+            profileImage.image = pickedImage
+            base64String = convertImageToBase64(pickedImage)
+            
+            
+            //            let imageData:NSData = UIImagePNGRepresentation(pickedImage)! as NSData
+            
+            
+            //OR next possibility
+            
+            //Use image's path to create NSData
+            //            let url:NSURL = NSURL(string : "urlHere")!
+            //Now use image to create into NSData format
+            //            let imageData:NSData = NSData.init(contentsOfURL: url)!
+            
+            //            print("pickedImage 64 : \(convertImageToBase64(pickedImage))")
+            
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func convertImageToBase64(_ image: UIImage) -> String {
+        
+        guard let  imageData = UIImagePNGRepresentation(image) else { return "" }
+        //        let base64String = imageData.base64EncodedStringWithOptions(.allZeros)
+        let base64String = imageData.base64EncodedString()
+        
+        changedImage = true
+        return base64String
+        
+    }// end convertImageToBase64
+    
+    
+    //    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    //
+    //            profileImage.contentMode = .scaleAspectFit
+    //            profileImage.image = pickedImage
+    //        }
+    //
+    //        dismiss(animated: true, completion: nil)
+    //    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print(("Canceleeeeddd"))
+        dismiss(animated: true, completion: nil)
+    }
+    //    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    //        dismiss(animated: true, completion: nil)
+    //    }
+    
+    
+    
 }
 
 
@@ -360,32 +435,7 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
         present(imagePicker, animated: true, completion: nil)
     }
 
-    
-    // MARK: - UIImagePickerControllerDelegate Methods
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        print("DONEnenenewnewnewnnew")
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-        profileImage.contentMode = .scaleAspectFill
-        profileImage.image = pickedImage
-        }
-        dismiss(animated: true, completion: nil)
-    }
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-//
-//            profileImage.contentMode = .scaleAspectFit
-//            profileImage.image = pickedImage
-//        }
-//        
-//        dismiss(animated: true, completion: nil)
-//    }
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print(("Canceleeeeddd"))
-        dismiss(animated: true, completion: nil)
-    }
-//    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-//        dismiss(animated: true, completion: nil)
-//    }
+
  
 }
 

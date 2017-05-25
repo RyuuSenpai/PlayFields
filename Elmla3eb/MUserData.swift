@@ -436,6 +436,7 @@ class MUserData {
 
 class PostLoginVars {
     private   let source = Constants.API.Parameters()
+    private   let imageURL = Constants.API.URLS()
 
     //[
     private var _success : String?
@@ -461,7 +462,8 @@ class PostLoginVars {
     private var _created_at : String?
     private var _updated_at  : String?
     private var _deleted_at  : String?
-    
+    private var _image  : String?
+
      private var _position  : String?
     private var _snap_chat  : String?
 
@@ -478,7 +480,11 @@ class PostLoginVars {
         guard let x = _data else { return "" }
         return x
     }
-    
+    var image : String{
+        guard  let x = _image , x != "" else {print("that's the _image path : \(_image)"); return "" }
+        print("that's the imageURL.IMAGES_URL + x   : \(x)")
+        return imageURL.IMAGES_URL + x
+    }
     var name  : String {
         guard let x = _name , x != "" , x != " " else { return "unknown" }
         return x
@@ -600,6 +606,7 @@ class PostLoginVars {
         self._position = jsonData[source.position].stringValue
         self._snap_chat = jsonData[source.snap_chat].stringValue
         self._birth_date = jsonData[source.birth_date].stringValue
+        self._image = jsonData[source.image].stringValue
 
     }
     
