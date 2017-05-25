@@ -139,6 +139,8 @@ class Constants  {
             let position = "position"
             let name = "name"
             let fb_user_id = "fb_user_id"
+            let date_to = "date_to"
+            let date_from = "date_from"
         }
         
     }
@@ -202,7 +204,7 @@ class Constants  {
                              "All Fields are Required" : "جميع الحقول مطلوبه",
                              "Send" : "ارسال",
                              "Invalid Mobile Number ":"خطا في رقم الهاتف ",
-
+                             "Cancel" : "الغاء"
 
                              
             //                             "":"",
@@ -218,7 +220,7 @@ class Constants  {
             //                             "":"",
             
         ]
-        
+        // langDicClass().getLocalizedTitle("Confirm")
         
         func getLocalizedTitle(_ title : String) -> String {
             if L102Language.currentAppleLanguage() == "ar" {

@@ -76,10 +76,10 @@ class MUserData {
     func postRegisterUser(name:String , mobile:String, city:String, area: String, pgType: Int,email:String,password:String  , completed:@escaping ((PostLoginVars?,Bool,String,[String:Any]?)) -> ()) {
         var parameters : Parameters!
         if ad.production {
-              parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password  ]
+              parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "pg_owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password  ]
 
         }else {
-            let parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password ,"test":"test" ]
+             parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "pg_owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password ,"test":"test" ]
 
         }
 
@@ -520,8 +520,10 @@ class PostLoginVars {
 
     }
     var birth_date  : String {
-        guard let x = _birth_date else { return "unknown" }
-        return x
+        guard let x = _birth_date , x != " " else { return "unknown" }
+          let stringB  = x.components(separatedBy: " ")
+
+        return stringB[0]
     }
     var map_lon  : String {
         guard let x = _map_lon else { return "" }
@@ -597,7 +599,7 @@ class PostLoginVars {
         self._team = jsonData[source.team].stringValue
         self._position = jsonData[source.position].stringValue
         self._snap_chat = jsonData[source.snap_chat].stringValue
- 
+        self._birth_date = jsonData[source.birth_date].stringValue
 
     }
     

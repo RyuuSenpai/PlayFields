@@ -27,13 +27,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ball_splash" translatesAutoresizingMaskIntoConstraints="NO" id="cqN-8h-Nrw">
-                                <rect key="frame" x="46.5" y="30" width="227" height="227"/>
+                                <rect key="frame" x="47" y="30" width="227" height="227"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cqN-8h-Nrw" secondAttribute="height" multiplier="1:1" id="425-yQ-SRD"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ball_pic" translatesAutoresizingMaskIntoConstraints="NO" id="xZk-FE-YDt">
-                                <rect key="frame" x="112" y="95.5" width="96" height="96"/>
+                                <rect key="frame" x="112" y="96" width="96" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xZk-FE-YDt" secondAttribute="height" multiplier="1:1" id="JvE-PZ-KsO"/>
                                 </constraints>
@@ -197,7 +197,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wUC-11-uak">
-                                <rect key="frame" x="142" y="265.5" width="37" height="37"/>
+                                <rect key="frame" x="142" y="266" width="37" height="37"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.47557255993150682" colorSpace="calibratedRGB"/>
                                 <color key="color" red="0.36078431370000003" green="0.68235294120000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -1133,7 +1133,7 @@
                             </collectionViewFlowLayout>
                             <cells>
                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ratingCell" id="cli-zT-Kg3" customClass="ratingCell" customModule="Elmla3eb" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.5" width="276" height="274"/>
+                                    <rect key="frame" x="0.0" y="1" width="276" height="274"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="274"/>
@@ -2577,9 +2577,18 @@
                                 <rect key="frame" x="40" y="79" width="240" height="199"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vdZ-zO-e5r">
+                                <rect key="frame" x="142" y="265.5" width="37" height="37"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.47557255990000002" colorSpace="calibratedRGB"/>
+                                <color key="color" red="0.36078431370000003" green="0.68235294120000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vdZ-zO-e5r" firstAttribute="centerX" secondItem="GIk-6O-EZI" secondAttribute="centerX" id="3zh-dN-atC"/>
                             <constraint firstItem="WRh-c0-YO6" firstAttribute="centerX" secondItem="B3M-Zf-5yC" secondAttribute="centerX" id="4hZ-Cn-BEw"/>
                             <constraint firstItem="YbF-eg-IvF" firstAttribute="top" secondItem="B3M-Zf-5yC" secondAttribute="top" constant="41" id="9cM-ed-4hx"/>
                             <constraint firstItem="I81-1D-Hjt" firstAttribute="top" secondItem="ei7-ba-7X9" secondAttribute="bottom" id="ErW-1m-Z3p"/>
@@ -2587,6 +2596,7 @@
                             <constraint firstItem="Tcl-9i-OQX" firstAttribute="width" secondItem="WRh-c0-YO6" secondAttribute="width" id="I1u-wj-S0S"/>
                             <constraint firstItem="ei7-ba-7X9" firstAttribute="top" secondItem="fm3-jW-RaW" secondAttribute="bottom" constant="-242" id="LBG-71-9ke"/>
                             <constraint firstItem="Tcl-9i-OQX" firstAttribute="top" secondItem="WRh-c0-YO6" secondAttribute="bottom" constant="14" id="Lz1-ES-00a"/>
+                            <constraint firstItem="vdZ-zO-e5r" firstAttribute="centerY" secondItem="GIk-6O-EZI" secondAttribute="centerY" id="Neu-0w-Xfb"/>
                             <constraint firstItem="YbF-eg-IvF" firstAttribute="trailing" secondItem="B3M-Zf-5yC" secondAttribute="trailing" constant="-30.5" id="R6O-o2-jKo"/>
                             <constraint firstItem="Tcl-9i-OQX" firstAttribute="height" secondItem="WRh-c0-YO6" secondAttribute="height" id="Uzg-5q-PJo"/>
                             <constraint firstItem="YbF-eg-IvF" firstAttribute="leading" secondItem="B3M-Zf-5yC" secondAttribute="leading" constant="29.5" id="Vvy-OD-NJt"/>
@@ -2602,6 +2612,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndector" destination="vdZ-zO-e5r" id="Fvg-Fk-DsX"/>
                         <outlet property="ballImage" destination="fm3-jW-RaW" id="aLm-GX-Dom"/>
                         <outlet property="ballImageVIEW" destination="YbF-eg-IvF" id="fcT-Xr-Hk2"/>
                         <outlet property="ballImageXConstraint" destination="awv-MC-QUj" id="U8h-8B-b0e"/>

@@ -17,25 +17,57 @@ class SplashLoginVC: UIViewController {
     @IBOutlet weak var signinBtn: UIButton!
     @IBOutlet weak var ballImage: UIImageView!
     @IBOutlet weak var ballImageVIEW: UIView!
-    
+    @IBOutlet weak var activityIndector: UIActivityIndicatorView!
+
        var startingAnimation : (){
-        self.ballImageVIEW.isUserInteractionEnabled = false
+        self.ballImageVIEW?.isUserInteractionEnabled = false
     }
     var DoneWithAnimation : () {
-        self.ballImageVIEW.isUserInteractionEnabled = true
+        self.ballImageVIEW?.isUserInteractionEnabled = true
     }
     var originalBallLocation : CGFloat!
     let animationD = 0.35
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUIEnabled(false )
         // Do any additional setup after loading the view.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2)  {            // Code
+            self.signinBtn.addTarget(self, action: #selector(self.animateToOriginal), for: .touchUpInside  )
+            self.ballImageVIEW.isUserInteractionEnabled = false
+            self.setUIEnabled(true )
+        }
         
-        signinBtn.addTarget(self, action: #selector(self.animateToOriginal), for: .touchUpInside  )
-        self.ballImageVIEW.isUserInteractionEnabled = false
+        
         
     }
+    
+    
+    
+    func  setUIEnabled(_ enabled:Bool) {
+        
+        if enabled {
+            activityIndector.stopAnimating()
+            signupBtn.alpha = 1
+            signinBtn.alpha = 1
+             
+            signupBtn.isEnabled = true
+            signinBtn.isEnabled = true
+            
+        }else {
+            activityIndector.startAnimating()
+            signupBtn.alpha = 0.5
+            signinBtn.alpha = 0.5
+            
+            signupBtn.isEnabled = false
+            signinBtn.isEnabled = false
+            
+            //            signBtnOL.alpha = 0.5
+            //            dissMissView.alpha = 0.5
+        }
+        
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

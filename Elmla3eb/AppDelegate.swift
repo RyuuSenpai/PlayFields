@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
     
-    var production = false
+    var production = true
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
 
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -210,7 +210,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         }else {
             return false
         }
-        
     }
     
     func sideMenuTrigger(_ view : UIViewController,_ triggerPage:String ) {
@@ -219,6 +218,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         x.currentPage = triggerPage
 //        view.navigationController?.present(x, animated: true, completion: nil)
          view.present(x, animated: true, completion: nil)
+    }
+    
+    func loadingActivity(_ view : UIViewController) -> UIActivityIndicatorView{
+        
+        let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        myActivityIndicator.color = .green
+        myActivityIndicator.center = view.view.center
+        myActivityIndicator.hidesWhenStopped = true
+        myActivityIndicator.alpha = 0
+        myActivityIndicator.layer.masksToBounds = false
+        myActivityIndicator.layer.cornerRadius = 3.0
+        myActivityIndicator.layer.shadowOpacity = 0.8
+        myActivityIndicator.layer.shadowRadius = 3.0
+        myActivityIndicator.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        myActivityIndicator.layer.shadowColor = UIColor(red: 157/255, green: 157/255, blue: 157/255, alpha: 1.0).cgColor
+        view.view.addSubview(myActivityIndicator)
+        return myActivityIndicator
+
     }
 }
 let ad = UIApplication.shared.delegate as! AppDelegate

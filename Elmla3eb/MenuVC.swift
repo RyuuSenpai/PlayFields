@@ -40,8 +40,7 @@ class MenuVC: UIViewController {
     var searchBtnLoc : CGFloat!
     var settingBtnLoc : CGFloat!
     var changeLangLoc : CGFloat!
-
-   private var currentTag = 0
+    private var currentTag = 0
     var currentPage : String?
     
     override func viewDidLoad() {
@@ -53,6 +52,7 @@ class MenuVC: UIViewController {
             
         }
         // Do any additional setup after loading the view.
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +85,7 @@ class MenuVC: UIViewController {
     
     @IBAction func signouBtnAct(_ sender: UIButton) {
         let user = MUserData()
+ 
         user.postLogout {   (data) in
             if data.1 {
                 DispatchQueue.main.async{

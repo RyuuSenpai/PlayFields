@@ -21,6 +21,7 @@ class CheckPhoneValidVC: UIViewController {
     @IBOutlet weak var activeOL: UIButton!
     @IBOutlet weak var resendBtnOL: UIButton!
     
+    @IBOutlet weak var backButtonImage: UIButton!
     @IBOutlet weak var verficationStack: UIStackView!
     @IBOutlet weak var sendPhoneNumBtn: UIButtonX!
     
@@ -84,7 +85,10 @@ class CheckPhoneValidVC: UIViewController {
         
         setupView()
         // Do any additional setup after loading the view.
-        
+        if L102Language.currentAppleLanguage() == "ar" {
+            backButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +143,7 @@ class CheckPhoneValidVC: UIViewController {
                         weakSelf?.count = 60
                         weakSelf?.timer = Timer.scheduledTimer(timeInterval: 1.0, target: weakSelf, selector: #selector(weakSelf?.update), userInfo: nil, repeats: true)
                     }else {
-                        ad.showAlert("All Fields are Required", "" )
+                        ad.showAlert( "default", "")
                     }
                     weakSelf?.setUIEnabled(enabled: true )
                     
@@ -186,7 +190,7 @@ class CheckPhoneValidVC: UIViewController {
                 }
             }
 //            passwordText
-            }else {
+            }else { // resend
                 guard let mobile = confirmationCodeTxt.text ,mobile.validPhoneNumber else {
                     ad.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
                     return }

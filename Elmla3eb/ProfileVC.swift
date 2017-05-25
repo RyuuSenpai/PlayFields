@@ -9,12 +9,13 @@
 import UIKit
 import CDAlertView
 
-class ProfileVC: ToSideMenuClass {
+class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
 
     @IBOutlet weak var cityTxt: UITextField!
     
     @IBOutlet weak var positionTxt: UITextField!
     
+    @IBOutlet weak var profileImageBtn: UIButton!
     @IBOutlet weak var editProfileBtn: UIButton!
     @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var favPoints: UILabel!
@@ -43,7 +44,7 @@ class ProfileVC: ToSideMenuClass {
 //    }
 //    }
     var positions =  [String]()
-    
+
     
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var positionPickerV: UIPickerView!
@@ -53,13 +54,15 @@ class ProfileVC: ToSideMenuClass {
     var disableTxts = false  {
         didSet {
             if disableTxts {
-                phoneNumTxt.isEnabled = false
-                birthDateTxt.isEnabled = false
-                snapCTxt.isEnabled = false
+                phoneNumTxt?.isEnabled = false
+                birthDateTxt?.isEnabled = false
+                snapCTxt?.isEnabled = false
+                profileImageBtn?.isEnabled = false
             }else {
-           phoneNumTxt.isEnabled = true
-            birthDateTxt.isEnabled = true
-            snapCTxt.isEnabled = true
+           phoneNumTxt?.isEnabled = false
+            birthDateTxt?.isEnabled = true
+            snapCTxt?.isEnabled = true
+                profileImageBtn?.isEnabled = true
             }
         }
     }
@@ -166,7 +169,7 @@ class ProfileVC: ToSideMenuClass {
 
     @IBAction func doneBtnAct(_ sender: UIButton) {
         
-        user.postProfileData(name: userName.text, mobile: phoneNumTxt.text, city: cityLbl.text, team: teamName.text, birthD: nil, lon: nil, lat: nil, image: nil,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
+        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: nil,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
             
             if state {
                 DispatchQueue.main.async {
@@ -200,7 +203,7 @@ class ProfileVC: ToSideMenuClass {
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        let cancelAction = UIAlertAction(title: langDicClass().getLocalizedTitle("Cancel"), style: .cancel) { (_) in }
         
         alertController.addTextField { (textField) in
             textField.placeholder = placeHolder
@@ -313,7 +316,7 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
         
         if   textField == birthDateTxt ,  textField.text == "" {
             let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
+            formatter.dateFormat =   "yyyy-MM-dd"
             let date  = formatter.string(from: NSDate() as Date)
             textField.text = date
             
@@ -329,10 +332,10 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
     
             
             let datePicker = UIDatePicker()
-//            datePicker.minimumDate = Date()
+            datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())
             
-            let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
-            datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
+//            let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
+//            datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
             
             datePicker.datePickerMode = UIDatePickerMode.date
             textField.inputView = datePicker
@@ -342,9 +345,47 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
     
     func timePickerChanged(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
              birthDateTxt.text = formatter.string(from: sender.date)
  }
+    
+    
+    @IBAction func loadImageButtonTapped(sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
 
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+
+    
+    // MARK: - UIImagePickerControllerDelegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        print("DONEnenenewnewnewnnew")
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        profileImage.contentMode = .scaleAspectFill
+        profileImage.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+//
+//            profileImage.contentMode = .scaleAspectFit
+//            profileImage.image = pickedImage
+//        }
+//        
+//        dismiss(animated: true, completion: nil)
+//    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print(("Canceleeeeddd"))
+        dismiss(animated: true, completion: nil)
+    }
+//    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+//        dismiss(animated: true, completion: nil)
+//    }
+ 
 }
 

@@ -10,8 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckPhoneValidVC" customModule="Elmla3eb" customModuleProvider="target">
             <connections>
-                <outlet property="activeOL" destination="g1F-jm-jf7" id="yjR-dk-w8z"/>
+                <outlet property="activeOL" destination="g1F-jm-jf7" id="Ytr-LX-n8L"/>
                 <outlet property="activityIndector" destination="fSo-in-WJN" id="nvt-qH-Ec2"/>
+                <outlet property="backButtonImage" destination="Akj-mw-DEk" id="Dqu-Kf-0Tr"/>
                 <outlet property="confirmationCodeTxt" destination="Pqc-yq-2Ea" id="x6Z-RI-ylM"/>
                 <outlet property="passwordCenterX" destination="d9k-jA-9nI" id="2wO-8y-paa"/>
                 <outlet property="passwordStack" destination="EnX-oM-AY2" id="Cvb-kD-Pv1"/>
@@ -124,7 +125,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62j-BP-Bes">
                                                         <rect key="frame" x="-0.5" y="0.0" width="142.5" height="52"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Ba-xe-5eV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <blurEffect style="dark"/>
@@ -175,7 +176,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D3-VW-2aK">
                                                         <rect key="frame" x="0.5" y="0.0" width="142.5" height="52"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="476-gp-jKv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <blurEffect style="dark"/>
