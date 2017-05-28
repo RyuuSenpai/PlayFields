@@ -92,7 +92,7 @@ class Profile_Model {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)")
+                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)\n data :  \(json)")
                 
                 
                 completed( state,sms )
