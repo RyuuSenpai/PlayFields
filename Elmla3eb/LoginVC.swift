@@ -54,8 +54,8 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
         //        self.googleSigninBtnOL.isEnabled = enabled
         //        self.signBtnOL.isEnabled = enabled
         //        self.dissMissView.isEnabled = enabled
-        
         if enabled {
+            fbActivityInd.stopAnimating()
             emailText.alpha = 1
             passwordText.alpha = 1
             signBtn.alpha = 1
@@ -70,6 +70,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
             emailText.isEnabled = true
             passwordText.isEnabled = true
         }else {
+            fbActivityInd.startAnimating()
             emailText.alpha = 0.5
             passwordText.alpha = 0.5
             signBtn.alpha = 0.5
@@ -151,9 +152,9 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     
     
     @IBAction func signinBtnAct(_ sender: UIButton) {
+        fbActivityInd.startAnimating()
         let x = signinFunFunctionailty()
         if x != "Done" {
-            
             showAlert("", langDicClass().getLocalizedTitle("Error with ") + "\(x)")
             
         }

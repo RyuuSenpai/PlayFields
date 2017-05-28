@@ -46,6 +46,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
 //    }
 //    }
     var positions =  [String]()
+ 
     var imageUrl = "" {
         didSet {
             print("thatis the image url : \(imageUrl)")
@@ -113,7 +114,13 @@ var changedImage = false
                 self?.phoneNumTxt.text = data.mobile
                     self?.positionTxt.text = data.positionName
                     self?.cityTxt.text = data.city
-                    self?.imageUrl = data.image
+//                    self?.imageUrl = data.image
+                    if   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String  {
+                    self?.imageUrl = imageurl
+                    }
+                    
+                    
+                    
                     if  let count = self?.cities.count , count < 1 {
                         
                         let global = GLOBAL()
@@ -183,26 +190,28 @@ var changedImage = false
     }
 
     @IBAction func doneBtnAct(_ sender: UIButton) {
-        
-        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageUrl ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
-            
-            if state {
-                DispatchQueue.main.async {
-                    
-                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
-                alert.show()
-                self?.disableTxts = true
-                self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
-                self?.doneButton.alpha = 0
-                self?.doneButton.isEnabled = false
-                }
-            }else {
-                DispatchQueue.main.async {
-
-                self?.showAlert(langDicClass().getLocalizedTitle("Failed Uploading Changes"), langDicClass().getLocalizedTitle("try again!!"))
-                }
-            }
-        }
+//        setUIEnabled(enabled: false )
+//        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageUrl ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
+//            
+//            if state {
+//                DispatchQueue.main.async {
+//                   
+//                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
+//                alert.show()
+//                self?.disableTxts = true
+//                self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+//                self?.doneButton.alpha = 0
+//                self?.doneButton.isEnabled = false
+//                    self?.setUIEnabled(enabled: true)
+//                }
+//            }else {
+//                DispatchQueue.main.async {
+//
+//                self?.showAlert(langDicClass().getLocalizedTitle("Failed Uploading Changes"), langDicClass().getLocalizedTitle("try again!!"))
+//                        self?.setUIEnabled(enabled: true )
+//                }
+//            }
+//        }
      }
     
     func presentAlert(_ title : String,_ sms : String,_ placeHolder : String,_ label : UILabel) {//"Please input your email:"
@@ -298,14 +307,7 @@ var changedImage = false
     }// end convertImageToBase64
     
     
-    //    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-    //
-    //            profileImage.contentMode = .scaleAspectFit
-    //            profileImage.image = pickedImage
-    //        }
-    //
-    //        dismiss(animated: true, completion: nil)
-    //    }
+ 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print(("Canceleeeeddd"))
         dismiss(animated: true, completion: nil)
@@ -314,7 +316,54 @@ var changedImage = false
     //        dismiss(animated: true, completion: nil)
     //    }
     
-    
+    func setUIEnabled(enabled:Bool) {
+        //        self.fbSigninBtnOL.isEnabled = enabled
+        //        self.googleSigninBtnOL.isEnabled = enabled
+        //        self.signBtnOL.isEnabled = enabled
+        //        self.dissMissView.isEnabled = enabled
+        if enabled {
+//            fbActivityInd.stopAnimating()
+            disableTxts = false
+            profileImageBtn.isEnabled = true
+            doneButton.isEnabled = true
+            doneButton.alpha = 1
+//            emailText.alpha = 1
+//            passwordText.alpha = 1
+//            signBtn.alpha = 1
+//            fbBtn.alpha = 1
+//            registerBtn.alpha = 1
+//            backBtn.alpha = 1
+//            backBtn.isEnabled = true
+//            signBtn.isEnabled = true
+//            fbBtn.isEnabled = true
+//            registerBtn.isEnabled = true
+//            signBtn.isEnabled = true
+//            emailText.isEnabled = true
+//            passwordText.isEnabled = true
+        }else {
+            disableTxts = true
+            profileImageBtn.isEnabled = false
+            doneButton.isEnabled = false
+            doneButton.alpha = 0.5
+//            fbActivityInd.startAnimating()
+//            emailText.alpha = 0.5
+//            passwordText.alpha = 0.5
+//            signBtn.alpha = 0.5
+//            fbBtn.alpha = 0.5
+//            registerBtn.alpha = 0.5
+//            backBtn.alpha = 0.5
+//            backBtn.isEnabled = false
+//            signBtn.isEnabled = false
+//            fbBtn.isEnabled = false
+//            registerBtn.isEnabled = false
+//            signBtn.isEnabled = false
+//            emailText.isEnabled = false
+//            passwordText.isEnabled = false
+            //            signBtnOL.alpha = 0.5
+            //            dissMissView.alpha = 0.5
+        }
+        
+    }
     
 }
 

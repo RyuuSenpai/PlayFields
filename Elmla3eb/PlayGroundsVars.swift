@@ -13,6 +13,7 @@ import SwiftyJSON
 class MainPage_Data {
     
     private var _success  : Int?
+    var  image : String?
     var playGrounds : [PlayGroundsData_Data]?
     var pagerData :  [HomePagerData_Data]?
     var staticsdata :  Statics_Data?
@@ -24,6 +25,7 @@ class MainPage_Data {
         guard _success == 1 else { return false }
         return true
     }
+    
     var sms : String {
         guard let x = _sms else {return"local_error with All Data SMS" }
         return x

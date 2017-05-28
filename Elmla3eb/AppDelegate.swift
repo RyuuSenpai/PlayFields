@@ -175,33 +175,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     func saveUserLogginData(email:String?,photoUrl : String? , uid : Int?,name:String?) {
         print("saving User Data email: \(email) , photoUrl: \(photoUrl),uid: \(uid)")
-     
+        if email != "default" {
         if   let email = email   {
             UserDefaults.standard.setValue(email, forKey: "userEmail")
         }else{
             UserDefaults.standard.setValue(nil, forKey: "userEmail")
             
         }
-        
+        }
+        if photoUrl != "default" {
+
         if  let photo = photoUrl {
             UserDefaults.standard.setValue(photo, forKey: "profileImage")
+            print("saing this photo : \(photo)")
         }else {
             UserDefaults.standard.setValue(nil, forKey: "profileImage")
         }
-        
+        }
+        if uid != -1 {
+
         if  let uid = uid {
             UserDefaults.standard.setValue(uid, forKey: "userId")
         }else {
             UserDefaults.standard.setValue(nil, forKey: "userId")
             UserDefaults.standard.setValue(nil, forKey: "FCMToken")
         }
-        
+        }
+        if name != "default" {
+
         if let name = name {
             UserDefaults.standard.setValue(name, forKey: "usreName")
         }else {
             UserDefaults.standard.setValue(nil, forKey: "userName")
         }
-        
+        }
     }
  
     func isUserLoggedIn() -> Bool {

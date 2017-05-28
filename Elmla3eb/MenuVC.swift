@@ -8,6 +8,9 @@
 
 import UIKit
 import FBSDKLoginKit
+import Alamofire
+import AlamofireImage
+
 class MenuVC: UIViewController {
     
     @IBOutlet weak var homeBtnCenterX: NSLayoutConstraint!
@@ -51,8 +54,16 @@ class MenuVC: UIViewController {
              backButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
             
         }
-        // Do any additional setup after loading the view.
-
+        // Do any additional setup after loading the view.let email = UserDefaults.standard.value(forKey: "userEmail") as? String ,
+         guard   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String else { return }
+        guard let url = URL(string: imageurl ) else { return }
+        self.profileImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "nobody_m.original"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

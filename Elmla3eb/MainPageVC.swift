@@ -210,6 +210,8 @@
             self?.bookedStatics = statics.bookedFields
             self?.visitorsStatics = statics.visitors
             self?.pagerData = pagerData
+            print("that's the user Image path : \(i.image)")
+            ad.saveUserLogginData(email: "default", photoUrl: i.image, uid: -1, name: "default")
             if let rating = i.ratePg_Data {
                 self?.ratePg_Data = [RatePg_Data]()
                  self?.ratePg_Data = rating

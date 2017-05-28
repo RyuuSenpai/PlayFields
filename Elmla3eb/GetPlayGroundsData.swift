@@ -25,7 +25,7 @@ class GetPlayGroundsData {
 //        let url = "http://appstest.xyz/api/homedatas"
                 let url = source.GET_PLAY_GROUNDS_ALL + source.API_TOKEN + "&user_id=\(USER_ID)"
         print("URL: is getPlayFieldsData  : \(url)")
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { [weak self](response:DataResponse<Any>) in
             print(response.result)
             switch(response.result) {
             case .success(_):
@@ -44,13 +44,12 @@ class GetPlayGroundsData {
                 
                 //                    let playGrounds = PlayGrounds(success: success, sms: sms)
                 //                print("KILLVA: _GetPlayFieldsData STATUS:\(success) , sms: \(sms) data : \(json)\n")
-                
-                let jsonData = json[self.parSource.data]
-                let nonrated_playgrounds =  jsonData[self.parSource.nonrated_playgrounds]
-                let playgroundsJsonData = jsonData[self.parSource.playgrounds]
-                let pagerJsonData = jsonData[self.parSource.images]
-                let staticsJsonData = jsonData[self.parSource.statistics]
-                
+                guard let data = self?.parSource.data , let ratePG = self?.parSource.nonrated_playgrounds ,let pg_data = self?.parSource.playgrounds, let images = self?.parSource.images, let mainPg = self?.parSource.statistics, let profileImage = self?.parSource.user_img,let smsD = self?.parSource.message , let stateD = self?.parSource.success, let imagePath = self?.source.IMAGES_URL  else { return }
+                let jsonData = json[data]
+                let nonrated_playgrounds =  jsonData[ratePG]
+                let playgroundsJsonData = jsonData[pg_data]
+                let pagerJsonData = jsonData[images]
+                let staticsJsonData = jsonData[mainPg]
                 let mainPageData = MainPage_Data(json: jsonData)
                 var playGrounds = [PlayGroundsData_Data]()
                 var pagerData =  [HomePagerData_Data]()
@@ -100,8 +99,18 @@ class GetPlayGroundsData {
                 //                        playGData?.append(pgData)
                 //                    }
                 //                     playGrounds.data = playGData
-                let success = json[self.parSource.success].intValue
-                let sms = json[self.parSource.message].stringValue
+                let success = json[stateD].intValue
+                let sms = json[smsD].stringValue
+                let image = jsonData[profileImage].string
+
+                var imageUrl = String()
+                  if let img = image , img != "" , img != " " {
+                    imageUrl = imagePath + img
+                }else {
+                    imageUrl = ""
+                }
+                
+                mainPageData.image = imageUrl
                 let  state =  success == 1 ? true : false
                 print("KILLVA: _GetPlayFieldsData STATUS:\(state) , sms: \(sms) playGroundsCount : \(mainPageData.playGrounds?.count) pagerData : \(mainPageData.pagerData?.count) \n")
                 

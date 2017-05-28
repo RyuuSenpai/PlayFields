@@ -141,6 +141,7 @@ class Constants  {
             let fb_user_id = "fb_user_id"
             let date_to = "date_to"
             let date_from = "date_from"
+            let user_img = "user_img"
         }
         
     }

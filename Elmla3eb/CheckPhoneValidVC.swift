@@ -271,6 +271,7 @@ class CheckPhoneValidVC: UIViewController {
 
         
         ad.reloadApp()
+        ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
     }
     
     

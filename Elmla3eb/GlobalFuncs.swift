@@ -26,6 +26,8 @@ var USER_ID :Int {
     }
     return userID
 }
+
+//var profileGlobalImage : UIImage?
 class GLOBAL {
     
     
