@@ -46,6 +46,7 @@ class HPHeaderVC: UICollectionReusableView ,FSPagerViewDelegate,FSPagerViewDataS
     var imagesData  : [String]! {
         didSet {
             if !hasSetPAGERDATA {
+                guard imagesData.count > 1 else { return }
             setUpPager()
                 hasSetPAGERDATA = true
             }
