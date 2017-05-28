@@ -279,12 +279,15 @@ var changedImage = false
             profileImage.image = pickedImage
             base64String = convertImageToBase64(pickedImage)
             
-//            base64String = pickedImage.base64EncodedString
-            print("that's base 64 : \(base64String)")
+// //           base64String = pickedImage.base64EncodedString
+//            print("that's base 64 : \(base64String)")
             
             //            let imageData:NSData = UIImagePNGRepresentation(pickedImage)! as NSData
             
-            
+//            let selectedImage = info[UIImagePickerControllerOriginalImage] as!  UIImage
+//            let selectedImageData: NSData = NSData(data:UIImageJPEGRepresentation((selectedImage), 1)!)
+//            let selectedImageSize:Int = selectedImageData.length
+//            print("Image Size:  KB : \( selectedImageSize / 1024)")
             //OR next possibility
             
             //Use image's path to create NSData
