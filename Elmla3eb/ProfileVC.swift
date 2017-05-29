@@ -438,9 +438,11 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
         
         if   textField == birthDateTxt ,  textField.text == "" {
             let formatter = DateFormatter()
+            let date_ = Calendar.current.date(byAdding: .year, value: -10, to: Date())
             formatter.dateFormat =   "yyyy-MM-dd"
-            let date  = formatter.string(from: NSDate() as Date)
-            textField.text = date
+            guard let date = date_ else { return }
+            let dateS  = formatter.string(from: date )
+            textField.text = dateS
             
         }
         cityLbl.text = cityTxt.text

@@ -189,11 +189,11 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
                     
                     weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
                     
-                                 self.setUIEnabled(enabled: true)
-                let data = data.3
+//                let data = data.3
  
-                print("that is the login response : \(data?["id"] as? Int)")
-                print("that is the login response : \(data?["name"] as? String)")
+//                print("that is the login response : \(data?["id"] as? Int)")
+//                print("that is the login response : \(data?["name"] as? String)")
+//                self.setUIEnabled(enabled: true)
             }else if let data = data.3 , let id = data["id"] as? Int, let name = data["name"] as? String   {
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve

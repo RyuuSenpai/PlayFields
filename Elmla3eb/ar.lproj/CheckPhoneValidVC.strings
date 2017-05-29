@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Verification Code:"; ObjectID = "DYS-CQ-XZu"; */
+"DYS-CQ-XZu.text" = "رمز التفعيل :";
+
+/* Class = "UITextField"; placeholder = "Verification Code"; ObjectID = "Pqc-yq-2Ea"; */
+"Pqc-yq-2Ea.placeholder" = "رمز التفعيل";
+
+/* Class = "UILabel"; text = "Password :"; ObjectID = "UDH-cL-bi5"; */
+"UDH-cL-bi5.text" = "كلمه المرور :";
+
+/* Class = "UIButton"; normalTitle = "Resend"; ObjectID = "e3H-od-MeJ"; */
+"e3H-od-MeJ.normalTitle" = "اعاده ارسال";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "fGE-ei-IYQ"; */
+"fGE-ei-IYQ.placeholder" = "كلمه السر";
+
+/* Class = "UIButton"; normalTitle = "Active"; ObjectID = "g1F-jm-jf7"; */
+"g1F-jm-jf7.normalTitle" = "تفعيل";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "oGU-tP-N7D"; */
+"oGU-tP-N7D.normalTitle" = "ارسال";
+
+/* Class = "UILabel"; text = "Please, Enter activation code that was sent to you by sms to activate your account."; ObjectID = "w45-xh-XCj"; */
+"w45-xh-XCj.text" = "Please, Enter activation code that was sent to you by sms to activate your account.";

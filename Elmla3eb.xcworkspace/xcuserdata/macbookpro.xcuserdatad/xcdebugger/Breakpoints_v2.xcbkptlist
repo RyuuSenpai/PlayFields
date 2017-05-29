@@ -221,70 +221,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/AppDelegate.swift"
-            timestampString = "517264713.109672"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/AppDelegate.swift"
-            timestampString = "517264713.109672"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/AppDelegate.swift"
-            timestampString = "517264713.109672"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/MUserData.swift"
-            timestampString = "517406060.931526"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "postRegisterUser(name:mobile:city:area:pgType:email:password:completed:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Elmla3eb/LoginVC.swift"
             timestampString = "517669065.454318"
             startingColumnNumber = "9223372036854775807"
@@ -318,12 +254,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
-                  timestampString = "517745673.250286"
+                  timestampString = "517761669.263578"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "213"
                   endingLineNumber = "213"
-                  offsetFromSymbolStart = "7321">
+                  offsetFromSymbolStart = "5576">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -333,12 +269,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
-                  timestampString = "517745673.253622"
+                  timestampString = "517761669.265765"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "213"
                   endingLineNumber = "213"
-                  offsetFromSymbolStart = "321">
+                  offsetFromSymbolStart = "340">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -509,70 +445,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/MUserData.swift"
-            timestampString = "517406071.852213"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "postFaceBLogin(mobile:image:fbID:completed:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/MUserData.swift"
-            timestampString = "517656747.655332"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "postFaceBLogin(mobile:image:fbID:completed:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/MUserData.swift"
-            timestampString = "517656749.326704"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "postFaceBLogin(mobile:image:fbID:completed:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/FBLoggin.swift"
-            timestampString = "517664751.700736"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "showFbEmailAddress()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Elmla3eb/FBLoggin.swift"
             timestampString = "517664751.700736"
             startingColumnNumber = "9223372036854775807"
@@ -580,22 +452,6 @@
             startingLineNumber = "106"
             endingLineNumber = "106"
             landmarkName = "cancelFbMobileVerif(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/FBLoggin.swift"
-            timestampString = "517658087.132738"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "showFbEmailAddress()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -750,12 +606,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/Profile_Model.swift"
-                  timestampString = "517745673.432837"
+                  timestampString = "517761669.359496"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "75"
                   endingLineNumber = "75"
-                  offsetFromSymbolStart = "13113">
+                  offsetFromSymbolStart = "9188">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -765,12 +621,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/Profile_Model.swift"
-                  timestampString = "517745673.436649"
+                  timestampString = "517761669.361864"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
                   endingLineNumber = "76"
-                  offsetFromSymbolStart = "34">
+                  offsetFromSymbolStart = "40">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -878,12 +734,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ProfileVC.swift"
-                  timestampString = "517745673.480551"
+                  timestampString = "517761669.391325"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "208"
-                  endingLineNumber = "208"
-                  offsetFromSymbolStart = "237">
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "200">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -893,12 +749,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ProfileVC.swift"
-                  timestampString = "517745673.485286"
+                  timestampString = "517761669.393494"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "208"
-                  endingLineNumber = "208"
-                  offsetFromSymbolStart = "1786">
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "1792">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1012,6 +868,38 @@
             startingLineNumber = "287"
             endingLineNumber = "287"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/MUserData.swift"
+            timestampString = "517757118.01505"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "userFCMToken(userID:token:completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/MUserData.swift"
+            timestampString = "517757933.300881"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "userFCMToken(userID:token:completed:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

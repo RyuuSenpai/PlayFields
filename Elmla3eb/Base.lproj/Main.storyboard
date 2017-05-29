@@ -44,14 +44,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oV2-3T-1aQ">
                                         <rect key="frame" x="27" y="19" width="266" height="75"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g8J-W5-rgr">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g8J-W5-rgr">
                                                 <rect key="frame" x="0.0" y="0.0" width="266" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="ZkW-rN-tgy"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 </variation>
@@ -602,7 +602,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hZ8-bQ-aDo">
                                                         <rect key="frame" x="18" y="20" width="285" height="215"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k2e-PT-nib">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k2e-PT-nib">
                                                                 <rect key="frame" x="0.0" y="0.0" width="285" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" id="45y-Uu-GS5"/>
@@ -611,25 +611,25 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" keyboardType="emailAddress"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5F-Zr-BwH">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5F-Zr-BwH">
                                                                 <rect key="frame" x="0.0" y="45" width="285" height="35"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" secureTextEntry="YES"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRc-HF-V9T">
+                                                            <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRc-HF-V9T">
                                                                 <rect key="frame" x="0.0" y="90" width="285" height="35"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" keyboardType="phonePad"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GYE-bV-AZD">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GYE-bV-AZD">
                                                                 <rect key="frame" x="0.0" y="135" width="285" height="35"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes"/>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="District" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmL-fy-hko">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="District" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rmL-fy-hko">
                                                                 <rect key="frame" x="0.0" y="180" width="285" height="35"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1609,7 +1609,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="290" height="35"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qo5-Mz-JEX" id="u6x-2J-Vop">
-                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news_icon" translatesAutoresizingMaskIntoConstraints="NO" id="7sQ-6O-JTh">
@@ -2030,7 +2030,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="290" height="253"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XwW-t9-ehN" id="zHr-JE-GkX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="252"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="253"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-9F-43S">
@@ -2058,14 +2058,14 @@
                                                                                     <rect key="frame" x="170" y="0.0" width="120" height="47"/>
                                                                                     <subviews>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKy-d6-U22">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="58" height="47"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="47"/>
                                                                                             <color key="backgroundColor" red="0.28977522249999998" green="0.54629486800000004" blue="0.12660208340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <state key="normal" title="am">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
                                                                                         </button>
                                                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEg-pZ-hi0">
-                                                                                            <rect key="frame" x="62" y="0.0" width="58" height="47"/>
+                                                                                            <rect key="frame" x="120" y="0.0" width="0.0" height="47"/>
                                                                                             <state key="normal" title="pm">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
@@ -2327,7 +2327,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dvi-X9-eNI" id="Zma-Oo-qJO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZj-vS-Otv">
@@ -2405,7 +2405,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xb-ZJ-7Gw" id="O1X-lQ-hbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-QM-GgM">
@@ -2650,6 +2650,6 @@
         <image name="true_icon" width="47" height="47"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="C93-MD-lNq"/>
+        <segue reference="Dcr-HH-oXr"/>
     </inferredMetricsTieBreakers>
 </document>

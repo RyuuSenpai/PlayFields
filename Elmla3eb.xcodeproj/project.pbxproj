@@ -56,10 +56,10 @@
 		52AFAA951E828318009F6467 /* UIViewXRadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA8A1E828318009F6467 /* UIViewXRadialGradient.swift */; };
 		52AFAA961E828318009F6467 /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */; };
 		52AFAA981E82955D009F6467 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA971E82955D009F6467 /* MenuVC.swift */; };
+		52B716571EDC69EB006B1A79 /* CheckPhoneValidVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */; };
 		52BA8A7D1E92925300BFDC3C /* SplashLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */; };
 		52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52BBF11C1ECB3659002AE6EA /* GoogleService-Info.plist */; };
 		52BBF1201ECB4CFF002AE6EA /* CheckPhoneValidVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */; };
-		52BBF1211ECB4CFF002AE6EA /* CheckPhoneValidVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BBF11F1ECB4CFF002AE6EA /* CheckPhoneValidVC.xib */; };
 		52BCB8791EBB2D42007298D4 /* ratingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCB8781EBB2D42007298D4 /* ratingCell.swift */; };
 		52C0E3661E8A635F005ABCAD /* BookedFieldsDatesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0E3651E8A635F005ABCAD /* BookedFieldsDatesCell.swift */; };
 		52C0E3681E8A8950005ABCAD /* BookNowTablesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C0E3671E8A8950005ABCAD /* BookNowTablesVC.swift */; };
@@ -152,10 +152,11 @@
 		52AFAA8A1E828318009F6467 /* UIViewXRadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewXRadialGradient.swift; sourceTree = "<group>"; };
 		52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
 		52AFAA971E82955D009F6467 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		52B716581EDC69EB006B1A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CheckPhoneValidVC.xib; sourceTree = "<group>"; };
+		52B7165B1EDC6A04006B1A79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CheckPhoneValidVC.strings; sourceTree = "<group>"; };
 		52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashLoginVC.swift; sourceTree = "<group>"; };
 		52BBF11C1ECB3659002AE6EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckPhoneValidVC.swift; sourceTree = "<group>"; };
-		52BBF11F1ECB4CFF002AE6EA /* CheckPhoneValidVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckPhoneValidVC.xib; sourceTree = "<group>"; };
 		52BCB8781EBB2D42007298D4 /* ratingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ratingCell.swift; sourceTree = "<group>"; };
 		52C0E3651E8A635F005ABCAD /* BookedFieldsDatesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookedFieldsDatesCell.swift; sourceTree = "<group>"; };
 		52C0E3671E8A8950005ABCAD /* BookNowTablesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookNowTablesVC.swift; sourceTree = "<group>"; };
@@ -439,7 +440,7 @@
 				520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */,
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
 				520044AC1EC1D5060030B772 /* SearchVC.xib */,
-				52BBF11F1ECB4CFF002AE6EA /* CheckPhoneValidVC.xib */,
+				52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -626,7 +627,7 @@
 				71F06C631E65D042008FBD28 /* soccer-player-aged-pixel.jpg in Resources */,
 				5200449B1EC1C31F0030B772 /* ProfileVC.xib in Resources */,
 				52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */,
-				52BBF1211ECB4CFF002AE6EA /* CheckPhoneValidVC.xib in Resources */,
+				52B716571EDC69EB006B1A79 /* CheckPhoneValidVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,6 +804,15 @@
 				520044B91EC1DE330030B772 /* ar */,
 			);
 			name = NoNetConnectionVC.xib;
+			sourceTree = "<group>";
+		};
+		52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52B716581EDC69EB006B1A79 /* Base */,
+				52B7165B1EDC6A04006B1A79 /* ar */,
+			);
+			name = CheckPhoneValidVC.xib;
 			sourceTree = "<group>";
 		};
 		714AECEF1E6303EF001127CE /* Main.storyboard */ = {

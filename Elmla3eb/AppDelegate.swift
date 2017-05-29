@@ -82,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         
         print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
  
+        fcm()
 
         return true
     }
@@ -122,7 +123,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 //        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
 //        print(token)
 
-        
+        fcm()
+     
+    }
+    
+    func fcm() {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
             if UserDefaults.standard.value(forKey: "userId") == nil {
@@ -130,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             }
             if   let userID = UserDefaults.standard.value(forKey: "userId") as? Int     ,  UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
                 print("found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? String)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
-
+                
                 UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
                 let userFCM = MUserData()
                 userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
@@ -138,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
                     
                 })
             }else {
-             print("found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
+                print("found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
             }
         }
     }

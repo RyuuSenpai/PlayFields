@@ -106,7 +106,7 @@
 "XAc-ok-9P6.text" = "زائر للموقع";
 
 /* Class = "UITextField"; placeholder = "Phone Number"; ObjectID = "XRc-HF-V9T"; */
-"XRc-HF-V9T.placeholder" = "رقم الهاتف: ";
+"XRc-HF-V9T.placeholder" = "رقم الهاتف  ";
 
 /* Class = "UILabel"; text = "Sat"; ObjectID = "XUj-Y4-eyU"; */
 "XUj-Y4-eyU.text" = " ";

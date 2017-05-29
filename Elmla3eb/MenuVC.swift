@@ -13,6 +13,9 @@ import AlamofireImage
 
 class MenuVC: UIViewController {
     
+    @IBOutlet weak var loggingOutView: UIView!
+    @IBOutlet weak var loadingLabel: UILabel!
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
     @IBOutlet weak var homeBtnCenterX: NSLayoutConstraint!
     @IBOutlet weak var searchBtnCenterX: NSLayoutConstraint!
     @IBOutlet weak var changeLangBtnCenterX: NSLayoutConstraint!
@@ -96,8 +99,9 @@ class MenuVC: UIViewController {
     
     @IBAction func signouBtnAct(_ sender: UIButton) {
         let user = MUserData()
- 
-        user.postLogout {   (data) in
+        setUIEnabled(false)
+        self.view.isUserInteractionEnabled = false
+        user.postLogout { [weak self ]  (data) in
             if data.1 {
                 DispatchQueue.main.async{
                     ad.saveUserLogginData(email: nil, photoUrl: nil , uid : nil, name : nil )
@@ -106,14 +110,30 @@ class MenuVC: UIViewController {
                     manager.logOut()
                     FBSDKAccessToken.setCurrent(nil)
                     FBSDKProfile.setCurrent(nil)
-                    ad.reloadApp()   
+                    self?.view.isUserInteractionEnabled = true
+                    self?.setUIEnabled(true)
+                    ad.reloadApp()
                 }
             }else {
                 ad.showAlert("default","")
+                self?.view.isUserInteractionEnabled = true
+
             }
         }
        
         
+    }
+    func setUIEnabled(_ state : Bool) {
+        
+        if state {
+            self.loadingActivity.stopAnimating()
+            self.loggingOutView.alpha = 0
+            self.loadingLabel.alpha = 0
+        }else {
+            self.loadingActivity.startAnimating()
+            self.loggingOutView.alpha = 1
+            self.loadingLabel.alpha = 1
+        }
     }
     
     @IBAction func listOfViewsDestinations(_ sender: UIButton) {
