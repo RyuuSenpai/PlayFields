@@ -55,14 +55,7 @@ class MenuVC: UIViewController {
             
         }
         // Do any additional setup after loading the view.let email = UserDefaults.standard.value(forKey: "userEmail") as? String ,
-         guard   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String else { return }
-        guard let url = URL(string: imageurl ) else { return }
-        self.profileImage.af_setImage(
-            withURL: url,
-            placeholderImage: UIImage(named: "nobody_m.original"),
-            filter: nil,
-            imageTransition: .crossDissolve(0.2)
-        )
+
         
     }
     
@@ -72,7 +65,14 @@ class MenuVC: UIViewController {
         //        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         //        navigationItem.leftBarButtonItem = backButton
         //        self.navigationItem.hidesBackButton = true
-        
+        guard   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String else { return }
+        guard let url = URL(string: imageurl ) else { return }
+        self.profileImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "nobody_m.original"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
         
     }
     

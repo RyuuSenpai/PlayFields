@@ -64,7 +64,7 @@ class Profile_Model {
     
     
     func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String?,position:String? , completed : @escaping (Bool,String) -> ()) {
-        let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position]
+        let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
         let parsCopy : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : "",parSource.snap_chat : snap_chat ?? "",parSource.position : position]
 
         print("that is the parameters in postProfileData : \(parsCopy)")
@@ -91,6 +91,15 @@ class Profile_Model {
                 
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
+                let data = json[self.parSource.data]
+                let image = data["image"].string
+                var imageUrl = String()
+                if let img = image , img != "" , img != " " {
+                    imageUrl = self.source.IMAGES_URL + img
+                    ad.saveUserLogginData(email: "default", photoUrl: imageUrl, uid: -1 ,name:"default")
+                }else {
+                    imageUrl = ""
+                }
                 let  state =  success == 1 ? true : false
                 print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)\n data :  \(json)")
                 

@@ -23,6 +23,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     @IBOutlet weak var favPoints: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var pointslbl: UILabel!
+    @IBOutlet weak var uploadingPhotoLbl: UILabel!
 
     @IBOutlet weak var playerPosition: UILabel!
     
@@ -182,6 +183,7 @@ var changedImage = false
             
             self.doneButton.alpha = 1
             self.doneButton.isEnabled = true
+            
         }else {
             disableTxts = true
             sender.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
@@ -201,6 +203,7 @@ var changedImage = false
                 alert.show()
                 self?.disableTxts = true
                 self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+                    self?.editProfileBtn.isSelected = false 
                     self?.setUIEnabled(enabled: true)
                 self?.doneButton.alpha = 0
                 self?.doneButton.isEnabled = false
@@ -276,20 +279,28 @@ var changedImage = false
         print("DONEnenenewnewnewnnew")
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImage.contentMode = .scaleAspectFill
-            profileImage.image = pickedImage
-            base64String = convertImageToBase64(pickedImage)
+            let myThumb  = pickedImage.resizeImageWith(newSize: CGSize(width: 200, height: 200))
+            profileImage.image = myThumb
             
+            base64String = convertImageToBase64(myThumb)
 // //           base64String = pickedImage.base64EncodedString
 //            print("that's base 64 : \(base64String)")
             
             //            let imageData:NSData = UIImagePNGRepresentation(pickedImage)! as NSData
             
 //            let selectedImage = info[UIImagePickerControllerOriginalImage] as!  UIImage
-//            let selectedImageData: NSData = NSData(data:UIImageJPEGRepresentation((selectedImage), 1)!)
-//            let selectedImageSize:Int = selectedImageData.length
-//            print("Image Size:  KB : \( selectedImageSize / 1024)")
-            //OR next possibility
             
+            
+
+
+//                         if  let img = UIImageJPEGRepresentation((myThumb 	),1) {
+//                
+//                let selectedImageData: NSData = NSData(data: img)
+//                
+//                let selectedImageSize:Int = selectedImageData.length
+//                print("myThumb3 Size:  KB : \( selectedImageSize / 1024)")
+//                //OR next possibility
+//            }
             //Use image's path to create NSData
             //            let url:NSURL = NSURL(string : "urlHere")!
             //Now use image to create into NSData format
@@ -329,45 +340,25 @@ var changedImage = false
         //        self.dissMissView.isEnabled = enabled
         if enabled {
             loadingActivity.stopAnimating()
-            disableTxts = false
+                 self.uploadingPhotoLbl.alpha = 0
+             disableTxts = false
             profileImageBtn.isEnabled = true
             doneButton.isEnabled = true
             doneButton.alpha = 1
-//            emailText.alpha = 1
-//            passwordText.alpha = 1
-//            signBtn.alpha = 1
-//            fbBtn.alpha = 1
-//            registerBtn.alpha = 1
-//            backBtn.alpha = 1
-//            backBtn.isEnabled = true
-//            signBtn.isEnabled = true
-//            fbBtn.isEnabled = true
-//            registerBtn.isEnabled = true
-//            signBtn.isEnabled = true
-//            emailText.isEnabled = true
-//            passwordText.isEnabled = true
+            editProfileBtn.alpha = 1
+            editProfileBtn.isEnabled = true
+
         }else {
             disableTxts = true
             loadingActivity.startAnimating()
+            if changedImage {
+                self.uploadingPhotoLbl.alpha = 1
+            }
             profileImageBtn.isEnabled = false
             doneButton.isEnabled = false
             doneButton.alpha = 0.5
-//            fb≥Ind.startAnimating()
-//            emailText.alpha = 0.5
-//            passwordText.alpha = 0.5
-//            signBtn.alpha = 0.5
-//            fbBtn.alpha = 0.5
-//            registerBtn.alpha = 0.5
-//            backBtn.alpha = 0.5
-//            backBtn.isEnabled = false
-//            signBtn.isEnabled = false
-//            fbBtn.isEnabled = false
-//            registerBtn.isEnabled = false
-//            signBtn.isEnabled = false
-//            emailText.isEnabled = false
-//            passwordText.isEnabled = false
-            //            signBtnOL.alpha = 0.5
-            //            dissMissView.alpha = 0.5
+            editProfileBtn.alpha = 0.5
+            editProfileBtn.isEnabled = false
         }
         
     }
@@ -507,4 +498,39 @@ extension UIImage {
         }
         return nil
     }
+}
+
+
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+    
+    
+    func resizeImageWith(newSize: CGSize) -> UIImage {
+        
+        let horizontalRatio = newSize.width / size.width
+        let verticalRatio = newSize.height / size.height
+        
+        let ratio = max(horizontalRatio, verticalRatio)
+        let newSize = CGSize(width: size.width * ratio, height: size.height * ratio)
+        UIGraphicsBeginImageContextWithOptions(newSize, true, 0)
+        draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: newSize))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+
 }

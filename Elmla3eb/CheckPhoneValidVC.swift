@@ -161,8 +161,10 @@ class CheckPhoneValidVC: UIViewController {
                         
                         ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
                         
-                        weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
-                        
+                        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
+                        let navb = UINavigationController(rootViewController: x)
+                        self.present(navb, animated: true, completion: nil)
                     }
                     self.setUIEnabled(enabled: true)
                 }else if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
