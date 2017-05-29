@@ -49,7 +49,7 @@
             if rateData.count < 1 {
                 self.noRatingFoundLbl?.alpha = 1
                 self.ratingCollectionView?.isUserInteractionEnabled = false
-                self.ratingCollectionView.alpha = 0
+                self.ratingCollectionView?.alpha = 0
             }else{ // the problem occur when only 1 or 2 cells left
                 self.ratingPageeControl?.numberOfPages = rateData.count
                 self.ratingCollectionView?.reloadData()

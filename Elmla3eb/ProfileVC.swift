@@ -31,6 +31,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     @IBOutlet weak var userName: UILabel!
     
     @IBOutlet weak var cityLbl: UILabel!
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
 
     @IBOutlet weak var phoneNumTxt: UITextFieldX!
     @IBOutlet weak var birthDateTxt: UITextFieldX!
@@ -190,28 +191,28 @@ var changedImage = false
     }
 
     @IBAction func doneBtnAct(_ sender: UIButton) {
-//        setUIEnabled(enabled: false )
-//        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageUrl ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
-//            
-//            if state {
-//                DispatchQueue.main.async {
-//                   
-//                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
-//                alert.show()
-//                self?.disableTxts = true
-//                self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
-//                self?.doneButton.alpha = 0
-//                self?.doneButton.isEnabled = false
-//                    self?.setUIEnabled(enabled: true)
-//                }
-//            }else {
-//                DispatchQueue.main.async {
-//
-//                self?.showAlert(langDicClass().getLocalizedTitle("Failed Uploading Changes"), langDicClass().getLocalizedTitle("try again!!"))
-//                        self?.setUIEnabled(enabled: true )
-//                }
-//            }
-//        }
+        setUIEnabled(enabled: false )
+        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageUrl ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
+            
+            if state {
+                DispatchQueue.main.async {
+                   
+                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
+                alert.show()
+                self?.disableTxts = true
+                self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+                    self?.setUIEnabled(enabled: true)
+                self?.doneButton.alpha = 0
+                self?.doneButton.isEnabled = false
+                }
+            }else {
+                DispatchQueue.main.async {
+
+                self?.showAlert(langDicClass().getLocalizedTitle("Failed Uploading Changes"), langDicClass().getLocalizedTitle("try again!!"))
+                        self?.setUIEnabled(enabled: true )
+                }
+            }
+        }
      }
     
     func presentAlert(_ title : String,_ sms : String,_ placeHolder : String,_ label : UILabel) {//"Please input your email:"
@@ -278,10 +279,15 @@ var changedImage = false
             profileImage.image = pickedImage
             base64String = convertImageToBase64(pickedImage)
             
+// //           base64String = pickedImage.base64EncodedString
+//            print("that's base 64 : \(base64String)")
             
             //            let imageData:NSData = UIImagePNGRepresentation(pickedImage)! as NSData
             
-            
+//            let selectedImage = info[UIImagePickerControllerOriginalImage] as!  UIImage
+//            let selectedImageData: NSData = NSData(data:UIImageJPEGRepresentation((selectedImage), 1)!)
+//            let selectedImageSize:Int = selectedImageData.length
+//            print("Image Size:  KB : \( selectedImageSize / 1024)")
             //OR next possibility
             
             //Use image's path to create NSData
@@ -322,7 +328,7 @@ var changedImage = false
         //        self.signBtnOL.isEnabled = enabled
         //        self.dissMissView.isEnabled = enabled
         if enabled {
-//            fbActivityInd.stopAnimating()
+            loadingActivity.stopAnimating()
             disableTxts = false
             profileImageBtn.isEnabled = true
             doneButton.isEnabled = true
@@ -342,10 +348,11 @@ var changedImage = false
 //            passwordText.isEnabled = true
         }else {
             disableTxts = true
+            loadingActivity.startAnimating()
             profileImageBtn.isEnabled = false
             doneButton.isEnabled = false
             doneButton.alpha = 0.5
-//            fbActivityInd.startAnimating()
+//            fb≥Ind.startAnimating()
 //            emailText.alpha = 0.5
 //            passwordText.alpha = 0.5
 //            signBtn.alpha = 0.5
@@ -488,3 +495,16 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
  
 }
 
+
+
+
+extension UIImage {
+    var base64EncodedString: String? {
+        if let data = UIImagePNGRepresentation(self) {
+//            let dataStr = data.base64EncodedString(options: [])
+
+            return data.base64EncodedString(options: [.lineLength64Characters])
+        }
+        return nil
+    }
+}
