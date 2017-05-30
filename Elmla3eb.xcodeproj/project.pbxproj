@@ -32,6 +32,9 @@
 		525BF0011E83CC29003FE82E /* PlayFieldsTableDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BF0001E83CC29003FE82E /* PlayFieldsTableDelagate.swift */; };
 		525BF0031E83CC7A003FE82E /* PlayFieldsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BF0021E83CC7A003FE82E /* PlayFieldsTableDataSource.swift */; };
 		52850AB61E87ABF300C54168 /* GetPlayGroundsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52850AB51E87ABF300C54168 /* GetPlayGroundsData.swift */; };
+		528623251EDD8EAF0048E95F /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528623231EDD8EAF0048E95F /* SearchResultVC.swift */; };
+		528623261EDD8EAF0048E95F /* SearchResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528623241EDD8EAF0048E95F /* SearchResultVC.xib */; };
+		528623291EDDABF60048E95F /* ChangePassViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528623281EDDABF60048E95F /* ChangePassViewX.swift */; };
 		5291BC841E8AB583008132BC /* MUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5291BC831E8AB583008132BC /* MUserData.swift */; };
 		529AAC8E1E782B4300505BC5 /* RegisterationSplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */; };
 		52A6C7431EA3860100DD4352 /* PlayGroundsVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6C7421EA3860100DD4352 /* PlayGroundsVars.swift */; };
@@ -128,6 +131,9 @@
 		525BF0001E83CC29003FE82E /* PlayFieldsTableDelagate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsTableDelagate.swift; sourceTree = "<group>"; };
 		525BF0021E83CC7A003FE82E /* PlayFieldsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsTableDataSource.swift; sourceTree = "<group>"; };
 		52850AB51E87ABF300C54168 /* GetPlayGroundsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlayGroundsData.swift; sourceTree = "<group>"; };
+		528623231EDD8EAF0048E95F /* SearchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
+		528623241EDD8EAF0048E95F /* SearchResultVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultVC.xib; sourceTree = "<group>"; };
+		528623281EDDABF60048E95F /* ChangePassViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePassViewX.swift; sourceTree = "<group>"; };
 		5291BC831E8AB583008132BC /* MUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MUserData.swift; sourceTree = "<group>"; };
 		529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterationSplashVC.swift; path = Sources/RegisterationSplashVC.swift; sourceTree = "<group>"; };
 		52A6C7421EA3860100DD4352 /* PlayGroundsVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayGroundsVars.swift; sourceTree = "<group>"; };
@@ -268,7 +274,7 @@
 				52F5C7121E793AED00B77500 /* LoginVC.swift */,
 				714AED0B1E6321E4001127CE /* FBLoggin.swift */,
 				529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */,
-				52F985841EB601E8001DA530 /* ProfileVC.swift */,
+				528623271EDDABE20048E95F /* Profile */,
 				52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */,
 				52355ECB1EB8933C005A9217 /* SearchVC.swift */,
 				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
@@ -293,6 +299,15 @@
 				5291BC851E8AB587008132BC /* Users */,
 			);
 			name = M;
+			sourceTree = "<group>";
+		};
+		528623271EDDABE20048E95F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				52F985841EB601E8001DA530 /* ProfileVC.swift */,
+				528623281EDDABF60048E95F /* ChangePassViewX.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		5291BC851E8AB587008132BC /* Users */ = {
@@ -437,6 +452,8 @@
 			children = (
 				52F985831EB6016E001DA530 /* Cells */,
 				5200449D1EC1C31F0030B772 /* ProfileVC.xib */,
+				528623231EDD8EAF0048E95F /* SearchResultVC.swift */,
+				528623241EDD8EAF0048E95F /* SearchResultVC.xib */,
 				520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */,
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
 				520044AC1EC1D5060030B772 /* SearchVC.xib */,
@@ -614,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52AF58A31E769EB0001284DD /* 3-star-rating.png in Resources */,
+				528623261EDD8EAF0048E95F /* SearchResultVC.xib in Resources */,
 				714AECF61E6303EF001127CE /* LaunchScreen.storyboard in Resources */,
 				71F06C5C1E6598D2008FBD28 /* sarawut-intarob-19.jpg in Resources */,
 				52178C8F1EC47D8900181384 /* cities.json in Resources */,
@@ -715,11 +733,13 @@
 				52AFAA941E828318009F6467 /* UIViewX.swift in Sources */,
 				525BEFFF1E83CBCC003FE82E /* PlayFieldsVC.swift in Sources */,
 				52C0E3681E8A8950005ABCAD /* BookNowTablesVC.swift in Sources */,
+				528623251EDD8EAF0048E95F /* SearchResultVC.swift in Sources */,
 				714AED061E632170001127CE /* L012Localizer.swift in Sources */,
 				52F8B1371E8CFB920091FE09 /* Pg_Times.swift in Sources */,
 				52F985861EB601E8001DA530 /* ProfileVC.swift in Sources */,
 				52C0E3661E8A635F005ABCAD /* BookedFieldsDatesCell.swift in Sources */,
 				5239569E1E76BECE005B2D1E /* FSPagerCollectionView.swift in Sources */,
+				528623291EDDABF60048E95F /* ChangePassViewX.swift in Sources */,
 				52AFAA911E828318009F6467 /* UITextFieldX.swift in Sources */,
 				52AFAA961E828318009F6467 /* UIVisualEffectViewX.swift in Sources */,
 				52F5C7131E793AED00B77500 /* LoginVC.swift in Sources */,

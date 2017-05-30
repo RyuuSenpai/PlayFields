@@ -32,31 +32,35 @@ extension PlayFieldsVC : UITableViewDataSource {
         cell.bookNowBtn.tag = cell.tag
         switch self.buttonTag {
         case 0:
-          cell.bookedFieldsstackView.alpha = 0
-            cell.nearbyStackView.alpha = 1
-            cell.bookingStateView.alpha = 0
-          cell.bookNowBtn.alpha = 1
+//          cell.bookedFieldsstackView.alpha = 0
+//            cell.nearbyStackView.alpha = 1
+//            cell.bookingStateView.alpha = 0
+//          cell.bookNowBtn.alpha = 1
+            cell.cellState(0)
           cell.bookNowBtn.setTitle("Book Now!", for: .normal)
           cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
           cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
         case 1 :
-            cell.bookedFieldsstackView.alpha = 1
-            cell.nearbyStackView.alpha = 0
-            cell.bookingStateView.alpha = 0
-            cell.bookNowBtn.alpha = 1
+//            cell.bookedFieldsstackView.alpha = 1
+//            cell.nearbyStackView.alpha = 0
+//            cell.bookingStateView.alpha = 0
+//            cell.bookNowBtn.alpha = 1
+            cell.cellState(1)
             cell.bookNowBtn.setTitle("Cancel Reservation", for: .normal)
             cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
             cell.bookNowBtn.addTarget(self, action: #selector(self.cancelResrvation(_:)), for: UIControlEvents.touchUpInside )
         case 2 :
-            cell.bookedFieldsstackView.alpha = 1
-            cell.nearbyStackView.alpha = 0
-            cell.bookingStateView.alpha = 1
-            cell.bookNowBtn.alpha = 0
+//            cell.bookedFieldsstackView.alpha = 1
+//            cell.nearbyStackView.alpha = 0
+//            cell.bookingStateView.alpha = 1
+//            cell.bookNowBtn.alpha = 0
+            cell.cellState(2)
         default:
-            cell.bookedFieldsstackView.alpha = 1
-            cell.nearbyStackView.alpha = 0
-            cell.bookingStateView.alpha = 0
-            cell.bookNowBtn.alpha = 1
+//            cell.bookedFieldsstackView.alpha = 1
+//            cell.nearbyStackView.alpha = 0
+//            cell.bookingStateView.alpha = 0
+//            cell.bookNowBtn.alpha = 1
+            cell.cellState(1)
             cell.bookNowBtn.setTitle("Cancel Reservation", for: .normal)
         }
         return cell

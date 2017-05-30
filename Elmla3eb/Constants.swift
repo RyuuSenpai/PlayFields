@@ -73,8 +73,9 @@ class Constants  {
             let RESEND_VERIFICATION_CODE = API.main_url + "users/resend-code"
             let POST_FORGOT_PASSWORD = API.main_url + "users/forget-password"
             let POST_LOGOUT = API.main_url + "users/logout"
+            let CHANGE_PASSWORD = "users/change-password"
             //////////////
-            
+            let SEARCH_URL =  API.main_url + "search"
         }
         
         class Parameters {
@@ -142,6 +143,8 @@ class Constants  {
             let date_to = "date_to"
             let date_from = "date_from"
             let user_img = "user_img"
+            let old_password = "old_password"
+            let new_password = "new_password"
         }
         
     }

@@ -66,6 +66,8 @@ class SearchVC: ToSideMenuClass , UITextFieldDelegate{
     
     @IBAction func searchBtnAct(_ sender: UIButton) {
         
+        let vc = SearchResultVC(nibName: "SearchResultVC", bundle: nil)
+        self.present(vc, animated: true, completion: nil)
         
     }
     

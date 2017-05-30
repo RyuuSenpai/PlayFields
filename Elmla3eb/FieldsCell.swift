@@ -31,4 +31,32 @@ class FieldsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func cellState(_ state : Int) {
+        
+        switch state {
+        case 0://NearBy:Location,price,Bookingtimes,BookNow
+            bookedFieldsstackView.alpha = 0
+            nearbyStackView.alpha = 1
+            bookingStateView.alpha = 0
+            bookNowBtn.alpha = 1
+        case 1 ://UnConfirmed:Location,Date,Time,Cancel Reservation
+            bookedFieldsstackView.alpha = 1
+            nearbyStackView.alpha = 0
+            bookingStateView.alpha = 0
+            bookNowBtn.alpha = 1
+        case 2 ://Confirmed:Location,Date,Time,Confirmed
+            bookedFieldsstackView.alpha = 1
+            nearbyStackView.alpha = 0
+            bookingStateView.alpha = 1
+            bookNowBtn.alpha = 0
+        default :
+            print("error with Cell State Setter")
+            bookedFieldsstackView.alpha = 0
+            nearbyStackView.alpha = 1
+            bookingStateView.alpha = 0
+            bookNowBtn.alpha = 1
+            
+        }
+    }
+    
 }

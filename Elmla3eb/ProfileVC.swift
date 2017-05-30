@@ -14,7 +14,13 @@ import AlamofireImage
 class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
 
     @IBOutlet weak var cityTxt: UITextField!
-    
+    //ForgotPassword
+    @IBOutlet weak var forgotPassView: UIViewX!
+    @IBOutlet weak var oldPassTxt: UITextField!
+    @IBOutlet weak var newPassTxt: UITextField!
+    @IBOutlet weak var changePassword: UIButton!
+
+    //
     @IBOutlet weak var positionTxt: UITextField!
     
     @IBOutlet weak var profileImageBtn: UIButton!
@@ -22,8 +28,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var favPoints: UILabel!
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var pointslbl: UILabel!
-    @IBOutlet weak var uploadingPhotoLbl: UILabel!
+     @IBOutlet weak var uploadingPhotoLbl: UILabel!
 
     @IBOutlet weak var playerPosition: UILabel!
     
@@ -65,7 +70,7 @@ var changedImage = false
     var base64String = ""
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var positionPickerV: UIPickerView!
-    let user = Profile_Model()
+      let user = Profile_Model()
     var cities = [String]()
 
     var disableTxts = false  {
@@ -84,15 +89,13 @@ var changedImage = false
         }
     }
     
-    var profileData : PostLoginVars?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.squareLoading.start(0)
         disableTxts = true
         title =  langDicClass().getLocalizedTitle("Profile")
-        self.pointslbl.text = "0" + langDicClass().getLocalizedTitle(" Points ")
-        emptyFields()
+         emptyFields()
         print("that's positions : \(positions)")
         if  L102Language.currentAppleLanguage() != "ar"   {
             positions =  ["Goalkeeper","Defence","Striker","Midfield"]
@@ -105,11 +108,11 @@ var changedImage = false
            
             if state , let data = data  {
                 DispatchQueue.main.async {
+                   
             self?.userName.text = data.name
                 self?.snapCTxt.text = data.snapChat
                 self?.birthDateTxt.text = data.birth_date
-                self?.pointslbl.text = "\(data.points)"
-                self?.teamName.text = data.team
+                 self?.teamName.text = data.team
                 self?.playerPosition.text = data.positionName
                 self?.favPoints.text =  "\(data.points)"
                 self?.cityLbl.text = data.city
@@ -183,12 +186,16 @@ var changedImage = false
             
             self.doneButton.alpha = 1
             self.doneButton.isEnabled = true
+            changePassword.alpha = 1
+            changePassword.isEnabled = true
             
         }else {
             disableTxts = true
             sender.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
             self.doneButton.alpha = 0
             self.doneButton.isEnabled = false
+            changePassword.alpha = 0
+            changePassword.isEnabled = false
         }
     }
 
@@ -236,6 +243,7 @@ var changedImage = false
         alertController.addTextField { (textField) in
             textField.placeholder = placeHolder
         }
+        
         
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
@@ -363,11 +371,84 @@ var changedImage = false
         
     }
     
+    //MARK: forgot Password
+    
+    @IBAction func changePasswordTrigger(_ sender: UIButton) {
+        setupChangePasswordView()
+        UIView.animate(withDuration: 0.3) { 
+            self.forgotPassView.alpha = 1
+            self.forgotPassView.transform = .identity
+        }
+    }
+    @IBAction func confirmPasswordChange(_ sender: UIButton) {
+         guard let newPass = newPassTxt.text , !newPass.isEmpty else { print("new field is empty field"); return }
+        guard let oldPass = newPassTxt.text , !oldPass.isEmpty else { print("old field is empty field"); return  }
+
+        user.postChangeUserPassword(userID: USER_ID, oldPassword: oldPass, newPassword: newPass) { (state, sms) in
+            
+            
+        }
+    }
+    
+    @IBAction func cancelPasswordChange(_ sender: UIButton) {
+     dismissView()
+    }
+    @IBAction func showPassword(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        sender.setImage(#imageLiteral(resourceName: "hidePass"), for: .normal)
+        sender.setImage(#imageLiteral(resourceName: "showPass"), for: .selected)
+        
+        switch sender.tag {
+        case 0 :
+            self.oldPassTxt.isSecureTextEntry = !sender.isSelected
+        default:
+            self.newPassTxt.isSecureTextEntry = !sender.isSelected
+
+            return
+        }
+    }
+    
+    var backGroundBlackView : UIView!
+    
+    func setupChangePasswordView() {
+
+        backGroundBlackView = UIView(frame: CGRect(x: 0, y: 0, width: Constants.screenSize.width, height: Constants.screenSize.height))
+        backGroundBlackView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        
+        self.navigationController?.view.addSubview(backGroundBlackView)
+        
+//        let customVC = ChangePassViewX.instanceFromNib()
+//        ratingView.frame = CGRect(x: 0, y: 60, width: Constants.screenSize.width - 50 , height:  Constants.screenSize.width - 50 )
+//        forgotPassView = 
+        
+        forgotPassView.frame = CGRect(x: 0, y: 60, width: 290 , height: 290 )
+        forgotPassView.clipsToBounds = true
+        forgotPassView.center = view.center
+        forgotPassView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        
+        self.navigationController?.view.addSubview(forgotPassView)
+
+    }
+    
+    
+    func dismissView() {
+         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
+            self.backGroundBlackView.alpha = 0
+            self.forgotPassView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            self.forgotPassView.alpha = 0
+         }) { [weak self ] (true ) in
+            self?.forgotPassView.transform = CGAffineTransform.identity
+            self?.forgotPassView.removeFromSuperview()
+            self?.backGroundBlackView.removeFromSuperview()
+        }
+        
+    }
+    
 }
 
 
 
-
+//MARK: PickerView
 extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
     
     

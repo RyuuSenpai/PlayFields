@@ -97,8 +97,7 @@ class CheckPhoneValidVC: UIViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-    }
+     }
     
     func setupView() {
         guard let state = codeVerfication else { return    }
@@ -161,22 +160,30 @@ class CheckPhoneValidVC: UIViewController {
                         
                         ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
                         
-                        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-                        let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
-                        let navb = UINavigationController(rootViewController: x)
-                        self.present(navb, animated: true, completion: nil)
+//                        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+//                        let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
+//                        let navb = UINavigationController(rootViewController: x)
+//                        self.present(navb, animated: true, completion: nil)
+                        
+                        
+                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
+                        let xy = storyboard.instantiateViewController(withIdentifier: "MainPageVC")
+                        let navb = UINavigationController()
+                        navb.setViewControllers([xy ], animated: true)
+                        weakSelf?.present(navb, animated: true, completion: nil)
+                        
                     }
-                    self.setUIEnabled(enabled: true)
+                    weakSelf?.setUIEnabled(enabled: true)
                 }else if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
                     let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                     vc.modalTransitionStyle = .crossDissolve
                     vc.userId = id
                     vc.userName = name
                     vc.codeVerfication = true
-                    self.present(vc, animated: true, completion: nil)
+                    weakSelf?.present(vc, animated: true, completion: nil)
 //                    weakSelf?.passwordAppeared = false
 //                    weakSelf?.codeVerfication = true
-                    self.setUIEnabled(enabled: true)
+                    weakSelf?.setUIEnabled(enabled: true)
 
                 }else {
                     if data.2 == "User not found" {
@@ -271,7 +278,6 @@ class CheckPhoneValidVC: UIViewController {
     }
     @IBAction func resetAppBtnAct(_ sender: UIButton) {
 
-        
         ad.reloadApp()
         ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
     }

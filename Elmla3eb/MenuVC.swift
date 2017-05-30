@@ -86,9 +86,13 @@ class MenuVC: UIViewController {
     
  private func goTOProfileVC() {
         print("Image Tapped ")
-         let x = ProfileVC()
-        let navb = UINavigationController(rootViewController: x)
-        self.present(navb, animated: true, completion: nil)
+//         let x = ProfileVC()
+//        let navb = UINavigationController(rootViewController: x)
+//        self.present(navb, animated: true, completion: nil)
+    let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+    let x = storyb.instantiateViewController(withIdentifier: "ProfileVC")
+    let navb = UINavigationController(rootViewController: x)
+    self.present(navb, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

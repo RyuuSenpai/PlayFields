@@ -248,48 +248,60 @@ class GetPlayGroundsData {
     
     
     
-//    func getSearchData(pg_name:String?,address : String?,rating:String?,fromData : String?,toDate:String? ,completed:@escaping (Bool) -> ()) {
-//        let parameters : Parameters = [parSource.pg_name:pg_name,parSource.address : address, parSource.rating : rating,parSource.date_from:fromData,parSource.date_to:toDate ]
-//        
-//        
-//        let url = source.POST_PLAY_GROUND_RATE + source.API_TOKEN
-//        print("postPlay_gRateing URL: \(url)")
-//        Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-//            print(response.result)
-//            switch(response.result) {
-//            case .success(_):
-//                guard response.result.error == nil else {
-//                    
-//                    // got an error in getting the data, need to handle it
-//                    print("error fetching data from url")
-//                    print(response.result.error!)
-//                    return
-//                    
-//                }
-//                let json = JSON( response.result.value!) // SwiftyJSON
-//                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
-//                
-//                
+    func getSearchData(pg_name:String?,address : String?,rating:String?,fromData : String?,toDate:String? ,completed:@escaping ([Search_Data]?,String,Bool) -> ()) {
+        let parameters : Parameters = [parSource.pg_name:pg_name ?? "",parSource.address : address ?? "", parSource.rating : rating ?? "" ,parSource.date_from:fromData ?? "",parSource.date_to:toDate ?? ""]
+        
+        
+        let url = source.SEARCH_URL + source.API_TOKEN
+        print("getSearchData URL: \(url)")
+        Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { [weak self ] (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from getSearchData url")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                   let parSource = Constants.API.Parameters()
+
+                let succe = parSource.success; let sm = parSource.message; let dataa = parSource.data  
+                
+                let json = JSON( response.result.value!) // SwiftyJSON
+                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+                let data = json[dataa]
+                var play_grounds : [Search_Data]?
+                if data.count >  0 {
+                 play_grounds = [Search_Data]()
+                for item in data {
+                    print("that's the item : \(item)")
+                    let x = Search_Data(json: item.1)
+                    play_grounds?.append(x)
+                }
+                    print("thats the array of fields : \(play_grounds)")
 //                let data = response.result.value
-//                
-//                let success = json[self.parSource.success].intValue
-//                let sms = json[self.parSource.message].stringValue
-//                let  state =  success == 1 ? true : false
-//                
-//                print("KILLVA: postPlay_gRateing STATUS:\(state) , sms: \(sms) data : \(data) \n")
-//                
-//                //                let xUser = PostLoginVars(jsonData: data)
-//                
-//                completed(state)
-//                
-//                break
-//            case .failure(_) :
-//                print("that is fail postPlay_gRateing i n getting the data Mate : \(response.result.error)")
-//                completed(false)
-//                break
-//            }
-//        }
-//    }
+                }
+                let success = json[succe].intValue
+                let sms = json[sm].stringValue
+                let  state =  success == 1 ? true : false
+                
+                print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
+                
+                //                let xUser = PostLoginVars(jsonData: data)
+                
+                completed(play_grounds,sms,state)
+                
+                break
+            case .failure(_) :
+                print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
+                completed(nil,"Network Timeout",false)
+                break
+            }
+        }
+    }
     
 
 }

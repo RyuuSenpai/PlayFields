@@ -71,6 +71,7 @@ class TestBackEnd {
 //        playgNews.callWebService()
        
         
+        
     }
     
     
@@ -94,7 +95,7 @@ class TestBackEnd {
     
     static func playGrounds() {
         
-//        let x = GetPlayGroundsData()
+        let x = GetPlayGroundsData()
         
 //        x.getPlayFieldsData { (data) in
 //            
@@ -108,6 +109,11 @@ class TestBackEnd {
 //            
 //            
 //        }
+        
+        x.getSearchData(pg_name: "Code Grass", address: "", rating: "", fromData: "", toDate: "") { (data) in
+            
+            print("YAYAYAYAYA")
+        }
     }
     
     static func playgTeams() {

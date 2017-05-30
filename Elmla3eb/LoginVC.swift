@@ -120,7 +120,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
         //        TestBackEnd.PLayField_INfo()
         //        TestBackEnd.PlaygNews()
         //        TestBackEnd.playgTimes()
-        //        TestBackEnd.playGrounds()
+                TestBackEnd.playGrounds()
         //        TestBackEnd.playgTeams()
         //        TestBackEnd.User()
         //@End_Test_back_End
