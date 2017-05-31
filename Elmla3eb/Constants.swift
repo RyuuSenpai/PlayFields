@@ -73,7 +73,7 @@ class Constants  {
             let RESEND_VERIFICATION_CODE = API.main_url + "users/resend-code"
             let POST_FORGOT_PASSWORD = API.main_url + "users/forget-password"
             let POST_LOGOUT = API.main_url + "users/logout"
-            let CHANGE_PASSWORD = "users/change-password"
+            let POST_CHANGE_PASSWORD = API.main_url + "users/change-password"
             //////////////
             let SEARCH_URL =  API.main_url + "search"
         }
@@ -186,6 +186,7 @@ class Constants  {
                              "You have Booked This Field":"تم بنجاح حجز الملعب",
                              "Done":"تم",
                              "Error with ":" خطا في ",
+                             "Error" : "خطا",
                              "try again!!":"اعد المحاوله!!",
                              "Something Went Wrong":"حدث خطا",
                              "You didn't pick Booking Date":"لم تختر معاد للحجز",
@@ -208,9 +209,14 @@ class Constants  {
                              "All Fields are Required" : "جميع الحقول مطلوبه",
                              "Send" : "ارسال",
                              "Invalid Mobile Number ":"خطا في رقم الهاتف ",
-                             "Cancel" : "الغاء"
-
-                             
+                             "Cancel" : "الغاء",
+            "Old Password Field is Valid" :" رقم المرور القديم غير صحيح",
+            "New Password Field is Valid":"رقم المرور الجديد يجب ان لا يقل عن ٨ احرف",
+            "per Hour": "للساعه",
+            "At least one Field has to be filled" : "يجب توافر حقل واحد علي الاقل لاتمام البحث",
+            "Search Result": "نتيجه البحث",
+            "No Data Found" : "لا توجد ملاعب مطابقه",
+            "Total Rate :" : "اجمالي التقييم :"
             //                             "":"",
             //                             "":"",
             //                             "":"",

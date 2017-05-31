@@ -59,7 +59,7 @@ class MenuVC: UIViewController {
         }
         // Do any additional setup after loading the view.let email = UserDefaults.standard.value(forKey: "userEmail") as? String ,
 
-        
+        loadImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +68,16 @@ class MenuVC: UIViewController {
         //        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         //        navigationItem.leftBarButtonItem = backButton
         //        self.navigationItem.hidesBackButton = true
+        
+        
+        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    
+    }
+    
+    func loadImage() {
         guard   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String else { return }
         guard let url = URL(string: imageurl ) else { return }
         self.profileImage.af_setImage(
@@ -77,8 +87,8 @@ class MenuVC: UIViewController {
             imageTransition: .crossDissolve(0.2)
         )
         
+
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.startAnimation()

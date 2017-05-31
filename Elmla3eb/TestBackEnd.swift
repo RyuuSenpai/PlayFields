@@ -110,10 +110,10 @@ class TestBackEnd {
 //            
 //        }
         
-        x.getSearchData(pg_name: "Code Grass", address: "", rating: "", fromData: "", toDate: "") { (data) in
-            
-            print("YAYAYAYAYA")
-        }
+//        x.getSearchData(pg_name: "Code Grass", address: "", rating: "", fromData: "", toDate: "") { (data) in
+//            
+//            print("YAYAYAYAYA")
+//        }
     }
     
     static func playgTeams() {

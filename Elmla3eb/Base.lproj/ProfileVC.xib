@@ -48,6 +48,7 @@
                         <constraint firstAttribute="width" constant="130" id="lYN-7A-3PJ"/>
                         <constraint firstAttribute="height" constant="35" id="tT4-o5-FkG"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <state key="normal" title="Change Password">
                         <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -261,13 +262,13 @@
                                     <rect key="frame" x="0.0" y="52.5" width="280" height="38"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calender_icon" translatesAutoresizingMaskIntoConstraints="NO" id="kgP-jc-xfi">
-                                            <rect key="frame" x="10" y="10" width="17" height="18"/>
+                                            <rect key="frame" x="10" y="10" width="17.5" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="kgP-jc-xfi" secondAttribute="height" multiplier="1:1" id="rgF-IP-5aR"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ory-LF-7VW">
-                                            <rect key="frame" x="35" y="10" width="99" height="18"/>
+                                            <rect key="frame" x="35.5" y="10" width="99" height="18"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -276,7 +277,7 @@
                                             </variation>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="aex-xe-mkE" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
-                                            <rect key="frame" x="137" y="4" width="140.5" height="30"/>
+                                            <rect key="frame" x="137.5" y="4" width="140" height="30"/>
                                             <color key="backgroundColor" red="0.80609840154647827" green="0.84683185815811157" blue="0.8559192419052124" alpha="0.075717037671232876" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>

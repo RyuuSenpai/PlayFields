@@ -11,6 +11,7 @@ import UIKit
 class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var tableView: UITableView!
 
+    var searchResultData : [Search_Data]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +21,7 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         
         tableView.register(nib, forCellReuseIdentifier: "cell")
         // Do any additional setup after loading the view.
+        title = langDicClass().getLocalizedTitle("Search Result")
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,17 +33,36 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        guard let count = searchResultData?.count else {
+            return 0
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = UITableViewCell()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FieldsCell
+        guard let data = searchResultData else { return cell }
+        cell.configCell(data[indexPath.row])
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return  147
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let data = searchResultData else { return }
+        let id = data[indexPath.row].id
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
+         detailVC.pg_id =  id
+             detailVC.pg_title = data[indexPath.row].pg_name
+            print("that is the field name : \(title)")
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
+     }
     /*
     // MARK: - Navigation
 

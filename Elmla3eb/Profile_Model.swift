@@ -64,7 +64,7 @@ class Profile_Model {
     
     
     func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String?,position:String? , completed : @escaping (Bool,String) -> ()) {
-        let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
+        let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
         
         // for printing
  
@@ -124,7 +124,7 @@ class Profile_Model {
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
         
         //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
-        let url = source.POST_FORGOT_PASSWORD + source.API_TOKEN
+        let url = source.POST_CHANGE_PASSWORD + source.API_TOKEN
         print("URL: is postChangeUserPassword   : \(url)")
         
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in

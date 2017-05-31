@@ -79,6 +79,7 @@
 		52F0CB881E8BF04E001C2223 /* TestBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */; };
 		52F0CB8B1E8C07B6001C2223 /* MPgNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0CB8A1E8C07B6001C2223 /* MPgNews.swift */; };
 		52F5C7131E793AED00B77500 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5C7121E793AED00B77500 /* LoginVC.swift */; };
+		52F60A591EDEDF4F00B79520 /* Search_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F60A581EDEDF4F00B79520 /* Search_Model.swift */; };
 		52F8B1371E8CFB920091FE09 /* Pg_Times.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B1361E8CFB920091FE09 /* Pg_Times.swift */; };
 		52F8B13B1E8D04FB0091FE09 /* MPlaygTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B13A1E8D04FB0091FE09 /* MPlaygTeams.swift */; };
 		52F985861EB601E8001DA530 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F985841EB601E8001DA530 /* ProfileVC.swift */; };
@@ -179,6 +180,7 @@
 		52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBackEnd.swift; sourceTree = "<group>"; };
 		52F0CB8A1E8C07B6001C2223 /* MPgNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPgNews.swift; sourceTree = "<group>"; };
 		52F5C7121E793AED00B77500 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		52F60A581EDEDF4F00B79520 /* Search_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search_Model.swift; sourceTree = "<group>"; };
 		52F8B1361E8CFB920091FE09 /* Pg_Times.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pg_Times.swift; sourceTree = "<group>"; };
 		52F8B13A1E8D04FB0091FE09 /* MPlaygTeams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPlaygTeams.swift; sourceTree = "<group>"; };
 		52F985841EB601E8001DA530 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -276,7 +278,7 @@
 				529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */,
 				528623271EDDABE20048E95F /* Profile */,
 				52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */,
-				52355ECB1EB8933C005A9217 /* SearchVC.swift */,
+				52F60A561EDED5C600B79520 /* Search */,
 				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
 				52355EC91EB88D86005A9217 /* Owner */,
 			);
@@ -296,6 +298,7 @@
 				52F8B1381E8CFE6C0091FE09 /* Pg_Times */,
 				52F8B1391E8CFEA00091FE09 /* PlayGrounds */,
 				52F8B13C1E8D05220091FE09 /* Pg_Teams */,
+				52F60A571EDEDF2200B79520 /* Search */,
 				5291BC851E8AB587008132BC /* Users */,
 			);
 			name = M;
@@ -412,6 +415,23 @@
 			name = Pg_News;
 			sourceTree = "<group>";
 		};
+		52F60A561EDED5C600B79520 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				52355ECB1EB8933C005A9217 /* SearchVC.swift */,
+				528623231EDD8EAF0048E95F /* SearchResultVC.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		52F60A571EDEDF2200B79520 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				52F60A581EDEDF4F00B79520 /* Search_Model.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		52F8B1381E8CFE6C0091FE09 /* Pg_Times */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,7 +472,6 @@
 			children = (
 				52F985831EB6016E001DA530 /* Cells */,
 				5200449D1EC1C31F0030B772 /* ProfileVC.xib */,
-				528623231EDD8EAF0048E95F /* SearchResultVC.swift */,
 				528623241EDD8EAF0048E95F /* SearchResultVC.xib */,
 				520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */,
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
@@ -715,6 +734,7 @@
 				714AED011E632113001127CE /* MaterialView.swift in Sources */,
 				52E9DF5E1EACCC43004563CA /* DownloadImages.swift in Sources */,
 				714AED0C1E6321E4001127CE /* FBLoggin.swift in Sources */,
+				52F60A591EDEDF4F00B79520 /* Search_Model.swift in Sources */,
 				523956A21E76BECE005B2D1E /* FSPageViewLayout.swift in Sources */,
 				52A6C7471EA43A3400DD4352 /* AASquaresLoading.swift in Sources */,
 				52AEA1E01E93AA2800303FF2 /* splashLoginDelete.swift in Sources */,

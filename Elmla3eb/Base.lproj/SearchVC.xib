@@ -14,6 +14,8 @@
                 <outlet property="cityTxt" destination="JTe-fa-x2f" id="ppJ-Rs-Inx"/>
                 <outlet property="fieldNameTxt" destination="TeU-5s-sLS" id="xKJ-gi-bQo"/>
                 <outlet property="fromTxt" destination="2A9-7p-TRD" id="VwI-90-Nxy"/>
+                <outlet property="loadingActivity" destination="LOP-W3-l7O" id="m68-pk-nIU"/>
+                <outlet property="loadingVC" destination="qnK-Nk-06K" id="Eah-cZ-q8T"/>
                 <outlet property="rateTxt" destination="CGm-R8-0uG" id="eHL-pC-yjB"/>
                 <outlet property="searchBtnOL" destination="EN7-Vx-GCs" id="lYb-Yc-CZj"/>
                 <outlet property="toTxt" destination="QwG-8C-Tdn" id="KqT-4z-Oen"/>
@@ -37,17 +39,17 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CIty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JTe-fa-x2f">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CIty" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="JTe-fa-x2f">
                             <rect key="frame" x="0.0" y="45" width="335" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rate" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CGm-R8-0uG">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rate" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="CGm-R8-0uG">
                             <rect key="frame" x="0.0" y="90" width="335" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                         </textField>
                     </subviews>
                 </stackView>
@@ -63,17 +65,17 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fr2-3t-XoO">
                             <rect key="frame" x="0.0" y="20.5" width="335" height="30"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2A9-7p-TRD">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="From:" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="2A9-7p-TRD">
                                     <rect key="frame" x="0.0" y="0.0" width="163.5" height="30"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 </textField>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QwG-8C-Tdn">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="To:" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="QwG-8C-Tdn">
                                     <rect key="frame" x="171.5" y="0.0" width="163.5" height="30"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 </textField>
                             </subviews>
                         </stackView>
@@ -93,15 +95,41 @@
                         <action selector="searchBtnAct:" destination="-1" eventType="touchUpInside" id="bxA-5I-T7z"/>
                     </connections>
                 </button>
+                <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnK-Nk-06K">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LOP-W3-l7O">
+                            <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            <color key="color" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssj-nE-ue7">
+                            <rect key="frame" x="142" y="355" width="91" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.28000000000000003" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="ssj-nE-ue7" firstAttribute="top" secondItem="LOP-W3-l7O" secondAttribute="bottom" constant="3" id="AMk-Yu-5kz"/>
+                        <constraint firstItem="LOP-W3-l7O" firstAttribute="centerY" secondItem="qnK-Nk-06K" secondAttribute="centerY" id="D2v-lD-1rF"/>
+                        <constraint firstItem="LOP-W3-l7O" firstAttribute="centerX" secondItem="qnK-Nk-06K" secondAttribute="centerX" id="SaS-xN-TKF"/>
+                        <constraint firstItem="ssj-nE-ue7" firstAttribute="centerX" secondItem="LOP-W3-l7O" secondAttribute="centerX" id="Wbg-CN-tjq"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="qnK-Nk-06K" firstAttribute="centerY" secondItem="2d3-si-7dq" secondAttribute="centerY" id="28r-XW-dpK"/>
                 <constraint firstItem="nzp-sg-PEz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="7ai-TX-HtN"/>
+                <constraint firstItem="qnK-Nk-06K" firstAttribute="height" secondItem="2d3-si-7dq" secondAttribute="height" id="CwB-LJ-bQ9"/>
                 <constraint firstAttribute="bottom" secondItem="2d3-si-7dq" secondAttribute="bottom" id="JF8-PG-Qb3"/>
                 <constraint firstItem="2d3-si-7dq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uwc-0i-QWi"/>
                 <constraint firstAttribute="trailing" secondItem="nzp-sg-PEz" secondAttribute="trailing" constant="20" id="WRg-n7-4ne"/>
                 <constraint firstItem="EN7-Vx-GCs" firstAttribute="centerX" secondItem="nzp-sg-PEz" secondAttribute="centerX" id="XoZ-Vj-HSj"/>
+                <constraint firstItem="qnK-Nk-06K" firstAttribute="width" secondItem="2d3-si-7dq" secondAttribute="width" id="bJO-Og-dfu"/>
                 <constraint firstItem="EN7-Vx-GCs" firstAttribute="top" secondItem="pbj-aY-Q8B" secondAttribute="bottom" constant="43" id="dDR-OC-2At"/>
+                <constraint firstItem="qnK-Nk-06K" firstAttribute="centerX" secondItem="2d3-si-7dq" secondAttribute="centerX" id="dkf-6V-B3c"/>
                 <constraint firstItem="nzp-sg-PEz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="gGX-5G-nmM"/>
                 <constraint firstItem="pbj-aY-Q8B" firstAttribute="width" secondItem="nzp-sg-PEz" secondAttribute="width" id="gTT-Nc-ll4"/>
                 <constraint firstAttribute="trailing" secondItem="2d3-si-7dq" secondAttribute="trailing" id="ixv-Dr-jA2"/>

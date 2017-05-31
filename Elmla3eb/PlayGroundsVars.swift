@@ -227,48 +227,5 @@ class  RatePg_Data {
 
 //---------------------------------------------------------------------
 
-class Search_Data {
-    
-    private var _pg_name : String?
-    private var _rating : Int?
-    private var _id : Int?
-    private var _image : String?
-    private var _address : String?
-    private   let source = Constants.API.Parameters()
-    private   let imageURL = Constants.API.URLS()
-
-    var pg_name : String {
-        guard  let x = _pg_name else { return "" }
-        return x
-    }
-    var rating : Int{
-        guard  let x = _rating else { return 0 }
-        return x
-    }
-    var id : Int{
-        guard  let x = _id else { return 0 }
-        return x
-    }
-    
-    var address : String {
-        guard let address = _address else { return "" }
-        return address
-    }
-    var image : String {
-        guard let x = _image else { return "" }
-        return imageURL.IMAGES_URL + x
-    }
-
-    
-    init(json:JSON) {
-        self._pg_name = json[source.pg_name].stringValue
-        self._rating = json[source.rating].intValue
-        self._id = json[source.id].intValue
-        self._image = json[source.image].string
-        self._address = json[source.address].string
-    }
-}
-
-
 //---------------------------------------------------------------------
 

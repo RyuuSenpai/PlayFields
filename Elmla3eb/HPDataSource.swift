@@ -59,7 +59,7 @@ extension MainPageVC : UICollectionViewDataSource {
             
             
             cell.courtImage.af_setImage(
-                withURL: URL(string: "http://appstest.xyz/" + data.image)!,
+                withURL: URL(string: imageURL.IMAGES_URL  + data.image)!,
                 placeholderImage: UIImage(named: "courtplaceholder_3x"),
                 filter: nil,
                 imageTransition: .crossDissolve(0.2)

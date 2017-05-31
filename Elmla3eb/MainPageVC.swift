@@ -34,6 +34,7 @@
     let getData = GetPlayGroundsData()
     var pagerData : [HomePagerData_Data]?
     
+       let imageURL = Constants.API.URLS()
     var ratePg_Data : [RatePg_Data]? {
         didSet {
             if  let data = ratePg_Data , data.count > 0 , firstLaunch{
