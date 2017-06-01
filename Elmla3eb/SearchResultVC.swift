@@ -44,6 +44,11 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FieldsCell
         guard let data = searchResultData else { return cell }
         cell.configCell(data[indexPath.row])
+        
+        cell.bookNowBtn.setTitle("Book Now!", for: .normal)
+        cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
+        cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,6 +68,21 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         
         self.navigationController?.pushViewController(detailVC, animated: true)
      }
+    
+    func bookNow(_ sender: UIButton) {
+        guard let data = searchResultData else { return }
+        print("can i book an reservation plz , my id is : \(sender.tag)")
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
+        detailVC.pg_id =  sender.tag
+        print("that is the field name : \(title)")
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

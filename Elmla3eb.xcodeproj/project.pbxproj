@@ -363,7 +363,6 @@
 		52B976031E841FFB008B31C7 /* PlayFields */ = {
 			isa = PBXGroup;
 			children = (
-				52AF589D1E769A0A001284DD /* HomePageCell.swift */,
 				525BEFFE1E83CBCC003FE82E /* PlayFieldsVC.swift */,
 				525BF0001E83CC29003FE82E /* PlayFieldsTableDelagate.swift */,
 				525BF0021E83CC7A003FE82E /* PlayFieldsTableDataSource.swift */,
@@ -460,6 +459,7 @@
 		52F985831EB6016E001DA530 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				52AF589D1E769A0A001284DD /* HomePageCell.swift */,
 				52E8D0E51E8920B0007E1CE2 /* PlayFields */,
 				52D7C4301E82D60C00F34B77 /* FieldsCell.swift */,
 				52D7C4311E82D60C00F34B77 /* FieldsCell.xib */,

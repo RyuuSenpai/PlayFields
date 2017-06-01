@@ -231,7 +231,8 @@ class GetpgInfosWebServ  {
         print("thats the seleected userId : \(userId)")
         let parameters : Parameters =  ["time_id":stringParm ,"player_id" : userId ?? "","pg_id" : pg_Id]
         print("that is postBookDate param : \(parameters)")
-        let url = "http://appstest.xyz/api/reservations?api_token=776645543"
+        let url = source.POST_REservation + source.API_TOKEN
+
         print("postBookDate URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             print(response.result)

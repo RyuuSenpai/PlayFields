@@ -599,7 +599,8 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
             
             let datePicker = UIDatePicker()
             datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())
-            
+            datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -90, to: Date())
+ 
             //            let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
             //            datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
             

@@ -31,11 +31,32 @@ class FieldsCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func configNearFields(_ data :NearByFields_Data? ) {
+        guard let data = data else { return }
+            bookNowBtn.tag = data.id
+            
+            fieldLocationLbl.text = data.address
+            priceLbl.text = data.price + " " + langDicClass().getLocalizedTitle("per Hour")
+            fieldNameLbl.text = data.pgName
+            bookingtimesLbl.text =   "\(data.pgBookingTimes)"
+            if let url = URL(string: data.image) {
+                courtImage.af_setImage(
+                    withURL: url ,
+                    placeholderImage: UIImage(named: "courtplaceholder_3x"),
+                    filter: nil,
+                    imageTransition: .crossDissolve(0.2)
+                )
+            }
+        
+    }
 
     func configCell(_ data : Search_Data?) {
 //                    _ location : String?,_ price : String?,_ bookingTimes : String?,_ date : String?) {
         self.bookingTimesAndRate.text = langDicClass().getLocalizedTitle("Total Rate :")
         if let data = data   {
+            bookNowBtn.tag = data.id
+    
             fieldLocationLbl.text = data.address
             priceLbl.text = data.price + " " + langDicClass().getLocalizedTitle("per Hour")
             fieldNameLbl.text = data.pg_name

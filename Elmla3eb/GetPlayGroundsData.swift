@@ -22,7 +22,6 @@ class GetPlayGroundsData {
  
 //        let parameters : Parameters = [parSource.user_id : userID ]
 
-//        let url = "http://appstest.xyz/api/homedatas"
                 let url = source.GET_PLAY_GROUNDS_ALL + source.API_TOKEN + "&user_id=\(USER_ID)"
         print("URL: is getPlayFieldsData  : \(url)")
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { [weak self](response:DataResponse<Any>) in
@@ -302,6 +301,59 @@ class GetPlayGroundsData {
             }
         }
     }
+    
+    
+    
+    
+    func getNearByFields(lat : String,long: String, completed:@escaping ([NearByFields_Data]?,String,Bool) -> ()) {
+        
+        let url = source.GET_NEARBY_FIELDS + "/\(30.7949059)/\(30.9961017)" + source.API_TOKEN  //+ lat + "/" + long
+        print("getNearByFields URL: \(url)")
+        //        let request = GLOBAL.alamoRequest(query_url: url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url getNearByFields")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                print("that is  getNearByFields getting the data Mate : %@", response.result.value!)
+                
+                
+                let data = json[self.parSource.data]
+                 var nearPGData = [NearByFields_Data]()
+                for item in data {
+                    nearPGData.append(NearByFields_Data(json: item.1))
+                }
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: getNearByFields STATUS:\(state) , sms: \(sms) \n")
+                
+                 
+                completed(nearPGData,sms,state)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the getNearByFields data Mate : \(response.result.error)")
+                completed(nil,"Network Error",false)
+                break
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    
     
 
 }

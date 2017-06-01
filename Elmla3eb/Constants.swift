@@ -50,6 +50,7 @@ class Constants  {
             let GET_PLAY_GROUNDS_ALL = API.main_url + "homedatas"
             let GET_PLAY_GROUNDS_ID = API.main_url + "homedatas/"
             let POST_PLAY_GROUND_RATE = API.main_url + "playgrounds/rating"
+            let GET_NEARBY_FIELDS = API.main_url + "playgrounds/nearby"
             //////////////
             //SETTINGS
             let POST_SETTINGS_DATA = API.main_url + "settings"
@@ -74,8 +75,11 @@ class Constants  {
             let POST_FORGOT_PASSWORD = API.main_url + "users/forget-password"
             let POST_LOGOUT = API.main_url + "users/logout"
             let POST_CHANGE_PASSWORD = API.main_url + "users/change-password"
-            //////////////
+            ////////////// Search
             let SEARCH_URL =  API.main_url + "search"
+            
+            ////////////Reservation 
+            let POST_REservation =  API.main_url + "reservations"
         }
         
         class Parameters {

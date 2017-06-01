@@ -16,7 +16,12 @@ extension PlayFieldsVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let data = nearFieldsData  {
+            return data.count
+        }else {
+        
         return 5
+    }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,14 +37,13 @@ extension PlayFieldsVC : UITableViewDataSource {
         cell.bookNowBtn.tag = cell.tag
         switch self.buttonTag {
         case 0:
-//          cell.bookedFieldsstackView.alpha = 0
-//            cell.nearbyStackView.alpha = 1
-//            cell.bookingStateView.alpha = 0
-//          cell.bookNowBtn.alpha = 1
+            
             cell.cellState(0)
           cell.bookNowBtn.setTitle("Book Now!", for: .normal)
           cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
           cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
+            guard let data = nearFieldsData else { return cell }
+            cell.configNearFields(data[indexPath.row])
         case 1 :
 //            cell.bookedFieldsstackView.alpha = 1
 //            cell.nearbyStackView.alpha = 0

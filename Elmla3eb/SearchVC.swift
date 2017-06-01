@@ -72,7 +72,7 @@
         disableView(true)
         guard let name =  fieldNameTxt.text, let city = cityTxt.text, let rate = rateTxt.text, let fromDate = fromTxt.text, let toDate = toTxt.text,(!name.isEmpty || !city.isEmpty || !rate.isEmpty || !fromDate.isEmpty || !toDate.isEmpty ) else{
             ad.showAlert(langDicClass().getLocalizedTitle("Error"), langDicClass().getLocalizedTitle("At least one Field has to be filled"))
-            disableView(true)
+            disableView(false)
             return
         }
         searchModel = Search_Model()
@@ -131,7 +131,7 @@
     //    }
     func timePickerChanged(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.dateFormat = "yyyy-MM-dd"
         if isFromDate {
             fromTxt.text = formatter.string(from: sender.date)
         }else {
@@ -158,7 +158,7 @@
     func textFieldDidEndEditing(_ textField: UITextField) {
         if   textField == toTxt || textField == fromTxt  ,  textField.text == "" {
             let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
+            formatter.dateFormat = "yyyy-MM-dd"
             let date  = formatter.string(from: NSDate() as Date)
             textField.text = date
             

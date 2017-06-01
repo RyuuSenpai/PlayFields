@@ -46,7 +46,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>0.4</string>
+	<string>0.6</string>
 	<key>FacebookAppID</key>
 	<string>1115033688623873</string>
 	<key>FacebookDisplayName</key>
@@ -65,6 +65,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To find the Nearest Playfield for you.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To Display Your Profile Image</string>
 	<key>UIBackgroundModes</key>

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+ import CoreLocation
 
-class PlayFieldsVC: UIViewController {
+class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchBarText: UISearchBar!
     @IBOutlet weak var confirmedBtn: UIButton!
@@ -19,10 +20,22 @@ class PlayFieldsVC: UIViewController {
     @IBOutlet weak var selectionBtnsViewHeightConstant: NSLayoutConstraint!
     
     var buttonTag : Int = 0
-    
+    var locationManager = CLLocationManager()
+    var userLat : String?
+    var userLong : String?
+    var nearFieldsData : [NearByFields_Data]?{
+        didSet {
+            print("that's the data : \(nearFieldsData)")
+            nearFieldsSelected()
+            tableView?.reloadData()
+        }
+    }
+    var playGroudModel : GetPlayGroundsData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        setupLocationM()
         let nib = UINib(nibName: "FieldsCell", bundle: nil)
         
         tableView.register(nib, forCellReuseIdentifier: "cell")
@@ -30,7 +43,8 @@ class PlayFieldsVC: UIViewController {
         let tapped = UITapGestureRecognizer(target: self, action: #selector(self.closekeyBoard(_:)))
         
         self.view.addGestureRecognizer(tapped)
-    }
+        
+     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,12 +75,8 @@ class PlayFieldsVC: UIViewController {
         print("that's button tag : \(self.buttonTag) ")
         switch sender.tag {
         case 0:
-            UIView.animate(withDuration: 0.5, animations: {
-                self.selectionBtnsViewHeightConstant.constant = 47
-                self.nearByFieldsBtn.backgroundColor = Constants.Colors.red
-                self.bookedFieldsBtn.backgroundColor = Constants.Colors.gray
-                self.view.layoutIfNeeded()
-            })
+           
+            nearFieldsSelected()
         case 1 :
             UIView.animate(withDuration: 0.5, animations: {
                 self.selectionBtnsViewHeightConstant.constant = 96
@@ -89,7 +99,98 @@ class PlayFieldsVC: UIViewController {
         
     }
     
+    func nearFieldsSelected() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.selectionBtnsViewHeightConstant.constant = 47
+            self.nearByFieldsBtn.backgroundColor = Constants.Colors.red
+            self.bookedFieldsBtn.backgroundColor = Constants.Colors.gray
+            self.view.layoutIfNeeded()
+        })
+    }
+    // MARK: GetLocation
     
+    func setupLocationM() {
+        
+        locationManager.delegate = self
+
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+
+//        if (CLLocationManager.locationServicesEnabled())
+//        {
+//            locationManager.delegate = self
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            if ((UIDevice.current.systemVersion as NSString).floatValue >= 8)
+//            {
+//                locationManager.requestWhenInUseAuthorization()
+//            }
+//            
+//            locationManager.startUpdatingLocation()
+//        }
+//        else
+//        {
+//            #if debug
+//                println("Location services are not enabled");
+//            #endif           
+//        }
+    }
+    
+//    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!)
+//    {
+//        locationManager.stopUpdatingLocation()
+//        if ((error) != nil)
+//        {
+//            print(error)
+//        }
+//    }
+//    
+//    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+//    {
+//        let locationArray = locations as NSArray
+//        let locationObj = locationArray.lastObject as! CLLocation
+//        let coord = locationObj.coordinate
+//        print(coord.latitude)
+//        print(coord.longitude)
+//        
+//    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation:CLLocation = locations[0] as CLLocation // note that locations is same as the one in the function declaration
+        
+        print("that's the user Location : \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
+        userLat = "\(userLocation.coordinate.latitude)"
+            userLong = "\(userLocation.coordinate.longitude)"
+        manager.stopUpdatingLocation()
+        getNearByFieldsData()
+//        let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
+
+        
+        
+    }
+    
+    
+    func getNearByFieldsData() {
+        
+        guard let lat = userLat, let long = userLong else {
+            return
+        }
+        playGroudModel = GetPlayGroundsData()
+        playGroudModel.getNearByFields(lat: lat, long: long) {[weak self ] (data, sms, state) in
+            
+            if state {
+                guard let data = data else { return }
+                self?.nearFieldsData = data
+            }else {
+                
+            }
+        }
+        
+    }
     /*
      // MARK: - Navigation
      
