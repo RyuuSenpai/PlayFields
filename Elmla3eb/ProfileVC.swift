@@ -90,7 +90,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                 birthDateTxt?.isEnabled = true
                 snapCTxt?.isEnabled = true
                 profileImageBtn?.isEnabled = true
-                changePassword?.isEnabled = true 
+                changePassword?.isEnabled = true
             }
         }
     }
@@ -220,6 +220,10 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.setUIEnabled(enabled: true)
                     self?.doneButton.alpha = 0
                     self?.doneButton.isEnabled = false
+                    self?.changePassword.alpha = 0
+                    self?.changePassword.isEnabled = false
+                    self?.changePassword?.isEnabled = false
+
                 }
             }else {
                 DispatchQueue.main.async {

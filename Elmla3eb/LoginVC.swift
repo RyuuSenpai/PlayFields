@@ -186,9 +186,14 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
             if data.1 , let x = data.0 {
                 
                     ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
-                    
-                    weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
-                    
+                    ad.reloadApp()
+//                guard   let parent = self.presentingViewController ,parent.isKind(of: ViewPlayFeildVC.self)else {
+//
+//                    weakSelf?.dismiss(animated: true, completion: nil)
+//                    return
+//                }
+//                    weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
+                    //Trash
 //                let data = data.3
  
 //                print("that is the login response : \(data?["id"] as? Int)")

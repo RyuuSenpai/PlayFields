@@ -18,6 +18,7 @@ class SplashLoginVC: UIViewController {
     @IBOutlet weak var ballImage: UIImageView!
     @IBOutlet weak var ballImageVIEW: UIView!
     @IBOutlet weak var activityIndector: UIActivityIndicatorView!
+    @IBOutlet weak var skipLoginBtn: UIButton!
 
        var startingAnimation : (){
         self.ballImageVIEW?.isUserInteractionEnabled = false
@@ -54,6 +55,8 @@ class SplashLoginVC: UIViewController {
             signupBtn.isEnabled = true
             signinBtn.isEnabled = true
             
+            skipLoginBtn.alpha = 1
+            skipLoginBtn.isEnabled = true 
         }else {
             activityIndector.startAnimating()
             signupBtn.alpha = 0.5
@@ -61,7 +64,8 @@ class SplashLoginVC: UIViewController {
             
             signupBtn.isEnabled = false
             signinBtn.isEnabled = false
-            
+            skipLoginBtn.alpha = 0.5
+            skipLoginBtn.isEnabled = false
             //            signBtnOL.alpha = 0.5
             //            dissMissView.alpha = 0.5
         }

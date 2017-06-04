@@ -277,6 +277,12 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     }
     
     @IBAction func bookNowBtnAct(_ sender: UIButton) {
+        let userStates = ad.isUserLoggedIn()
+        guard userStates else {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            self.present(vc, animated: true, completion: nil)
+            return
+        }
         if theCurBtn != datesBtn {
             vanisher()
             self.theView = self.bookNowView

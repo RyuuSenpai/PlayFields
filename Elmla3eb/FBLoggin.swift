@@ -162,8 +162,9 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
             
             guard !codeVerification else {
                 ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id, name : name)
-                
-                weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender:weakSelf)
+                ad.reloadApp()
+
+//                weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender:weakSelf)
                 return
             }
         

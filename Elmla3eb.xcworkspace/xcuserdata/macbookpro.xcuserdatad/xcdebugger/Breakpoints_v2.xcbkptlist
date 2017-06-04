@@ -133,6 +133,38 @@
             endingLineNumber = "328"
             landmarkName = "bookNowBtnAct(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Elmla3eb.ViewPlayFeildVC.bookNowBtnAct (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "Elmla3eb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ViewPlayFeildVC.swift"
+                  timestampString = "518279926.567505"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "329"
+                  endingLineNumber = "329"
+                  offsetFromSymbolStart = "2518">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Elmla3eb.ViewPlayFeildVC.(bookNowBtnAct (__ObjC.UIButton) -&gt; ()).(closure #1)"
+                  moduleName = "Elmla3eb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ViewPlayFeildVC.swift"
+                  timestampString = "518279926.570882"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "329"
+                  endingLineNumber = "329"
+                  offsetFromSymbolStart = "1959">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -222,11 +254,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/LoginVC.swift"
-            timestampString = "517669065.454318"
+            timestampString = "518268795.597914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "signinFunFunctionailty()"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,11 +270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/LoginVC.swift"
-            timestampString = "517669065.454318"
+            timestampString = "518268795.597914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "signinFunFunctionailty()"
             landmarkType = "7">
             <Locations>
@@ -254,12 +286,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
-                  timestampString = "518024694.696941"
+                  timestampString = "518279926.586238"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "213"
-                  endingLineNumber = "213"
-                  offsetFromSymbolStart = "4950">
+                  startingLineNumber = "218"
+                  endingLineNumber = "218"
+                  offsetFromSymbolStart = "4641">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -269,11 +301,11 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/LoginVC.swift"
-                  timestampString = "518024694.699212"
+                  timestampString = "518279926.588214"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "213"
-                  endingLineNumber = "213"
+                  startingLineNumber = "218"
+                  endingLineNumber = "218"
                   offsetFromSymbolStart = "321">
                </Location>
             </Locations>
@@ -478,11 +510,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/ProfileVC.swift"
-            timestampString = "517927607.4631"
+            timestampString = "518263861.191876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "doneBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,11 +526,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/ProfileVC.swift"
-            timestampString = "517927607.4631"
+            timestampString = "518263861.191876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "doneBtnAct(_:)"
             landmarkType = "7">
             <Locations>
@@ -510,11 +542,11 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ProfileVC.swift"
-                  timestampString = "518024694.751142"
+                  timestampString = "518279926.644452"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "223"
-                  endingLineNumber = "223"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
                   offsetFromSymbolStart = "237">
                </Location>
                <Location
@@ -525,12 +557,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ProfileVC.swift"
-                  timestampString = "518024694.753506"
+                  timestampString = "518279926.646348"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "223"
-                  endingLineNumber = "223"
-                  offsetFromSymbolStart = "2140">
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "3170">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -558,11 +590,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/ProfileVC.swift"
-            timestampString = "517927607.4631"
+            timestampString = "518263861.191876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "doneBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -574,11 +606,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/ProfileVC.swift"
-            timestampString = "517927607.4631"
+            timestampString = "518263861.191876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "doneBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -622,7 +654,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
-                  timestampString = "518024694.774303"
+                  timestampString = "518279926.669607"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "190"
@@ -637,7 +669,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
-                  timestampString = "518024694.77625"
+                  timestampString = "518279926.671833"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "191"
@@ -654,11 +686,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/ProfileVC.swift"
-            timestampString = "517927607.4631"
+            timestampString = "518263861.191876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -750,7 +782,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/PlayFieldsVC.swift"
-                  timestampString = "518024694.799956"
+                  timestampString = "518279926.698335"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "183"
@@ -765,7 +797,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/PlayFieldsVC.swift"
-                  timestampString = "518024694.802729"
+                  timestampString = "518279926.700289"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "183"
@@ -862,7 +894,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/PlayFieldsTableDataSource.swift"
-                  timestampString = "518024694.823682"
+                  timestampString = "518279926.71998"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -877,7 +909,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/PlayFieldsTableDataSource.swift"
-                  timestampString = "518024694.825926"
+                  timestampString = "518279926.721945"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
@@ -910,7 +942,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/PlayFieldsVC.swift"
-                  timestampString = "518024694.830931"
+                  timestampString = "518279926.726415"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "179"
@@ -925,7 +957,7 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/PlayFieldsVC.swift"
-                  timestampString = "518024694.83345"
+                  timestampString = "518279926.728423"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "179"

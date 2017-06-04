@@ -68,9 +68,15 @@ class MenuVC: UIViewController {
         //        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
         //        navigationItem.leftBarButtonItem = backButton
         //        self.navigationItem.hidesBackButton = true
+//        self.profileImage.layer.cornerRadius = (profileImage.bounds.width * 0.6 ) / 4
+
+        self.profileImage.layer.cornerRadius =  profileImage.bounds.width   / 2
+        print("print that's the width : \(profileImage.bounds.width), height : \(profileImage.bounds.height)"    )
+        print("print that's the width : \(        self.profileImage.layer.cornerRadius)"    )
+        print("print that's the width : \(self.view.bounds.height)"    )
         
-        
-        
+//        self.layer.cornerRadius = self.bounds.width / 2
+
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -99,6 +105,13 @@ class MenuVC: UIViewController {
 //         let x = ProfileVC()
 //        let navb = UINavigationController(rootViewController: x)
 //        self.present(navb, animated: true, completion: nil)
+    let userLogged = ad.isUserLoggedIn()
+    guard userLogged else {
+        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyb.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+         self.present(vc, animated: true, completion: nil)
+        return 
+    }
     let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
     let x = storyb.instantiateViewController(withIdentifier: "ProfileVC")
     let navb = UINavigationController(rootViewController: x)
@@ -137,6 +150,7 @@ class MenuVC: UIViewController {
        
         
     }
+    
     func setUIEnabled(_ state : Bool) {
         
         if state {
@@ -287,6 +301,8 @@ extension MenuVC {
         self.settingsBtnCenterX.constant -= self.view.bounds.width
         self.signoutBtnLocation = self.signoutBottomConstant.constant
         self.signoutBottomConstant.constant -= self.view.bounds.height
+        self.playerNameLabel.alpha = 0
+        self.userTypeLbl.alpha = 0
     }
 }
 

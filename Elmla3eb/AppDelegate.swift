@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
 
         FIRApp.configure()
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        
         let x = self.isUserLoggedIn()
         if !x { 
             self.window = UIWindow(frame: UIScreen.main.bounds)

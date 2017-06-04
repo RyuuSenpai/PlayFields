@@ -31,6 +31,17 @@ class UIImageViewX: UIImageView {
         }
     }
     
+//    
+//    @IBInspectable public var roundedCorners: Bool = false {
+//        didSet {
+//            guard roundedCorners else {
+//                return  
+//            }
+//        self.layer.cornerRadius = self.bounds.width / 2
+//        }
+//    }
+
+    
     @IBInspectable var pulseDelay: Double = 0.0
     
     @IBInspectable var popIn: Bool = false
