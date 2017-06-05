@@ -208,3 +208,19 @@
 "4op-SA-d6k.text" = "لديك حساب بالفعل؟";
 "V4W-bc-obL.normalTitle" = "قم بتسجيل الدخول الان";
 
+
+//Profile
+"0x3-TC-Vwp.normalTitle" = "تغيير كلمه المرور"
+"TfD-bt-qSD.normalTitle" = "تاكيد" ;
+
+    //Change password
+"P82-ts-3q1.text" = "تغيير كلمه المرور" ;
+"mhI-NY-Wrf.text" = "كلمه المرور القديمه" ;
+"Z8f-Vd-at7.placeholder" = "كلمه المرور" ;
+"5Ud-ey-wcj.text" = "كلمه المرور الجديده" ;
+"QsX-qu-obr.placeholder" = "كلمه المرور" ;
+"bqx-YN-Hpw.normalTitle" = "الغاء";
+"usb-ki-Hhf.normalTitle" = "تاكيد" ;
+
+//@End Profile
+

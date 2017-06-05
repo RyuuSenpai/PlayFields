@@ -13,12 +13,12 @@ class Constants  {
     
     class API {
         //       private static let main_url = "http://appstest.xyz/api/"
-        private static let main_url = "http://almala3b.com/api/"
+        private static let main_url = "https://almala3b.com/api/"
         
         
         class URLS {
             let API_TOKEN = "?api_token=776645543"
-            let IMAGES_URL = "http://almala3b.com/"
+            let IMAGES_URL = "https://almala3b.com/"
             
             //ARTICLES
             //            let POST_ARTICLES_DATA = API.main_url + "articles"
@@ -214,8 +214,8 @@ class Constants  {
                              "Send" : "ارسال",
                              "Invalid Mobile Number ":"خطا في رقم الهاتف ",
                              "Cancel" : "الغاء",
-            "Old Password Field is Valid" :" رقم المرور القديم غير صحيح",
-            "New Password Field is Valid":"رقم المرور الجديد يجب ان لا يقل عن ٨ احرف",
+            "Old Password Must has to be > 8 and < 20" :  "رقم المرور القديم يجب ان لا يقل عن ٨ احرف ولا تزيد عن ٢٠",
+            "New Password Must has to be > 8 and < 20":"رقم المرور الجديد يجب ان لا يقل عن ٨ احرف ولا تزيد عن ٢٠",
             "per Hour": "للساعه",
             "At least one Field has to be filled" : "يجب توافر حقل واحد علي الاقل لاتمام البحث",
             "Search Result": "نتيجه البحث",

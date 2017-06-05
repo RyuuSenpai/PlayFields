@@ -21,6 +21,8 @@ class MenuVC: UIViewController {
     @IBOutlet weak var changeLangBtnCenterX: NSLayoutConstraint!
     @IBOutlet weak var backButtonImage: UIImageView!
     @IBOutlet weak var settingsBtnCenterX: NSLayoutConstraint!
+    @IBOutlet weak var profileImageHeightLayOut: NSLayoutConstraint!
+
     @IBOutlet weak var playerNameLabel: UILabel!{
         didSet {
             if let name = UserDefaults.standard.value(forKey: "userName") as? String{
@@ -62,7 +64,7 @@ class MenuVC: UIViewController {
         loadImage()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAnimation()
         //        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
@@ -74,8 +76,7 @@ class MenuVC: UIViewController {
         print("print that's the width : \(profileImage.bounds.width), height : \(profileImage.bounds.height)"    )
         print("print that's the width : \(        self.profileImage.layer.cornerRadius)"    )
         print("print that's the width : \(self.view.bounds.height)"    )
-        
-//        self.layer.cornerRadius = self.bounds.width / 2
+  //        self.layer.cornerRadius = self.bounds.width / 2
 
     }
     override func viewDidDisappear(_ animated: Bool) {

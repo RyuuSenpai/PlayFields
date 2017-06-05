@@ -14,6 +14,25 @@ extension PlayFieldsVC : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("that's indexPath \(indexPath.row)")
+        switch self.buttonTag {
+        case 0 : print(0)
+      setUpPlayGView(indexPath.row)
+            case 1: print(0)
+            case 2 : print(0)
+        default : print(0)
+        }
+    }
+    
+    
+    func  setUpPlayGView(_ pg_ID : Int? ) {
+        guard let data = nearFieldsData else { return }
+         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
+        detailVC.pg_id =  pg_ID
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

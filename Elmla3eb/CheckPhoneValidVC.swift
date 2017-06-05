@@ -292,7 +292,8 @@ class CheckPhoneValidVC: UIViewController {
             activeOL.alpha = 1
             confirmationCodeTxt.alpha = 1
             resendBtnOL.alpha = 1
-            
+            backButtonImage.isEnabled = true
+            backButtonImage.alpha = 1
             activeOL.isEnabled = true
             confirmationCodeTxt.isEnabled = true
             resendBtnOL.isEnabled = true
@@ -302,7 +303,8 @@ class CheckPhoneValidVC: UIViewController {
             activeOL.alpha = 0.5
             confirmationCodeTxt.alpha = 0.5
             resendBtnOL.alpha = 0.5
-            
+            backButtonImage.isEnabled = false
+            backButtonImage.alpha = 0.5
             activeOL.isEnabled = false
             confirmationCodeTxt.isEnabled = false
             resendBtnOL.isEnabled = false

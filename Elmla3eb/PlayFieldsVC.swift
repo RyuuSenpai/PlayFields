@@ -30,6 +30,17 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
             tableView?.reloadData()
         }
     }
+    
+     var confirmedP_G : [NearByFields_Data]?{
+        didSet {
+              tableView?.reloadData()
+        }
+    }
+    var unconfirmedP_G : [NearByFields_Data]?{
+        didSet {
+              tableView?.reloadData()
+        }
+    }
     var playGroudModel : GetPlayGroundsData!
     
     override func viewDidLoad() {
@@ -75,10 +86,9 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         print("that's button tag : \(self.buttonTag) ")
         switch sender.tag {
         case 0:
-           
-            nearFieldsSelected()
+             nearFieldsSelected()
         case 1 :
-            UIView.animate(withDuration: 0.5, animations: {
+             UIView.animate(withDuration: 0.5, animations: {
                 self.selectionBtnsViewHeightConstant.constant = 96
                 self.nearByFieldsBtn.backgroundColor = Constants.Colors.gray
                 self.bookedFieldsBtn.backgroundColor = Constants.Colors.red
@@ -87,13 +97,15 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
                 self.view.layoutIfNeeded()
             })
         case 2 :
-            self.confirmedBtn.backgroundColor = Constants.Colors.green
+             self.confirmedBtn.backgroundColor = Constants.Colors.green
             self.unconfirmedBtn.backgroundColor = Constants.Colors.gray
         default:
-            self.confirmedBtn.backgroundColor = Constants.Colors.gray
+             self.confirmedBtn.backgroundColor = Constants.Colors.gray
             self.unconfirmedBtn.backgroundColor = Constants.Colors.green
         }
+        if  let _ = tableView.cellForRow(at: [0,3]) {
         tableView.scrollToRow(at: [0,0], at: UITableViewScrollPosition.top, animated: true)
+        }
         tableView.reloadData()
         animateTableView()
         

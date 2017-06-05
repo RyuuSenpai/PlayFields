@@ -106,7 +106,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         print("that is the pg_id : \(pg_id)")
-        
+        self.view.squareLoading.start(0.0)
+
         newsTableView.delegate = self
         newsTableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -133,7 +134,6 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.view.squareLoading.start(0.0)
         if L102Language.currentAppleLanguage() == "ar" {
             self.view1SecLbl.textAlignment = .left
             self.view2SecLbl.textAlignment = .left

@@ -16,13 +16,18 @@ extension PlayFieldsVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let data = nearFieldsData  {
-            return data.count
-        }else {
-        
-        return 5
-    }
-    }
+        switch buttonTag {
+        case 0:
+            if let data = nearFieldsData  {
+                return data.count
+            }
+        case 1 : return 0
+        case 2 : return 0
+        default:
+            return 0
+        }
+        return 0 
+     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = UITableViewCell()
@@ -33,8 +38,9 @@ extension PlayFieldsVC : UITableViewDataSource {
 //            cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as UITableViewCell!
 //        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FieldsCell
-        cell.tag = indexPath.row
-        cell.bookNowBtn.tag = cell.tag
+//        cell.tag = indexPath.row
+//        cell.bookNowBtn.tag = cell.tag
+         cell.bookNowBtn.tag = indexPath.row
         switch self.buttonTag {
         case 0:
             
@@ -76,7 +82,16 @@ extension PlayFieldsVC : UITableViewDataSource {
     }
     
     func bookNow(_ sender: UIButton) {
-        
-        print("can i book an reservation plz , my id is : \(sender.tag)")
+             guard let data = nearFieldsData else { return }
+            print("can i book an reservation plz , my id is : \(sender.tag)")
+            
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
+            detailVC.pg_id =  sender.tag
+            print("that is the field name : \(title)")
+            
+            self.navigationController?.pushViewController(detailVC, animated: true)
+         print("can i book an reservation plz , my id is : \(sender.tag)")
     }
 }

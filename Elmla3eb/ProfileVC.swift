@@ -57,7 +57,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     //    }
     //    }
     var positions =  [String]()
-    
+    var isFbUser: Bool?
     var imageUrl = "" {
         didSet {
             print("thatis the image url : \(imageUrl)")
@@ -125,6 +125,8 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.phoneNumTxt.text = data.mobile
                     self?.positionTxt.text = data.positionName
                     self?.cityTxt.text = data.city
+                    self?.isFbUser = data.isFbUser
+                    print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
                     //                    self?.imageUrl = data.image
                     if   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String  {
                         self?.imageUrl = imageurl
@@ -192,9 +194,10 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             
             self.doneButton.alpha = 1
             self.doneButton.isEnabled = true
+            if let x =  isFbUser , !x {
             changePassword.alpha = 1
             changePassword.isEnabled = true
-            
+            }
         }else {
             disableTxts = true
             sender.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
@@ -223,6 +226,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.changePassword.alpha = 0
                     self?.changePassword.isEnabled = false
                     self?.changePassword?.isEnabled = false
+                    self?.disableTxts = true
 
                 }
             }else {
@@ -365,8 +369,10 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             doneButton.alpha = 1
             editProfileBtn.alpha = 1
             editProfileBtn.isEnabled = true
-            changePassword.alpha = 1
-            changePassword.isEnabled = true
+            if let x =  isFbUser , !x {
+                changePassword.alpha = 1
+                changePassword.isEnabled = true
+            }
             
         }else {
             disableTxts = true
@@ -380,9 +386,11 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             editProfileBtn.alpha = 0.5
             editProfileBtn.isEnabled = false
             
-            changePassword.alpha = 0.5
-            changePassword.isEnabled = false
-        }
+            if let x =  isFbUser , !x {
+                changePassword.alpha = 0.5
+                changePassword.isEnabled = false
+            }
+         }
         
     }
     
@@ -398,16 +406,23 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     @IBAction func confirmPasswordChange(_ sender: UIButton) {
         disableChangePassView(true)
-        guard let newPass = newPassTxt.text , newPass.isValidPassword else {
-            showAlert(langDicClass().getLocalizedTitle("Old Password Field is Valid"),"")
+        guard let new = newPassTxt.text , !new.isEmpty  , let old = oldPassTxt.text , !old.isEmpty else {
+            showAlert(langDicClass().getLocalizedTitle("All Fields are Required"),"")
             disableChangePassView(false)
+
             return
         }
         guard let oldPass = oldPassTxt.text , oldPass.isValidPassword else {
-            showAlert(langDicClass().getLocalizedTitle("New Password Field is Valid"),"")
+            showAlert(langDicClass().getLocalizedTitle("Old Password Must has to be > 8 and < 20"),"")
             disableChangePassView(false)
             return
         }
+        guard let newPass = newPassTxt.text , newPass.isValidPassword else {
+            showAlert(langDicClass().getLocalizedTitle("New Password Must has to be > 8 and < 20"),"")
+            disableChangePassView(false)
+            return
+        }
+     
         
         user.postChangeUserPassword(userID: USER_ID, oldPassword: oldPass, newPassword: newPass) {[weak self] (state, sms) in
             

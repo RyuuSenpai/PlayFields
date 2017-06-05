@@ -467,7 +467,7 @@ class PostLoginVars {
 
      private var _position  : String?
     private var _snap_chat  : String?
-
+    private var _fbId : String?
     private  var _message  : String?
     //]
     
@@ -586,6 +586,16 @@ class PostLoginVars {
          guard let x = _snap_chat , x != "" , x != " "  else { return "unknown" }
          return x
     }
+    var fbIDToken : String {
+        guard let x = _fbId , x != "" , x != " "  else { return "unknown" }
+        return x
+    }
+    
+    var isFbUser : Bool {
+        guard let x = _fbId , x != "" , x != " "  else { return false }
+        return true
+        
+    }
     //]
     
 //    init(name : String?,mobile:String?, city:String?,area:String?,ph_type:String?, map_lon:Double?,map_lat:Double?,email:String?,password:String?,rememberToken:String?,apiToken:String?,createdAt:String?,updatedAt:String?,deletedAt:String?,success:Bool?,message:String?) {
@@ -608,6 +618,7 @@ class PostLoginVars {
         self._snap_chat = jsonData[source.snap_chat].stringValue
         self._birth_date = jsonData[source.birth_date].stringValue
         self._image = jsonData[source.image].stringValue
+        self._fbId = jsonData[source.fb_user_id].stringValue
 
     }
     

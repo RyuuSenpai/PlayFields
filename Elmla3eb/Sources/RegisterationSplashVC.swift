@@ -259,6 +259,15 @@ import CDAlertView
         
         user.postRegisterUser(name: userName, mobile: mobile, city: city, area: district, pgType: self.playFieldType, email: "", password: password) {  (data) in
             print("that is the registeration response : \(data)")
+            guard data.1 else {
+                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Error with ") + "\(data.2)", message: "", type: .error)
+                DispatchQueue.main.async {
+                    alert.show()
+                    self.setUIEnabled(enabled: true)
+                    
+                }
+                return
+            }
           if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
                 
                 
