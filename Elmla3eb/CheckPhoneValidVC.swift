@@ -165,12 +165,12 @@ class CheckPhoneValidVC: UIViewController {
 //                        let navb = UINavigationController(rootViewController: x)
 //                        self.present(navb, animated: true, completion: nil)
                         
-                        
-                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
-                        let xy = storyboard.instantiateViewController(withIdentifier: "MainPageVC")
-                        let navb = UINavigationController()
-                        navb.setViewControllers([xy ], animated: true)
-                        weakSelf?.present(navb, animated: true, completion: nil)
+                        ad.reloadApp()
+//                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
+//                        let xy = storyboard.instantiateViewController(withIdentifier: "MainPageVC")
+//                        let navb = UINavigationController()
+//                        navb.setViewControllers([xy ], animated: true)
+//                        weakSelf?.present(navb, animated: true, completion: nil)
                         
                     }
                     weakSelf?.setUIEnabled(enabled: true)
@@ -319,14 +319,16 @@ class CheckPhoneValidVC: UIViewController {
     func update() {
         if(count > 0) {
             resendBtnOL.isEnabled=false
-            resendBtnOL .setTitle("Resend in " + String(count), for: UIControlState.normal)
+            let sms =  langDicClass().getLocalizedTitle("Resend in ")
+            resendBtnOL .setTitle(sms + String(count), for: UIControlState.normal)
             count -= 1
             resendBtnOL.backgroundColor=UIColor.lightGray
         }
         else{
             timer.invalidate()
             resendBtnOL.isEnabled=true
-            resendBtnOL .setTitle("Resend" , for: UIControlState.normal)
+            let sms =  langDicClass().getLocalizedTitle("Resend")
+            resendBtnOL .setTitle(sms , for: UIControlState.normal)
             //            resendBtnOL.backgroundColor=UIColor(red: 79/255.0, green: 6/255.0, blue: 80/255.0, alpha: 1)
             resendBtnOL.backgroundColor = .clear
             

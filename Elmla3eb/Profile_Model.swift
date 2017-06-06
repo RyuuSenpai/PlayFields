@@ -67,8 +67,8 @@ class Profile_Model {
         let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
         
         // for printing
- 
-        print("that is the parameters in postProfileData : \([parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : "",parSource.snap_chat : snap_chat ?? "",parSource.position : position])")
+        print("that's the edit profile parameters  : \(parameters)")
+//        print("that is the parameters in postProfileData : \([parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : "",parSource.snap_chat : snap_chat ?? "",parSource.position : position])")
    
         let url = source.POST_PROFILE_DATA + source.API_TOKEN
         print("URL: is postProfileData   : \(url)")
@@ -108,6 +108,11 @@ class Profile_Model {
                 completed( state,sms )
                 break
             case .failure(_) :
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Failure Response: \(json)")
+                }
+                print("that is fail i n getting the postProfileData data Mate : \(response.result.error?.localizedDescription)")
                 print("that is fail i n getting the postProfileData Mate :\(response.result.error)")
                 completed( false, "Network Time out" )
                 break

@@ -21,8 +21,14 @@ extension PlayFieldsVC : UITableViewDataSource {
             if let data = nearFieldsData  {
                 return data.count
             }
-        case 1 : return 0
-        case 2 : return 0
+        case 1 :
+            if let data = self.confirmedP_G  {
+                return data.count
+            }
+        case 2 :
+            if let data = self.unconfirmedP_G  {
+                return data.count
+            }
         default:
             return 0
         }
@@ -40,36 +46,35 @@ extension PlayFieldsVC : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FieldsCell
 //        cell.tag = indexPath.row
 //        cell.bookNowBtn.tag = cell.tag
-         cell.bookNowBtn.tag = indexPath.row
         switch self.buttonTag {
         case 0:
-            
             cell.cellState(0)
+//            cell.tag = indexPath.row
           cell.bookNowBtn.setTitle("Book Now!", for: .normal)
           cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
           cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
+
             guard let data = nearFieldsData else { return cell }
             cell.configNearFields(data[indexPath.row])
+            cell.bookNowBtn.tag = indexPath.row
         case 1 :
-//            cell.bookedFieldsstackView.alpha = 1
-//            cell.nearbyStackView.alpha = 0
-//            cell.bookingStateView.alpha = 0
-//            cell.bookNowBtn.alpha = 1
+            
             cell.cellState(1)
             cell.bookNowBtn.setTitle("Cancel Reservation", for: .normal)
             cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
             cell.bookNowBtn.addTarget(self, action: #selector(self.cancelResrvation(_:)), for: UIControlEvents.touchUpInside )
+            
+            guard let data = confirmedP_G else { return cell }
+            cell.configConfirmedFields(data[indexPath.row])
+            cell.bookNowBtn.tag = indexPath.row
         case 2 :
-//            cell.bookedFieldsstackView.alpha = 1
-//            cell.nearbyStackView.alpha = 0
-//            cell.bookingStateView.alpha = 1
-//            cell.bookNowBtn.alpha = 0
+//          
             cell.cellState(2)
+            
+            guard let data = unconfirmedP_G else { return cell }
+            cell.configNotConfirmedFields(data[indexPath.row])
+//
         default:
-//            cell.bookedFieldsstackView.alpha = 1
-//            cell.nearbyStackView.alpha = 0
-//            cell.bookingStateView.alpha = 0
-//            cell.bookNowBtn.alpha = 1
             cell.cellState(1)
             cell.bookNowBtn.setTitle("Cancel Reservation", for: .normal)
         }
@@ -82,16 +87,8 @@ extension PlayFieldsVC : UITableViewDataSource {
     }
     
     func bookNow(_ sender: UIButton) {
-             guard let data = nearFieldsData else { return }
-            print("can i book an reservation plz , my id is : \(sender.tag)")
-            
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            
-            let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
-            detailVC.pg_id =  sender.tag
-            print("that is the field name : \(title)")
-            
-            self.navigationController?.pushViewController(detailVC, animated: true)
-         print("can i book an reservation plz , my id is : \(sender.tag)")
+        
+        setUpPlayGView(sender.tag)
+
     }
 }

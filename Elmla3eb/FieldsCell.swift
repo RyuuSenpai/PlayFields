@@ -48,7 +48,45 @@ class FieldsCell: UITableViewCell {
                     imageTransition: .crossDissolve(0.2)
                 )
             }
-        
+    }
+    
+    func configNotConfirmedFields(_ data :NotConfirmedFields_Data? ) {
+        guard let data = data else { return }
+//       
+//        
+//        
+//        fieldLocationLbl.text = data.time
+//        priceLbl.text = data. + " " + langDicClass().getLocalizedTitle("per Hour")
+        fieldNameLbl.text = data.pg_name  + "NotConfirmed"
+        print("confirmed data : \(data.pg_name)")
+
+//        bookingtimesLbl.text =   "\(data.pgBookingTimes)"
+        if let url = URL(string: data.image) {
+            courtImage.af_setImage(
+                withURL: url ,
+                placeholderImage: UIImage(named: "courtplaceholder_3x"),
+                filter: nil,
+                imageTransition: .crossDissolve(0.2)
+            )
+        }
+    }
+    
+    func configConfirmedFields(_ data :ConfirmedFields_Data? ) {
+        guard let data = data else { return }
+//        //
+//        fieldLocationLbl.text = data.address
+//        priceLbl.text = data.price + " " + langDicClass().getLocalizedTitle("per Hour")
+        fieldNameLbl.text = data.pg_name + "Confirmed"
+        print("confirmed data : \(data.pg_name)")
+//        bookingtimesLbl.text =   "\(data.pgBookingTimes)"
+        if let url = URL(string: data.image) {
+            courtImage.af_setImage(
+                withURL: url ,
+                placeholderImage: UIImage(named: "courtplaceholder_3x"),
+                filter: nil,
+                imageTransition: .crossDissolve(0.2)
+            )
+        }
     }
 
     func configCell(_ data : Search_Data?) {

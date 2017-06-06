@@ -13,7 +13,7 @@ class Constants  {
     
     class API {
         //       private static let main_url = "http://appstest.xyz/api/"
-        private static let main_url = "https://almala3b.com/api/"
+        private static let main_url = "http://almala3b.com/api/"
         
         
         class URLS {
@@ -34,6 +34,7 @@ class Constants  {
             let POST_PG_INFO_DATA = API.main_url + "playgrounds"
             let GET_PG_INFO_ALL = API.main_url + "playgrounds"
             let GET_PG_INFO_DATA_BY_ID = API.main_url + "playgrounds/"
+
             //////////////
             //PG_NEWS
             let POST_PG_NEWS_DATA = API.main_url + "pg_news"
@@ -75,6 +76,8 @@ class Constants  {
             let POST_FORGOT_PASSWORD = API.main_url + "users/forget-password"
             let POST_LOGOUT = API.main_url + "users/logout"
             let POST_CHANGE_PASSWORD = API.main_url + "users/change-password"
+            let GET_PLAYGROUNDS_RESERVATION_STATUS = API.main_url + "users/\(USER_ID)/" + "playgrounds/"
+
             ////////////// Search
             let SEARCH_URL =  API.main_url + "search"
             
@@ -149,6 +152,9 @@ class Constants  {
             let user_img = "user_img"
             let old_password = "old_password"
             let new_password = "new_password"
+            let time_id = "time_id"
+             let not_confirmed = "not_confirmed"
+            let confirmed = "confirmed"
         }
         
     }
@@ -220,7 +226,9 @@ class Constants  {
             "At least one Field has to be filled" : "يجب توافر حقل واحد علي الاقل لاتمام البحث",
             "Search Result": "نتيجه البحث",
             "No Data Found" : "لا توجد ملاعب مطابقه",
-            "Total Rate :" : "اجمالي التقييم :"
+            "Total Rate :" : "اجمالي التقييم :",
+            "Resend" : "ارسال",
+            "Resend in " : "إعاده إرسال "
             //                             "":"",
             //                             "":"",
             //                             "":"",

@@ -22,6 +22,7 @@ class MenuVC: UIViewController {
     @IBOutlet weak var backButtonImage: UIImageView!
     @IBOutlet weak var settingsBtnCenterX: NSLayoutConstraint!
     @IBOutlet weak var profileImageHeightLayOut: NSLayoutConstraint!
+    @IBOutlet weak var singoutBtnOL: UIButton!
 
     @IBOutlet weak var playerNameLabel: UILabel!{
         didSet {
@@ -62,6 +63,11 @@ class MenuVC: UIViewController {
         // Do any additional setup after loading the view.let email = UserDefaults.standard.value(forKey: "userEmail") as? String ,
 
         loadImage()
+        
+        let userLogged = ad.isUserLoggedIn()
+        if !userLogged   {
+         singoutBtnOL.alpha = 0
+        }
     }
     
      override func viewWillAppear(_ animated: Bool) {

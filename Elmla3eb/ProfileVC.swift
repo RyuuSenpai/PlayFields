@@ -76,7 +76,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     fileprivate var positionPickerV: UIPickerView!
     let user = Profile_Model()
     var cities = [String]()
-    
+    var imageResponse = ""
     var disableTxts = false  {
         didSet {
             if disableTxts {
@@ -126,6 +126,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.positionTxt.text = data.positionName
                     self?.cityTxt.text = data.city
                     self?.isFbUser = data.isFbUser
+                    self?.imageResponse = data.image_Response
                     print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
                     //                    self?.imageUrl = data.image
                     if   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String  {
@@ -210,15 +211,15 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     @IBAction func doneBtnAct(_ sender: UIButton) {
         setUIEnabled(enabled: false )
-        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageUrl ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
+        print("that's the  url : \(imageUrl)\n Base64 : \(base64String)\n changedImage: \(changedImage) ")
+        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageResponse ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
             
             if state {
                 DispatchQueue.main.async {
                     
                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
                     alert.show()
-                    self?.disableTxts = true
-                    self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+                     self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
                     self?.editProfileBtn.isSelected = false
                     self?.setUIEnabled(enabled: true)
                     self?.doneButton.alpha = 0
@@ -363,8 +364,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         if enabled {
             loadingActivity.stopAnimating()
             self.uploadingPhotoLbl.alpha = 0
-            disableTxts = false
-            profileImageBtn.isEnabled = true
+             profileImageBtn.isEnabled = true
             doneButton.isEnabled = true
             doneButton.alpha = 1
             editProfileBtn.alpha = 1
@@ -375,8 +375,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             }
             
         }else {
-            disableTxts = true
-            loadingActivity.startAnimating()
+             loadingActivity.startAnimating()
             if changedImage {
                 self.uploadingPhotoLbl.alpha = 1
             }

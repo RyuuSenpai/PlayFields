@@ -37,7 +37,7 @@ class GetPlayGroundsData {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  _GetPlayFieldsData getting the data Mate : %@", response.result.value!)
+//                print("that is  _GetPlayFieldsData getting the data Mate : %@", response.result.value!)
                 
                 
                 
@@ -53,10 +53,10 @@ class GetPlayGroundsData {
                 var playGrounds = [PlayGroundsData_Data]()
                 var pagerData =  [HomePagerData_Data]()
                 let staticsdata =   Statics_Data(json: staticsJsonData)
-                print("that is  jsonData getting the data Mate : %@", jsonData)
-                print("that is  playgroundsJsonData getting the data Mate : %@", playgroundsJsonData)
-                print("that is  pagerJsonData getting the data Mate : %@", pagerJsonData)
-                print("that is  staticsJsonData getting the data Mate : %@", staticsJsonData)
+//                print("that is  jsonData getting the data Mate : %@", jsonData)
+//                print("that is  playgroundsJsonData getting the data Mate : %@", playgroundsJsonData)
+//                print("that is  pagerJsonData getting the data Mate : %@", pagerJsonData)
+//                print("that is  staticsJsonData getting the data Mate : %@", staticsJsonData)
                 
                 var ratePg_Data = [RatePg_Data]()
                 for i in 0..<nonrated_playgrounds.count {

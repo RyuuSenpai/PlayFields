@@ -24,15 +24,17 @@ extension PlayFieldsVC : UITableViewDelegate {
     }
     
     
-    func  setUpPlayGView(_ pg_ID : Int? ) {
-        guard let data = nearFieldsData else { return }
-         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
-        detailVC.pg_id =  pg_ID
-        
-        self.navigationController?.pushViewController(detailVC, animated: true)
-        
+    func  setUpPlayGView(_ index : Int  ) {
+        print("that is the index : \(index)")
+        guard let data = nearFieldsData  else { return }
+        print("that is the index : \(data.count)")
+        guard index <= data.count else { print("NearBy Fields fatal error: Index out of range "); return }
+
+        let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
+        detailVC.pg_id =  data[index].id
+        detailVC.title = data[index].pgName
+        print("that is the field name : \(title)")
+        self.present(detailVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

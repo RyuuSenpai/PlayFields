@@ -31,12 +31,14 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-     var confirmedP_G : [NearByFields_Data]?{
+     var reservationsArray = ConfirmedOrNotData()
+    
+     var confirmedP_G : [ConfirmedFields_Data]?{
         didSet {
               tableView?.reloadData()
         }
     }
-    var unconfirmedP_G : [NearByFields_Data]?{
+    var unconfirmedP_G : [NotConfirmedFields_Data]?{
         didSet {
               tableView?.reloadData()
         }
@@ -46,6 +48,8 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        tableView.delegate = self
+        tableView.dataSource = self 
         setupLocationM()
         let nib = UINib(nibName: "FieldsCell", bundle: nil)
         
@@ -55,6 +59,13 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         
         self.view.addGestureRecognizer(tapped)
         
+        reservationsArray.getPGReservationStatus { [weak self]  (data, sms, stats) in
+            
+            print("that's the data \(data)")
+            self?.confirmedP_G = data?.confirmed
+            self?.unconfirmedP_G = data?.not_confirmed
+
+        }
      }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +118,7 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         tableView.scrollToRow(at: [0,0], at: UITableViewScrollPosition.top, animated: true)
         }
         tableView.reloadData()
-        animateTableView()
+//        animateTableView()
         
     }
     

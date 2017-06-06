@@ -66,7 +66,13 @@ class MUserData {
                 }
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : \(response.result.error)")
+                
+                if let data = response.data {
+                    let json = String(data: data, encoding: String.Encoding.utf8)
+                    print("Failure Response: \(json)")
+                }
+                print("that is fail i n getting the Login data Mate : \(response.result.error?.localizedDescription)")
+ 
                 completed((nil,false, "Network Time out",nil ))
                 break
             }
@@ -485,6 +491,10 @@ class PostLoginVars {
         guard  let x = _image , x != "" else {print("that's the _image path : \(_image)"); return "" }
         print("that's the imageURL.IMAGES_URL + x   : \(x)")
         return imageURL.IMAGES_URL + x
+    }
+    var image_Response : String{
+        guard  let x = _image , x != "" else {print("that's the _image path : \(_image)"); return "" }
+         return  x
     }
     var name  : String {
         guard let x = _name , x != "" , x != " " else { return "unknown" }

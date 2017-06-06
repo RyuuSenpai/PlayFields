@@ -24,6 +24,7 @@
                 <outlet property="searchBtnCenterX" destination="1d2-bJ-ZYm" id="Wnc-3g-wfW"/>
                 <outlet property="settingsBtnCenterX" destination="AJV-lz-Z0U" id="0NV-jf-cgj"/>
                 <outlet property="signoutBottomConstant" destination="3Vc-eh-i62" id="CGO-oB-vdi"/>
+                <outlet property="singoutBtnOL" destination="BG8-HG-brn" id="dKj-yR-LIW"/>
                 <outlet property="userTypeLbl" destination="Aht-lp-z9r" id="mJr-zU-zv1"/>
                 <outlet property="view" destination="9fp-FL-gQX" id="26E-i2-2BP"/>
             </connections>
