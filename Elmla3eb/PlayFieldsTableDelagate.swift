@@ -11,17 +11,20 @@ import UIKit
 
 extension PlayFieldsVC : UITableViewDelegate {
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("that's indexPath \(indexPath.row)")
-        switch self.buttonTag {
-        case 0 : print(0)
-      setUpPlayGView(indexPath.row)
-            case 1: print(0)
-            case 2 : print(0)
-        default : print(0)
-        }
     }
+
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print("that's indexPath \(indexPath.row)")
+//        switch self.buttonTag {
+//        case 0 : print(0)
+//      setUpPlayGView(indexPath.row)
+//            case 1: print(0)
+//            case 2 : print(0)
+//        default : print(0)
+//        }
+//    }
     
     
     func  setUpPlayGView(_ index : Int  ) {

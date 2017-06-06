@@ -2642,20 +2642,25 @@
                                             <constraint firstItem="Z1o-Y7-NjC" firstAttribute="leading" secondItem="jxn-hx-VQq" secondAttribute="leading" id="lok-db-7kx"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uVR-q5-N0v">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Med-KE-E9h">
                                         <rect key="frame" x="0.0" y="96" width="320" height="320"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="72e-Ot-Cz6" id="FRh-B0-oYg"/>
+                                            <outlet property="delegate" destination="72e-Ot-Cz6" id="o1b-vT-H7n"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="jxn-hx-VQq" firstAttribute="top" secondItem="j2k-W6-ZvK" secondAttribute="bottom" constant="2" id="ARZ-7Q-j0G"/>
-                                    <constraint firstAttribute="trailing" secondItem="uVR-q5-N0v" secondAttribute="trailing" id="V9G-BH-acz"/>
-                                    <constraint firstItem="uVR-q5-N0v" firstAttribute="top" secondItem="jxn-hx-VQq" secondAttribute="bottom" id="ahf-Nb-B4R"/>
+                                    <constraint firstItem="Med-KE-E9h" firstAttribute="top" secondItem="jxn-hx-VQq" secondAttribute="bottom" id="EuF-Ou-SUy"/>
+                                    <constraint firstAttribute="trailing" secondItem="Med-KE-E9h" secondAttribute="trailing" id="F0N-DA-37E"/>
+                                    <constraint firstItem="Med-KE-E9h" firstAttribute="leading" secondItem="2G0-38-241" secondAttribute="leading" id="Obw-ff-86d"/>
+                                    <constraint firstAttribute="bottom" secondItem="Med-KE-E9h" secondAttribute="bottom" id="T7p-EC-N7R"/>
                                     <constraint firstItem="j2k-W6-ZvK" firstAttribute="top" secondItem="2G0-38-241" secondAttribute="top" id="dkP-6U-9DM"/>
-                                    <constraint firstItem="uVR-q5-N0v" firstAttribute="leading" secondItem="2G0-38-241" secondAttribute="leading" id="m7X-FH-JoW"/>
                                     <constraint firstAttribute="trailing" secondItem="jxn-hx-VQq" secondAttribute="trailing" id="oXj-X0-RYJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="uVR-q5-N0v" secondAttribute="bottom" id="qDO-49-dH7"/>
                                     <constraint firstItem="j2k-W6-ZvK" firstAttribute="leading" secondItem="2G0-38-241" secondAttribute="leading" id="tGl-7Y-TDW"/>
                                     <constraint firstItem="jxn-hx-VQq" firstAttribute="leading" secondItem="2G0-38-241" secondAttribute="leading" id="uUW-S9-FCe"/>
                                     <constraint firstAttribute="trailing" secondItem="j2k-W6-ZvK" secondAttribute="trailing" id="vM9-Kf-HjT"/>
@@ -2682,7 +2687,7 @@
                         <outlet property="nearByFieldsBtn" destination="ReY-rt-X1x" id="MNT-sE-Cmt"/>
                         <outlet property="searchBarText" destination="Z1o-Y7-NjC" id="mey-C6-HJi"/>
                         <outlet property="selectionBtnsViewHeightConstant" destination="5Jg-FQ-wFR" id="8Pc-O5-LHg"/>
-                        <outlet property="tableView" destination="uVR-q5-N0v" id="hIH-Vx-rkk"/>
+                        <outlet property="tableView" destination="Med-KE-E9h" id="DyI-kZ-vIr"/>
                         <outlet property="unconfirmedBtn" destination="qGx-gK-U4R" id="2uC-GX-VOS"/>
                     </connections>
                 </viewController>

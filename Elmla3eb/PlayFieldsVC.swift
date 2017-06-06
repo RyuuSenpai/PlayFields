@@ -55,9 +55,9 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         
         tableView.register(nib, forCellReuseIdentifier: "cell")
         // Do any additional setup after loading the view.
-        let tapped = UITapGestureRecognizer(target: self, action: #selector(self.closekeyBoard(_:)))
-        
-        self.view.addGestureRecognizer(tapped)
+//        let tapped = UITapGestureRecognizer(target: self, action: #selector(self.closekeyBoard(_:)))
+//        
+//        self.view.addGestureRecognizer(tapped)
         
         reservationsArray.getPGReservationStatus { [weak self]  (data, sms, stats) in
             
