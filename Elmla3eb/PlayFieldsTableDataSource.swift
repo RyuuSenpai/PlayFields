@@ -46,6 +46,7 @@ extension PlayFieldsVC : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FieldsCell
 //        cell.tag = indexPath.row
 //        cell.bookNowBtn.tag = cell.tag
+        cell.courtImage.image = UIImage(named: "courtplaceholder_3x")
         switch self.buttonTag {
         case 0:
             cell.cellState(0)

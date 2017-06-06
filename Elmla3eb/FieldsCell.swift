@@ -47,7 +47,9 @@ class FieldsCell: UITableViewCell {
                     filter: nil,
                     imageTransition: .crossDissolve(0.2)
                 )
-            }
+            }else {
+                courtImage.image = UIImage(named: "courtplaceholder_3x")
+        }
     }
     
     func configNotConfirmedFields(_ data :NotConfirmedFields_Data? ) {
@@ -86,6 +88,8 @@ class FieldsCell: UITableViewCell {
                 filter: nil,
                 imageTransition: .crossDissolve(0.2)
             )
+        }else {
+            courtImage.image = UIImage(named: "courtplaceholder_3x")
         }
     }
 
@@ -106,6 +110,8 @@ class FieldsCell: UITableViewCell {
                 filter: nil,
                 imageTransition: .crossDissolve(0.2)
             )
+            }else {
+                courtImage.image = UIImage(named: "courtplaceholder_3x")
             }
         }
     }
