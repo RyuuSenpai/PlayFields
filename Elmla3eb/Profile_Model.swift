@@ -22,7 +22,7 @@ class Profile_Model {
         print("getProfileData URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+        Alamofire.request(url, method: .delete , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             print(response.result)
             switch(response.result) {
             case .success(_):
@@ -67,7 +67,7 @@ class Profile_Model {
         let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
         
         // for printing
-        print("that's the edit profile parameters  : \(parameters)")
+//        print("that's the edit profile parameters  : \(parameters)")
 //        print("that is the parameters in postProfileData : \([parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : "",parSource.snap_chat : snap_chat ?? "",parSource.position : position])")
    
         let url = source.POST_PROFILE_DATA + source.API_TOKEN

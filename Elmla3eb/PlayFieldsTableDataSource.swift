@@ -16,22 +16,24 @@ extension PlayFieldsVC : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.emptyDataLabel.alpha = 0
         switch buttonTag {
         case 0:
-            if let data = nearFieldsData  {
+            if let data = nearFieldsData , data.count > 0 {
                 return data.count
             }
         case 1 :
-            if let data = self.confirmedP_G  {
+            if let data = self.unconfirmedP_G  , data.count > 0 {
                 return data.count
             }
         case 2 :
-            if let data = self.unconfirmedP_G  {
+            if let data = self.confirmedP_G  , data.count > 0 {
                 return data.count
             }
         default:
             return 0
         }
+        self.emptyDataLabel.alpha = 1
         return 0 
      }
     
@@ -55,7 +57,7 @@ extension PlayFieldsVC : UITableViewDataSource {
           cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
           cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
 
-            guard let data = nearFieldsData else { return cell }
+            guard let data = nearFieldsData else {print("⛑ Fatal Error the nearFieldsData count Equal 0 ❗️"); return cell }
             cell.configNearFields(data[indexPath.row])
             cell.bookNowBtn.tag = indexPath.row
         case 1 :
@@ -65,31 +67,46 @@ extension PlayFieldsVC : UITableViewDataSource {
             cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
             cell.bookNowBtn.addTarget(self, action: #selector(self.cancelResrvation(_:)), for: UIControlEvents.touchUpInside )
             
-            guard let data = confirmedP_G else { return cell }
-            cell.configConfirmedFields(data[indexPath.row])
+            guard let data = unconfirmedP_G , data.count >= indexPath.row else { print("⛑ Fatal Error the unconfirmedP_G count is Equal 0 ❗️");return cell }
+            print("that is the unconfirmed data count : \(data.count) and that's the index \(indexPath.row)")
+            cell.configNotConfirmedFields(data[indexPath.row])
             cell.bookNowBtn.tag = indexPath.row
         case 2 :
 //          
             cell.cellState(2)
             
-            guard let data = unconfirmedP_G else { return cell }
-            cell.configNotConfirmedFields(data[indexPath.row])
+            guard let data = confirmedP_G , data.count >= indexPath.row else {print("⛑ Fatal Error the confirmedP_G count is Equal 0 ❗️"); return cell }
+            cell.configConfirmedFields(data[indexPath.row])
 //
         default:
-            cell.cellState(1)
-            cell.bookNowBtn.setTitle("Cancel Reservation", for: .normal)
+//            cell.cellState(1)
+//            cell.bookNowBtn.setTitle("Cancel Reservation", for: .normal)
+            return cell 
         }
         return cell
     }
     
     func cancelResrvation(_ sender: UIButton) {
         
-        print("Cancel reservation plz my itcket number is : \(sender.tag)")
+//        print("Cancel reservation plz my itcket number is : \(sender.tag)\n and that's the count : \(unconfirmedP_G?.count)")
+//        guard let data = unconfirmedP_G else { return }
+//        guard sender.tag <= data.count else { return }
+//        let reservationId = data[sender.tag].time_id
+//        guard reservationId != 0 else { print("⛑ Fatal Error the id is Equal 0 ❗️") ;return }
+//        deletereservation.deleteReservation(reservation_id: reservationId) {[weak self] (sms, state) in
+//            
+//            guard state else {
+//                print(" ❗️ State is False ❗️")
+//                return
+//            }
+//            self?.reservationAPI()
+//        }
     }
     
     func bookNow(_ sender: UIButton) {
-        
-        setUpPlayGView(sender.tag)
+        guard let data = nearFieldsData else { return  }
+        guard sender.tag <= data.count else { return }
+        setUpPlayGView(data[sender.tag].id, data[sender.tag].pgName)
 
     }
 }

@@ -13,6 +13,7 @@
 		520044A51EC1CAAC0030B772 /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */; };
 		520044AA1EC1D5060030B772 /* SearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044AC1EC1D5060030B772 /* SearchVC.xib */; };
 		520044B51EC1DE300030B772 /* NoNetConnectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044B71EC1DE300030B772 /* NoNetConnectionVC.xib */; };
+		520B71671EE7F74B00C84591 /* ConfirmedOrNotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */; };
 		52178C8F1EC47D8900181384 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 52178C8E1EC47D8900181384 /* cities.json */; };
 		521DBE7A1EAF4082005D06A5 /* NoNetConnectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */; };
 		522AAC8E1E88054700E0AC5B /* GetpgInfosWebServ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AAC8D1E88054700E0AC5B /* GetpgInfosWebServ.swift */; };
@@ -28,7 +29,7 @@
 		523956A31E76BECE005B2D1E /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5239569C1E76BECE005B2D1E /* FSPageViewTransformer.swift */; };
 		523956A51E76C232005B2D1E /* HPHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523956A41E76C232005B2D1E /* HPHeaderVC.swift */; };
 		524E21E61E9E1D2D00CF92C7 /* ExtensionsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524E21E51E9E1D2D00CF92C7 /* ExtensionsClass.swift */; };
-		5259E41E1EE6C7F600BE48F9 /* ConfirmedOrNotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259E41D1EE6C7F600BE48F9 /* ConfirmedOrNotData.swift */; };
+		5259E41E1EE6C7F600BE48F9 /* ReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259E41D1EE6C7F600BE48F9 /* ReservationModel.swift */; };
 		525BEFFF1E83CBCC003FE82E /* PlayFieldsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BEFFE1E83CBCC003FE82E /* PlayFieldsVC.swift */; };
 		525BF0011E83CC29003FE82E /* PlayFieldsTableDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BF0001E83CC29003FE82E /* PlayFieldsTableDelagate.swift */; };
 		525BF0031E83CC7A003FE82E /* PlayFieldsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BF0021E83CC7A003FE82E /* PlayFieldsTableDataSource.swift */; };
@@ -114,6 +115,7 @@
 		520044B41EC1D8990030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		520044B61EC1DE300030B772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoNetConnectionVC.xib; sourceTree = "<group>"; };
 		520044B91EC1DE330030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/NoNetConnectionVC.strings; sourceTree = "<group>"; };
+		520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmedOrNotData.swift; sourceTree = "<group>"; };
 		52178C8E1EC47D8900181384 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetConnectionVC.swift; sourceTree = "<group>"; };
 		522AAC8D1E88054700E0AC5B /* GetpgInfosWebServ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetpgInfosWebServ.swift; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 		5239569C1E76BECE005B2D1E /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
 		523956A41E76C232005B2D1E /* HPHeaderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HPHeaderVC.swift; sourceTree = "<group>"; };
 		524E21E51E9E1D2D00CF92C7 /* ExtensionsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsClass.swift; sourceTree = "<group>"; };
-		5259E41D1EE6C7F600BE48F9 /* ConfirmedOrNotData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmedOrNotData.swift; sourceTree = "<group>"; };
+		5259E41D1EE6C7F600BE48F9 /* ReservationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationModel.swift; sourceTree = "<group>"; };
 		525BEFFE1E83CBCC003FE82E /* PlayFieldsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsVC.swift; sourceTree = "<group>"; };
 		525BF0001E83CC29003FE82E /* PlayFieldsTableDelagate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsTableDelagate.swift; sourceTree = "<group>"; };
 		525BF0021E83CC7A003FE82E /* PlayFieldsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsTableDataSource.swift; sourceTree = "<group>"; };
@@ -218,6 +220,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		520B71651EE7F5A600C84591 /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				5259E41D1EE6C7F600BE48F9 /* ReservationModel.swift */,
+			);
+			name = Reservation;
+			sourceTree = "<group>";
+		};
 		52355EC91EB88D86005A9217 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +312,7 @@
 				52F8B1391E8CFEA00091FE09 /* PlayGrounds */,
 				52F8B13C1E8D05220091FE09 /* Pg_Teams */,
 				52F60A571EDEDF2200B79520 /* Search */,
+				520B71651EE7F5A600C84591 /* Reservation */,
 				5291BC851E8AB587008132BC /* Users */,
 			);
 			name = M;
@@ -321,7 +332,7 @@
 			children = (
 				5291BC831E8AB583008132BC /* MUserData.swift */,
 				714141EE1ED2DAEE008EBE2E /* Profile_Model.swift */,
-				5259E41D1EE6C7F600BE48F9 /* ConfirmedOrNotData.swift */,
+				520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -730,7 +741,7 @@
 				52AF589C1E76985F001284DD /* HPDataSource.swift in Sources */,
 				52E8D0EA1E896DEF007E1CE2 /* BookedFieldsDatesVC.swift in Sources */,
 				52850AB61E87ABF300C54168 /* GetPlayGroundsData.swift in Sources */,
-				5259E41E1EE6C7F600BE48F9 /* ConfirmedOrNotData.swift in Sources */,
+				5259E41E1EE6C7F600BE48F9 /* ReservationModel.swift in Sources */,
 				524E21E61E9E1D2D00CF92C7 /* ExtensionsClass.swift in Sources */,
 				5239569D1E76BECE005B2D1E /* FSPageControl.swift in Sources */,
 				52AFAA931E828318009F6467 /* UIViewControllerX.swift in Sources */,
@@ -784,6 +795,7 @@
 				714AED071E632170001127CE /* L102Language.swift in Sources */,
 				52BBF1201ECB4CFF002AE6EA /* CheckPhoneValidVC.swift in Sources */,
 				52A6C7451EA38A3700DD4352 /* Pg_Info_Vars.swift in Sources */,
+				520B71671EE7F74B00C84591 /* ConfirmedOrNotData.swift in Sources */,
 				52AF58971E7692AB001284DD /* MainPageVC.swift in Sources */,
 				52AFAA981E82955D009F6467 /* MenuVC.swift in Sources */,
 				52F0CB881E8BF04E001C2223 /* TestBackEnd.swift in Sources */,

@@ -82,7 +82,7 @@ class Constants  {
             let SEARCH_URL =  API.main_url + "search"
             
             ////////////Reservation 
-            let POST_REservation =  API.main_url + "reservations"
+            let POST_Reservation =  API.main_url + "reservations/"
         }
         
         class Parameters {

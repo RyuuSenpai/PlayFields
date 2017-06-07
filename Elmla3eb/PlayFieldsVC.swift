@@ -18,7 +18,9 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var nearByFieldsBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectionBtnsViewHeightConstant: NSLayoutConstraint!
-    
+    @IBOutlet weak var emptyDataLabel: UILabel!
+    @IBOutlet weak var activityIndector: UIActivityIndicatorView!
+
     var buttonTag : Int = 0
     var locationManager = CLLocationManager()
     var userLat : String?
@@ -31,6 +33,7 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+  lazy  var deletereservation = ReservationModel()
      var reservationsArray = ConfirmedOrNotData()
     
      var confirmedP_G : [ConfirmedFields_Data]?{
@@ -47,7 +50,7 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      self.view.squareLoading.start(0)
         tableView.delegate = self
         tableView.dataSource = self 
         setupLocationM()
@@ -59,13 +62,7 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
 //        
 //        self.view.addGestureRecognizer(tapped)
         
-        reservationsArray.getPGReservationStatus { [weak self]  (data, sms, stats) in
-            
-            print("that's the data \(data)")
-            self?.confirmedP_G = data?.confirmed
-            self?.unconfirmedP_G = data?.not_confirmed
-
-        }
+       reservationAPI()
      }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,10 +76,22 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         animateTableView()
     }
     
-    func closekeyBoard(_ tapped : UITapGestureRecognizer) {
-        
-        view.endEditing(true)
+    
+    func reservationAPI() {
+        reservationsArray.getPGReservationStatus { [weak self]  (data, sms, state) in
+            
+            print("that's the data \(data)")
+            guard state else { self?.view.squareLoading.stop(0);return }
+            self?.confirmedP_G = data?.confirmed
+            self?.unconfirmedP_G = data?.not_confirmed
+            self?.view.squareLoading.stop(0)
+            
+        }
     }
+//    func closekeyBoard(_ tapped : UITapGestureRecognizer) {
+//        
+//        view.endEditing(true)
+//    }
     
     
     @IBAction func typeOfFieldsBtnsAction(_ sender: UIButton) {
@@ -206,10 +215,11 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         playGroudModel.getNearByFields(lat: lat, long: long) {[weak self ] (data, sms, state) in
             
             if state {
-                guard let data = data else { return }
+                guard let data = data else {  self?.view.squareLoading.stop(0); return }
                 self?.nearFieldsData = data
+                  self?.view.squareLoading.stop(0)
             }else {
-                
+                  self?.view.squareLoading.stop(0)
             }
         }
         

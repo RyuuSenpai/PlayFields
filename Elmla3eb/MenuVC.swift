@@ -125,6 +125,24 @@ class MenuVC: UIViewController {
     self.present(navb, animated: true, completion: nil)
     }
     
+    
+    private func goTOPlayerPG() {
+ 
+       let userLogged = ad.isUserLoggedIn()
+        guard userLogged else {
+            let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vc = storyb.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            self.present(vc, animated: true, completion: nil)
+            return
+        }
+        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let x = storyb.instantiateViewController(withIdentifier: "PlayFieldsVC") as! PlayFieldsVC
+        let navb = UINavigationController(rootViewController: x)
+        self.present(navb, animated: true, completion: nil)
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -186,7 +204,9 @@ class MenuVC: UIViewController {
             self.present(navb, animated: true, completion: nil)
         case 2 :
             print("3rd Btn Settings")
-            self.goTOProfileVC()
+            self.goTOPlayerPG()
+//            self.goTOProfileVC()
+
         case 3:
             self.goTOProfileVC()
         case -1 :

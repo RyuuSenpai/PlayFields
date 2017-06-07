@@ -62,7 +62,8 @@ class FieldsCell: UITableViewCell {
         fieldNameLbl.text = data.pg_name  + "NotConfirmed"
         print("confirmed data : \(data.pg_name)")
 
-//        bookingtimesLbl.text =   "\(data.pgBookingTimes)"
+        bookingtimesLbl.text =   "\(data.time)"
+        calnderDateLbl.text = "\(data.date)"
         if let url = URL(string: data.image) {
             courtImage.af_setImage(
                 withURL: url ,
@@ -81,6 +82,8 @@ class FieldsCell: UITableViewCell {
         fieldNameLbl.text = data.pg_name + "Confirmed"
         print("confirmed data : \(data.pg_name)")
 //        bookingtimesLbl.text =   "\(data.pgBookingTimes)"
+        bookingtimesLbl.text =   "\(data.time)"
+        calnderDateLbl.text = "\(data.date)"
         if let url = URL(string: data.image) {
             courtImage.af_setImage(
                 withURL: url ,

@@ -207,7 +207,7 @@ class GetpgInfosWebServ  {
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+                print("that is fail i n getting the data Mate : \(response.result.error)")
                 completed(false)
                 break
             }
@@ -231,7 +231,7 @@ class GetpgInfosWebServ  {
         print("thats the seleected userId : \(userId)")
         let parameters : Parameters =  ["time_id":stringParm ,"player_id" : userId ?? "","pg_id" : pg_Id]
         print("that is postBookDate param : \(parameters)")
-        let url = source.POST_REservation + source.API_TOKEN
+        let url = source.POST_Reservation + source.API_TOKEN
 
         print("postBookDate URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in

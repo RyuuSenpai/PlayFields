@@ -15,5 +15,7 @@
 "bls-Me-wAT.normalTitle" = "الصفحه الرئيسية";
 
 /* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "pfV-vf-DKx"; */
-"pfV-vf-DKx.normalTitle" = "الاعدادات";
+"pfV-vf-DKx.normalTitle" = "الملاعب القريبه / الملاعب المحجوزه";
+//"pfV-vf-DKx.normalTitle" = "الاعدادات";
+//Nearby Fields / Booked Fields
 "Mqb-R9-hqM.normalTitle" = "تغيير اللغه";
