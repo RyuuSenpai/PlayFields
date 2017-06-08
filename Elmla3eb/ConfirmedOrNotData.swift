@@ -115,7 +115,11 @@ class NotConfirmedFields_Data {
     private var _pg_name : String?
     private var _image : String?
     private var _address : String?
-    
+    private var _id :Int?
+    var id :Int {
+        guard let x = _id else { return 0 }
+        return x
+    }
     
     var pg_id : Int {
         guard let x = _pg_id else {return 0 }
@@ -158,7 +162,8 @@ class NotConfirmedFields_Data {
         self._pg_name = json[source.pg_name].stringValue
         self._image = json[source.image].string
         self._address = json[source.address].string
-        
+        self._id = json[source.id].intValue
+
     }
     
 }
@@ -178,6 +183,11 @@ class ConfirmedFields_Data {
     private var _image : String?
     private var _address : String?
     
+    private var _id :Int?
+    var id :Int {
+        guard let x = _id else { return 0 }
+        return x
+    }
     
     var pg_id : Int {
         guard let x = _pg_id else {return 0 }
@@ -220,7 +230,8 @@ class ConfirmedFields_Data {
         self._pg_name = json[source.pg_name].stringValue
         self._image = json[source.image].string
         self._address = json[source.address].string
-        
+        self._id = json[source.id].intValue
+
     }
     
 }

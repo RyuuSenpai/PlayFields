@@ -57,7 +57,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     //    }
     //    }
     var positions =  [String]()
-    var isFbUser: Bool?
+    var isFbUser = false
     var imageUrl = "" {
         didSet {
             print("thatis the image url : \(imageUrl)")
@@ -195,7 +195,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             
             self.doneButton.alpha = 1
             self.doneButton.isEnabled = true
-            if let x =  isFbUser , !x {
+            if  !isFbUser{
             changePassword.alpha = 1
             changePassword.isEnabled = true
             }
@@ -369,7 +369,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             doneButton.alpha = 1
             editProfileBtn.alpha = 1
             editProfileBtn.isEnabled = true
-            if let x =  isFbUser , !x {
+            if !isFbUser{
                 changePassword.alpha = 1
                 changePassword.isEnabled = true
             }
@@ -385,7 +385,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             editProfileBtn.alpha = 0.5
             editProfileBtn.isEnabled = false
             
-            if let x =  isFbUser , !x {
+            if !isFbUser{
                 changePassword.alpha = 0.5
                 changePassword.isEnabled = false
             }

@@ -302,7 +302,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 pf_Info.postBookDate(pg_Id : pgID , reservationArray: ViewPlayFeildVC.seletedTimes_ID, completed: { [weak self ](isIt) in
                     
                     if isIt {
-                        let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message: langDicClass().getLocalizedTitle("You have Booked This Field"), type: .success)
+                        let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message: langDicClass().getLocalizedTitle("You have Booked This Field waiting for approval"), type: .success)
                         
                         DispatchQueue.main.async {
                             alert.isUserInteractionEnabled = false

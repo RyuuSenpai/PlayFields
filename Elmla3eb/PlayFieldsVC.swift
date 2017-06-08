@@ -9,7 +9,7 @@
 import UIKit
  import CoreLocation
 
-class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
+class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchBarText: UISearchBar!
     @IBOutlet weak var confirmedBtn: UIButton!
@@ -20,7 +20,14 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var selectionBtnsViewHeightConstant: NSLayoutConstraint!
     @IBOutlet weak var emptyDataLabel: UILabel!
     @IBOutlet weak var activityIndector: UIActivityIndicatorView!
-
+ 
+    var servicesCount = 0 {
+        didSet {
+            if servicesCount == 2 {
+                self.view.squareLoading.stop(0)
+            }
+        }
+    }
     var buttonTag : Int = 0
     var locationManager = CLLocationManager()
     var userLat : String?
@@ -50,10 +57,14 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem?.isEnabled = false
+//        self.menuBtn.isEnabled = false
+        navigationItem.leftBarButtonItem?.image = UIImage(named: "")
       self.view.squareLoading.start(0)
         tableView.delegate = self
         tableView.dataSource = self 
         setupLocationM()
+       
         let nib = UINib(nibName: "FieldsCell", bundle: nil)
         
         tableView.register(nib, forCellReuseIdentifier: "cell")
@@ -84,9 +95,18 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
             guard state else { self?.view.squareLoading.stop(0);return }
             self?.confirmedP_G = data?.confirmed
             self?.unconfirmedP_G = data?.not_confirmed
-            self?.view.squareLoading.stop(0)
+            DispatchQueue.main.async {
+                self?.navigationItem.leftBarButtonItem?.isEnabled = true
+                self?.navigationItem.leftBarButtonItem?.image = UIImage(named: "Menu_Btn")
+                self?.servicesCount += 1
             
+            }
         }
+    }
+    
+    override func toSidemenuVC() {
+        super.toSidemenuVC()
+        ad.sideMenuTrigger(self,"NearBy")
     }
 //    func closekeyBoard(_ tapped : UITapGestureRecognizer) {
 //        
@@ -145,6 +165,21 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
         
         locationManager.delegate = self
 
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            case  .notDetermined :
+                print("Not  .notDetermined")
+            case .restricted, .denied:
+                print("No access")
+                servicesCount += 1
+            case .authorizedAlways, .authorizedWhenInUse:
+                print("Access")
+            }
+        } else {
+            print("Location services are not enabled")
+        }
+        
+        
         if CLLocationManager.authorizationStatus() == .notDetermined {
             self.locationManager.requestWhenInUseAuthorization()
         }
@@ -217,9 +252,9 @@ class PlayFieldsVC: UIViewController, CLLocationManagerDelegate {
             if state {
                 guard let data = data else {  self?.view.squareLoading.stop(0); return }
                 self?.nearFieldsData = data
-                  self?.view.squareLoading.stop(0)
+                self?.servicesCount += 1
             }else {
-                  self?.view.squareLoading.stop(0)
+                  self?.servicesCount += 1
             }
         }
         

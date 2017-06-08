@@ -57,12 +57,12 @@ class FieldsCell: UITableViewCell {
 //       
 //        
 //        
-//        fieldLocationLbl.text = data.time
+        fieldLocationLbl.text = data.address
 //        priceLbl.text = data. + " " + langDicClass().getLocalizedTitle("per Hour")
-        fieldNameLbl.text = data.pg_name  + "NotConfirmed"
+        fieldNameLbl.text = data.pg_name
         print("confirmed data : \(data.pg_name)")
 
-        bookingtimesLbl.text =   "\(data.time)"
+        timeLbl.text =   "\(data.time)"
         calnderDateLbl.text = "\(data.date)"
         if let url = URL(string: data.image) {
             courtImage.af_setImage(
@@ -77,12 +77,12 @@ class FieldsCell: UITableViewCell {
     func configConfirmedFields(_ data :ConfirmedFields_Data? ) {
         guard let data = data else { return }
 //        //
-//        fieldLocationLbl.text = data.address
+        fieldLocationLbl.text = data.address
 //        priceLbl.text = data.price + " " + langDicClass().getLocalizedTitle("per Hour")
-        fieldNameLbl.text = data.pg_name + "Confirmed"
-        print("confirmed data : \(data.pg_name)")
+        fieldNameLbl.text = data.pg_name
+        print("confirmed data : \(data.time)")
 //        bookingtimesLbl.text =   "\(data.pgBookingTimes)"
-        bookingtimesLbl.text =   "\(data.time)"
+        timeLbl.text =   "\(data.time)"
         calnderDateLbl.text = "\(data.date)"
         if let url = URL(string: data.image) {
             courtImage.af_setImage(

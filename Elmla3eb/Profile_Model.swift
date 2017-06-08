@@ -22,7 +22,7 @@ class Profile_Model {
         print("getProfileData URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
-        Alamofire.request(url, method: .delete , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+        Alamofire.request(url, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             print(response.result)
             switch(response.result) {
             case .success(_):

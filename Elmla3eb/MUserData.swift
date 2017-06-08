@@ -19,8 +19,8 @@ class MUserData {
     private   let parSource = Constants.API.Parameters()
     
     func postLoginData(mobileNum: String , userPassword:String ,completed : @escaping ((PostLoginVars?,Bool,String,[String:Any]?))->()) {
-        let parameters : Parameters = [parSource.pg_name : "" , parSource.mobile : mobileNum , parSource.password : userPassword ]
-        print("that is the parameters in getReviewRequesData : \(parameters)")
+        let parameters : Parameters = [ parSource.mobile : mobileNum , parSource.password : userPassword ]
+        print("that is the parameters in postLoginData : \(parameters)")
         
         
 //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
@@ -603,6 +603,7 @@ class PostLoginVars {
     
     var isFbUser : Bool {
         guard let x = _fbId , x != "" , x != " "  else { return false }
+        print("that is teh fb value : \(x)")
         return true
         
     }

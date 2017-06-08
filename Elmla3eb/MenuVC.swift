@@ -267,6 +267,8 @@ class MenuVC: UIViewController {
             return 3
         case "Search" :
             return 1
+        case "NearBy" :
+            return 2
         default:
              return 0
             

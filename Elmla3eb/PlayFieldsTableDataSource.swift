@@ -88,19 +88,39 @@ extension PlayFieldsVC : UITableViewDataSource {
     
     func cancelResrvation(_ sender: UIButton) {
         
-//        print("Cancel reservation plz my itcket number is : \(sender.tag)\n and that's the count : \(unconfirmedP_G?.count)")
-//        guard let data = unconfirmedP_G else { return }
-//        guard sender.tag <= data.count else { return }
-//        let reservationId = data[sender.tag].time_id
-//        guard reservationId != 0 else { print("⛑ Fatal Error the id is Equal 0 ❗️") ;return }
-//        deletereservation.deleteReservation(reservation_id: reservationId) {[weak self] (sms, state) in
-//            
-//            guard state else {
-//                print(" ❗️ State is False ❗️")
-//                return
+        print("Cancel reservation plz my itcket number is : \(sender.tag)\n and that's the count : \(unconfirmedP_G?.count)")
+        guard let data = unconfirmedP_G else { return }
+        guard sender.tag <= data.count else { return }
+        let reservationId = data[sender.tag].id
+        guard reservationId != 0 else { print("⛑ Fatal Error the id is Equal 0 ❗️") ;return }
+        deletereservation.deleteReservation(reservation_id: reservationId) {[weak self] (sms, state) in
+            
+            guard state else {
+                print(" ❗️ State is False ❗️")
+                ad.showAlert("defaultTitle", sms)
+                return
+            }
+//            if let index = selectedDates.index(of: xcz[sender.tag]) {
+//                selectedDates.remove(at: index)
 //            }
-//            self?.reservationAPI()
-//        }
+            
+//            if let index = unconfirmedP_G.index(of: unconfirmedP_G?[sender.tag]) {
+            DispatchQueue.main.async {
+    
+                
+//                self?.unconfirmedP_G?.remove(at: sender.tag)
+            if  let _ = self?.tableView.cellForRow(at: [0,sender.tag]) {
+                
+
+
+                DispatchQueue.main.async {
+
+                    self?.unconfirmedP_G?.remove(at: sender.tag)
+                }
+                 }
+            }
+//
+        }
     }
     
     func bookNow(_ sender: UIButton) {
