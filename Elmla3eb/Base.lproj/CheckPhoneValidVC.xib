@@ -125,15 +125,15 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62j-BP-Bes">
                                                         <rect key="frame" x="-0.5" y="0.0" width="142.5" height="52"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Ba-xe-5eV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <blurEffect style="dark"/>
                                                     </visualEffectView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1F-jm-jf7">
                                                         <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="Active">
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                        <state key="normal" title="Login">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -176,7 +176,7 @@
                                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D3-VW-2aK">
                                                         <rect key="frame" x="0.5" y="0.0" width="142.5" height="52"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="476-gp-jKv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="142.5" height="52"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="143" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </view>
                                                         <blurEffect style="dark"/>

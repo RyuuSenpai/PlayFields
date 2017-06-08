@@ -14,8 +14,8 @@
 /* Class = "UITextField"; placeholder = "password"; ObjectID = "fGE-ei-IYQ"; */
 "fGE-ei-IYQ.placeholder" = "كلمه السر";
 
-/* Class = "UIButton"; normalTitle = "Active"; ObjectID = "g1F-jm-jf7"; */
-"g1F-jm-jf7.normalTitle" = "تفعيل";
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "g1F-jm-jf7"; */
+"g1F-jm-jf7.normalTitle" = "تسجيل دخول";
 
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "oGU-tP-N7D"; */
 "oGU-tP-N7D.normalTitle" = "ارسال";

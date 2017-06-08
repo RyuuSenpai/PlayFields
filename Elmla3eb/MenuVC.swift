@@ -26,7 +26,7 @@ class MenuVC: UIViewController {
 
     @IBOutlet weak var playerNameLabel: UILabel!{
         didSet {
-            if let name = UserDefaults.standard.value(forKey: "userName") as? String{
+            if let name = UserDefaults.standard.value(forKey: "usreName") as? String{
                 playerNameLabel?.text = name
             }else  if let email = UserDefaults.standard.value(forKey: "userEmail") as? String{
                 playerNameLabel?.text = email

@@ -44,7 +44,7 @@ class CheckPhoneValidVC: UIViewController {
                 verficationStack?.alpha = 1
                 sendPhoneNumBtn?.alpha = 0
                 passwordStack?.alpha = 0
-                activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
+//                activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
 //                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
                 
             }else {
@@ -73,7 +73,7 @@ class CheckPhoneValidVC: UIViewController {
             verficationStack?.alpha = 1
             sendPhoneNumBtn?.alpha = 0
 //                passwordStack.alpha = 1
-            activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Login")
+//            activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Login")
                 timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
 
             }
@@ -110,7 +110,7 @@ class CheckPhoneValidVC: UIViewController {
             verficationStack.alpha = 1
             sendPhoneNumBtn.alpha = 0
             passwordStack.alpha = 0
-            activeOL.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
+//            activeOL.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
             
         }else {
