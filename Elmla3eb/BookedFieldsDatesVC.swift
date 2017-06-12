@@ -16,7 +16,18 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     var day = ["1/3/2017","2/3/2017","3/3/2017","4/3/2017","5/3/2017"]
     var am = ["from 1 to 2 ","from 2 to 3 ","from 3 to 4 ","from 4 to 5 ","from 5 to 6 "]
     var pm = ["from 6 : 8 " , "from 8 : 12 "]
-//    let  ownerData = ownerData()
+    let  ownerModel = OwnerModel()
+    
+    var notBooked : [OwnerP_G_BookingData]?{
+        didSet {
+            guard let _ = notBooked else{ print("nil NOtBooked🛂"); return }
+        expandTableView.reloadData()
+        }
+    }
+    var booked : [OwnerP_G_BookingData]?
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +37,19 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         expandTableView.estimatedRowHeight = 40
         expandTableView.rowHeight = UITableViewAutomaticDimension
         
+        ownerModel.getP_GBooksManager(userID: 53, pgID: 18) { [weak self] (dataR, sms, state) in
+            print(dataR)
+            guard state else {
+                return
+            }
+            
+            if let data = dataR {
+//                self?.ownerData = OwnerBooksmanager_Data()
+                 self?.booked = data.booked
+                self?.notBooked = data.notBooked
+            }
+            
+        }
         //        playgView.timeDataDelegate = self
         //        let pf_Info = GetpgInfosWebServ()
         
@@ -44,16 +68,21 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return day.count;
+        guard let notBookedCOunt = notBooked?.count else {
+            return 0
+        }
+        return notBookedCOunt;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! BookedFieldsDatesCell
-        
+        guard let notBookedCOunt = notBooked else { return cell }
+
         cell.dayTitle.text = ""
-        cell.dateLabel.text = day[indexPath.row]
-        if(selectedIndex == indexPath.row) {
+        cell.dateLabel.text = notBookedCOunt[indexPath.row].date
+        cell.notBooked = notBookedCOunt[indexPath.row]
+         if(selectedIndex == indexPath.row) {
             cell.hideAmPmBtns = false
         }else {
             cell.hideAmPmBtns = true

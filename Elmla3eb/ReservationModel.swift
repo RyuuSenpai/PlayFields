@@ -60,6 +60,55 @@ class ReservationModel {
         
     }
     
+    
+    
+    func postConfirmRequest(id:Int ,completed:@escaping (String,Bool) -> ()) {
+        let parameters : Parameters = [parSource.id:id ]
+        
+        
+        let url = source.POST_CONFIRM_REQUEST + source.API_TOKEN
+        print("getSearchData URL: \(url)")
+        Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {  (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from getSearchData url")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let parSource = Constants.API.Parameters()
+                
+                let succe = parSource.success; let sm = parSource.message; let dataa = parSource.data
+                
+                let json = JSON( response.result.value!) // SwiftyJSON
+                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+                let data = json[dataa]
+
+                let success = json[succe].intValue
+                let sms = json[sm].stringValue
+                let  state =  success == 1 ? true : false
+                
+                print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
+                
+                //                let xUser = PostLoginVars(jsonData: data)
+                
+                completed(sms,state)
+                
+                break
+            case .failure(_) :
+                print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
+                completed("Network Timeout",false)
+                break
+            }
+        }
+    }
+    
+    
+    
 }
 
 
