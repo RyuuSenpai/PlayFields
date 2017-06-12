@@ -16,7 +16,8 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     var day = ["1/3/2017","2/3/2017","3/3/2017","4/3/2017","5/3/2017"]
     var am = ["from 1 to 2 ","from 2 to 3 ","from 3 to 4 ","from 4 to 5 ","from 5 to 6 "]
     var pm = ["from 6 : 8 " , "from 8 : 12 "]
-    let  playgView = ViewPlayFeildVC()
+//    let  ownerData = ownerData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

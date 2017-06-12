@@ -11,13 +11,6 @@ import UIKit
 import AlamofireImage
 import Alamofire
 
-let isAraLang = {
-     return  L102Language.currentAppleLanguage() == "ar"
-
-    }
-let langDicClass = {
-       return  Constants.LanguagesDict()
-}
 
 var USER_ID :Int {
     guard  let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {

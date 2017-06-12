@@ -82,10 +82,10 @@ class MUserData {
     func postRegisterUser(name:String , mobile:String, city:String, area: String, pgType: Int,email:String,password:String  , completed:@escaping ((PostLoginVars?,Bool,String,[String:Any]?)) -> ()) {
         var parameters : Parameters!
         if ad.production {
-              parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "pg_owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password  ]
+              parameters  = [parSource.name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "pg_owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password  ]
 
         }else {
-             parameters  = [parSource.pg_name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "pg_owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password ,"test":"test" ]
+             parameters  = [parSource.name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "pg_owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password ,"test":"test" ]
 
         }
 

@@ -44,6 +44,37 @@ extension UILabel {
         }
     }
 }
+extension UITextField {
+    public func cstmlayoutSubviews() {
+        self.cstmlayoutSubviews()
+        if self.tag <= 0  {
+            if UIApplication.isRTL()  {
+                if self.textAlignment == .right {
+                    return
+                }
+            } else {
+                if self.textAlignment == .left {
+                    return
+                }
+            }
+        }
+        if self.tag <= 0 {
+            if UIApplication.isRTL()  {
+                self.textAlignment = .right
+            } else {
+                self.textAlignment = .left
+            }
+        }
+        
+        if self.tag <= 41 {
+            if UIApplication.isRTL()  {
+                self.textAlignment = .left
+            } else {
+                self.textAlignment = .right 
+            }
+        }
+    }
+}
 extension UIApplication {
     var cstm_userInterfaceLayoutDirection : UIUserInterfaceLayoutDirection {
         get {

@@ -8,6 +8,15 @@
 
 import Foundation
 
+let isAraLang = {
+    return  L102Language.currentAppleLanguage() == "ar"
+    
+}
+let langDicClass = {
+    return  Constants.LanguagesDict()
+}
+
+
 extension Constants {
 class LanguagesDict {
     // langDicClass().getLocalizedTitle(
@@ -58,7 +67,11 @@ class LanguagesDict {
                          "No Data Found" : "لا توجد ملاعب مطابقه",
                          "Total Rate :" : "اجمالي التقييم :",
                          "Resend" : "ارسال",
-                         "Resend in " : "إعاده إرسال "
+                         "Resend in " : "إعاده إرسال ",
+                         "Save" : "حفظ",
+                         "Book Field Now" : "احجز الملعب الآن",
+                         "Team" : "ادخل اسم الفريق",
+                         "Team Name" : "اسم الفريق"
         //                             "":"",
         //                             "":"",
         //                             "":"",

@@ -11,8 +11,9 @@ import CDAlertView
 import Alamofire
 import AlamofireImage
 
-class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSource {
+class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSource  {
     
+    @IBOutlet weak var bookNowDoneBtn: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var noNewsLbl: UILabel!
     @IBOutlet weak var view1FirstLbl: UILabel!
@@ -38,28 +39,50 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     @IBOutlet weak var footballAvailabilityImage: UIImageView!
     @IBOutlet weak var fieldLightingAvailabilityImage: UIImageView!
     @IBOutlet weak var pagerNilDataPlaceHolder: UIImageView!
-
+    
     @IBOutlet weak var bookNowBtnBottomConstant: NSLayoutConstraint!
     @IBOutlet weak var pagerView: UIView!
     
     @IBOutlet weak var pageControl: UIView!
     
+    
+    // Owner Change Data Storage
+    lazy var  ownerDataDict = [String : String]()
+    //
     var bookNowDays = [String]()
+    var isOwner  =  false  {
+        didSet {
+            if isOwner {
+            self.view1SecLbl?.isEnabled = true
+            self.view2SecLbl?.isEnabled = true
+            self.view3SecLbl?.isEnabled = true
+            self.view4SecLbl?.isEnabled = true
+                self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Save"), for: .normal)
+            } else {
+            self.view1SecLbl?.isEnabled = false
+            self.view2SecLbl?.isEnabled = false
+            self.view3SecLbl?.isEnabled = false
+            self.view4SecLbl?.isEnabled = false
+                self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Book Field Now"), for: .normal)
+
+        }
+    }
+}
     var bookNowTimes = [Pg_Times_Data]()
     var imagesStringList : [String]! {
         didSet{
             setUpPager()
         }
     }
-   
+    
     var pg_title = " "{
         didSet {
             title = pg_title
         }
     }
     var globalClass : GLOBAL!
-     var pagerCont = FSPageControl()
-
+    var pagerCont = FSPageControl()
+    
     
     let textList = ["1","2","3","4"]
     var pg_id : Int?
@@ -107,7 +130,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         super.viewDidLoad()
         print("that is the pg_id : \(pg_id)")
         self.view.squareLoading.start(0.0)
-
+        
+        isOwner = true
         newsTableView.delegate = self
         newsTableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -116,7 +140,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         theView = labelsDataView
         theCurBtn = detailsBtn
         CurrBtnLine = detailsBtnLine
-        
+        isOwner = true 
         self.originalBottomConstant = self.bookNowBtnBottomConstant.constant
         
         
@@ -129,7 +153,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         self.setPlaygDetails()
         
         activityIndicator.layer.cornerRadius = 1
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +163,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.view2SecLbl.textAlignment = .left
             self.view3SecLbl.textAlignment = .left
             self.view4SecLbl.textAlignment = .left
-
+            
         }
     }
     
@@ -171,21 +195,21 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 }
                 DispatchQueue.main.async {
                     weakSelf?.newsTableView.reloadData()
-                    }
+                }
             }
             //@end News
             
             //MARK:  @Pager
             if let imgData = data.images ,imgData.count > 0 {
-            var imageS = [String]()
+                var imageS = [String]()
                 print("that's the returned data : \(imgData)")
-            for imageString in imgData  {
-                imageS.append(imageString.image)
-
-            }
-            DispatchQueue.main.async {
-                 weakSelf?.imagesStringList = imageS
-            }
+                for imageString in imgData  {
+                    imageS.append(imageString.image)
+                    
+                }
+                DispatchQueue.main.async {
+                    weakSelf?.imagesStringList = imageS
+                }
             }else {
                 DispatchQueue.main.async {
                     weakSelf?.pagerNilDataPlaceHolder.alpha = 1
@@ -196,7 +220,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             weakSelf?.setPlaygDetails()
             
             weakSelf?.view.squareLoading.stop(0.0)
-
+            
             print("that is times : \(data.times)")
             guard let times = data.times else { return }
             //            weakSelf?.bookNowDays = [String]()
@@ -244,28 +268,37 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         self.vanisher()
         switch sender.tag {
-        case 0:
+        case 0: //Details
             print(sender.tag)
             self.theView = self.labelsDataView
             self.theView.accessibilityIdentifier = "labelsDataView"
             self.theCurBtn = detailsBtn
             self.CurrBtnLine = detailsBtnLine
             self.setPlaygDetails()
-        case 1:
+            if isOwner {
+                self.view3SecLbl.isEnabled = false
+                self.view4SecLbl.isEnabled = true
+            }
+        case 1: //AboutField
             print(sender.tag)
             self.theView = self.labelsDataView
             self.theView.accessibilityIdentifier = "labelsDataView2"
             self.theCurBtn = infoBtn
             self.CurrBtnLine = infoBtnLine
             self.setPlaygDetails()
-        case 2:
+            if isOwner {
+                self.view1SecLbl.isEnabled = false
+                self.view3SecLbl.isEnabled = false
+                self.view4SecLbl.isEnabled = false
+            }
+        case 2:  //Hours
             print(sender.tag)
             self.theView = self.bookNowView
             //            self.theView.accessibilityIdentifier = "bookNowView"
             self.bookNowTableChildView.view.isHidden =  false
             self.theCurBtn = datesBtn
             self.CurrBtnLine = datesBtnLine
-        default:
+        default:  // Latest News
             print(sender.tag)
             self.theView = self.newsView
             self.theView.accessibilityIdentifier = "newsView"
@@ -277,6 +310,13 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     }
     
     @IBAction func bookNowBtnAct(_ sender: UIButton) {
+        
+        guard !isOwner else {
+            print("that\'s the storaged Owner Data : \(ownerDataDict)")
+
+            return
+        }
+        
         let userStates = ad.isUserLoggedIn()
         guard userStates else {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
@@ -309,14 +349,14 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                             self?.activityIndicator.stopAnimating()
                             alert.show()
                         }
-
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-
+                            
                             ad.reloadApp()
                         }
                     }else {
                         let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message: langDicClass().getLocalizedTitle("try again!!"), type: .error)
-                       
+                        
                         DispatchQueue.main.async {
                             alert.show()
                             self?.activityIndicator.stopAnimating()
@@ -327,11 +367,11 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                     }
                     
                 })
-            }else { //no data in array 
+            }else { //no data in array
                 print("day arary :\(bookNowDays) \(bookNowDays.count)")
                 var sms  = "You didn't pick Booking Date"
                 if bookNowDays.count < 1 {
-                 sms = "There's no Dates to pick"
+                    sms = "There's no Dates to pick"
                 }
                 let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message: langDicClass().getLocalizedTitle(sms), type: .error)
                 alert.show()
@@ -339,6 +379,9 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             }
             
         }
+        
+        
+        
     }
     
     func setPlaygDetails() {
@@ -447,7 +490,65 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     
     
+    @IBAction func ownerChangeValue(_ sender: UIButton) {
+        guard isOwner else { return }
+        
+        switch sender.tag {
+            
+        case 0 :
+            print(0)
+            if theCurBtn == detailsBtn {
+                   presentAlert("Enter Field Name", "", "Field Name", view1SecLbl)
+            }
+        case 1 :
+            print(1)
+            if theCurBtn == detailsBtn {//Details * FieldName, address Books Times , price
+                presentAlert("Enter Address", "", "Address", view2SecLbl)
+             }else {//AboutField - Number of Fields X, Fields Type √
+                presentAlert("Enter Field Type", "", "Field Type", view2SecLbl)
+            }
+        case 2 :
+            print(2)
+            if theCurBtn == infoBtn {//AboutField - Number of Fields X, Fields Type √
+//                presentAlert("Enter Address", "", "Address", view2SecLbl)
+            }
+       default :
+            print(3)
+            if theCurBtn == detailsBtn {
+                 presentAlert("Enter Price for Hour", "", "Price", view4SecLbl)
+            }
+        }
+    }
     
+    
+    func presentAlert(_ title : String,_ sms : String,_ placeHolder : String,_ label : UILabel) {//"Please input your email:"
+        let alertController = UIAlertController(title: title, message: sms, preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: langDicClass().getLocalizedTitle("Confirm"), style: .default) { (_) in
+            if let field = alertController.textFields?[0] , let txt = field.text ,!txt.isEmpty{
+                // store your data
+                //                    UserDefaults.standard.synchronize()
+                label.text = txt
+            } else {
+                // user did not fill field
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: langDicClass().getLocalizedTitle("Cancel"), style: .cancel) { (_) in }
+        
+        alertController.addTextField { [weak self] (textField) in
+            textField.placeholder = placeHolder
+            if label == self?.view4SecLbl {
+                textField.keyboardType = .numberPad
+            }
+        }
+        
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     
     
@@ -461,9 +562,9 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-//        cell.imageView?.image = imagesList[index]
+        //        cell.imageView?.image = imagesList[index]
         //        cell.imageView?.contentMode = .scaleAspectFill
-  
+        
         cell.imageView?.af_setImage(
             withURL: URL(string: imagesStringList[index] )!,
             placeholderImage: UIImage(named: "courtplaceholder_3x"),
@@ -512,4 +613,45 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
     }
     
     
+    
+    
 }
+
+
+//extension ViewPlayFeildVC : UITextFieldDelegate {
+//    
+//    
+//    func setupTextFieldDelegate() {
+//        
+//        self.view1SecLbl.delegate = self
+//         self.view2SecLbl.delegate = self
+//         self.view3SecLbl.delegate = self
+//         self.view4SecLbl.delegate = self
+//    }
+//    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        switch textField {
+//        case view1SecLbl://FieldName //Number of fields
+//            print("that's the view1SecLbl text : \(textField.text)")
+//        case view2SecLbl://Address // FieldType
+//            print("that's the view2SecLbl text : \(textField.text)")
+//        case view3SecLbl://BooksTimes // Ball
+//            print("that's the view3SecLbl text : \(textField.text)")
+//         
+//        default: //Price // Lighting 
+//            print("that's the view4SecLbl text : \(textField.text)")
+//            if let  text = textField.text ,!text.isEmpty  {
+//                textField.text = text + " SAR"
+//            } else {
+//                textField.text = "0" + " SAR"
+//            }
+//        }
+//    }
+//    
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        
+//        if textField == view4SecLbl { //Price
+//            textField.text = ""
+//        }
+//    }
+//}

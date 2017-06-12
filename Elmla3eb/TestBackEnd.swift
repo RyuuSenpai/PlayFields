@@ -91,7 +91,14 @@ class TestBackEnd {
     }
     
     
-
+    static func owner() {
+        let x = OwnerModel()
+        x.getP_GBooksManager(userID: 53, pgID: 18) { (data, sms, state) in
+            
+            
+            
+        }
+    }
     
     static func playGrounds() {
         

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
     
-    var production = true
+    var production = false 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
 
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -130,24 +130,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     }
     
     func fcm() {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
-            print("InstanceID token: \(refreshedToken)")
-            if UserDefaults.standard.value(forKey: "userId") == nil {
-                UserDefaults.standard.setValue(nil, forKey: "FCMToken")
-            }
-            if   let userID = UserDefaults.standard.value(forKey: "userId") as? Int     ,  UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
-                print("found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? String)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
+
+        guard let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
+            UserDefaults.standard.setValue(nil, forKey: "FCMToken")
+            print("⚠️No userID Found  ❌ "); return }
+
+        guard  let refreshedToken = FIRInstanceID.instanceID().token() else {
+            print("⚠️No Token Returned From FCM  ❌ "); return }
+        print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
+
+            if     UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
+                print("✅Updating Token ✳️found  userId: \(UserDefaults.standard.value(forKey: "userId") as? String)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
                 
-                UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
                 let userFCM = MUserData()
                 userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
                     
-                    
+                    if state {
+                        UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
+                        print("✅Updated Token  ✅ ")
+
+                    }
                 })
             }else {
-                print("found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
+                print("❌ Won't Update Token Token Already Exist⚠️found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,♎️FCMTokenNSDefault \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, ☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳\n")
             }
-        }
+        
     }
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print(error.localizedDescription)

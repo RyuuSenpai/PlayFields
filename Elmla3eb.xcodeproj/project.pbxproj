@@ -77,6 +77,7 @@
 		52E8D0E81E89210F007E1CE2 /* BookNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8D0E71E89210F007E1CE2 /* BookNowCell.swift */; };
 		52E8D0EA1E896DEF007E1CE2 /* BookedFieldsDatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8D0E91E896DEF007E1CE2 /* BookedFieldsDatesVC.swift */; };
 		52E9DF5E1EACCC43004563CA /* DownloadImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E9DF5D1EACCC43004563CA /* DownloadImages.swift */; };
+		52EA87431EEE93CF000C0C52 /* OwnerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA87421EEE93CF000C0C52 /* OwnerModel.swift */; };
 		52F016791EC08D4A008962AF /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */; };
 		52F0CB851E8BCE20001C2223 /* MHomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0CB841E8BCE20001C2223 /* MHomeData.swift */; };
 		52F0CB881E8BF04E001C2223 /* TestBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */; };
@@ -181,6 +182,7 @@
 		52E8D0E71E89210F007E1CE2 /* BookNowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookNowCell.swift; sourceTree = "<group>"; };
 		52E8D0E91E896DEF007E1CE2 /* BookedFieldsDatesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookedFieldsDatesVC.swift; sourceTree = "<group>"; };
 		52E9DF5D1EACCC43004563CA /* DownloadImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImages.swift; sourceTree = "<group>"; };
+		52EA87421EEE93CF000C0C52 /* OwnerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerModel.swift; sourceTree = "<group>"; };
 		52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		52F0CB841E8BCE20001C2223 /* MHomeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHomeData.swift; sourceTree = "<group>"; };
 		52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBackEnd.swift; sourceTree = "<group>"; };
@@ -286,15 +288,9 @@
 			children = (
 				52AF58981E7697D4001284DD /* Home Page */,
 				52B976031E841FFB008B31C7 /* PlayFields */,
-				52AFAA971E82955D009F6467 /* MenuVC.swift */,
-				52F5C7121E793AED00B77500 /* LoginVC.swift */,
-				52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */,
-				714AED0B1E6321E4001127CE /* FBLoggin.swift */,
-				529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */,
 				528623271EDDABE20048E95F /* Profile */,
-				52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */,
 				52F60A561EDED5C600B79520 /* Search */,
-				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
+				52EA87451EEECA31000C0C52 /* Others */,
 				52355EC91EB88D86005A9217 /* Owner */,
 			);
 			name = C;
@@ -313,6 +309,7 @@
 				52F8B1381E8CFE6C0091FE09 /* Pg_Times */,
 				52F8B1391E8CFEA00091FE09 /* PlayGrounds */,
 				52F8B13C1E8D05220091FE09 /* Pg_Teams */,
+				52EA87441EEE93D9000C0C52 /* Owner */,
 				52F60A571EDEDF2200B79520 /* Search */,
 				520B71651EE7F5A600C84591 /* Reservation */,
 				5291BC851E8AB587008132BC /* Users */,
@@ -404,6 +401,28 @@
 				52E8D0E71E89210F007E1CE2 /* BookNowCell.swift */,
 			);
 			name = PlayFields;
+			sourceTree = "<group>";
+		};
+		52EA87441EEE93D9000C0C52 /* Owner */ = {
+			isa = PBXGroup;
+			children = (
+				52EA87421EEE93CF000C0C52 /* OwnerModel.swift */,
+			);
+			name = Owner;
+			sourceTree = "<group>";
+		};
+		52EA87451EEECA31000C0C52 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
+				52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */,
+				52AFAA971E82955D009F6467 /* MenuVC.swift */,
+				52F5C7121E793AED00B77500 /* LoginVC.swift */,
+				52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */,
+				714AED0B1E6321E4001127CE /* FBLoggin.swift */,
+				529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */,
+			);
+			name = Others;
 			sourceTree = "<group>";
 		};
 		52F0CB861E8BD0E0001C2223 /* HomeData */ = {
@@ -811,6 +830,7 @@
 				52355ED11EB8A1DA005A9217 /* ToSideMenuClass.swift in Sources */,
 				52C0E36A1E8A8D96005ABCAD /* BookNowDaysCell.swift in Sources */,
 				52CDAF281E87E41500B599DD /* ViewPlayFeildVC.swift in Sources */,
+				52EA87431EEE93CF000C0C52 /* OwnerModel.swift in Sources */,
 				52AFAA8F1E828318009F6467 /* UIPickerViewX.swift in Sources */,
 				52AFAA951E828318009F6467 /* UIViewXRadialGradient.swift in Sources */,
 				714AECEC1E6303EF001127CE /* AppDelegate.swift in Sources */,

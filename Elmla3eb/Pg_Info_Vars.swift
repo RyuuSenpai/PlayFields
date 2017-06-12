@@ -68,6 +68,7 @@ struct  AmPm_data {
     private var _to_datetime : String?
     private var _time : String?
     private var _booked : Int?
+    private var _confirmed : Int?
     private let source = Constants.API.Parameters()
     
     var id : Int{
@@ -103,6 +104,10 @@ struct  AmPm_data {
         return true
     }
     
+    var confirmedBool : Bool{
+        guard  let x = _confirmed , x == 1 else { return  false}
+        return true
+    }
     
     init(json:JSON) {
         self._id = json[source.id].intValue
@@ -112,7 +117,7 @@ struct  AmPm_data {
         self._to_datetime = json[source.to_datetime].stringValue
         self._booked = json[source.booked].intValue
         self._time = json[source.time].stringValue
-
+        self._confirmed = json["confirmed"].intValue
         
     }
 }

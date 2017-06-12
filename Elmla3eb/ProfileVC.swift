@@ -284,7 +284,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             print("city")
             cityTxt.becomeFirstResponder()
         case 2:
-            presentAlert("Team", "Team Name", "Team Name", teamName)
+            presentAlert(langDicClass().getLocalizedTitle("Team"), langDicClass().getLocalizedTitle("Team Name"), langDicClass().getLocalizedTitle("Team Name"), teamName)
         case 3 :
             print("Position")
             positionTxt.becomeFirstResponder()
