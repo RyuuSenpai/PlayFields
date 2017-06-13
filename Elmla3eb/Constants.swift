@@ -87,7 +87,9 @@ class Constants  {
             let POST_CONFIRM_REQUEST = API.main_url + "reservations/confirm"
             
             /////////////Owner
-            let GET_OWNER_SYSTEM_MANAGER = API.main_url + "owners/pgtimes" 
+            let GET_OWNER_SYSTEM_MANAGER = API.main_url + "owners/pgtimes"
+            let GET_OWNERPLAY_G =  API.main_url +  "owners/playgrounds"	
+            let GET_OWNER_PAYMENTS_STATICS = API.main_url +  "owners/report"
         }
         
         class Parameters {

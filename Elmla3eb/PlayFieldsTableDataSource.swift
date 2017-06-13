@@ -53,7 +53,7 @@ extension PlayFieldsVC : UITableViewDataSource {
         case 0:
             cell.cellState(0)
 //            cell.tag = indexPath.row
-          cell.bookNowBtn.setTitle("Book Now!", for: .normal)
+          cell.bookNowBtn.setTitle(langDicClass().getLocalizedTitle("Book Now!"), for: .normal)
           cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
           cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
 
@@ -63,7 +63,7 @@ extension PlayFieldsVC : UITableViewDataSource {
         case 1 :
             
             cell.cellState(1)
-            cell.bookNowBtn.setTitle("Cancel Reservation", for: .normal)
+            cell.bookNowBtn.setTitle(langDicClass().getLocalizedTitle("Cancel Reservation"), for: .normal)
             cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
             cell.bookNowBtn.addTarget(self, action: #selector(self.cancelResrvation(_:)), for: UIControlEvents.touchUpInside )
             

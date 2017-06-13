@@ -74,40 +74,40 @@ class OwnerModel {
                 let  state =  success == 1 ? true : false
                 
                 print("KILLVA: getP_GBooksManager STATUS:\(state) , sms: \(sms) data : \(data) \n")
-                 let info = data["info"]
+                let info = data["info"]
                 let pgName = info["pg_name"].stringValue
                 let timesR = data["times"]
                 
                 let notBookedR = timesR["not_booked"]
                 
-//                print("notBookedR : \(notBookedR)\n")
+                //                print("notBookedR : \(notBookedR)\n")
                 
-//                print("that's pgName : \(pgName)\n timesR : \(timesR)\n bookedFields : \(timesR["booked"])\n")
+                //                print("that's pgName : \(pgName)\n timesR : \(timesR)\n bookedFields : \(timesR["booked"])\n")
                 var ownerNotBookedP_G_Data = [OwnerP_G_BookingData]()
                 for notBookedTimes in notBookedR {
-//                    print("notBookedR Item : \(notBookedTimes.1)\n")
+                    //                    print("notBookedR Item : \(notBookedTimes.1)\n")
                     let returnedData = parseBookingData(notBookedTimes.1)
                     var ownerNotBooked = OwnerP_G_BookingData()
                     ownerNotBooked._date = returnedData.0
                     ownerNotBooked.amData = returnedData.1
                     ownerNotBooked.pmData = returnedData.2
-//                    print("that's the ownerNotBookedP_G_Data \(ownerNotBooked._date)\n amData :\(ownerNotBooked.amData)\n pmData : \(ownerNotBooked.pmData)\n")
+                    //                    print("that's the ownerNotBookedP_G_Data \(ownerNotBooked._date)\n amData :\(ownerNotBooked.amData)\n pmData : \(ownerNotBooked.pmData)\n")
                     ownerNotBookedP_G_Data.append(ownerNotBooked)
                 }
                 
                 let bookedR = timesR["booked"]
                 var ownerBookedP_G_Data = [OwnerP_G_BookingData]()
                 for bookedTimes in bookedR {
-//                    print("bookedTimes Item : \(bookedTimes.1)\n")
+                    //                    print("bookedTimes Item : \(bookedTimes.1)\n")
                     let returnedData = parseBookingData(bookedTimes.1)
                     var ownerBooked = OwnerP_G_BookingData()
                     ownerBooked._date = returnedData.0
                     ownerBooked.amData = returnedData.1
                     ownerBooked.pmData = returnedData.2
-//                    print("that's the ownerBooked \(ownerBooked._date)\n amData :\(ownerBooked.amData)\n pmData : \(ownerBooked.pmData)\n")
+                    //                    print("that's the ownerBooked \(ownerBooked._date)\n amData :\(ownerBooked.amData)\n pmData : \(ownerBooked.pmData)\n")
                     ownerBookedP_G_Data.append(ownerBooked)
                 }
-//                print("⚠️that's the booked :\(ownerBookedP_G_Data)\n and notBooked : \(ownerNotBookedP_G_Data) ")
+                //                print("⚠️that's the booked :\(ownerBookedP_G_Data)\n and notBooked : \(ownerNotBookedP_G_Data) ")
                 
                 let ownerData = OwnerBooksmanager_Data()
                 ownerData._pg_name = pgName
@@ -125,7 +125,103 @@ class OwnerModel {
         }
     }
     
-
+    
+    
+    
+    
+    
+    func getOwnerPlayGrounds(  completed:@escaping ([NearByFields_Data]?,String,Bool) -> ()) {
+        
+        let url = source.GET_OWNERPLAY_G + source.API_TOKEN +  "&user_id=\(53)"
+        print("getOwnerPlayGrounds URL: \(url)")
+        //        let request = GLOBAL.alamoRequest(query_url: url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url getOwnerPlayGrounds")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                print("that is  getOwnerPlayGrounds getting the data Mate : %@", response.result.value!)
+                
+                
+                let data = json["data"]
+                var nearPGData = [NearByFields_Data]()
+                for item in data {
+                    nearPGData.append(NearByFields_Data(json: item.1))
+                }
+                
+                let success = json["success"].intValue
+                let sms = json["message"].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: getOwnerPlayGrounds STATUS:\(state) , sms: \(sms) \n, data: \(data)")
+                
+                
+                completed(nearPGData,sms,state)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the getOwnerPlayGrounds data Mate : \(response.result.error)")
+                completed(nil,"Network Error",false)
+                break
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    func getOwnerPlayG_PaymentStatics(  completed:@escaping ([PaymentStatics_Data]?,String,Bool) -> ()) {
+        
+        let url = source.GET_OWNER_PAYMENTS_STATICS + source.API_TOKEN +  "&user_id=\(53)"
+        print("getOwnerPlayG_PaymentStatics URL: \(url)")
+        //        let request = GLOBAL.alamoRequest(query_url: url)
+        
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url getOwnerPlayG_PaymentStatics")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                print("that is  getOwnerPlayG_PaymentStatics getting the data Mate : %@", response.result.value!)
+                
+                
+                let data = json["data"]
+                var ownerPGData = [PaymentStatics_Data]()
+                for item in data {
+                    ownerPGData.append(PaymentStatics_Data(item.1))
+                }
+                
+                let success = json["success"].intValue
+                let sms = json["message"].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: getOwnerPlayG_PaymentStatics STATUS:\(state) , sms: \(sms) \n, data: \(data)")
+                
+                
+                completed(ownerPGData,sms,state)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the getOwnerPlayG_PaymentStatics data Mate : \(response.result.error)")
+                completed(nil,"Network Error",false)
+                break
+            }
+        }
+    }
+    
     
 }
 
@@ -159,5 +255,38 @@ struct OwnerP_G_BookingData {
     var pmData : [AmPm_data]?
 }
 //**/*/*/*/*/*/*/*/*/*/****/*/*/*/*/+
+class PaymentStatics_Data {
+    
+    private var _id : Int?
+    private var _pg_name : String?
+    private var _pg_BookingNumbers : Int?
+    private var _payments : Int?
+    
+    var id : Int {
+        guard let x = _id else { return 0 }
+        return x
+    }
+    
+    var pgName : String {
+        guard let x = _pg_name else { return "" }
+        return x
+    }
+    var pg_BookingNumbers : Int {
+        guard let x = _pg_BookingNumbers else { return 0 }
+        return x
+    }
+    var  payments : Int {
+        guard let x = _payments else { return 0 }
+        return x
+    }
+    
+    init(_ json : JSON) {
+        self._id = json["id"].intValue
+        self._pg_name = json["pg_name"].stringValue
+        self._pg_BookingNumbers = json["pg_BookingNumbers"].intValue
+        self._payments = json["payments"].intValue
 
+    }
+    
+}
 

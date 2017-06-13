@@ -32,7 +32,7 @@ class FieldsCell: UITableViewCell {
         // Initialization code
     }
     
-    func configNearFields(_ data :NearByFields_Data? ) {
+    func configNearFields(_ data :NearByFields_Data? ) { // address, price, bookingTimes 
         guard let data = data else { return }
             bookNowBtn.tag = data.id
             

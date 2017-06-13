@@ -34,6 +34,10 @@
 		525BEFFF1E83CBCC003FE82E /* PlayFieldsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BEFFE1E83CBCC003FE82E /* PlayFieldsVC.swift */; };
 		525BF0011E83CC29003FE82E /* PlayFieldsTableDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BF0001E83CC29003FE82E /* PlayFieldsTableDelagate.swift */; };
 		525BF0031E83CC7A003FE82E /* PlayFieldsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BF0021E83CC7A003FE82E /* PlayFieldsTableDataSource.swift */; };
+		525C343A1EEFE6B60043B512 /* OwnerPlaygDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C34391EEFE6B60043B512 /* OwnerPlaygDelegate.swift */; };
+		525C343C1EEFE6C10043B512 /* OwnerPlaygDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C343B1EEFE6C10043B512 /* OwnerPlaygDataSource.swift */; };
+		525C343E1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C343D1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift */; };
+		525C34421EF000BF0043B512 /* PaymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C34411EF000BF0043B512 /* PaymentCell.swift */; };
 		52850AB61E87ABF300C54168 /* GetPlayGroundsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52850AB51E87ABF300C54168 /* GetPlayGroundsData.swift */; };
 		528623251EDD8EAF0048E95F /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528623231EDD8EAF0048E95F /* SearchResultVC.swift */; };
 		528623261EDD8EAF0048E95F /* SearchResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528623241EDD8EAF0048E95F /* SearchResultVC.xib */; };
@@ -138,6 +142,10 @@
 		525BEFFE1E83CBCC003FE82E /* PlayFieldsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsVC.swift; sourceTree = "<group>"; };
 		525BF0001E83CC29003FE82E /* PlayFieldsTableDelagate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsTableDelagate.swift; sourceTree = "<group>"; };
 		525BF0021E83CC7A003FE82E /* PlayFieldsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFieldsTableDataSource.swift; sourceTree = "<group>"; };
+		525C34391EEFE6B60043B512 /* OwnerPlaygDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPlaygDelegate.swift; sourceTree = "<group>"; };
+		525C343B1EEFE6C10043B512 /* OwnerPlaygDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPlaygDataSource.swift; sourceTree = "<group>"; };
+		525C343D1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPlaygroundsVC.swift; sourceTree = "<group>"; };
+		525C34411EF000BF0043B512 /* PaymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentCell.swift; sourceTree = "<group>"; };
 		52850AB51E87ABF300C54168 /* GetPlayGroundsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlayGroundsData.swift; sourceTree = "<group>"; };
 		528623231EDD8EAF0048E95F /* SearchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		528623241EDD8EAF0048E95F /* SearchResultVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultVC.xib; sourceTree = "<group>"; };
@@ -235,6 +243,9 @@
 		52355EC91EB88D86005A9217 /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				525C343D1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift */,
+				525C34391EEFE6B60043B512 /* OwnerPlaygDelegate.swift */,
+				525C343B1EEFE6C10043B512 /* OwnerPlaygDataSource.swift */,
 				52355ECA1EB88E56005A9217 /* ExpandableTable */,
 			);
 			name = Owner;
@@ -495,6 +506,7 @@
 		52F985831EB6016E001DA530 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				525C34411EF000BF0043B512 /* PaymentCell.swift */,
 				52AF589D1E769A0A001284DD /* HomePageCell.swift */,
 				52E8D0E51E8920B0007E1CE2 /* PlayFields */,
 				52D7C4301E82D60C00F34B77 /* FieldsCell.swift */,
@@ -769,6 +781,7 @@
 				52AFAA931E828318009F6467 /* UIViewControllerX.swift in Sources */,
 				52CDAF2C1E87E4C000B599DD /* ViewPlayFNewsCell.swift in Sources */,
 				714AED011E632113001127CE /* MaterialView.swift in Sources */,
+				525C34421EF000BF0043B512 /* PaymentCell.swift in Sources */,
 				52E9DF5E1EACCC43004563CA /* DownloadImages.swift in Sources */,
 				714AED0C1E6321E4001127CE /* FBLoggin.swift in Sources */,
 				52F60A591EDEDF4F00B79520 /* Search_Model.swift in Sources */,
@@ -826,13 +839,16 @@
 				525BF0011E83CC29003FE82E /* PlayFieldsTableDelagate.swift in Sources */,
 				52E8D0E81E89210F007E1CE2 /* BookNowCell.swift in Sources */,
 				52F0CB851E8BCE20001C2223 /* MHomeData.swift in Sources */,
+				525C343E1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift in Sources */,
 				52AFAA8C1E828318009F6467 /* UIButtonX.swift in Sources */,
 				52355ED11EB8A1DA005A9217 /* ToSideMenuClass.swift in Sources */,
 				52C0E36A1E8A8D96005ABCAD /* BookNowDaysCell.swift in Sources */,
 				52CDAF281E87E41500B599DD /* ViewPlayFeildVC.swift in Sources */,
 				52EA87431EEE93CF000C0C52 /* OwnerModel.swift in Sources */,
+				525C343A1EEFE6B60043B512 /* OwnerPlaygDelegate.swift in Sources */,
 				52AFAA8F1E828318009F6467 /* UIPickerViewX.swift in Sources */,
 				52AFAA951E828318009F6467 /* UIViewXRadialGradient.swift in Sources */,
+				525C343C1EEFE6C10043B512 /* OwnerPlaygDataSource.swift in Sources */,
 				714AECEC1E6303EF001127CE /* AppDelegate.swift in Sources */,
 				52AFAA8E1E828318009F6467 /* UILabelX.swift in Sources */,
 			);

@@ -17,7 +17,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     var am = ["from 1 to 2 ","from 2 to 3 ","from 3 to 4 ","from 4 to 5 ","from 5 to 6 "]
     var pm = ["from 6 : 8 " , "from 8 : 12 "]
     let  ownerModel = OwnerModel()
-    
+    var pg_id : Int?
     var notBooked : [OwnerP_G_BookingData]?{
         didSet {
             guard let _ = notBooked else{ print("nil NOtBooked🛂"); return }

@@ -53,17 +53,17 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     var isOwner  =  false  {
         didSet {
             if isOwner {
-            self.view1SecLbl?.isEnabled = true
-            self.view2SecLbl?.isEnabled = true
-            self.view3SecLbl?.isEnabled = true
-            self.view4SecLbl?.isEnabled = true
-                self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Save"), for: .normal)
+//            self.view1SecLbl?.isEnabled = true
+//            self.view2SecLbl?.isEnabled = true
+//            self.view3SecLbl?.isEnabled = true
+//            self.view4SecLbl?.isEnabled = true
+                self.bookNowDoneBtn?.setTitle(langDicClass().getLocalizedTitle("Save"), for: .normal)
             } else {
-            self.view1SecLbl?.isEnabled = false
-            self.view2SecLbl?.isEnabled = false
-            self.view3SecLbl?.isEnabled = false
-            self.view4SecLbl?.isEnabled = false
-                self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Book Field Now"), for: .normal)
+//            self.view1SecLbl?.isEnabled = false
+//            self.view2SecLbl?.isEnabled = false
+//            self.view3SecLbl?.isEnabled = false
+//            self.view4SecLbl?.isEnabled = false
+                self.bookNowDoneBtn?.setTitle(langDicClass().getLocalizedTitle("Book Field Now"), for: .normal)
 
         }
     }
@@ -131,8 +131,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         print("that is the pg_id : \(pg_id)")
         self.view.squareLoading.start(0.0)
         
-        isOwner = true
-        newsTableView.delegate = self
+         newsTableView.delegate = self
         newsTableView.dataSource = self
         // Do any additional setup after loading the view.
         newsTableView.estimatedRowHeight = 35
@@ -140,8 +139,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         theView = labelsDataView
         theCurBtn = detailsBtn
         CurrBtnLine = detailsBtnLine
-        isOwner = true 
-        self.originalBottomConstant = self.bookNowBtnBottomConstant.constant
+         self.originalBottomConstant = self.bookNowBtnBottomConstant.constant
         
         
         //        self.setLabelsTitle()
@@ -154,6 +152,13 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         activityIndicator.layer.cornerRadius = 1
         
+        if isOwner {
+            print("🤡owner")
+           isOwner = true
+        }else {
+            print("🤡Player")
+            isOwner = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -265,6 +270,9 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     }
     
     @IBAction func controllBtnsAct(_ sender: UIButton) {
+        if isOwner , sender.tag == 2 || sender.tag == 3 {
+            return
+        }
         
         self.vanisher()
         switch sender.tag {
@@ -275,10 +283,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.theCurBtn = detailsBtn
             self.CurrBtnLine = detailsBtnLine
             self.setPlaygDetails()
-            if isOwner {
-                self.view3SecLbl.isEnabled = false
-                self.view4SecLbl.isEnabled = true
-            }
+//            if isOwner {
+//                self.view3SecLbl.isEnabled = false
+//                self.view4SecLbl.isEnabled = true
+//            }
         case 1: //AboutField
             print(sender.tag)
             self.theView = self.labelsDataView
@@ -286,11 +294,11 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.theCurBtn = infoBtn
             self.CurrBtnLine = infoBtnLine
             self.setPlaygDetails()
-            if isOwner {
-                self.view1SecLbl.isEnabled = false
-                self.view3SecLbl.isEnabled = false
-                self.view4SecLbl.isEnabled = false
-            }
+//            if isOwner {
+//                self.view1SecLbl.isEnabled = false
+//                self.view3SecLbl.isEnabled = false
+//                self.view4SecLbl.isEnabled = false
+//            }
         case 2:  //Hours
             print(sender.tag)
             self.theView = self.bookNowView
@@ -316,7 +324,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
 
             return
         }
-        
+        //BookNow // Player
         let userStates = ad.isUserLoggedIn()
         guard userStates else {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
@@ -406,7 +414,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             
             if self.theCurBtn == self.newsBtn    {
                 self.bookNowBtnBottomConstant.constant = self.originalBottomConstant!
-                
+//                self.bookNowDoneBtn.alpha = 0
             }
             //            self.theCurBtn.currentTitleColor = Constants.Colors.gray.cgColor
         })
@@ -416,11 +424,13 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         print("that is the view : \(self.theView.accessibilityIdentifier)")
         UIView.animate(withDuration: 0.5 , animations: {
             self.theView.alpha = 1
+            
             self.theCurBtn.setTitleColor(Constants.Colors.green, for: .normal)
             self.CurrBtnLine.backgroundColor = Constants.Colors.green
             
             if self.theCurBtn == self.newsBtn {
-                self.bookNowBtnBottomConstant.constant = -45
+                self.bookNowBtnBottomConstant.constant = -100
+//                self.bookNowDoneBtn.alpha = 0
             }
         })
     }

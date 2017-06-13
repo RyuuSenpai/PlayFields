@@ -71,7 +71,11 @@ class LanguagesDict {
                          "Save" : "حفظ",
                          "Book Field Now" : "احجز الملعب الآن",
                          "Team" : "ادخل اسم الفريق",
-                         "Team Name" : "اسم الفريق"
+                         "Team Name" : "اسم الفريق",
+                         " SAR" : " ريال ",
+                         "Edit Field" : "تعديل الملعب",
+                         "Book Now!" : "حجز الآن",
+                         "Cancel Reservation" : "الغاء الحجز"
         //                             "":"",
         //                             "":"",
         //                             "":"",

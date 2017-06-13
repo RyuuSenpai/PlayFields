@@ -7,7 +7,7 @@
 //
 
 import UIKit
- import CoreLocation
+import CoreLocation
 
 class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     
@@ -20,7 +20,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     @IBOutlet weak var selectionBtnsViewHeightConstant: NSLayoutConstraint!
     @IBOutlet weak var emptyDataLabel: UILabel!
     @IBOutlet weak var activityIndector: UIActivityIndicatorView!
- 
+    
     var servicesCount = 0 {
         didSet {
             if servicesCount == 2 {
@@ -40,17 +40,17 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         }
     }
     
-  lazy  var deletereservation = ReservationModel()
-     var reservationsArray = ConfirmedOrNotData()
+    lazy  var deletereservation = ReservationModel()
+    var reservationsArray = ConfirmedOrNotData()
     
-     var confirmedP_G : [ConfirmedFields_Data]?{
+    var confirmedP_G : [ConfirmedFields_Data]?{
         didSet {
-              tableView?.reloadData()
+            tableView?.reloadData()
         }
     }
     var unconfirmedP_G : [NotConfirmedFields_Data]?{
         didSet {
-              tableView?.reloadData()
+            tableView?.reloadData()
         }
     }
     var playGroudModel : GetPlayGroundsData!
@@ -58,23 +58,23 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem?.isEnabled = false
-//        self.menuBtn.isEnabled = false
+        //        self.menuBtn.isEnabled = false
         navigationItem.leftBarButtonItem?.image = UIImage(named: "")
-      self.view.squareLoading.start(0)
+        self.view.squareLoading.start(0)
         tableView.delegate = self
-        tableView.dataSource = self 
+        tableView.dataSource = self
         setupLocationM()
-       
+        
         let nib = UINib(nibName: "FieldsCell", bundle: nil)
         
         tableView.register(nib, forCellReuseIdentifier: "cell")
         // Do any additional setup after loading the view.
-//        let tapped = UITapGestureRecognizer(target: self, action: #selector(self.closekeyBoard(_:)))
-//        
-//        self.view.addGestureRecognizer(tapped)
+        //        let tapped = UITapGestureRecognizer(target: self, action: #selector(self.closekeyBoard(_:)))
+        //
+        //        self.view.addGestureRecognizer(tapped)
         
-       reservationAPI()
-     }
+        reservationAPI()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -99,7 +99,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
                 self?.navigationItem.leftBarButtonItem?.isEnabled = true
                 self?.navigationItem.leftBarButtonItem?.image = UIImage(named: "Menu_Btn")
                 self?.servicesCount += 1
-            
+                
             }
         }
     }
@@ -108,10 +108,10 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         super.toSidemenuVC()
         ad.sideMenuTrigger(self,"NearBy")
     }
-//    func closekeyBoard(_ tapped : UITapGestureRecognizer) {
-//        
-//        view.endEditing(true)
-//    }
+    //    func closekeyBoard(_ tapped : UITapGestureRecognizer) {
+    //
+    //        view.endEditing(true)
+    //    }
     
     
     @IBAction func typeOfFieldsBtnsAction(_ sender: UIButton) {
@@ -126,9 +126,9 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         print("that's button tag : \(self.buttonTag) ")
         switch sender.tag {
         case 0:
-             nearFieldsSelected()
+            nearFieldsSelected()
         case 1 :
-             UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.selectionBtnsViewHeightConstant.constant = 96
                 self.nearByFieldsBtn.backgroundColor = Constants.Colors.gray
                 self.bookedFieldsBtn.backgroundColor = Constants.Colors.red
@@ -137,17 +137,17 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
                 self.view.layoutIfNeeded()
             })
         case 2 :
-             self.confirmedBtn.backgroundColor = Constants.Colors.green
+            self.confirmedBtn.backgroundColor = Constants.Colors.green
             self.unconfirmedBtn.backgroundColor = Constants.Colors.gray
         default:
-             self.confirmedBtn.backgroundColor = Constants.Colors.gray
+            self.confirmedBtn.backgroundColor = Constants.Colors.gray
             self.unconfirmedBtn.backgroundColor = Constants.Colors.green
         }
         if  let _ = tableView.cellForRow(at: [0,3]) {
-        tableView.scrollToRow(at: [0,0], at: UITableViewScrollPosition.top, animated: true)
+            tableView.scrollToRow(at: [0,0], at: UITableViewScrollPosition.top, animated: true)
         }
         tableView.reloadData()
-//        animateTableView()
+        //        animateTableView()
         
     }
     
@@ -164,7 +164,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     func setupLocationM() {
         
         locationManager.delegate = self
-
+        
         if CLLocationManager.locationServicesEnabled() {
             switch(CLLocationManager.authorizationStatus()) {
             case  .notDetermined :
@@ -186,44 +186,44 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-
-//        if (CLLocationManager.locationServicesEnabled())
-//        {
-//            locationManager.delegate = self
-//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            if ((UIDevice.current.systemVersion as NSString).floatValue >= 8)
-//            {
-//                locationManager.requestWhenInUseAuthorization()
-//            }
-//            
-//            locationManager.startUpdatingLocation()
-//        }
-//        else
-//        {
-//            #if debug
-//                println("Location services are not enabled");
-//            #endif           
-//        }
+        
+        //        if (CLLocationManager.locationServicesEnabled())
+        //        {
+        //            locationManager.delegate = self
+        //            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //            if ((UIDevice.current.systemVersion as NSString).floatValue >= 8)
+        //            {
+        //                locationManager.requestWhenInUseAuthorization()
+        //            }
+        //
+        //            locationManager.startUpdatingLocation()
+        //        }
+        //        else
+        //        {
+        //            #if debug
+        //                println("Location services are not enabled");
+        //            #endif
+        //        }
     }
     
-//    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!)
-//    {
-//        locationManager.stopUpdatingLocation()
-//        if ((error) != nil)
-//        {
-//            print(error)
-//        }
-//    }
-//    
-//    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
-//    {
-//        let locationArray = locations as NSArray
-//        let locationObj = locationArray.lastObject as! CLLocation
-//        let coord = locationObj.coordinate
-//        print(coord.latitude)
-//        print(coord.longitude)
-//        
-//    }
+    //    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!)
+    //    {
+    //        locationManager.stopUpdatingLocation()
+    //        if ((error) != nil)
+    //        {
+    //            print(error)
+    //        }
+    //    }
+    //
+    //    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+    //    {
+    //        let locationArray = locations as NSArray
+    //        let locationObj = locationArray.lastObject as! CLLocation
+    //        let coord = locationObj.coordinate
+    //        print(coord.latitude)
+    //        print(coord.longitude)
+    //
+    //    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -231,11 +231,11 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         
         print("that's the user Location : \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
         userLat = "\(userLocation.coordinate.latitude)"
-            userLong = "\(userLocation.coordinate.longitude)"
+        userLong = "\(userLocation.coordinate.longitude)"
         manager.stopUpdatingLocation()
         getNearByFieldsData()
-//        let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
-
+        //        let coordinations = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,longitude: userLocation.coordinate.longitude)
+        
         
         
     }
@@ -250,11 +250,13 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         playGroudModel.getNearByFields(lat: lat, long: long) {[weak self ] (data, sms, state) in
             
             if state {
-                guard let data = data else {  self?.view.squareLoading.stop(0); return }
+                guard let data = data else { DispatchQueue.main.async {
+                    self?.view.squareLoading.stop(0)
+                    }; return }
                 self?.nearFieldsData = data
                 self?.servicesCount += 1
             }else {
-                  self?.servicesCount += 1
+                self?.servicesCount += 1
             }
         }
         

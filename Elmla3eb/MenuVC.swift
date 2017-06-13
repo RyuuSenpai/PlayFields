@@ -127,7 +127,7 @@ class MenuVC: UIViewController {
     
     
     private func goTOPlayerPG() {
- 
+ //OwnerPlaygroundsVC
        let userLogged = ad.isUserLoggedIn()
         guard userLogged else {
             let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -135,8 +135,12 @@ class MenuVC: UIViewController {
             self.present(vc, animated: true, completion: nil)
             return
         }
+//        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let x = storyb.instantiateViewController(withIdentifier: "PlayFieldsVC") as! PlayFieldsVC
+//        let navb = UINavigationController(rootViewController: x)
+//        self.present(navb, animated: true, completion: nil)
         let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let x = storyb.instantiateViewController(withIdentifier: "PlayFieldsVC") as! PlayFieldsVC
+        let x = storyb.instantiateViewController(withIdentifier: "OwnerPlaygroundsVC") as! OwnerPlaygroundsVC
         let navb = UINavigationController(rootViewController: x)
         self.present(navb, animated: true, completion: nil)
     }
