@@ -228,7 +228,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.changePassword.isEnabled = false
                     self?.changePassword?.isEnabled = false
                     self?.disableTxts = true
-
+                    self?.changedImage = false 
                 }
             }else {
                 DispatchQueue.main.async {

@@ -285,7 +285,7 @@ class PaymentStatics_Data {
         self._pg_name = json["pg_name"].stringValue
         self._pg_BookingNumbers = json["pg_BookingNumbers"].intValue
         self._payments = json["payments"].intValue
-
+        
     }
     
 }

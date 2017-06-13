@@ -397,7 +397,8 @@ class MUserData {
    
     func postLogout( completed : @escaping ( String,Bool)->()) {
         let parameters : Parameters = [ parSource.user_id : USER_ID ]
-        
+        print("parameters postLogout: \(parameters)")
+
         let url = source.POST_LOGOUT  + source.API_TOKEN
         print("postLogout URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)

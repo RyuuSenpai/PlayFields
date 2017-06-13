@@ -8,7 +8,9 @@
 
 import Foundation
 import UIKit
+
 class Constants  {
+    
     static let screenSize: CGRect = UIScreen.main.bounds
     
     class API {
