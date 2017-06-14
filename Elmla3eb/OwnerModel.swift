@@ -43,18 +43,18 @@ class OwnerModel {
                     let amBooks = amAndPmObject["am"]
                     let pmBooks = amAndPmObject["pm"]
                     
-                    print("that's the Jsondata \(date)\n  date \(date)\n  ♎️amAndPmObject : \(amAndPmObject)\n ⚛️amNotBooked : \(amBooks)\n 🆔pmNotBooked : \(pmBooks)")
+//                    print("that's the Jsondata \(date)\n  date \(date)\n  ♎️amAndPmObject : \(amAndPmObject)\n ⚛️amNotBooked : \(amBooks)\n 🆔pmNotBooked : \(pmBooks)")
                     
                     
                     var amData = [AmPm_data]()
                     
                     for amTimes in amBooks {
-                        print(" ⚛️🆔amNotBooked : \(amTimes)\n  \n")
+//                        print(" ⚛️🆔amNotBooked : \(amTimes)\n  \n")
                         amData.append(AmPm_data(json: amTimes.1))
                     }
                     var pmData = [AmPm_data]()
                     for pmTimes in pmBooks {
-                        print(" ⚛️🆔pmNotBooked : \(pmTimes)\n  \n")
+//                        print(" ⚛️🆔pmNotBooked : \(pmTimes)\n  \n")
                         pmData.append(AmPm_data(json: pmTimes.1))
                     }
                     return(date,amData,pmData)
@@ -72,8 +72,8 @@ class OwnerModel {
                 let success = json[succe].intValue
                 let sms = json[sm].stringValue
                 let  state =  success == 1 ? true : false
-                
-                print("KILLVA: getP_GBooksManager STATUS:\(state) , sms: \(sms) data : \(data) \n")
+                print("KILLVA: getP_GBooksManager STATUS:\(state) , sms: \(sms)")
+//                print("KILLVA: getP_GBooksManager STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 let info = data["info"]
                 let pgName = info["pg_name"].stringValue
                 let timesR = data["times"]

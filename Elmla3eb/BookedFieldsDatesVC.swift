@@ -55,6 +55,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
                 //        playgView.timeDataDelegate = self
         //        let pf_Info = GetpgInfosWebServ()
         getAPIData()
+        
      }
     
     func getAPIData() {
@@ -104,6 +105,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! BookedFieldsDatesCell
+        cell.delegate = self
         if btnSelected == 0 {
             guard let notBookedCOunt = notBooked else { return cell }
             cell.dayTitle.text = ""
@@ -186,4 +188,10 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     //    }
 }
 
-
+extension BookedFieldsDatesVC : updateDataTrigger {
+    
+    func triggerupdate() {
+        getAPIData()
+        print("TRIGGERED")
+    }
+}
