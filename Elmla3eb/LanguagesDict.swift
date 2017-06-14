@@ -75,7 +75,8 @@ class LanguagesDict {
                          " SAR" : " ريال ",
                          "Edit Field" : "تعديل الملعب",
                          "Book Now!" : "حجز الآن",
-                         "Cancel Reservation" : "الغاء الحجز"
+                         "Cancel Reservation" : "الغاء الحجز",
+                         "price has to be only written in numbers" : "يجب ان يحتوي السعر علي ارقام فقط"
         //                             "":"",
         //                             "":"",
         //                             "":"",

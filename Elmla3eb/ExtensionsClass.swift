@@ -20,7 +20,18 @@ extension String {
         }else {
             return true
         }
-    }   
+    }
+    
+    var ispriceValue : Bool {
+        
+        let characterset = CharacterSet(charactersIn: "1234567890٠١٢٣٤٥٦٧٨٩")
+        if self.rangeOfCharacter(from: characterset.inverted) != nil {
+            print("string contains special characters")
+            return false
+        }else {
+            return true
+        }
+    }
     //let pattern = "^(009665|9665|\\+9665|05|5)?(5|0|3|6|4|9|1|8|7)([0-9]{7})$"
 //    func validate(value: String) -> Bool {
 //        let PHONE_REGEX = "^(009665|9665|\\+9665|05|5)?(5|0|3|6|4|9|1|8|7)([0-9]{7})$"
@@ -152,5 +163,53 @@ extension UIImageView {
 
 
 
+
+
+
+extension UIImage {
+    var base64EncodedString: String? {
+        if let data = UIImagePNGRepresentation(self) {
+            //            let dataStr = data.base64EncodedString(options: [])
+            
+            return data.base64EncodedString(options: [.lineLength64Characters])
+        }
+        return nil
+    }
+}
+
+
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+    
+    
+    func resizeImageWith(newSize: CGSize) -> UIImage {
+        
+        let horizontalRatio = newSize.width / size.width
+        let verticalRatio = newSize.height / size.height
+        
+        let ratio = max(horizontalRatio, verticalRatio)
+        let newSize = CGSize(width: size.width * ratio, height: size.height * ratio)
+        UIGraphicsBeginImageContextWithOptions(newSize, true, 0)
+        draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: newSize))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
+}
 
 

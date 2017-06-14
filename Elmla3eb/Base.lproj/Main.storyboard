@@ -2445,7 +2445,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="290" height="35"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qo5-Mz-JEX" id="u6x-2J-Vop">
-                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news_icon" translatesAutoresizingMaskIntoConstraints="NO" id="7sQ-6O-JTh">
@@ -2579,9 +2579,12 @@
                         <outlet property="detailsBtnLine" destination="JZe-iA-jDq" id="KXy-ct-cQR"/>
                         <outlet property="fieldLightingAvailabilityImage" destination="xrR-Ab-BXz" id="WtJ-X2-A4G"/>
                         <outlet property="footballAvailabilityImage" destination="Zjq-He-I3X" id="CKU-Qh-kn2"/>
+                        <outlet property="hoursStackView" destination="3SS-vd-Dow" id="HCR-P4-g8D"/>
                         <outlet property="infoBtn" destination="rle-JK-eRU" id="vEZ-GW-uW3"/>
                         <outlet property="infoBtnLine" destination="M8l-9w-hv9" id="APd-j2-yN8"/>
                         <outlet property="labelsDataView" destination="Fes-yb-70G" id="TPB-Fb-har"/>
+                        <outlet property="mainControllerStackView" destination="qbx-b9-Tvs" id="PNr-7w-WzI"/>
+                        <outlet property="newStackView" destination="Zfd-LW-sjk" id="Gps-kp-fTP"/>
                         <outlet property="newsBtn" destination="Gob-UM-4vd" id="sr2-Jp-YDM"/>
                         <outlet property="newsBtnLine" destination="dVW-Xq-6nj" id="qKv-XU-B1r"/>
                         <outlet property="newsTableView" destination="sKZ-Em-Otw" id="OM4-y1-yId"/>
@@ -2842,19 +2845,25 @@
                                                         <subviews>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bqw-c5-B9B">
                                                                 <rect key="frame" x="0.0" y="0.0" width="159" height="47"/>
-                                                                <color key="backgroundColor" red="0.36124140020000001" green="0.68383032079999995" blue="0.15303236249999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" red="0.59601789712905884" green="0.59612089395523071" blue="0.59600430727005005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <state key="normal" title="Booked Dates">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="bookedBtnState:" destination="hen-Ce-hN8" eventType="touchUpInside" id="GNt-uv-2nb"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svA-f0-CBC">
                                                                 <rect key="frame" x="161" y="0.0" width="159" height="47"/>
-                                                                <color key="backgroundColor" red="0.47446054220199585" green="0.47454428672790527" blue="0.4744495153427124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" red="0.32040172820000001" green="0.70065646699999995" blue="0.16013902429999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                 <state key="normal" title="available to Book">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="bookedBtnState:" destination="hen-Ce-hN8" eventType="touchUpInside" id="yW6-iQ-3SO"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -2891,7 +2900,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="290" height="253"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XwW-t9-ehN" id="zHr-JE-GkX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="252"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="252.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-9F-43S">
@@ -3012,12 +3021,36 @@
                                                                                         </tableViewCell>
                                                                                     </prototypes>
                                                                                 </tableView>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Playfields Found!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sQ-yq-Xlv">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="205"/>
+                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                                    <color key="textColor" red="0.36124140024185181" green="0.68383032083511353" blue="0.15303236246109009" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <color key="shadowColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <size key="shadowOffset" width="0.0" height="0.59999999999999998"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </label>
+                                                                                <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HuC-M6-vxu">
+                                                                                    <rect key="frame" x="126" y="84" width="37" height="37"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13436429790000001" colorSpace="calibratedRGB"/>
+                                                                                    <color key="color" red="0.36078431370000003" green="0.68235294120000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </activityIndicatorView>
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="3CS-Bv-Mwa" firstAttribute="top" secondItem="NUN-gB-spm" secondAttribute="top" id="CH1-lY-K1Q"/>
+                                                                                <constraint firstItem="9sQ-yq-Xlv" firstAttribute="width" secondItem="NUN-gB-spm" secondAttribute="width" id="HNd-oI-brd"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="3CS-Bv-Mwa" secondAttribute="trailing" id="Qvc-yz-JEj"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="3CS-Bv-Mwa" secondAttribute="bottom" id="TYI-ru-zKp"/>
+                                                                                <constraint firstItem="9sQ-yq-Xlv" firstAttribute="centerX" secondItem="NUN-gB-spm" secondAttribute="centerX" id="bMn-Af-0uh"/>
+                                                                                <constraint firstItem="9sQ-yq-Xlv" firstAttribute="centerY" secondItem="NUN-gB-spm" secondAttribute="centerY" id="cIr-bG-TaG"/>
+                                                                                <constraint firstItem="9sQ-yq-Xlv" firstAttribute="height" secondItem="NUN-gB-spm" secondAttribute="height" id="r3e-2d-dMh"/>
                                                                                 <constraint firstItem="3CS-Bv-Mwa" firstAttribute="leading" secondItem="NUN-gB-spm" secondAttribute="leading" id="uRt-JX-ho0"/>
                                                                             </constraints>
                                                                         </view>
@@ -3033,10 +3066,12 @@
                                                                     </constraints>
                                                                 </tableViewCellContentView>
                                                                 <connections>
+                                                                    <outlet property="NoDataFoundLbl" destination="9sQ-yq-Xlv" id="9Bc-l8-MGO"/>
                                                                     <outlet property="amBtn" destination="YKy-d6-U22" id="nlt-fe-niU"/>
                                                                     <outlet property="dateLabel" destination="HOi-kJ-yc7" id="8Jk-J2-WKe"/>
                                                                     <outlet property="dayTitle" destination="aMr-Rs-lwM" id="55c-wH-iTG"/>
                                                                     <outlet property="firstView" destination="5a9-9F-43S" id="MwJ-Vp-chN"/>
+                                                                    <outlet property="loadingActivity" destination="HuC-M6-vxu" id="Fu3-Sg-Awg"/>
                                                                     <outlet property="pmBtn" destination="rEg-pZ-hi0" id="yZ9-dY-UCC"/>
                                                                     <outlet property="secondView" destination="NUN-gB-spm" id="CMs-Wd-XJ1"/>
                                                                     <outlet property="tableView" destination="3CS-Bv-Mwa" id="cW1-V9-iSL"/>
@@ -3083,7 +3118,9 @@
                     <navigationItem key="navigationItem" id="ICc-Dx-wTh"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="bookedBtn" destination="svA-f0-CBC" id="5dQ-eL-EzA"/>
                         <outlet property="expandTableView" destination="Nes-qG-TV2" id="7sr-jn-ZVS"/>
+                        <outlet property="notBookedBtn" destination="Bqw-c5-B9B" id="Um2-AY-iVn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2M-sc-VAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3188,7 +3225,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dvi-X9-eNI" id="Zma-Oo-qJO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZj-vS-Otv">
@@ -3266,7 +3303,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xb-ZJ-7Gw" id="O1X-lQ-hbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-QM-GgM">
@@ -3572,7 +3609,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PaymentCell" id="tDb-f5-i2W" customClass="PaymentCell" customModule="Elmla3eb" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PaymentCell" id="tDb-f5-i2W" customClass="PaymentCell" customModule="Elmla3eb" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="320" height="99"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tDb-f5-i2W" id="9Uh-OL-hQx">
@@ -3774,6 +3811,6 @@
         <image name="true_icon" width="47" height="47"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D6b-Vb-Rc0"/>
+        <segue reference="Dcr-HH-oXr"/>
     </inferredMetricsTieBreakers>
 </document>

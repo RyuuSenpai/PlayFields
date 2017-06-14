@@ -42,15 +42,7 @@
         fromTxt.delegate = self
         toTxt.delegate = self
         
-        citiesPickerV = UIPickerView()
-        citiesPickerV.dataSource = self
-        citiesPickerV.delegate = self
-        cityTxt.inputView = citiesPickerV
-        
-        ratePickerV = UIPickerView()
-        ratePickerV.dataSource = self
-        ratePickerV.delegate = self
-        rateTxt.inputView = ratePickerV
+     setupPicker()
         
         self.view.squareLoading.start(0)
         let global = GLOBAL()
@@ -184,7 +176,17 @@
  
  extension SearchVC :  UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
+    func setupPicker() {
+        citiesPickerV = UIPickerView()
+        citiesPickerV.dataSource = self
+        citiesPickerV.delegate = self
+        cityTxt.inputView = citiesPickerV
+        
+        ratePickerV = UIPickerView()
+        ratePickerV.dataSource = self
+        ratePickerV.delegate = self
+        rateTxt.inputView = ratePickerV
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

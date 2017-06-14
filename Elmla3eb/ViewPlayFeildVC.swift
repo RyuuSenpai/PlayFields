@@ -45,29 +45,32 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     @IBOutlet weak var pageControl: UIView!
     
+    @IBOutlet weak var hoursStackView: UIStackView!
+    @IBOutlet weak var newStackView: UIStackView!
+    @IBOutlet weak var mainControllerStackView: UIStackView!
     
     // Owner Change Data Storage
     lazy var  ownerDataDict = [String : String]()
     //
     var bookNowDays = [String]()
+    //Owner Vars
+    var price : Int?
     var isOwner  =  false  {
         didSet {
             if isOwner {
-//            self.view1SecLbl?.isEnabled = true
-//            self.view2SecLbl?.isEnabled = true
-//            self.view3SecLbl?.isEnabled = true
-//            self.view4SecLbl?.isEnabled = true
                 self.bookNowDoneBtn?.setTitle(langDicClass().getLocalizedTitle("Save"), for: .normal)
+                mainControllerStackView?.removeArrangedSubview(hoursStackView)
+                hoursStackView?.removeFromSuperview()
+                mainControllerStackView?.removeArrangedSubview(newStackView)
+                newStackView?.removeFromSuperview()
             } else {
-//            self.view1SecLbl?.isEnabled = false
-//            self.view2SecLbl?.isEnabled = false
-//            self.view3SecLbl?.isEnabled = false
-//            self.view4SecLbl?.isEnabled = false
                 self.bookNowDoneBtn?.setTitle(langDicClass().getLocalizedTitle("Book Field Now"), for: .normal)
-
+            }
         }
     }
-}
+    var haveBall : Bool = false
+    var haveLighting :Bool = false
+    //@end owner var
     var bookNowTimes = [Pg_Times_Data]()
     var imagesStringList : [String]! {
         didSet{
@@ -124,14 +127,16 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         self.setupChildView(vc)
         return vc
     }()
+    //Owner Vars
     
+    //
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("that is the pg_id : \(pg_id)")
         self.view.squareLoading.start(0.0)
         
-         newsTableView.delegate = self
+        newsTableView.delegate = self
         newsTableView.dataSource = self
         // Do any additional setup after loading the view.
         newsTableView.estimatedRowHeight = 35
@@ -139,7 +144,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         theView = labelsDataView
         theCurBtn = detailsBtn
         CurrBtnLine = detailsBtnLine
-         self.originalBottomConstant = self.bookNowBtnBottomConstant.constant
+        self.originalBottomConstant = self.bookNowBtnBottomConstant.constant
         
         
         //        self.setLabelsTitle()
@@ -154,7 +159,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         if isOwner {
             print("🤡owner")
-           isOwner = true
+            isOwner = true
         }else {
             print("🤡Player")
             isOwner = false
@@ -283,10 +288,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.theCurBtn = detailsBtn
             self.CurrBtnLine = detailsBtnLine
             self.setPlaygDetails()
-//            if isOwner {
-//                self.view3SecLbl.isEnabled = false
-//                self.view4SecLbl.isEnabled = true
-//            }
+            //            if isOwner {
+            //                self.view3SecLbl.isEnabled = false
+            //                self.view4SecLbl.isEnabled = true
+        //            }
         case 1: //AboutField
             print(sender.tag)
             self.theView = self.labelsDataView
@@ -294,11 +299,11 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.theCurBtn = infoBtn
             self.CurrBtnLine = infoBtnLine
             self.setPlaygDetails()
-//            if isOwner {
-//                self.view1SecLbl.isEnabled = false
-//                self.view3SecLbl.isEnabled = false
-//                self.view4SecLbl.isEnabled = false
-//            }
+            //            if isOwner {
+            //                self.view1SecLbl.isEnabled = false
+            //                self.view3SecLbl.isEnabled = false
+            //                self.view4SecLbl.isEnabled = false
+        //            }
         case 2:  //Hours
             print(sender.tag)
             self.theView = self.bookNowView
@@ -320,8 +325,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     @IBAction func bookNowBtnAct(_ sender: UIButton) {
         
         guard !isOwner else {
-            print("that\'s the storaged Owner Data : \(ownerDataDict)")
-
+//            print("that\'s the storaged Owner Data : \(ownerDataDict)")
+            print(("tbhat's the changed value : price : \(price ?? 0) , hasball \(haveBall ? 1 : 0)  haslight \(haveLighting ? 1 : 0):"))
             return
         }
         //BookNow // Player
@@ -398,6 +403,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             print("didn't find data in pg_Details and Info ßΩ≈ç")
             return
         }
+        haveBall =  pgInf.footballAvailable
+        haveLighting = pgInf.lightAvailable
+        price = pgD.originalPrice
+        if title == nil { title = pgD.pgName }
         setLabelsTitle(fieldName: pgD.pgName, address: pgD.address, booksTimes: "\(pgD.pgBookingTimes)", price: pgD.price, numberOfFields: "\(pgInf.pgNumbersOfFeilds)", fieldType: pgInf.groundType, hasBall: pgInf.footballAvailable, hasLight: pgInf.lightAvailable)
     }
     
@@ -411,10 +420,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.theView.alpha = 0
             self.theCurBtn.setTitleColor(Constants.Colors.lightGray, for: .normal)
             self.CurrBtnLine.backgroundColor = Constants.Colors.lightGray
-            
+            guard !self.isOwner else { return }
             if self.theCurBtn == self.newsBtn    {
                 self.bookNowBtnBottomConstant.constant = self.originalBottomConstant!
-//                self.bookNowDoneBtn.alpha = 0
+                //                self.bookNowDoneBtn.alpha = 0
             }
             //            self.theCurBtn.currentTitleColor = Constants.Colors.gray.cgColor
         })
@@ -427,10 +436,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             
             self.theCurBtn.setTitleColor(Constants.Colors.green, for: .normal)
             self.CurrBtnLine.backgroundColor = Constants.Colors.green
-            
+            guard !self.isOwner else { return }
             if self.theCurBtn == self.newsBtn {
                 self.bookNowBtnBottomConstant.constant = -100
-//                self.bookNowDoneBtn.alpha = 0
+                //                self.bookNowDoneBtn.alpha = 0
             }
         })
     }
@@ -499,7 +508,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     }
     
     
-    
+    //MARK: Owner set new data
     @IBAction func ownerChangeValue(_ sender: UIButton) {
         guard isOwner else { return }
         
@@ -508,24 +517,39 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         case 0 :
             print(0)
             if theCurBtn == detailsBtn {
-                   presentAlert("Enter Field Name", "", "Field Name", view1SecLbl)
+                presentAlert("Enter Field Name", "", "Field Name", view1SecLbl)
             }
         case 1 :
             print(1)
             if theCurBtn == detailsBtn {//Details * FieldName, address Books Times , price
                 presentAlert("Enter Address", "", "Address", view2SecLbl)
-             }else {//AboutField - Number of Fields X, Fields Type √
+            }else {//AboutField - Number of Fields X, Fields Type √
                 presentAlert("Enter Field Type", "", "Field Type", view2SecLbl)
             }
         case 2 :
             print(2)
-            if theCurBtn == infoBtn {//AboutField - Number of Fields X, Fields Type √
-//                presentAlert("Enter Address", "", "Address", view2SecLbl)
+            if theCurBtn == detailsBtn {//AboutField - Number of Fields X, Fields Type √
+                //                presentAlert("Enter Address", "", "Address", view2SecLbl)
+            }else {
+                if !haveBall {
+                    self.footballAvailabilityImage.image = UIImage(named: "true_icon")
+                }else {
+                    self.footballAvailabilityImage.image = UIImage(named: "faulse_icon")
+                }
+                haveBall = !haveBall
             }
-       default :
+        default :
             print(3)
             if theCurBtn == detailsBtn {
-                 presentAlert("Enter Price for Hour", "", "Price", view4SecLbl)
+                presentAlert("Enter Price for Hour", "", "Price", view4SecLbl)
+            }else {
+                
+                if !haveLighting {
+                    self.fieldLightingAvailabilityImage.image = UIImage(named: "true_icon")
+                }else {
+                    self.fieldLightingAvailabilityImage.image = UIImage(named: "faulse_icon")
+                }
+                haveLighting = !haveLighting
             }
         }
     }
@@ -534,11 +558,18 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     func presentAlert(_ title : String,_ sms : String,_ placeHolder : String,_ label : UILabel) {//"Please input your email:"
         let alertController = UIAlertController(title: title, message: sms, preferredStyle: .alert)
         
-        let confirmAction = UIAlertAction(title: langDicClass().getLocalizedTitle("Confirm"), style: .default) { (_) in
+        let confirmAction = UIAlertAction(title: langDicClass().getLocalizedTitle("Confirm"), style: .default) { [weak self] (_) in
             if let field = alertController.textFields?[0] , let txt = field.text ,!txt.isEmpty{
                 // store your data
                 //                    UserDefaults.standard.synchronize()
-                label.text = txt
+                if placeHolder == "Price" {
+                    guard txt.ispriceValue else { ad.showAlert("defaultTitle", langDicClass().getLocalizedTitle("price has to be only written in numbers"))
+                        return }
+                    label.text = txt + " \(langDicClass().getLocalizedTitle(" SAR"))"
+                    self?.price = Int(txt)
+                }else {
+                    label.text = txt
+                }
             } else {
                 // user did not fill field
             }
@@ -629,16 +660,16 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
 
 
 //extension ViewPlayFeildVC : UITextFieldDelegate {
-//    
-//    
+//
+//
 //    func setupTextFieldDelegate() {
-//        
+//
 //        self.view1SecLbl.delegate = self
 //         self.view2SecLbl.delegate = self
 //         self.view3SecLbl.delegate = self
 //         self.view4SecLbl.delegate = self
 //    }
-//    
+//
 //    func textFieldDidEndEditing(_ textField: UITextField) {
 //        switch textField {
 //        case view1SecLbl://FieldName //Number of fields
@@ -647,8 +678,8 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
 //            print("that's the view2SecLbl text : \(textField.text)")
 //        case view3SecLbl://BooksTimes // Ball
 //            print("that's the view3SecLbl text : \(textField.text)")
-//         
-//        default: //Price // Lighting 
+//
+//        default: //Price // Lighting
 //            print("that's the view4SecLbl text : \(textField.text)")
 //            if let  text = textField.text ,!text.isEmpty  {
 //                textField.text = text + " SAR"
@@ -657,7 +688,7 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
 //            }
 //        }
 //    }
-//    
+//
 //    func textFieldDidBeginEditing(_ textField: UITextField) {
 //        
 //        if textField == view4SecLbl { //Price

@@ -170,6 +170,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     
     func showAlert(_ title : String,_ sms : String) {
+        guard title != "√" else {
+            let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:langDicClass().getLocalizedTitle(sms) , type: .success)
+            alert.show()
+            return
+        }
         guard title != "default" else {
              let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message:langDicClass().getLocalizedTitle("try again!!") , type: .warning)
             alert.show()

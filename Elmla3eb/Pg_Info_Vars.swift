@@ -68,7 +68,7 @@ struct  AmPm_data {
     private var _to_datetime : String?
     private var _time : String?
     private var _booked : Int?
-    private var _confirmed : Int?
+      var _confirmed : Int?
     private let source = Constants.API.Parameters()
     
     var id : Int{
@@ -104,6 +104,10 @@ struct  AmPm_data {
         return true
     }
     
+    var confirmedEqualNill : Bool {
+        guard let x = _confirmed , x == 1 || x == 2 else { return true }
+        return false
+    }
     var confirmedBool : Bool{
         guard  let x = _confirmed , x == 1 else { return  false}
         return true
@@ -286,6 +290,11 @@ class Pg_Details_Data {
 
         }
         return "\(x) SAR"
+    }
+    
+    var originalPrice : Int{
+        guard let x = _price , x.ispriceValue , let y = Int(x) else { return 0 }
+        return y
     }
     var pgBookingTimes : Int{
         guard  let x = _pg_Booking_Num   else { return  0}
