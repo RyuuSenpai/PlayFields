@@ -44,26 +44,28 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             guard let data = bookingData else { print("📍notBooked_Data == nil");return }
             amData = data.amData
             pmData = data.pmData
+//            currentTimeArray = amData
+//            self.tableView?.reloadData()
+            print("testtt")
+            amBtnClicked()
         }
     }
     var currentTimeArray : [AmPm_data]?{
         didSet {
             guard let _ = currentTimeArray else{ print("📍currentTimeArray == nil"); return }
-            tableView.reloadData()
+            
+//            tableView.reloadData()
 }
     }
     var amData : [AmPm_data]?{
         didSet {
             guard let _ = amData else{ print("📍Am_data == nil"); return }
 //            currentTimeArray = amData
-            amBtnClicked()
-            currentarrayTitle = "am"
         }
     }
     var pmData : [AmPm_data]?{
         didSet {
             guard let _ = pmData else{ print("📍Pm_data == nil"); return }
-            currentarrayTitle = "pm"
         }
     }
     
@@ -147,6 +149,8 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     self?.loadingActivity.stopAnimating()
                     self?.isUserInteractionEnabled = true
                     ad.showAlert("defaultTitle", sms) ;print("Attendance request has failed❗️"); return }
+                
+                
                 self?.currentTimeArray?.remove(at: sender.tag)
                 if self?.currentarrayTitle == "am" {
                     print("tag : \(sender.tag) am count before : \(self?.amData?.count)")
@@ -157,6 +161,10 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     self?.pmData?.remove(at: sender.tag)
                     print("tag : \(sender.tag)  pmData count after : \(self?.pmData?.count)")
                 }
+//                self?.tableView.beginUpdates()
+//                let indexPath = IndexPath(item: sender.tag, section: 0)
+//                self?.tableView.reloadRows(at: [indexPath], with: .middle)
+//                self?.tableView.endUpdates()
                 self?.loadingActivity.stopAnimating()
                 self?.isUserInteractionEnabled = true
                 ad.showAlert("√", "")
@@ -172,23 +180,24 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     ad.showAlert("defaultTitle", sms) ;print("confirm request has failed❗️"); return }
                 
                 if self?.currentarrayTitle == "am" {
-                    print("state : \(self?.currentarrayTitle) amData before confirmed : \(self?.amData?[sender.tag]._confirmed )")
+//                    print("state : \(self?.currentarrayTitle) amData before confirmed : \(self?.amData?[sender.tag]._confirmed )")
                     self?.amData?[sender.tag]._confirmed = 1
-                    print("state : \(self?.currentarrayTitle)  amData after confirmed : \(self?.amData?[sender.tag]._confirmed )")
+//                    print("state : \(self?.currentarrayTitle)  amData after confirmed : \(self?.amData?[sender.tag]._confirmed )")
                     self?.currentTimeArray = self?.amData
                 }else {
-                    print("state : \(self?.currentarrayTitle) tag before confirmed : \( sender.tag ) pmData count after : \(self?.pmData?.count)")
+//                    print("state : \(self?.currentarrayTitle) tag before confirmed : \( sender.tag ) pmData count after : \(self?.pmData?.count)")
 
-                    print("state : \(self?.currentarrayTitle) pmData before confirmed : \(self?.pmData?[sender.tag]._confirmed ) ")
+//                    print("state : \(self?.currentarrayTitle) pmData before confirmed : \(self?.pmData?[sender.tag]._confirmed ) ")
                     self?.pmData?[sender.tag]._confirmed = 1
                       self?.currentTimeArray = self?.pmData
-                    print("state : \(self?.currentarrayTitle) pmData after confirmed : \(self?.pmData?[sender.tag]._confirmed )")
+//                    print("state : \(self?.currentarrayTitle) pmData after confirmed : \(self?.pmData?[sender.tag]._confirmed )")
                 }
 //                self?.tableView.reloadRows(at: [[0,sender.tag]], with: UITableViewRowAnimation.automatic )
 //                self?.tableView.reloadData()
-//                let indexPath = IndexPath(item: sender.tag, section: 0)
-//                self?.tableView.reloadRows(at: [indexPath], with: .top)
-                
+                self?.tableView.beginUpdates()
+                let indexPath = IndexPath(item: sender.tag, section: 0)
+                self?.tableView.reloadRows(at: [indexPath], with: .middle)
+                    self?.tableView.endUpdates()
                 self?.loadingActivity.stopAnimating()
                 self?.isUserInteractionEnabled = true
                 ad.showAlert("√", "")

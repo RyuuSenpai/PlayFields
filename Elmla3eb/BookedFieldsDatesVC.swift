@@ -48,31 +48,34 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.squareLoading.start(0)
-        self.expandTableView.delegate = self
+         self.expandTableView.delegate = self
         self.expandTableView.dataSource = self
         expandTableView.estimatedRowHeight = 40
         expandTableView.rowHeight = UITableViewAutomaticDimension
+                //        playgView.timeDataDelegate = self
+        //        let pf_Info = GetpgInfosWebServ()
+        getAPIData()
+     }
+    
+    func getAPIData() {
+        self.view.squareLoading.start(0)
         guard let pgId = pg_id else { print("❗️Fatal Error pg_id equal nil "); return}
         ownerModel.getP_GBooksManager(userID: 53, pgID: pgId) { [weak self] (dataR, sms, state) in
-             guard state else {
+            guard state else {
                 self?.view.squareLoading.stop(0)
                 ad.showAlert("defaultTitle", sms )
                 return
             }
             
             if let data = dataR {
-//                self?.ownerData = OwnerBooksmanager_Data()
-                 self?.booked = data.booked
+                //                self?.ownerData = OwnerBooksmanager_Data()
+                self?.booked = data.booked
                 self?.notBooked = data.notBooked
             }
-              self?.view.squareLoading.stop(0)
+            self?.view.squareLoading.stop(0)
         }
-        //        playgView.timeDataDelegate = self
-        //        let pf_Info = GetpgInfosWebServ()
-        
-     }
-    
+
+    }
     
     func methodOfReceivedNotification(notification: Notification){
         //Take Action on Notification
@@ -148,9 +151,11 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         print("that's button tag : \(self.btnSelected) ")
         
         if sender.tag == 0 {
+            getAPIData()
             bookedBtn.backgroundColor = Constants.Colors.green
             notBookedBtn.backgroundColor = Constants.Colors.gray
         }else {
+            
             bookedBtn.backgroundColor = Constants.Colors.gray
             notBookedBtn.backgroundColor = Constants.Colors.green
         }
