@@ -325,8 +325,26 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     @IBAction func bookNowBtnAct(_ sender: UIButton) {
         
         guard !isOwner else {
-//            print("that\'s the storaged Owner Data : \(ownerDataDict)")
+
             print(("tbhat's the changed value : price : \(price ?? 0) , hasball \(haveBall ? 1 : 0)  haslight \(haveLighting ? 1 : 0):"))
+            self.activityIndicator.startAnimating()
+            let editPG = GetPlayGroundsData()
+            guard let pgId = pg_id, let name = ownerDataDict["name"], let address = ownerDataDict["address"], let price = price, let type = ownerDataDict["type"] else {
+                 self.activityIndicator.stopAnimating()
+                ad.showAlert("default","")
+                return
+            }
+            editPG.putEdit_Playground(pg_id: pgId, pg_name: name, address: address, price: price, ground_type: type, light_available: haveLighting ? "1" : "0" , football_available: haveBall ? "1" : "0", completed: { [weak self] (state,sms) in
+                guard state else { ad.showAlert("X", sms); return }
+                let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message: langDicClass().getLocalizedTitle(""), type: .success)
+
+                DispatchQueue.main.async {
+                    self?.activityIndicator.stopAnimating()
+                    alert.show()
+                }
+              
+            })
+            
             return
         }
         //BookNow // Player
@@ -406,6 +424,9 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         haveBall =  pgInf.footballAvailable
         haveLighting = pgInf.lightAvailable
         price = pgD.originalPrice
+        ownerDataDict["name"] = pgD.pgName
+        ownerDataDict["address"] = pgD.address
+        ownerDataDict["type"] = pgInf.groundType
         if title == nil { title = pgD.pgName }
         setLabelsTitle(fieldName: pgD.pgName, address: pgD.address, booksTimes: "\(pgD.pgBookingTimes)", price: pgD.price, numberOfFields: "\(pgInf.pgNumbersOfFeilds)", fieldType: pgInf.groundType, hasBall: pgInf.footballAvailable, hasLight: pgInf.lightAvailable)
     }
@@ -563,12 +584,19 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 // store your data
                 //                    UserDefaults.standard.synchronize()
                 if placeHolder == "Price" {
-                    guard txt.ispriceValue else { ad.showAlert("defaultTitle", langDicClass().getLocalizedTitle("price has to be only written in numbers"))
-                        return }
+                    guard txt.ispriceValue else { ad.showAlert("X", langDicClass().getLocalizedTitle("price has to be only written in numbers"))
+                        return  }
                     label.text = txt + " \(langDicClass().getLocalizedTitle(" SAR"))"
                     self?.price = Int(txt)
-                }else {
+                }else{
                     label.text = txt
+                }
+                if placeHolder == "Address" {
+                    self?.ownerDataDict["address"] = txt
+                }else  if placeHolder == "Field Type" {
+                    self?.ownerDataDict["type"] = txt
+                }else if placeHolder == "Field Name" {
+                    self?.ownerDataDict["name"] = txt
                 }
             } else {
                 // user did not fill field

@@ -88,7 +88,7 @@
                 }
                 
             }else {
-                ad.showAlert("defaultTitle", "\(data.1)")
+                ad.showAlert("X", "\(data.1)")
                 self?.disableView(false)
             }
             

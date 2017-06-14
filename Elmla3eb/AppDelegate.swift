@@ -180,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             alert.show()
             return
         }
-        guard title != "defaultTitle" else {
+        guard title != "X" else {
             let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong With"), message:langDicClass().getLocalizedTitle(sms) , type: .warning)
             alert.show()
             return

@@ -61,7 +61,8 @@ class MUserData {
                  }else {
                     
                  let xUser = PostLoginVars(jsonData: data)
-                
+                    print("that's the userType : \(xUser.type)")
+                    UserDefaults.standard.setValue(xUser.type, forKey: "User_Type")
                     completed((xUser,state,sms,nil))
                 }
                 break
@@ -631,6 +632,7 @@ class PostLoginVars {
         self._birth_date = jsonData[source.birth_date].stringValue
         self._image = jsonData[source.image].stringValue
         self._fbId = jsonData[source.fb_user_id].stringValue
+        self._type = jsonData[source.type].stringValue
 
     }
     

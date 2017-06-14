@@ -54,6 +54,7 @@ class Constants  {
             let GET_PLAY_GROUNDS_ID = API.main_url + "homedatas/"
             let POST_PLAY_GROUND_RATE = API.main_url + "playgrounds/rating"
             let GET_NEARBY_FIELDS = API.main_url + "playgrounds/nearby"
+            let PUT_EDIT_PLAYGROUND = API.main_url + "playgrounds/"
             //////////////
             //SETTINGS
             let POST_SETTINGS_DATA = API.main_url + "settings"

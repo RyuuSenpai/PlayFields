@@ -50,10 +50,15 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             guard let data = bookingData else { print("📍notBooked_Data == nil");return }
             amData = data.amData
             pmData = data.pmData
-            //            currentTimeArray = amData
-            //            self.tableView?.reloadData()
+            if currentarrayTitle == "am" {
+                amBtnClicked()
+            }else {
+                pmBtnClicked()
+            }
+//                        currentTimeArray = amData
+//                        self.tableView?.reloadData()
             print("testtt")
-            amBtnClicked()
+//            amBtnClicked()
         }
     }
     var currentTimeArray : [AmPm_data]?{
@@ -158,7 +163,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                 guard state else {
                     self?.loadingActivity.stopAnimating()
                     self?.isUserInteractionEnabled = true
-                    ad.showAlert("defaultTitle", sms) ;print("Attendance request has failed❗️"); return }
+                    ad.showAlert("X", sms) ;print("Attendance request has failed❗️"); return }
                 
 //                self?.currentTimeArray?.remove(at: sender.tag)
                 if self?.currentarrayTitle == "am" {
@@ -190,7 +195,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                 guard state else {
                     self?.loadingActivity.stopAnimating()
                     self?.isUserInteractionEnabled = true
-                    ad.showAlert("defaultTitle", sms) ;print("confirm request has failed❗️"); return }
+                    ad.showAlert("X", sms) ;print("confirm request has failed❗️"); return }
                 
                 if self?.currentarrayTitle == "am" {
                     //                    print("state : \(self?.currentarrayTitle) amData before confirmed : \(self?.amData?[sender.tag]._confirmed )")

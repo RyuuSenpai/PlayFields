@@ -64,7 +64,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         ownerModel.getP_GBooksManager(userID: 53, pgID: pgId) { [weak self] (dataR, sms, state) in
             guard state else {
                 self?.view.squareLoading.stop(0)
-                ad.showAlert("defaultTitle", sms )
+                ad.showAlert("X", sms )
                 return
             }
             
