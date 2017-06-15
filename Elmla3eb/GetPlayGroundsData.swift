@@ -199,6 +199,66 @@ class GetPlayGroundsData {
 //    }
 //
 //}
+    /*
+     {
+     "id": 0,
+     "user_id": 0,
+     "pg_name": "string",
+     "address": "string",
+     "map_lon": 0,
+     "map_lat": 0,
+     "price": 0,
+     "featured": true,
+     "ground_type": "string",
+     "light_available": "string",
+     "football_available": "string",
+     "subtitle": "string"
+     }
+ */
+    
+    func putEdit_Playground(pg_id:Int ,pg_name : String? , address : String?, price : Int?, ground_type : String?, light_available : String,football_available:String  ,completed:@escaping (Bool,String) -> ()) {
+        let parameters : Parameters = [parSource.pg_id : pg_id,parSource.pg_name : pg_name ,parSource.address : address ,parSource.price : price ,parSource.ground_type : ground_type ,parSource.light_available : light_available ,parSource.football_available : football_available ]
+        
+        print("putEdit_Playground parameters: \(parameters)")
+
+        let url = source.PUT_EDIT_PLAYGROUND + "\(pg_id)" + source.API_TOKEN
+        print("putEdit_Playground URL: \(url)")
+        Alamofire.request(url , method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+                
+                
+                let data = response.result.value
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                
+                print("KILLVA: putEdit_Playground STATUS:\(state) , sms: \(sms) data : \(data) \n")
+                
+                //                let xUser = PostLoginVars(jsonData: data)
+                
+                completed(state,sms)
+                
+                break
+            case .failure(_) :
+                print("that is fail putEdit_Playground i n getting the data Mate : \(response.result.error)")
+                completed(false,"Network timeout")
+                break
+            }
+        }
+    }
     
     
     

@@ -97,7 +97,7 @@ extension PlayFieldsVC : UITableViewDataSource {
             
             guard state else {
                 print(" ❗️ State is False ❗️")
-                ad.showAlert("defaultTitle", sms)
+                ad.showAlert("X", sms)
                 return
             }
 //            if let index = selectedDates.index(of: xcz[sender.tag]) {

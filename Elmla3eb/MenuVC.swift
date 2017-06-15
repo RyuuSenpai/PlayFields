@@ -135,14 +135,19 @@ class MenuVC: UIViewController {
             self.present(vc, animated: true, completion: nil)
             return
         }
-//        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let x = storyb.instantiateViewController(withIdentifier: "PlayFieldsVC") as! PlayFieldsVC
-//        let navb = UINavigationController(rootViewController: x)
-//        self.present(navb, animated: true, completion: nil)
+        print("that's the pg_type : \(UserDefaults.standard.value(forKey: "User_Type") )")
+        if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
+            let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let x = storyb.instantiateViewController(withIdentifier: "OwnerPlaygroundsVC") as! OwnerPlaygroundsVC
+            let navb = UINavigationController(rootViewController: x)
+            self.present(navb, animated: true, completion: nil)
+        }else {
         let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let x = storyb.instantiateViewController(withIdentifier: "OwnerPlaygroundsVC") as! OwnerPlaygroundsVC
+        let x = storyb.instantiateViewController(withIdentifier: "PlayFieldsVC") as! PlayFieldsVC
         let navb = UINavigationController(rootViewController: x)
         self.present(navb, animated: true, completion: nil)
+        
+        }
     }
     
     
@@ -166,14 +171,18 @@ class MenuVC: UIViewController {
                     manager.logOut()
                     FBSDKAccessToken.setCurrent(nil)
                     FBSDKProfile.setCurrent(nil)
+                    UserDefaults.standard.setValue(nil, forKey: "User_Type")
                     self?.view.isUserInteractionEnabled = true
                     self?.setUIEnabled(true)
                     ad.reloadApp()
                 }
             }else {
+                DispatchQueue.main.async{
+                self?.setUIEnabled(true)
                 ad.showAlert("default","")
+                
                 self?.view.isUserInteractionEnabled = true
-
+                }
             }
         }
        
