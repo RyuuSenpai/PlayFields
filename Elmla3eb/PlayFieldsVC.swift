@@ -92,7 +92,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         reservationsArray.getPGReservationStatus { [weak self]  (data, sms, state) in
             
             print("that's the data \(data)")
-            guard state else { self?.view.squareLoading.stop(0);return }
+            guard state else { self?.servicesCount += 1;return }
             self?.confirmedP_G = data?.confirmed
             self?.unconfirmedP_G = data?.not_confirmed
             DispatchQueue.main.async {
@@ -251,7 +251,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
             
             if state {
                 guard let data = data else { DispatchQueue.main.async {
-                    self?.view.squareLoading.stop(0)
+                     self?.servicesCount += 1
                     }; return }
                 self?.nearFieldsData = data
                 self?.servicesCount += 1

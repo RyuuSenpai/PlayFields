@@ -76,7 +76,9 @@ class LanguagesDict {
                          "Edit Field" : "تعديل الملعب",
                          "Book Now!" : "حجز الآن",
                          "Cancel Reservation" : "الغاء الحجز",
-                         "price has to be only written in numbers" : "يجب ان يحتوي السعر علي ارقام فقط"
+                         "price has to be only written in numbers" : "يجب ان يحتوي السعر علي ارقام فقط",
+                         "Nearby Fields & bookings" : "الملاعب القريبه / المحجوزه",
+                         "Playground Management" : "إدارة الملاعب"
         //                             "":"",
         //                             "":"",
         //                             "":"",

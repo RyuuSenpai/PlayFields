@@ -229,3 +229,33 @@
 "LRf-iY-k7c.normalTitle" = "تخطي";
 //@End Profile
 
+//@Mainpage
+"mBF-fO-rZa.text" = "اكثر الملاعب حجزاً";
+//@end Main Page
+
+//@Booked Fields dates // Owner confirm Attendace, confirmation
+    //BookedDates
+"Bqw-c5-B9B.normalTitle" = "الملاعب المحجوزه";
+    // avaiable to book
+"svA-f0-CBC.normalTitle" = "متاح  للحجز";
+//@end BookedFields
+
+//PlayFieldsVC
+    //Booked fields
+"y2w-Lr-NfP.normalTitle" = "الملاعب المحجوزه";
+    //Nearby
+"ReY-rt-X1x.normalTitle" = "الملاعب القريبه";
+//@end PlayFieldsVC
+
+//Owner playgrounds Fields
+    //payment Statics
+"Qfd-ST-HeL.normalTitle" = "التقارير الماليه";
+    //Playgrounds
+"DgG-BG-gnO.normalTitle" = "الملاعب";
+    //Total Payment
+"JEY-lW-3su.text" = "اجمالي المدفوعات";
+    //Booking times
+"postLogout.text" = "عدد الحجوزات";
+
+//@End
+

@@ -98,7 +98,7 @@ class HPHeaderVC: UICollectionReusableView ,FSPagerViewDelegate,FSPagerViewDataS
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        guard let data = self.pagerData else { print("Nil in pagerdata"); return cell }
+        guard let data = self.pagerData , index <= data.count else { print("Nil in pagerdata"); return cell }
         
         if  imagesData[index] != "" {
 //            

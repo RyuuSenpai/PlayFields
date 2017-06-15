@@ -12,6 +12,9 @@ import UIKit
 protocol updateDataTrigger : class {
     
     func triggerupdate()
+    func startLoading()
+    func stopLoading()
+
 }
 
 class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDataSource  {
@@ -61,6 +64,8 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
 //            amBtnClicked()
         }
     }
+    
+
     var currentTimeArray : [AmPm_data]?{
         didSet {
             guard let _ = currentTimeArray else{ print("📍currentTimeArray == nil"); return }
@@ -146,24 +151,33 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     //    }
     
     func selectedCell(_ sender : UIButton) {
-        
+        self.delegate?.startLoading()
         print("thats the index : \(sender.tag)")
-        self.loadingActivity.startAnimating()
+//        self.loadingActivity.startAnimating()
         self.isUserInteractionEnabled = false
-        print("sndertag : \(sender.tag) currentTimeArray count before : \(self.currentTimeArray?.count) and the selected array is :\(currentarrayTitle)")
-        guard let data = currentTimeArray , sender.tag <= data.count  else { return  }
+//        print("sndertag : \(sender.tag) currentTimeArray count before : \(self.currentTimeArray?.count) and the selected array is :\(currentarrayTitle)")
+        guard let data = currentTimeArray , sender.tag <= data.count  else {
+            self.delegate?.stopLoading()
+//            self.loadingActivity.stopAnimating()
+            self.isUserInteractionEnabled = true
+            return  }
         let id = data[sender.tag].id
         let time = data[sender.tag].time
-        print("that the timee selected : \(time)")
+//        print("that the timee selected : \(time)")
         let isConfirmed = data[sender.tag].confirmedBool
         guard id != 0 else {
-            print("❌fatal error id equal 0 selectedCell(_ sender : UIButton)" ) ;  return }
+//            print("❌fatal error id equal 0 selectedCell(_ sender : UIButton)" ) ;  
+            return }
         if isConfirmed {
             reservationModel.postAttendanceRequest(id: id, completed: {[weak self] (sms, state) in
                 guard state else {
-                    self?.loadingActivity.stopAnimating()
+                    DispatchQueue.main.async {
+                        
+//                    self?.loadingActivity.stopAnimating()
                     self?.isUserInteractionEnabled = true
-                    ad.showAlert("X", sms) ;print("Attendance request has failed❗️"); return }
+                    ad.showAlert("X", sms) ;print("Attendance request has failed❗️");
+                    }
+                        return }
                 
 //                self?.currentTimeArray?.remove(at: sender.tag)
                 if self?.currentarrayTitle == "am" {
@@ -175,15 +189,10 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                 }
                 //                self?.tableView.reloadData()
                 DispatchQueue.main.async {
-//                    self?.tableView.beginUpdates()
-//                    let indexPath = IndexPath(item: sender.tag  , section: 0)
-//                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-//                    self?.tableView.endUpdates()
-                 
-                    self?.tableView.reloadData()
-                    self?.loadingActivity.stopAnimating()
+                    let indexPath = IndexPath(item: sender.tag, section: 0)
+                    self?.tableView.reloadRows(at: [indexPath], with: .top)
+//                    self?.tableView.reloadData()
                     self?.isUserInteractionEnabled = true
-                    ad.showAlert("√", "")
                     self?.delegate?.triggerupdate()
                 }
                 
@@ -198,18 +207,12 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     ad.showAlert("X", sms) ;print("confirm request has failed❗️"); return }
                 
                 if self?.currentarrayTitle == "am" {
-                    //                    print("state : \(self?.currentarrayTitle) amData before confirmed : \(self?.amData?[sender.tag]._confirmed )")
-                    self?.amData?[sender.tag]._confirmed = 1
-                    //                    print("state : \(self?.currentarrayTitle)  amData after confirmed : \(self?.amData?[sender.tag]._confirmed )")
-                    self?.currentTimeArray = self?.amData
+                     self?.amData?[sender.tag]._confirmed = 1
+                     self?.currentTimeArray = self?.amData
                 }else {
-                    //                    print("state : \(self?.currentarrayTitle) tag before confirmed : \( sender.tag ) pmData count after : \(self?.pmData?.count)")
-                    
-                    //                    print("state : \(self?.currentarrayTitle) pmData before confirmed : \(self?.pmData?[sender.tag]._confirmed ) ")
-                    self?.pmData?[sender.tag]._confirmed = 1
+                      self?.pmData?[sender.tag]._confirmed = 1
                     self?.currentTimeArray = self?.pmData
-                    //                    print("state : \(self?.currentarrayTitle) pmData after confirmed : \(self?.pmData?[sender.tag]._confirmed )")
-                }
+                 }
                 //                self?.tableView.reloadRows(at: [[0,sender.tag]], with: UITableViewRowAnimation.automatic )
                 //                self?.tableView.reloadData()
                 DispatchQueue.main.async {
@@ -217,7 +220,6 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     let indexPath = IndexPath(item: sender.tag, section: 0)
                     self?.tableView.reloadRows(at: [indexPath], with: .top)
                     self?.tableView.endUpdates()
-                    self?.loadingActivity.stopAnimating()
                     self?.isUserInteractionEnabled = true
                     ad.showAlert("√", "")
                     self?.delegate?.triggerupdate()
@@ -226,6 +228,35 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             
         }
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("Deleted")
+             guard let id =  self.currentTimeArray?[indexPath.row].id , id != 0  else {
+                ad.showAlert("default", "")
+                return }
+            self.delegate?.startLoading()
+            self.isUserInteractionEnabled = false
+
+            reservationModel.postCancelRequest(id, completed: { [weak self ] (sms, state) in
+                
+            if self?.currentarrayTitle == "am" {
+                self?.amData?.remove(at: indexPath.row)
+                self?.currentTimeArray = self?.amData
+            }else {
+                self?.pmData?.remove(at: indexPath.row)
+                self?.currentTimeArray = self?.pmData
+            }
+                DispatchQueue.main.async {
+                    self?.tableView.deleteRows(at: [indexPath], with: .top)
+//                    self?.tableView.reloadData()
+                    self?.isUserInteractionEnabled = true
+                    self?.delegate?.triggerupdate()
+                }
+                })
+        }
+    }
+    
     
     func amBtnClicked() {
         currentarrayTitle = "am"

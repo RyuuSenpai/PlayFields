@@ -88,6 +88,7 @@ class Constants  {
             let POST_Reservation =  API.main_url + "reservations" //Book Now
             let DELETE_Reservation =  API.main_url + "reservations/"
             let POST_CONFIRM_REQUEST = API.main_url + "reservations/confirm"
+            let POST_CANCEL_REQUEST = API.main_url + "reservations/cancel"
             let POST_ATTENDANCE_REQUEST = API.main_url + "reservations/attendance"
 
             /////////////Owner

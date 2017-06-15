@@ -38,8 +38,26 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     var selectedDay = ""
     var isAraLang = false
     var selectedDatesDict = [String : String ]()
-    var amSelectedCelles = [Int]()
-    var pmSelectedCelles = [Int]()
+    var amSelectedCelles = [Int]() {
+        didSet {
+            guard   amSelectedCelles.count < 1 else { self.invalidDaysLbl.text  = "" ;return }
+            if isAraLang {
+                self.invalidDaysLbl.text = "لا يوجد ايام للحجز"
+            }else {
+                self.invalidDaysLbl.text = "No Times To Book"
+            }
+        }
+    }
+    var pmSelectedCelles = [Int](){
+        didSet {
+            guard   pmSelectedCelles.count < 1 else { self.invalidDaysLbl.text  = "" ;return }
+            if isAraLang {
+                self.invalidDaysLbl.text = "لا يوجد ايام للحجز"
+            }else {
+                self.invalidDaysLbl.text = "No Times To Book"
+            }
+        }
+    }
     var selected_AmTimes_ID = [Int]()
     var selected_PmTimes_ID = [Int]()
     //    var seletedTimes_ID = [Int]()
@@ -52,7 +70,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     var times_msg : String? {
         didSet {
             print("that's the times sms : \(times_msg)")
-
+            
         }
     }
     
@@ -61,7 +79,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     var isAM = true
     var selectedDates = [Int]()
     var theSelectedArray = [Int]()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +93,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         if L102Language.currentAppleLanguage() == "ar" {
             isAraLang = true
             backToDatesTableBtnOL.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
-
+            
         }
         if let sms = times_msg, sms != "" {
             if isAraLang {
@@ -87,7 +105,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     }
     override func viewWillAppear(_ animated: Bool) {
         self.dayTitle.text = " "
-   
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,7 +126,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         self.amBtnClicked()
         
         UIView.transition(from: self.datesView, to: daysView, duration: 0.5, options: [.transitionFlipFromRight,.showHideTransitionViews])
-
+        
         print("that is the current array : \(selectedDatesDict)")
         
     }
@@ -124,9 +142,9 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
             self.datestableView.reloadData()
             if isAraLang {
                 UIView.transition(from: self.daysView, to: datesView, duration: 0.5, options: [.transitionFlipFromRight,.showHideTransitionViews])
-
+                
             }else {
-            UIView.transition(from: self.daysView, to: datesView, duration: 0.5, options: [.transitionFlipFromLeft,.showHideTransitionViews])
+                UIView.transition(from: self.daysView, to: datesView, duration: 0.5, options: [.transitionFlipFromLeft,.showHideTransitionViews])
             }
         }
     }
@@ -147,7 +165,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         if let pmA = sTime.pm_class {
             self.pm = [String]()
             for y in pmA {
-//                self.pm.append("\(y.fromDataTime): \(y.toDataTime)")
+                //                self.pm.append("\(y.fromDataTime): \(y.toDataTime)")
                 self.pm.append("\(y.time)")
                 self.selected_PmTimes_ID.append(y.id)
             }

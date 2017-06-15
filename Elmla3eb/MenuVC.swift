@@ -23,6 +23,7 @@ class MenuVC: UIViewController {
     @IBOutlet weak var settingsBtnCenterX: NSLayoutConstraint!
     @IBOutlet weak var profileImageHeightLayOut: NSLayoutConstraint!
     @IBOutlet weak var singoutBtnOL: UIButton!
+    @IBOutlet weak var playgroundsBtn: UIButton!
 
     @IBOutlet weak var playerNameLabel: UILabel!{
         didSet {
@@ -38,7 +39,11 @@ class MenuVC: UIViewController {
     @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var userTypeLbl: UILabel!{
         didSet {
-            userTypeLbl?.text = ""
+            if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
+                userTypeLbl?.text = "Owner"
+            }else {
+                userTypeLbl?.text = "Player"
+            }
         }
     }
     
@@ -61,6 +66,14 @@ class MenuVC: UIViewController {
             
         }
         // Do any additional setup after loading the view.let email = UserDefaults.standard.value(forKey: "userEmail") as? String ,
+        var name : String = ""
+        if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
+              name = langDicClass().getLocalizedTitle("Playground Management")
+            
+        }else {
+              name = langDicClass().getLocalizedTitle("Nearby Fields & bookings")
+        }
+        playgroundsBtn.setTitle(name, for: .normal)
 
         loadImage()
         

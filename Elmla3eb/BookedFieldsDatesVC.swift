@@ -12,7 +12,10 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     
     @IBOutlet weak var bookedBtn: UIButton!
     @IBOutlet weak var notBookedBtn: UIButton!
+    @IBOutlet weak var loadingDataIndector: UIActivityIndicatorView!
     @IBOutlet weak var expandTableView: UITableView!
+    @IBOutlet weak var noDataFoundLbl: UILabel!
+
     var selectedIndex = -1
 
     var forceCollapse = false
@@ -54,15 +57,17 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         expandTableView.rowHeight = UITableViewAutomaticDimension
                 //        playgView.timeDataDelegate = self
         //        let pf_Info = GetpgInfosWebServ()
+           self.view.squareLoading.start(0)
         getAPIData()
         
      }
     
     func getAPIData() {
-        self.view.squareLoading.start(0)
+        self.loadingDataIndector.startAnimating()
         guard let pgId = pg_id else { print("❗️Fatal Error pg_id equal nil "); return}
-        ownerModel.getP_GBooksManager(userID: 53, pgID: pgId) { [weak self] (dataR, sms, state) in
+        ownerModel.getP_GBooksManager(userID: USER_ID, pgID: pgId) { [weak self] (dataR, sms, state) in
             guard state else {
+                self?.loadingDataIndector.stopAnimating()
                 self?.view.squareLoading.stop(0)
                 ad.showAlert("X", sms )
                 return
@@ -73,6 +78,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
                 self?.booked = data.booked
                 self?.notBooked = data.notBooked
             }
+             self?.loadingDataIndector.stopAnimating()
             self?.view.squareLoading.stop(0)
         }
 
@@ -90,14 +96,18 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if btnSelected == 0 {
-            guard let notBookedCOunt = notBooked?.count else {
+            guard let notBookedCOunt = notBooked?.count , notBookedCOunt > 0 else {
+                noDataFoundLbl.alpha = 1
                 return 0
             }
+            noDataFoundLbl.alpha = 0
             return notBookedCOunt;
         }else {
-            guard let bookedCOunt = booked?.count else {
+            guard let bookedCOunt = booked?.count , bookedCOunt > 0 else {
+                noDataFoundLbl.alpha = 1
                 return 0
             }
+            noDataFoundLbl.alpha = 0
             return bookedCOunt;
     }
     }
@@ -153,7 +163,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         print("that's button tag : \(self.btnSelected) ")
         
         if sender.tag == 0 {
-            getAPIData()
+
             bookedBtn.backgroundColor = Constants.Colors.green
             notBookedBtn.backgroundColor = Constants.Colors.gray
         }else {
@@ -193,5 +203,14 @@ extension BookedFieldsDatesVC : updateDataTrigger {
     func triggerupdate() {
         getAPIData()
         print("TRIGGERED")
+    }
+    
+    func startLoading() {
+    self.loadingDataIndector.startAnimating()
+    }
+    
+    func stopLoading() {
+        self.loadingDataIndector.stopAnimating()
+        ad.showAlert("√", "")
     }
 }

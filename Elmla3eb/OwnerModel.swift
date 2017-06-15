@@ -132,7 +132,7 @@ class OwnerModel {
     
     func getOwnerPlayGrounds(  completed:@escaping ([NearByFields_Data]?,String,Bool) -> ()) {
         
-        let url = source.GET_OWNERPLAY_G + source.API_TOKEN +  "&user_id=\(53)"
+        let url = source.GET_OWNERPLAY_G + source.API_TOKEN +  "&user_id=\(USER_ID)"
         print("getOwnerPlayGrounds URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         

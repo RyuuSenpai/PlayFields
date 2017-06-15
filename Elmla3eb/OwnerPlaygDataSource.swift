@@ -19,13 +19,19 @@ extension OwnerPlaygroundsVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if buttonTag == 0 {//Playgrounds
             if ownerPlaygrounds.count < 1 {
-                noplaygLbl.text =  langDicClass().getLocalizedTitle("No Data Found")
+//                noplaygLbl.text =  langDicClass().getLocalizedTitle("No Data Found")
+                noplaygLbl.alpha = 1
+                return 0
             }
+             noplaygLbl.alpha = 0
             return ownerPlaygrounds.count
         }else {//paymentStatics
             if ownerpaymentData.count < 1 {
-                noplaygLbl.text =  langDicClass().getLocalizedTitle("No Data Found")
+//                noplaygLbl.text =  langDicClass().getLocalizedTitle("No Data Found")
+                noplaygLbl.alpha = 1
+                return 0
             }
+            noplaygLbl.alpha = 0
             return ownerpaymentData.count
         }
     }

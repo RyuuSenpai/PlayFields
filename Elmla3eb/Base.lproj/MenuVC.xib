@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,6 +19,7 @@
                 <outlet property="loadingLabel" destination="0sJ-F0-gdb" id="bEU-4N-Qhk"/>
                 <outlet property="loggingOutView" destination="z5E-Km-H6y" id="C74-j1-kYy"/>
                 <outlet property="playerNameLabel" destination="2lt-bX-B3q" id="Xcd-LN-HIt"/>
+                <outlet property="playgroundsBtn" destination="pfV-vf-DKx" id="VMj-yD-6PY"/>
                 <outlet property="profileImage" destination="egi-K6-RjC" id="sle-sQ-oXP"/>
                 <outlet property="profileImageHeightLayOut" destination="3Po-rZ-Ako" id="rHS-Di-LeU"/>
                 <outlet property="searchBtnCenterX" destination="1d2-bJ-ZYm" id="Wnc-3g-wfW"/>
@@ -136,7 +137,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="listOfViewsDestinations:" destination="-1" eventType="touchUpInside" id="D1I-Al-Lg8"/>
+                        <action selector="listOfViewsDestinations:" destination="-1" eventType="touchUpInside" id="WdY-J1-D3q"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BG8-HG-brn">
