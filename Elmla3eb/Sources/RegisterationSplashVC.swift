@@ -272,6 +272,16 @@ import CDAlertView
                 
                 
 //                weakSelf?.performSegue(withIdentifier: "SignedupSegue", sender: weakSelf)
+           
+            
+            DispatchQueue.main.async {
+                
+                ad.showAlert("√√", langDicClass().getLocalizedTitle("Verification Code has been Sent"))
+                
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.3)  {            // Code
+                // your code here
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id
@@ -279,6 +289,7 @@ import CDAlertView
                 vc.codeVerfication = true 
                 self.present(vc, animated: true, completion: nil)
                 self.setUIEnabled(enabled: true)
+            }
             }else {
                      let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Error with ") + "\(data.2)", message: "", type: .error)
                     DispatchQueue.main.async {

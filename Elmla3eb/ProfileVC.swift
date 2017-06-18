@@ -20,8 +20,8 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     @IBOutlet weak var confirmPassChange: UIButtonX!
     @IBOutlet weak var cancelPassChange: UIButtonX!
     @IBOutlet weak var forgotPassView: UIViewX!
-    @IBOutlet weak var oldPassTxt: UITextField!
-    @IBOutlet weak var newPassTxt: UITextField!
+    @IBOutlet weak var oldPassTxt: UITextFieldX!
+    @IBOutlet weak var newPassTxt: UITextFieldX!
     @IBOutlet weak var changePassword: UIButton!
     
     //

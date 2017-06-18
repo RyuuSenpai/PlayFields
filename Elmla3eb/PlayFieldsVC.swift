@@ -182,6 +182,10 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             self.locationManager.requestWhenInUseAuthorization()
+        }else {
+            servicesCount += 1
+            print("2- Location services are not enabled")
+
         }
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -244,6 +248,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     func getNearByFieldsData() {
         
         guard let lat = userLat, let long = userLong else {
+             self.servicesCount += 1
             return
         }
         playGroudModel = GetPlayGroundsData()

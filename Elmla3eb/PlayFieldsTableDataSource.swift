@@ -87,17 +87,28 @@ extension PlayFieldsVC : UITableViewDataSource {
     }
     
     func cancelResrvation(_ sender: UIButton) {
-        
+        self.activityIndector.startAnimating()
+        self.view.isUserInteractionEnabled = false
         print("Cancel reservation plz my itcket number is : \(sender.tag)\n and that's the count : \(unconfirmedP_G?.count)")
-        guard let data = unconfirmedP_G else { print("❗️unconfirmed data == nil "); return }
-        guard sender.tag <= data.count else { print("❗️sender tag <= data.count");  return }
+        guard let data = unconfirmedP_G else { self.activityIndector.stopAnimating()
+            self.view.isUserInteractionEnabled = true
+            print("❗️unconfirmed data == nil "); return }
+        guard sender.tag <= data.count else { self.activityIndector.stopAnimating()
+            self.view.isUserInteractionEnabled = true
+            print("❗️sender tag <= data.count");  return }
         let reservationId = data[sender.tag].id
-        guard reservationId != 0 else { print("⛑ Fatal Error the id is Equal 0 ❗️") ;return }
+        guard reservationId != 0 else { self.activityIndector.stopAnimating()
+            self.view.isUserInteractionEnabled = true
+            print("⛑ Fatal Error the id is Equal 0 ❗️") ;return }
         deletereservation.postCancelRequest( reservationId) {[weak self] (sms, state) in
             
             guard state else {
                 print(" ❗️ State is False ❗️")
+                DispatchQueue.main.async {
+                    self?.view.isUserInteractionEnabled = true
+                self?.activityIndector.stopAnimating()
                 ad.showAlert("X", sms)
+                }
                 return
             }
 //            if let index = selectedDates.index(of: xcz[sender.tag]) {
@@ -116,6 +127,9 @@ extension PlayFieldsVC : UITableViewDataSource {
                 DispatchQueue.main.async {
 
                     self?.unconfirmedP_G?.remove(at: sender.tag)
+                    self?.view.isUserInteractionEnabled = true
+                    self?.activityIndector.stopAnimating()
+                    ad.showAlert("√", "")
                 }
                  }
             }

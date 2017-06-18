@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
     
-    var production = false 
+    var production = true
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
 
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -170,6 +170,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     
     func showAlert(_ title : String,_ sms : String) {
+        guard title != "√√" else {
+            let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:langDicClass().getLocalizedTitle(sms) , type: .success)
+             alert.isUserInteractionEnabled = false
+            alert.show()
+            return
+        }
         guard title != "√" else {
             let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:langDicClass().getLocalizedTitle(sms) , type: .success)
             alert.show()

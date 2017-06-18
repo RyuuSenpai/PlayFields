@@ -38,7 +38,8 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     var selectedDay = ""
     var isAraLang = false
     var selectedDatesDict = [String : String ]()
-    var amSelectedCelles = [Int]() {
+    var amSelectedCelles = [Int]()
+    /*{
         didSet {
             guard   amSelectedCelles.count < 1 else { self.invalidDaysLbl.text  = "" ;return }
             if isAraLang {
@@ -47,8 +48,9 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
                 self.invalidDaysLbl.text = "No Times To Book"
             }
         }
-    }
-    var pmSelectedCelles = [Int](){
+    }*/
+    var pmSelectedCelles = [Int]()
+    /*{
         didSet {
             guard   pmSelectedCelles.count < 1 else { self.invalidDaysLbl.text  = "" ;return }
             if isAraLang {
@@ -57,7 +59,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
                 self.invalidDaysLbl.text = "No Times To Book"
             }
         }
-    }
+    }*/
     var selected_AmTimes_ID = [Int]()
     var selected_PmTimes_ID = [Int]()
     //    var seletedTimes_ID = [Int]()

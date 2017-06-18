@@ -78,7 +78,8 @@ class LanguagesDict {
                          "Cancel Reservation" : "الغاء الحجز",
                          "price has to be only written in numbers" : "يجب ان يحتوي السعر علي ارقام فقط",
                          "Nearby Fields & bookings" : "الملاعب القريبه / المحجوزه",
-                         "Playground Management" : "إدارة الملاعب"
+                         "Playground Management" : "إدارة الملاعب",
+                         "Verification Code has been Sent": "تم ارسال رمز التفعيل"
         //                             "":"",
         //                             "":"",
         //                             "":"",
