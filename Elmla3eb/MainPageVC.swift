@@ -72,6 +72,9 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if firstLaunch {
+//        ad.fcm()
+//        }
          collectionView.delegate = self
         collectionView.dataSource = self
         // Do any additional setup after loading the view.

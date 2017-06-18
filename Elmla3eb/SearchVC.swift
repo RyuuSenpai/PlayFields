@@ -15,8 +15,10 @@
     @IBOutlet weak var searchBtnOL: UIButton!
     @IBOutlet weak var fieldNameTxt: UITextField!
     
+    @IBOutlet weak var clearCityBtn: UIButton!
     @IBOutlet weak var cityTxt: UITextField!
     
+    @IBOutlet weak var clearRateBtn: UIButton!
     @IBOutlet weak var rateTxt: UITextField!
     
     @IBOutlet weak var fromTxt: UITextField!
@@ -25,9 +27,13 @@
     @IBOutlet weak var loadingVC: UIView!
     @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
     
+    var isCityPicker = true
     var searchModel : Search_Model!
     var cities = ["cairo","Alex"]
     let rateList = ["1","2","3","4","5"]
+    
+    var selectedCity = ""
+    var selectedRate = ""
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var ratePickerV: UIPickerView!
     var isFromDate = true
@@ -42,7 +48,7 @@
         fromTxt.delegate = self
         toTxt.delegate = self
         
-     setupPicker()
+        setupPicker()
         
         self.view.squareLoading.start(0)
         let global = GLOBAL()
@@ -79,11 +85,11 @@
                     }
                     return
                 }
-            
+                
                 DispatchQueue.main.async {
                     let vc = SearchResultVC(nibName: "SearchResultVC", bundle: nil)
                     vc.searchResultData = searchResult
-                     self?.navigationController?.pushViewController(vc, animated: true)
+                    self?.navigationController?.pushViewController(vc, animated: true)
                     self?.disableView(false)
                 }
                 
@@ -98,7 +104,7 @@
     }
     
     func disableView( _ state : Bool) {
-       if state {
+        if state {
             self.loadingVC.alpha = 1
             self.loadingActivity.startAnimating()
         }else {
@@ -154,16 +160,27 @@
             let date  = formatter.string(from: NSDate() as Date)
             textField.text = date
             
-        } else if  textField == cityTxt ,  textField.text == "" {
-            textField.text = cities[0]
-            
-        }else  if  textField == rateTxt ,  textField.text == "" {
-            textField.text = rateList[0]
-            
-        }
+        } /*else if  textField == cityTxt ,  textField.text == "" {
+         textField.text = cities[0]
+         
+         }else  if  textField == rateTxt ,  textField.text == "" {
+         textField.text = rateList[0]
+         
+         }*/
     }
     
     
+    @IBAction func clearTextBtnAct(_ sender: UIButton) {
+
+        
+            if sender.tag == 0 {//City
+                cityTxt.text = ""
+                sender.alpha = 0
+        }else { //Rate
+            rateTxt.text = ""
+            sender.alpha = 0
+        }
+    }
     
     
  }
@@ -176,16 +193,62 @@
  
  extension SearchVC :  UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
+ 
     func setupPicker() {
         citiesPickerV = UIPickerView()
         citiesPickerV.dataSource = self
         citiesPickerV.delegate = self
-        cityTxt.inputView = citiesPickerV
         
         ratePickerV = UIPickerView()
         ratePickerV.dataSource = self
         ratePickerV.delegate = self
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPicker))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        cityTxt.inputView = citiesPickerV
+        cityTxt.inputAccessoryView = toolBar
+        
         rateTxt.inputView = ratePickerV
+        rateTxt.inputAccessoryView = toolBar
+        
+    }
+    func donePicker (sender:UIBarButtonItem)
+    {
+        // Put something here
+        
+        if isCityPicker {
+            
+            cityTxt.text = selectedCity == "" ? cities[0] : selectedCity
+            selectedCity = ""
+        }else {
+            
+            rateTxt.text = selectedCity == "" ? rateList[0] : selectedRate
+            selectedRate = ""
+        }
+        self.view.endEditing(true)
+    }
+    
+    func cancelPicker (sender:UIBarButtonItem)
+    {
+        // Put something here
+        selectedCity = ""
+        selectedRate = ""
+        self.view.endEditing(true)
+        
+        //        cityTxt.resignFirstResponder()
+        //        rateTxt.resignFirstResponder()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -194,8 +257,10 @@
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         guard pickerView == citiesPickerV else {
+            isCityPicker = false
             return rateList.count
         }
+        isCityPicker = true
         return cities.count
     }
     //    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -204,12 +269,16 @@
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard pickerView == citiesPickerV else {
-            rateTxt.text = rateList[row]
-            self.view.endEditing(true)
+            //            rateTxt.text = rateList[row]
+            //            self.view.endEditing(true)
+            selectedRate = rateList[row]
             return
         }
-        cityTxt.text = cities[row]
-        self.view.endEditing(true)
+        //        cityTxt.text = cities[row]
+        //        self.view.endEditing(true)
+        selectedCity = cities[row]
+        
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

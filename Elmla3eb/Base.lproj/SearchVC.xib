@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchVC" customModule="Elmla3eb" customModuleProvider="target">
             <connections>
                 <outlet property="cityTxt" destination="JTe-fa-x2f" id="ppJ-Rs-Inx"/>
+                <outlet property="clearCityBtn" destination="A31-Bz-CgV" id="Sk2-EV-8kM"/>
+                <outlet property="clearRateBtn" destination="Gh8-pv-4Q8" id="cLW-wC-MrK"/>
                 <outlet property="fieldNameTxt" destination="TeU-5s-sLS" id="xKJ-gi-bQo"/>
                 <outlet property="fromTxt" destination="2A9-7p-TRD" id="VwI-90-Nxy"/>
                 <outlet property="loadingActivity" destination="LOP-W3-l7O" id="m68-pk-nIU"/>
@@ -41,6 +43,9 @@
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CIty" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="JTe-fa-x2f">
                             <rect key="frame" x="0.0" y="45" width="335" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="2K6-yX-q5J"/>
+                            </constraints>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -117,30 +122,55 @@
                         <constraint firstItem="ssj-nE-ue7" firstAttribute="centerX" secondItem="LOP-W3-l7O" secondAttribute="centerX" id="Wbg-CN-tjq"/>
                     </constraints>
                 </view>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A31-Bz-CgV" userLabel="clear City">
+                    <rect key="frame" x="327" y="85" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="A31-Bz-CgV" secondAttribute="height" multiplier="1:1" id="6QV-Tn-b3F"/>
+                    </constraints>
+                    <state key="normal" image="faulse_icon"/>
+                    <connections>
+                        <action selector="clearTextBtnAct:" destination="-1" eventType="touchUpInside" id="dm4-4s-EIy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.0" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gh8-pv-4Q8" userLabel="clear Rate">
+                    <rect key="frame" x="327" y="130" width="20" height="20"/>
+                    <state key="normal" image="faulse_icon"/>
+                    <connections>
+                        <action selector="clearTextBtnAct:" destination="-1" eventType="touchUpInside" id="czk-F3-kcT"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="qnK-Nk-06K" firstAttribute="centerY" secondItem="2d3-si-7dq" secondAttribute="centerY" id="28r-XW-dpK"/>
                 <constraint firstItem="nzp-sg-PEz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="7ai-TX-HtN"/>
+                <constraint firstItem="A31-Bz-CgV" firstAttribute="trailing" secondItem="JTe-fa-x2f" secondAttribute="trailing" constant="-8" id="9eo-5n-b0G"/>
                 <constraint firstItem="qnK-Nk-06K" firstAttribute="height" secondItem="2d3-si-7dq" secondAttribute="height" id="CwB-LJ-bQ9"/>
+                <constraint firstItem="A31-Bz-CgV" firstAttribute="top" secondItem="JTe-fa-x2f" secondAttribute="top" constant="5" id="H49-bR-40Y"/>
                 <constraint firstAttribute="bottom" secondItem="2d3-si-7dq" secondAttribute="bottom" id="JF8-PG-Qb3"/>
+                <constraint firstItem="Gh8-pv-4Q8" firstAttribute="width" secondItem="A31-Bz-CgV" secondAttribute="width" id="PN5-bp-i0J"/>
                 <constraint firstItem="2d3-si-7dq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uwc-0i-QWi"/>
                 <constraint firstAttribute="trailing" secondItem="nzp-sg-PEz" secondAttribute="trailing" constant="20" id="WRg-n7-4ne"/>
                 <constraint firstItem="EN7-Vx-GCs" firstAttribute="centerX" secondItem="nzp-sg-PEz" secondAttribute="centerX" id="XoZ-Vj-HSj"/>
+                <constraint firstItem="Gh8-pv-4Q8" firstAttribute="trailing" secondItem="CGm-R8-0uG" secondAttribute="trailing" constant="-8" id="Y9Y-bw-Yg8"/>
                 <constraint firstItem="qnK-Nk-06K" firstAttribute="width" secondItem="2d3-si-7dq" secondAttribute="width" id="bJO-Og-dfu"/>
                 <constraint firstItem="EN7-Vx-GCs" firstAttribute="top" secondItem="pbj-aY-Q8B" secondAttribute="bottom" constant="43" id="dDR-OC-2At"/>
+                <constraint firstItem="A31-Bz-CgV" firstAttribute="bottom" secondItem="JTe-fa-x2f" secondAttribute="bottom" constant="-5" id="dIs-Ju-XpK"/>
                 <constraint firstItem="qnK-Nk-06K" firstAttribute="centerX" secondItem="2d3-si-7dq" secondAttribute="centerX" id="dkf-6V-B3c"/>
                 <constraint firstItem="nzp-sg-PEz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="35" id="gGX-5G-nmM"/>
                 <constraint firstItem="pbj-aY-Q8B" firstAttribute="width" secondItem="nzp-sg-PEz" secondAttribute="width" id="gTT-Nc-ll4"/>
+                <constraint firstItem="Gh8-pv-4Q8" firstAttribute="top" secondItem="CGm-R8-0uG" secondAttribute="top" constant="5" id="hQH-OX-GPJ"/>
                 <constraint firstAttribute="trailing" secondItem="2d3-si-7dq" secondAttribute="trailing" id="ixv-Dr-jA2"/>
                 <constraint firstItem="pbj-aY-Q8B" firstAttribute="centerX" secondItem="nzp-sg-PEz" secondAttribute="centerX" id="lDi-L8-aRe"/>
                 <constraint firstItem="2d3-si-7dq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="nZK-8d-VcK"/>
                 <constraint firstItem="pbj-aY-Q8B" firstAttribute="top" secondItem="nzp-sg-PEz" secondAttribute="bottom" constant="13" id="oqR-I0-eje"/>
+                <constraint firstItem="Gh8-pv-4Q8" firstAttribute="bottom" secondItem="CGm-R8-0uG" secondAttribute="bottom" constant="-5" id="xhp-Mb-UUb"/>
             </constraints>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
     <resources>
         <image name="BackGround" width="1242" height="2208"/>
+        <image name="faulse_icon" width="47" height="47"/>
     </resources>
 </document>

@@ -64,7 +64,7 @@ class CheckPhoneValidVC: UIViewController {
     
     let userModel = MUserData()
     var count = 60
-    var timer = Timer()
+   private weak var timer = Timer()
     var isTimerRunning = false
     let user = MUserData()
     var passwordAppeared = false {
@@ -325,7 +325,7 @@ class CheckPhoneValidVC: UIViewController {
             resendBtnOL.backgroundColor=UIColor.lightGray
         }
         else{
-            timer.invalidate()
+            timer?.invalidate()
             resendBtnOL.isEnabled=true
             let sms =  langDicClass().getLocalizedTitle("Resend")
             resendBtnOL .setTitle(sms , for: UIControlState.normal)

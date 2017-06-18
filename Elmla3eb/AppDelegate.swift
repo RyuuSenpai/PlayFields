@@ -152,7 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
                     }
                 })
             }else {
-                print("❌ Won't Update Token Token Already Exist⚠️found a strange thing there mate userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,♎️FCMTokenNSDefault \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, ☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳\n")
+                print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,♎️FCMTokenNSDefault  📴📳\(UserDefaults.standard.value(forKey: "FCMToken") as? String) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
             }
         
     }
