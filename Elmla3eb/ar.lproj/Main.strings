@@ -227,6 +227,7 @@
 
 //Splash SCreen
 "LRf-iY-k7c.normalTitle" = "تخطي";
+
 //@End Profile
 
 //@Mainpage
@@ -238,6 +239,10 @@
 "Bqw-c5-B9B.normalTitle" = "الملاعب المحجوزه";
     // avaiable to book
 "svA-f0-CBC.normalTitle" = "متاح  للحجز";
+//No Playfields Found!! for this Playfield
+"8t7-Xw-29O.text" = "لا توجد ملاعب";
+//No Playfields Found!!
+"9sQ-yq-Xlv.text" = "لا توجد ملاعب!!" ;
 //@end BookedFields
 
 //PlayFieldsVC
@@ -245,9 +250,12 @@
 "y2w-Lr-NfP.normalTitle" = "الملاعب المحجوزه";
     //Nearby
 "ReY-rt-X1x.normalTitle" = "الملاعب القريبه";
+//No Fields Found
+"2vk-Oc-2Zx.text" = "لا توجد ملاعب" ;
 //@end PlayFieldsVC
 
-//Owner playgrounds Fields
+//Owner playgrounds Fields //@Owner Playground VC Scene
+
     //payment Statics
 "Qfd-ST-HeL.normalTitle" = "التقارير الماليه";
     //Playgrounds
@@ -255,7 +263,13 @@
     //Total Payment
 "JEY-lW-3su.text" = "اجمالي المدفوعات";
     //Booking times
-"postLogout.text" = "عدد الحجوزات";
-
+ //Booking Times :
+"8e9-UM-Abv.text" = "عدد الحجوزات:" ;
+//No Fields Found
+"bhe-39-7Zb.text" = "لا توجد ملاعب";
 //@End
+
+
+//@end
+
 

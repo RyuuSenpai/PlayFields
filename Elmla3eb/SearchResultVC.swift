@@ -45,7 +45,7 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         guard let data = searchResultData else { return cell }
         cell.configCell(data[indexPath.row])
         
-        cell.bookNowBtn.setTitle("Book Now!", for: .normal)
+        cell.bookNowBtn.setTitle(langDicClass().getLocalizedTitle("Book Now!"), for: .normal)
         cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
         cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
         

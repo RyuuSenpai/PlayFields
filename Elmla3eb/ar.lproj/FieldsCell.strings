@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Booking Times :"; ObjectID = "0yH-xk-MHu"; */
+"0yH-xk-MHu.text" = "عدد مرات الحجز:";
+
+/* Class = "UILabel"; text = "   "; ObjectID = "3Pl-66-Jhw"; */
+"3Pl-66-Jhw.text" = "";
+
+/* Class = "UILabel"; text = "Saudi Arabia"; ObjectID = "5rU-JT-q6o"; */
+"5rU-JT-q6o.text" = "";
+
+/* Class = "UILabel"; text = "Gadahh Playfield"; ObjectID = "7NG-2v-1a7"; */
+"7NG-2v-1a7.text" = "";
+
+/* Class = "UILabel"; text = "Confirming Reservetion"; ObjectID = "a81-MV-HUy"; */
+"a81-MV-HUy.text" = "تاكيد الحجز";
+
+/* Class = "UIButton"; normalTitle = "Book Now"; ObjectID = "ewj-Jd-Wk4"; */
+"ewj-Jd-Wk4.normalTitle" = "الحجز الان";
+
+/* Class = "UILabel"; text = " "; ObjectID = "lQ7-eW-tTe"; */
+"lQ7-eW-tTe.text" = "";
+
+/* Class = "UILabel"; text = "5/23/1959"; ObjectID = "nIf-Gx-XVB"; */
+"nIf-Gx-XVB.text" = "";
+
+/* Class = "UILabel"; text = "5:10 Pm"; ObjectID = "xHX-LQ-NxL"; */
+"xHX-LQ-NxL.text" = "";

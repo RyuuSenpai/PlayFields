@@ -46,6 +46,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     @IBOutlet weak var phoneNumTxt: UITextFieldX!
     @IBOutlet weak var birthDateTxt: UITextFieldX!
     
+    @IBOutlet weak var playerStackBar: UIStackView!
     @IBOutlet weak var snapCTxt: UITextFieldX!
     //        {
     //        didSet {
@@ -108,6 +109,13 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         }else {
             positions =  ["حارس مرمي","مدافع","مهاجم","وسط"]
         }
+
+        if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" { // Hide Bar
+            playerStackBar.alpha =  0
+        }else {//Show Bar 
+            playerStackBar.alpha =  1
+        }
+        
         setupPickerV()
         user.getProfileData { [weak self] (data, sms, state) in
             

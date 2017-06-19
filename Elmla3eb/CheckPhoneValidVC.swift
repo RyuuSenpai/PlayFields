@@ -164,7 +164,7 @@ class CheckPhoneValidVC: UIViewController {
 //                        let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
 //                        let navb = UINavigationController(rootViewController: x)
 //                        self.present(navb, animated: true, completion: nil)
-                        
+                        ad.fcm()
                         ad.reloadApp()
 //                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
 //                        let xy = storyboard.instantiateViewController(withIdentifier: "MainPageVC")
@@ -277,9 +277,8 @@ class CheckPhoneValidVC: UIViewController {
         }
     }
     @IBAction func resetAppBtnAct(_ sender: UIButton) {
-
-        ad.reloadApp()
         ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
+        ad.reloadApp()
     }
     
     

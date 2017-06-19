@@ -16,6 +16,7 @@
 		520B71671EE7F74B00C84591 /* ConfirmedOrNotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */; };
 		52178C8F1EC47D8900181384 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 52178C8E1EC47D8900181384 /* cities.json */; };
 		521DBE7A1EAF4082005D06A5 /* NoNetConnectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */; };
+		52257B331EF7FDC2004CF2A9 /* FieldsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52257B351EF7FDC2004CF2A9 /* FieldsCell.xib */; };
 		522AAC8E1E88054700E0AC5B /* GetpgInfosWebServ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AAC8D1E88054700E0AC5B /* GetpgInfosWebServ.swift */; };
 		522AAC901E880A1600E0AC5B /* GlobalFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AAC8F1E880A1600E0AC5B /* GlobalFuncs.swift */; };
 		52355ECD1EB8933C005A9217 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52355ECB1EB8933C005A9217 /* SearchVC.swift */; };
@@ -77,7 +78,6 @@
 		52CDAF281E87E41500B599DD /* ViewPlayFeildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAF271E87E41500B599DD /* ViewPlayFeildVC.swift */; };
 		52CDAF2C1E87E4C000B599DD /* ViewPlayFNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAF2B1E87E4C000B599DD /* ViewPlayFNewsCell.swift */; };
 		52D7C4321E82D60C00F34B77 /* FieldsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D7C4301E82D60C00F34B77 /* FieldsCell.swift */; };
-		52D7C4331E82D60C00F34B77 /* FieldsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D7C4311E82D60C00F34B77 /* FieldsCell.xib */; };
 		52E8D0E81E89210F007E1CE2 /* BookNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8D0E71E89210F007E1CE2 /* BookNowCell.swift */; };
 		52E8D0EA1E896DEF007E1CE2 /* BookedFieldsDatesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8D0E91E896DEF007E1CE2 /* BookedFieldsDatesVC.swift */; };
 		52E9DF5E1EACCC43004563CA /* DownloadImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E9DF5D1EACCC43004563CA /* DownloadImages.swift */; };
@@ -124,6 +124,8 @@
 		520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmedOrNotData.swift; sourceTree = "<group>"; };
 		52178C8E1EC47D8900181384 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetConnectionVC.swift; sourceTree = "<group>"; };
+		52257B341EF7FDC2004CF2A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FieldsCell.xib; sourceTree = "<group>"; };
+		52257B371EF7FE19004CF2A9 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/FieldsCell.strings; sourceTree = "<group>"; };
 		522AAC8D1E88054700E0AC5B /* GetpgInfosWebServ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetpgInfosWebServ.swift; sourceTree = "<group>"; };
 		522AAC8F1E880A1600E0AC5B /* GlobalFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFuncs.swift; sourceTree = "<group>"; };
 		52355ECB1EB8933C005A9217 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -186,7 +188,6 @@
 		52CDAF271E87E41500B599DD /* ViewPlayFeildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPlayFeildVC.swift; sourceTree = "<group>"; };
 		52CDAF2B1E87E4C000B599DD /* ViewPlayFNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPlayFNewsCell.swift; sourceTree = "<group>"; };
 		52D7C4301E82D60C00F34B77 /* FieldsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldsCell.swift; sourceTree = "<group>"; };
-		52D7C4311E82D60C00F34B77 /* FieldsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FieldsCell.xib; sourceTree = "<group>"; };
 		52E8D0E71E89210F007E1CE2 /* BookNowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookNowCell.swift; sourceTree = "<group>"; };
 		52E8D0E91E896DEF007E1CE2 /* BookedFieldsDatesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookedFieldsDatesVC.swift; sourceTree = "<group>"; };
 		52E9DF5D1EACCC43004563CA /* DownloadImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImages.swift; sourceTree = "<group>"; };
@@ -510,7 +511,7 @@
 				52AF589D1E769A0A001284DD /* HomePageCell.swift */,
 				52E8D0E51E8920B0007E1CE2 /* PlayFields */,
 				52D7C4301E82D60C00F34B77 /* FieldsCell.swift */,
-				52D7C4311E82D60C00F34B77 /* FieldsCell.xib */,
+				52257B351EF7FDC2004CF2A9 /* FieldsCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -708,7 +709,7 @@
 				520044A01EC1C34C0030B772 /* MenuVC.xib in Resources */,
 				520044AA1EC1D5060030B772 /* SearchVC.xib in Resources */,
 				714AECF11E6303EF001127CE /* Main.storyboard in Resources */,
-				52D7C4331E82D60C00F34B77 /* FieldsCell.xib in Resources */,
+				52257B331EF7FDC2004CF2A9 /* FieldsCell.xib in Resources */,
 				71F06C631E65D042008FBD28 /* soccer-player-aged-pixel.jpg in Resources */,
 				5200449B1EC1C31F0030B772 /* ProfileVC.xib in Resources */,
 				52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */,
@@ -900,6 +901,15 @@
 				520044B91EC1DE330030B772 /* ar */,
 			);
 			name = NoNetConnectionVC.xib;
+			sourceTree = "<group>";
+		};
+		52257B351EF7FDC2004CF2A9 /* FieldsCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52257B341EF7FDC2004CF2A9 /* Base */,
+				52257B371EF7FE19004CF2A9 /* ar */,
+			);
+			name = FieldsCell.xib;
 			sourceTree = "<group>";
 		};
 		52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */ = {

@@ -251,6 +251,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        ViewPlayFeildVC.seletedTimes_ID = []
+    }////
     deinit {
         ViewPlayFeildVC.seletedTimes_ID = []
     }

@@ -11,7 +11,6 @@
  
  class SearchVC: ToSideMenuClass , UITextFieldDelegate{
     
-    
     @IBOutlet weak var searchBtnOL: UIButton!
     @IBOutlet weak var fieldNameTxt: UITextField!
     
@@ -21,9 +20,11 @@
     @IBOutlet weak var clearRateBtn: UIButton!
     @IBOutlet weak var rateTxt: UITextField!
     
-    @IBOutlet weak var fromTxt: UITextField!
+    @IBOutlet weak var fromTxt: UITextFieldX!
     
-    @IBOutlet weak var toTxt: UITextField!
+    @IBOutlet weak var clearToTimeBtn: UIButton!
+    @IBOutlet weak var toTxt: UITextFieldX!
+    @IBOutlet weak var clearFromTimebtn: UIButton!
     @IBOutlet weak var loadingVC: UIView!
     @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
     
@@ -167,19 +168,50 @@
          textField.text = rateList[0]
          
          }*/
+        switch textField {
+        case rateTxt:
+            clearBtnUIMangment(clearRateBtn, rateTxt)
+        case fromTxt :
+            clearBtnUIMangment(clearFromTimebtn, fromTxt)
+        case toTxt :
+            clearBtnUIMangment(clearToTimeBtn, toTxt)
+        default:
+            clearBtnUIMangment(clearCityBtn, cityTxt)
+            
+        }
+  
+
     }
     
+    func clearBtnUIMangment(_ btn : UIButton, _ txt : UITextField){
+    
+        if let txt = txt.text , !txt.isEmpty {
+            btn.alpha = 1
+        }else {
+            btn.alpha = 0
+        }
+        
+    }
     
     @IBAction func clearTextBtnAct(_ sender: UIButton) {
+        sender.alpha = 0
 
-        
-            if sender.tag == 0 {//City
-                cityTxt.text = ""
-                sender.alpha = 0
-        }else { //Rate
+        switch sender.tag  {
+        case 1:
             rateTxt.text = ""
-            sender.alpha = 0
+        case 2:
+            fromTxt.text = ""
+        case 3:
+            toTxt.text = ""
+        default:
+            cityTxt.text = ""
         }
+//            if sender.tag == 0 {//City
+//                cityTxt.text = ""
+//        }else { //Rate
+//            rateTxt.text = ""
+//            sender.alpha = 0
+//        }
     }
     
     
@@ -210,9 +242,9 @@
         toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
+        let doneButton = UIBarButtonItem(title:  langDicClass().getLocalizedTitle("Done") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(donePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPicker))
+        let cancelButton = UIBarButtonItem(title:  langDicClass().getLocalizedTitle("Cancel"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelPicker))
         
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -224,6 +256,7 @@
         rateTxt.inputAccessoryView = toolBar
         
     }
+    
     func donePicker (sender:UIBarButtonItem)
     {
         // Put something here
@@ -232,10 +265,13 @@
             
             cityTxt.text = selectedCity == "" ? cities[0] : selectedCity
             selectedCity = ""
+//            clearCityBtn.alpha = 1
+            
         }else {
             
             rateTxt.text = selectedCity == "" ? rateList[0] : selectedRate
             selectedRate = ""
+//            clearRateBtn.alpha = 1
         }
         self.view.endEditing(true)
     }

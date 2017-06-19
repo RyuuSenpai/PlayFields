@@ -72,9 +72,8 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if firstLaunch {
-//        ad.fcm()
-//        }
+
+        ViewPlayFeildVC.seletedTimes_ID = []
          collectionView.delegate = self
         collectionView.dataSource = self
         // Do any additional setup after loading the view.

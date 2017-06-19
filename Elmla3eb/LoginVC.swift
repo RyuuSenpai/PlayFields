@@ -188,6 +188,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
             if data.1 , let x = data.0 {
                 
                     ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
+                ad.fcm()
                     ad.reloadApp()
 //                guard   let parent = self.presentingViewController ,parent.isKind(of: ViewPlayFeildVC.self)else {
 //

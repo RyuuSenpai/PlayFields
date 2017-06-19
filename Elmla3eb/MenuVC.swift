@@ -40,9 +40,9 @@ class MenuVC: UIViewController {
     @IBOutlet weak var userTypeLbl: UILabel!{
         didSet {
             if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
-                userTypeLbl?.text = "Owner"
+                userTypeLbl?.text =  langDicClass().getLocalizedTitle("Owner" )
             }else {
-                userTypeLbl?.text = "Player"
+                userTypeLbl?.text =  langDicClass().getLocalizedTitle("Player") 
             }
         }
     }

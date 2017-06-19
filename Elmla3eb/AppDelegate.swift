@@ -10,17 +10,20 @@ import UIKit
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
 import Firebase
+import FirebaseInstanceID
 import FirebaseMessaging
 import CDAlertView
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate  {
-
+class AppDelegate: UIResponder, UIApplicationDelegate ,
+UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
+    
     var window: UIWindow?
     
     var production = true
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-
+        
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
         return  FBhandled
         
@@ -28,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     }
     
     func setNavigatiobColor() {
-      
+        
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().tintColor = UIColor.white
@@ -40,52 +43,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         UINavigationBar.appearance().setBackgroundImage(navBackgroundImage, for: .default)
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : UIFont.systemFont(ofSize: 18) , NSForegroundColorAttributeName: UIColor.white ]
     }
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-                IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().enable = true
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         L102Localizer.DoTheMagic()
         setNavigatiobColor()
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
-
-        FIRApp.configure()
+        
+        //        FIRApp.configure()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         let x = self.isUserLoggedIn()
-        if !x { 
+        if !x {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
             // In project directory storyboard looks like Main.storyboard,
             // you should use only part before ".storyboard" as it's name,
             // so in this example name is "Main".
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//            
-//            // controller identifier sets up in storyboard utilities
-//            // panel (on the right), it called Storyboard ID
+            //
+            //            // controller identifier sets up in storyboard utilities
+            //            // panel (on the right), it called Storyboard ID
             let viewController = storyboard.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
- 
+            
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
             //test Nib
-//           let initialViewController  = CheckPhoneValidVC(nibName:"CheckPhoneValidVC",bundle:nil)
-//            
-//            let frame = UIScreen.main.bounds
-//            window = UIWindow(frame: frame)
-//            
-//            window!.rootViewController = initialViewController
-//            window!.makeKeyAndVisible()
+            //           let initialViewController  = CheckPhoneValidVC(nibName:"CheckPhoneValidVC",bundle:nil)
+            //
+            //            let frame = UIScreen.main.bounds
+            //            window = UIWindow(frame: frame)
+            //
+            //            window!.rootViewController = initialViewController
+            //            window!.makeKeyAndVisible()
             //@end test end
         }
+                setupFCM()
         
-        let notificationTypes : UIUserNotificationType = [.alert, .badge, .sound]
-        let notificationSettings : UIUserNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+        //        let notificationTypes : UIUserNotificationType = [.alert, .badge, .sound]
+        //        let notificationSettings : UIUserNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+        //        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
         
         print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
- 
-        fcm()
-
+        
+        
         return true
     }
     
@@ -95,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         if x {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             self.window?.rootViewController = storyboard.instantiateInitialViewController()
-
+            
         }else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
@@ -111,68 +114,161 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
         }
-
-         }
-    
-    
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)
-    {
-        UIApplication.shared.registerForRemoteNotifications()
-    }
-    
- 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-//        print(token)
-
-        fcm()
-     
-    }
-    
-    func fcm() {
-
-        guard let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
-            UserDefaults.standard.setValue(nil, forKey: "FCMToken")
-            print("⚠️No userID Found  ❌ "); return }
-
-        guard  let refreshedToken = FIRInstanceID.instanceID().token() else {
-            print("⚠️No Token Returned From FCM  ❌ "); return }
-        print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
-
-            if     UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
-                print("✅Updating Token ✳️found  userId: \(UserDefaults.standard.value(forKey: "userId") as? String)\n ,FCMToken \(UserDefaults.standard.value(forKey: "FCMToken") as? String)\n, refreshedToken \(refreshedToken)\n")
-                
-                let userFCM = MUserData()
-                userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
-                    
-                    if state {
-                        UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
-                        print("✅Updated Token  ✅ ")
-
-                    }
-                })
-            }else {
-                print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(UserDefaults.standard.value(forKey: "userId") as? Int)\n ,♎️FCMTokenNSDefault  📴📳\(UserDefaults.standard.value(forKey: "FCMToken") as? String) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
-            }
         
     }
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print(error.localizedDescription)
+    
+    
+    //    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)
+    //    {
+    //        UIApplication.shared.registerForRemoteNotifications()
+    //    }
+    
+    
+    //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    ////        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+    ////        print(token)
+    //
+    ////        fcm()
+    //
+    //    }
+    //
+    //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    //        var token = ""
+    //        for i in 0..<deviceToken.count {
+    //            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+    //        }
+    //        print("Registration succeeded! Token: ", token)
+    //    }
+    //
+    //    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    //        print("Registration failed!")
+    //    }
+    //
+
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//        print(response)
+        //            print("Handle push from background or closed\(response.notification.request.content.userInfo)")
+        //write your action here
     }
+ 
+    ///Delete if needed
+    // This method will be called when app received push notifications in foreground
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.alert, .badge, .sound])
+    }
+    //
+    //    func showAlertAppDelegate(title: String,message : String,buttonTitle: String,window: UIWindow){
+    //        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    //        alert.addAction(UIAlertAction(title: buttonTitle, style: UIAlertActionStyle.default, handler: nil))
+    //        window.rootViewController?.present(alert, animated: false, completion: nil)
+    //    }
+    //    // Firebase ended here
+    //
+    //    func setupFCM() {
+    //        //create the notificationCenter
+    //        if #available(iOS 10.0, *) {
+    //            // For iOS 10 display notification (sent via APNS)
+    //            UNUserNotificationCenter.current().delegate = self
+    //
+    //            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+    //            UNUserNotificationCenter.current().requestAuthorization(
+    //                options: authOptions,
+    //                completionHandler: {_, _ in })
+    //
+    //            // For iOS 10 data message (sent via FCM)
+    //            //FIRMessaging.messaging().remoteMessageDelegate = self
+    //
+    //        } else {
+    //            let settings: UIUserNotificationSettings =
+    //                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+    //            UIApplication.shared.registerUserNotificationSettings(settings)
+    //        }
+    //
+    //        UIApplication.shared.registerForRemoteNotifications()
+    //        FIRApp.configure()
+    //
+    //    }
+    //
+    func setupFCM() {
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            // For iOS 10 data message (sent via FCM
+            FIRMessaging.messaging().remoteMessageDelegate = self
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)            }
+        
+        UIApplication.shared.registerForRemoteNotifications()
+        FIRApp.configure()
+        
+        fcm()
+    }
+    //@NOtification
+    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        print(remoteMessage.appData)
+    }
+    //@ENd
+//    func fcm() { }
+        func fcm() {
+            guard let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
+                UserDefaults.standard.setValue(nil, forKey: "FCMToken")
+                print("⚠️No userID Found  ❌ "); return }
+    
+            guard  let refreshedToken = FIRInstanceID.instanceID().token() else {
+                print("⚠️No Token Returned From FCM  ❌ "); return }
+            print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
+    
+                if     UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
+                    print("✅Updating Token ✳️found  userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? String))\n ,FCMToken \(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String))\n, refreshedToken \(refreshedToken)\n")
+    
+                    let userFCM = MUserData()
+                    userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
+    
+                        if state {
+                            UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
+                            print("✅Updated Token  ✅ ")
+    
+                        }
+                    })
+                }else {
+                    print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? Int))\n ,♎️FCMTokenNSDefault  📴📳\(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String)) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
+                }
+    
+        }
+    //    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    //        print(error.localizedDescription)
+    //    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         print("that's the userInfo : \(userInfo)")
-        print("that's the message Id  : \(userInfo["gcm_message_id"]!)")
-
+        print("that's the message Id  : \(String(describing: userInfo["gcm_message_id"]))")
+        print("application.applicationState: \(application.applicationState)")
+//        if application.applicationState == .active {
+//            //write your code here when app is in foreground
+////            print("User is in here")
+////            if let title = userInfo["title"] as? String , let body = userInfo["body"] as? String {
+////            showAlert( title , body)
+////            }
+//        }
     }
     
-    //@End Notification 
+    //@End Notification
     
     
     func showAlert(_ title : String,_ sms : String) {
         guard title != "√√" else {
             let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:langDicClass().getLocalizedTitle(sms) , type: .success)
-             alert.isUserInteractionEnabled = false
+            alert.isUserInteractionEnabled = false
             alert.show()
             return
         }
@@ -182,7 +278,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             return
         }
         guard title != "default" else {
-             let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message:langDicClass().getLocalizedTitle("try again!!") , type: .warning)
+            let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message:langDicClass().getLocalizedTitle("try again!!") , type: .warning)
             alert.show()
             return
         }
@@ -204,43 +300,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     }
     
     func saveUserLogginData(email:String?,photoUrl : String? , uid : Int?,name:String?) {
-        print("saving User Data email: \(email) , photoUrl: \(photoUrl),uid: \(uid)")
+        print("saving User Data email: \(String(describing: email)) , photoUrl: \(String(describing: photoUrl)),uid: \(String(describing: uid))")
         if email != "default" {
-        if   let email = email   {
-            UserDefaults.standard.setValue(email, forKey: "userEmail")
-        }else{
-            UserDefaults.standard.setValue(nil, forKey: "userEmail")
-            
-        }
+            if   let email = email   {
+                UserDefaults.standard.setValue(email, forKey: "userEmail")
+            }else{
+                UserDefaults.standard.setValue(nil, forKey: "userEmail")
+                
+            }
         }
         if photoUrl != "default" {
-
-        if  let photo = photoUrl {
-            UserDefaults.standard.setValue(photo, forKey: "profileImage")
-            print("saing this photo : \(photo)")
-        }else {
-            UserDefaults.standard.setValue(nil, forKey: "profileImage")
-        }
+            
+            if  let photo = photoUrl {
+                UserDefaults.standard.setValue(photo, forKey: "profileImage")
+                print("saing this photo : \(photo)")
+            }else {
+                UserDefaults.standard.setValue(nil, forKey: "profileImage")
+            }
         }
         if uid != -1 {
-
-        if  let uid = uid {
-            UserDefaults.standard.setValue(uid, forKey: "userId")
-        }else {
-            UserDefaults.standard.setValue(nil, forKey: "userId")
-            UserDefaults.standard.setValue(nil, forKey: "FCMToken")
-        }
+            
+            if  let uid = uid {
+                UserDefaults.standard.setValue(uid, forKey: "userId")
+            }else {
+                UserDefaults.standard.setValue(nil, forKey: "userId")
+                UserDefaults.standard.setValue(nil, forKey: "FCMToken")
+            }
         }
         if name != "default" {
-
-        if let name = name {
-            UserDefaults.standard.setValue(name, forKey: "usreName")
-        }else {
-            UserDefaults.standard.setValue(nil, forKey: "userName")
-        }
+            
+            if let name = name {
+                UserDefaults.standard.setValue(name, forKey: "usreName")
+            }else {
+                UserDefaults.standard.setValue(nil, forKey: "userName")
+            }
         }
     }
- 
+    
     func isUserLoggedIn() -> Bool {
         if (UserDefaults.standard.value(forKey: "userId") != nil) {
             return true
@@ -253,8 +349,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         let x = MenuVC()
         x.modalTransitionStyle = .partialCurl
         x.currentPage = triggerPage
-//        view.navigationController?.present(x, animated: true, completion: nil)
-         view.present(x, animated: true, completion: nil)
+        //        view.navigationController?.present(x, animated: true, completion: nil)
+        view.present(x, animated: true, completion: nil)
     }
     
     func loadingActivity(_ view : UIViewController) -> UIActivityIndicatorView{
@@ -272,7 +368,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         myActivityIndicator.layer.shadowColor = UIColor(red: 157/255, green: 157/255, blue: 157/255, alpha: 1.0).cgColor
         view.view.addSubview(myActivityIndicator)
         return myActivityIndicator
-
+        
     }
 }
 let ad = UIApplication.shared.delegate as! AppDelegate

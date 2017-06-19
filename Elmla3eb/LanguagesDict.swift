@@ -79,7 +79,10 @@ class LanguagesDict {
                          "price has to be only written in numbers" : "يجب ان يحتوي السعر علي ارقام فقط",
                          "Nearby Fields & bookings" : "الملاعب القريبه / المحجوزه",
                          "Playground Management" : "إدارة الملاعب",
-                         "Verification Code has been Sent": "تم ارسال رمز التفعيل"
+                         "Verification Code has been Sent": "تم ارسال رمز التفعيل",
+                         "Player" : "لاعب",
+                         "Owner" : "صاحب ملعب",
+                         "Ok" : "تم"
         //                             "":"",
         //                             "":"",
         //                             "":"",
