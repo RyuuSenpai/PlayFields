@@ -62,10 +62,6 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             if isOwner {
                 bookNowDoneBtn?.isEnabled = false
                 bookNowDoneBtn?.alpha = 0
-                 mainControllerStackView?.removeArrangedSubview(hoursStackView)
-                hoursStackView?.removeFromSuperview()
-                mainControllerStackView?.removeArrangedSubview(newStackView)
-                newStackView?.removeFromSuperview()
             }
         }
     }
@@ -125,6 +121,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         vc.times_msg = self.times_msg
         vc.dayAvailable = self.bookNowDays
         vc.times = self.bookNowTimes
+        vc.isOwner = self.isOwner
         self.setupChildView(vc)
         return vc
     }()
@@ -161,6 +158,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
             isOwner = true
+            
         }else {
             isOwner = false
         }
@@ -169,16 +167,21 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             bookNowDoneBtn.isEnabled = true
             bookNowDoneBtn.alpha = 1
             self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Save"), for: .normal)
+            mainControllerStackView?.removeArrangedSubview(hoursStackView)
+            hoursStackView?.removeFromSuperview()
+            mainControllerStackView?.removeArrangedSubview(newStackView)
+            newStackView?.removeFromSuperview()
         } else {
             self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Book Field Now"), for: .normal)
         }
-
         
-    
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        ViewPlayFeildVC.seletedTimes_ID = []
         if L102Language.currentAppleLanguage() == "ar" {
             self.view1SecLbl.textAlignment = .left
             self.view2SecLbl.textAlignment = .left
@@ -248,12 +251,12 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             //            weakSelf?.bookNowTimes = [Pg_Times_Data]()
             for x in times {
                 weakSelf?.bookNowDays.append(x.date)
-                print("that is am_class \(x.am_class)")
-                print("that is pm_class \(x.pm_class)")
-                print("that is day \(x.date)")
-                
+//                print("that is am_class \(x.am_class)")
+//                print("that is pm_class \(x.pm_class)")
+//                print("that is day \(x.date)")
+//                
             }
-            print("that is all day \(weakSelf?.bookNowDays)")
+//            print("that is all day \(weakSelf?.bookNowDays)")
             weakSelf?.bookNowTimes = times
             
             //            self.playFieldInfo = data
@@ -263,9 +266,18 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         if bookNowCellTrigger {
             self.activityIndicator.startAnimating()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.view.isUserInteractionEnabled = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.vanisher()
+           
+            self.theView = self.bookNowView
+            //            self.theView.accessibilityIdentifier = "bookNowView"
+            self.bookNowTableChildView.view.isHidden =  false
+            self.theCurBtn = self.datesBtn
+            self.CurrBtnLine = self.datesBtnLine
+             self.animateDefaultView()
                 self.activityIndicator.stopAnimating()
-            self.bookNowBtnAct()
+                  self.view.isUserInteractionEnabled = true 
             }
         }
     }
@@ -298,7 +310,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     }
     
     @IBAction func controllBtnsAct(_ sender: UIButton) {
-        if isOwner , sender.tag == 2 || sender.tag == 3 {
+        if isOwnerEditing , sender.tag == 2 || sender.tag == 3 {
             return
         }
         
@@ -347,25 +359,25 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     @IBAction func bookNowBtnAct(_ sender: UIButton? = nil    ) {
         
-        guard !isOwner else {
-
+        guard !isOwnerEditing else {
+            
             print(("tbhat's the changed value : price : \(price ?? 0) , hasball \(haveBall ? 1 : 0)  haslight \(haveLighting ? 1 : 0):"))
             self.activityIndicator.startAnimating()
             let editPG = GetPlayGroundsData()
             guard let pgId = pg_id, let name = ownerDataDict["name"], let address = ownerDataDict["address"], let price = price, let type = ownerDataDict["type"] else {
-                 self.activityIndicator.stopAnimating()
+                self.activityIndicator.stopAnimating()
                 ad.showAlert("default","")
                 return
             }
             editPG.putEdit_Playground(pg_id: pgId, pg_name: name, address: address, price: price, ground_type: type, light_available: haveLighting ? "1" : "0" , football_available: haveBall ? "1" : "0", completed: { [weak self] (state,sms) in
                 guard state else { ad.showAlert("X", sms); return }
                 let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message: langDicClass().getLocalizedTitle(""), type: .success)
-
+                
                 DispatchQueue.main.async {
                     self?.activityIndicator.stopAnimating()
                     alert.show()
                 }
-              
+                
             })
             
             return
@@ -408,7 +420,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                             alert.hide(animations: nil, isPopupAnimated: true )
                             self?.navigationController?.popViewController(animated: true )
                             
-//                            ad.reloadApp()
+                            //                            ad.reloadApp()
                         }
                     }else {
                         let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message: langDicClass().getLocalizedTitle("try again!!"), type: .error)
@@ -462,32 +474,63 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         //        self.bookNowView.alpha = 0
         //        self.labelsDataView.alpha = 0
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.theView.alpha = 0
             self.theCurBtn.setTitleColor(Constants.Colors.lightGray, for: .normal)
             self.CurrBtnLine.backgroundColor = Constants.Colors.lightGray
-            guard !self.isOwner else { return }
-            if self.theCurBtn == self.newsBtn    {
-                self.bookNowBtnBottomConstant.constant = self.originalBottomConstant!
-                //                self.bookNowDoneBtn.alpha = 0
-            }
-            //            self.theCurBtn.currentTitleColor = Constants.Colors.gray.cgColor
+            guard !self.isOwnerEditing else { return }
+            //            if self.theCurBtn == self.newsBtn    {
+            //                self.bookNowBtnBottomConstant.constant = self.originalBottomConstant!
+            //                //                self.bookNowDoneBtn.alpha = 0
+            self.bookNowBtnBottomConstant.constant = self.originalBottomConstant!
+            
         })
+        //         }) { (true) in
+        //            if self.isOwner  , !self.isOwnerEditing{
+        //                if self.theCurBtn == self.datesBtn    {
+        //                    guard let const = self.originalBottomConstant else { return }
+        //                    self.bookNowBtnBottomConstant.constant = const
+        //                }
+        //            }
+        //        }
     }
     
     func animateDefaultView() {
-        print("that is the view : \(self.theView.accessibilityIdentifier)")
-        UIView.animate(withDuration: 0.5 , animations: {
+        
+        //        print("that is the view : \(self.theView.accessibilityIdentifier)")
+        UIView.animate(withDuration: 0.3 , animations: {
             self.theView.alpha = 1
             
             self.theCurBtn.setTitleColor(Constants.Colors.green, for: .normal)
             self.CurrBtnLine.backgroundColor = Constants.Colors.green
-            guard !self.isOwner else { return }
+            guard !self.isOwnerEditing else { return }
             if self.theCurBtn == self.newsBtn {
-                self.bookNowBtnBottomConstant.constant = -100
-                //                self.bookNowDoneBtn.alpha = 0
+                self.bookNowBtnBottomConstant.constant -=  self.bookNowDoneBtn.bounds.height
             }
+            if self.isOwner {
+                if self.theCurBtn == self.datesBtn    {
+                    self.bookNowBtnBottomConstant.constant -=  self.bookNowDoneBtn.bounds.height + 3
+                    self.view.layoutIfNeeded()
+                }
+            }
+            self.view.layoutIfNeeded()
+
         })
+//        { (true) in
+////            if self.isOwner  , !self.isOwnerEditing{
+////                if self.theCurBtn == self.datesBtn    {
+////                    self.bookNowBtnBottomConstant.constant +=  self.bookNowDoneBtn.bounds.height * 2
+////                }}
+////
+//            UIView.animate(withDuration: 0.2 , animations: {
+//                if self.isOwner  , !self.isOwnerEditing{
+//                    if self.theCurBtn == self.datesBtn    {
+//                        self.bookNowBtnBottomConstant.constant -=  self.bookNowDoneBtn.bounds.height
+//                        self.view.layoutIfNeeded()
+//                    }
+//                }
+//            })
+//        }
     }
     
     func  animateView(view : UIView!) {

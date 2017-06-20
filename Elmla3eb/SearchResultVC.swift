@@ -12,6 +12,12 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
 
     var searchResultData : [Search_Data]?
+    
+   
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

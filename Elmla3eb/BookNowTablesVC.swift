@@ -28,6 +28,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     @IBOutlet weak var pmBtn: UIButton!
     @IBOutlet weak var backToDatesTableBtnOL: UIButton!
     
+    var isOwner = false
     let  vplaygVC = ViewPlayFeildVC()
     var  currentArray = [String ]()
     var dayAvailable = [String]()
@@ -215,6 +216,12 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
             cell.selectRow.setBackgroundImage(#imageLiteral(resourceName: "Thin Circle_77cd52_100"), for: .normal)
             cell.selectRow.setBackgroundImage(#imageLiteral(resourceName: "Circled Down Left 2_77cd52_32"), for: .selected)
             cell.selectRow.addTarget(self, action: #selector(self.selectedCell(_:)), for: .touchUpInside)
+            
+            if isOwner {
+                cell.selectRow.alpha = 0
+            }else {
+                cell.selectRow.alpha = 1 
+            }
             return cell
             
         }else {

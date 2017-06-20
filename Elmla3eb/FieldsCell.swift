@@ -50,6 +50,12 @@ class FieldsCell: UITableViewCell {
             }else {
                 courtImage.image = UIImage(named: "courtplaceholder_3x")
         }
+        if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
+            bookNowBtn.alpha = 0
+            
+        }else {
+            bookNowBtn.alpha = 1
+        }
     }
     
     func configNotConfirmedFields(_ data :NotConfirmedFields_Data? ) {
@@ -116,6 +122,12 @@ class FieldsCell: UITableViewCell {
             }else {
                 courtImage.image = UIImage(named: "courtplaceholder_3x")
             }
+        }
+        if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
+            bookNowBtn.alpha = 0
+            
+        }else {
+            bookNowBtn.alpha = 1
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
