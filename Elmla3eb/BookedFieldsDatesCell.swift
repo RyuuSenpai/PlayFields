@@ -14,7 +14,7 @@ protocol updateDataTrigger : class {
     func triggerupdate()
     func startLoading()
     func stopLoading()
-
+    
 }
 
 class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDataSource  {
@@ -58,14 +58,14 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             }else {
                 pmBtnClicked()
             }
-//                        currentTimeArray = amData
-//                        self.tableView?.reloadData()
+            //                        currentTimeArray = amData
+            //                        self.tableView?.reloadData()
             print("testtt")
-//            amBtnClicked()
+            //            amBtnClicked()
         }
     }
     
-
+    
     var currentTimeArray : [AmPm_data]?{
         didSet {
             guard let _ = currentTimeArray else{ print("📍currentTimeArray == nil"); return }
@@ -124,7 +124,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
         cell.label.text = data[indexPath.row].time
         //        cell.tag = indexPath.row
         cell.selectRow.isSelected = false
-         cell.selectRow.tag = indexPath.row
+        cell.selectRow.tag = indexPath.row
         
         
         if isBooked {
@@ -153,45 +153,47 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     func selectedCell(_ sender : UIButton) {
         self.delegate?.startLoading()
         print("thats the index : \(sender.tag)")
-//        self.loadingActivity.startAnimating()
+        //        self.loadingActivity.startAnimating()
         self.isUserInteractionEnabled = false
-//        print("sndertag : \(sender.tag) currentTimeArray count before : \(self.currentTimeArray?.count) and the selected array is :\(currentarrayTitle)")
+        //        print("sndertag : \(sender.tag) currentTimeArray count before : \(self.currentTimeArray?.count) and the selected array is :\(currentarrayTitle)")
         guard let data = currentTimeArray , sender.tag <= data.count  else {
             self.delegate?.stopLoading()
-//            self.loadingActivity.stopAnimating()
+            //            self.loadingActivity.stopAnimating()
             self.isUserInteractionEnabled = true
             return  }
         let id = data[sender.tag].id
         let time = data[sender.tag].time
-//        print("that the timee selected : \(time)")
+        //        print("that the timee selected : \(time)")
         let isConfirmed = data[sender.tag].confirmedBool
         guard id != 0 else {
-//            print("❌fatal error id equal 0 selectedCell(_ sender : UIButton)" ) ;  
+            //            print("❌fatal error id equal 0 selectedCell(_ sender : UIButton)" ) ;
             return }
         if isConfirmed {
             reservationModel.postAttendanceRequest(id: id, completed: {[weak self] (sms, state) in
                 guard state else {
                     DispatchQueue.main.async {
                         
-//                    self?.loadingActivity.stopAnimating()
-                    self?.isUserInteractionEnabled = true
-                    ad.showAlert("X", sms) ;print("Attendance request has failed❗️");
+                        self?.isUserInteractionEnabled = true
+                        self?.delegate?.stopLoading()
+                        ad.showAlert("X", sms) ;print("Attendance request has failed❗️");
+                        
                     }
-                        return }
+                    return }
                 
-//                self?.currentTimeArray?.remove(at: sender.tag)
+                //                self?.currentTimeArray?.remove(at: sender.tag)
                 if self?.currentarrayTitle == "am" {
                     self?.amData?.remove(at: sender.tag)
                     self?.currentTimeArray = self?.amData
                 }else {
                     self?.pmData?.remove(at: sender.tag)
-                     self?.currentTimeArray = self?.pmData
+                    self?.currentTimeArray = self?.pmData
                 }
                 //                self?.tableView.reloadData()
                 DispatchQueue.main.async {
-                    let indexPath = IndexPath(item: sender.tag, section: 0)
-                    self?.tableView.reloadRows(at: [indexPath], with: .top)
-//                    self?.tableView.reloadData()
+                    //didn't Work
+                    //                    let indexPath = IndexPath(item: sender.tag, section: 0)
+                    
+                    //                    self?.tableView.reloadData()
                     self?.isUserInteractionEnabled = true
                     self?.delegate?.triggerupdate()
                 }
@@ -202,17 +204,21 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             
             reservationModel.postConfirmRequest(id: id) { [weak self] (sms, state) in
                 guard state else {
-                    self?.loadingActivity.stopAnimating()
-                    self?.isUserInteractionEnabled = true
-                    ad.showAlert("X", sms) ;print("confirm request has failed❗️"); return }
+                    DispatchQueue.main.async {
+                        
+                        self?.delegate?.stopLoading()
+                        self?.isUserInteractionEnabled = true
+                        ad.showAlert("X", sms) ;print("confirm request has failed❗️")
+                    }
+                    return }
                 
                 if self?.currentarrayTitle == "am" {
-                     self?.amData?[sender.tag]._confirmed = 1
-                     self?.currentTimeArray = self?.amData
+                    self?.amData?[sender.tag]._confirmed = 1
+                    self?.currentTimeArray = self?.amData
                 }else {
-                      self?.pmData?[sender.tag]._confirmed = 1
+                    self?.pmData?[sender.tag]._confirmed = 1
                     self?.currentTimeArray = self?.pmData
-                 }
+                }
                 //                self?.tableView.reloadRows(at: [[0,sender.tag]], with: UITableViewRowAnimation.automatic )
                 //                self?.tableView.reloadData()
                 DispatchQueue.main.async {
@@ -232,28 +238,28 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("Deleted")
-             guard let id =  self.currentTimeArray?[indexPath.row].id , id != 0  else {
+            guard let id =  self.currentTimeArray?[indexPath.row].id , id != 0  else {
                 ad.showAlert("default", "")
                 return }
             self.delegate?.startLoading()
             self.isUserInteractionEnabled = false
-
+            
             reservationModel.postCancelRequest(id, completed: { [weak self ] (sms, state) in
                 
-            if self?.currentarrayTitle == "am" {
-                self?.amData?.remove(at: indexPath.row)
-                self?.currentTimeArray = self?.amData
-            }else {
-                self?.pmData?.remove(at: indexPath.row)
-                self?.currentTimeArray = self?.pmData
-            }
+                if self?.currentarrayTitle == "am" {
+                    self?.amData?.remove(at: indexPath.row)
+                    self?.currentTimeArray = self?.amData
+                }else {
+                    self?.pmData?.remove(at: indexPath.row)
+                    self?.currentTimeArray = self?.pmData
+                }
                 DispatchQueue.main.async {
                     self?.tableView.deleteRows(at: [indexPath], with: .top)
-//                    self?.tableView.reloadData()
+                    //                    self?.tableView.reloadData()
                     self?.isUserInteractionEnabled = true
                     self?.delegate?.triggerupdate()
                 }
-                })
+            })
         }
     }
     

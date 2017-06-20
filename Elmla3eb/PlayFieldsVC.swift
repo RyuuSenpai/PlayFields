@@ -233,7 +233,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         
         let userLocation:CLLocation = locations[0] as CLLocation // note that locations is same as the one in the function declaration
         
-        print("that's the user Location : \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
+//        print("that's the user Location : \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
         userLat = "\(userLocation.coordinate.latitude)"
         userLong = "\(userLocation.coordinate.longitude)"
         manager.stopUpdatingLocation()

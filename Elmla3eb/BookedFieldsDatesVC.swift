@@ -118,7 +118,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         cell.delegate = self
         if btnSelected == 0 {
             guard let notBookedCOunt = notBooked else { return cell }
-            cell.dayTitle.text = ""
+            cell.dayTitle.text = " "
             cell.dateLabel.text = notBookedCOunt[indexPath.row].date
             cell.bookingData = notBookedCOunt[indexPath.row]
             cell.isBooked = false
@@ -131,7 +131,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         }else {
  
             guard let bookedCOunt = booked else { return cell }
-            cell.dayTitle.text = ""
+            cell.dayTitle.text = " "
             cell.dateLabel.text = bookedCOunt[indexPath.row].date
             cell.bookingData = bookedCOunt[indexPath.row]
             cell.isBooked = true

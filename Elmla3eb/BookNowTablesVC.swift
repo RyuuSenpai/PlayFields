@@ -88,7 +88,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         amBtn.addTarget(self, action: #selector(self.amBtnClicked), for: .touchUpInside )
         pmBtn.addTarget(self, action: #selector(self.pmBtnClicked), for: .touchUpInside )
         currentArray = am
-        dayTitle.text = ""
+        dayTitle.text = " "
         
         // Do any additional setup after loading the view.
         
@@ -370,7 +370,7 @@ extension BookNowTablesVC {
  pmBtn.addTarget(self, action: #selector(self.pmBtnClicked), for: .touchUpInside )
  currentArray = am
  
- dayTitle.text = ""
+ dayTitle.text = " "
  // Do any additional setup after loading the view.
  }
  override func viewWillAppear(_ animated: Bool) {

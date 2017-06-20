@@ -55,16 +55,17 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     var bookNowDays = [String]()
     //Owner Vars
     var price : Int?
+    var isOwnerEditing = false
+    var bookNowCellTrigger = false
     var isOwner  =  false  {
         didSet {
             if isOwner {
-                self.bookNowDoneBtn?.setTitle(langDicClass().getLocalizedTitle("Save"), for: .normal)
-                mainControllerStackView?.removeArrangedSubview(hoursStackView)
+                bookNowDoneBtn?.isEnabled = false
+                bookNowDoneBtn?.alpha = 0
+                 mainControllerStackView?.removeArrangedSubview(hoursStackView)
                 hoursStackView?.removeFromSuperview()
                 mainControllerStackView?.removeArrangedSubview(newStackView)
                 newStackView?.removeFromSuperview()
-            } else {
-                self.bookNowDoneBtn?.setTitle(langDicClass().getLocalizedTitle("Book Field Now"), for: .normal)
             }
         }
     }
@@ -157,13 +158,23 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         activityIndicator.layer.cornerRadius = 1
         
-        if isOwner {
-            print("🤡owner")
+        
+        if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
             isOwner = true
         }else {
-            print("🤡Player")
             isOwner = false
         }
+        
+        if isOwnerEditing {
+            bookNowDoneBtn.isEnabled = true
+            bookNowDoneBtn.alpha = 1
+            self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Save"), for: .normal)
+        } else {
+            self.bookNowDoneBtn.setTitle(langDicClass().getLocalizedTitle("Book Field Now"), for: .normal)
+        }
+
+        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -249,6 +260,14 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             //            print("that is the data : \(self.playFieldInfo?.pg_id) , \(self.playFieldInfo?.light_available) , \(self.playFieldInfo?.ground_type)")
             
         }
+        
+        if bookNowCellTrigger {
+            self.activityIndicator.startAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.activityIndicator.stopAnimating()
+            self.bookNowBtnAct()
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -326,7 +345,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
     }
     
-    @IBAction func bookNowBtnAct(_ sender: UIButton) {
+    @IBAction func bookNowBtnAct(_ sender: UIButton? = nil    ) {
         
         guard !isOwner else {
 
@@ -370,8 +389,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             if ViewPlayFeildVC.seletedTimes_ID.count > 0 {
                 view.isUserInteractionEnabled = false
                 activityIndicator.startAnimating()
-                sender.isEnabled = false
-                sender.alpha = 0.5
+                sender?.isEnabled = false
+                sender?.alpha = 0.5
                 print("that's the selected dataes ID : \(ViewPlayFeildVC.seletedTimes_ID)")
                 guard let pgID = pg_id else { print("pg_id is Equal to NIL \(pg_id)"); return }
                 pf_Info.postBookDate(pg_Id : pgID , reservationArray: ViewPlayFeildVC.seletedTimes_ID, completed: { [weak self ](isIt) in
@@ -386,8 +405,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            alert.hide(animations: nil, isPopupAnimated: true )
+                            self?.navigationController?.popViewController(animated: true )
                             
-                            ad.reloadApp()
+//                            ad.reloadApp()
                         }
                     }else {
                         let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message: langDicClass().getLocalizedTitle("try again!!"), type: .error)
@@ -396,8 +417,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                             alert.show()
                             self?.activityIndicator.stopAnimating()
                             self?.view.isUserInteractionEnabled = true
-                            sender.isEnabled = true
-                            sender.alpha = 1
+                            sender?.isEnabled = true
+                            sender?.alpha = 1
                         }
                     }
                     
@@ -535,21 +556,21 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     //MARK: Owner set new data
     @IBAction func ownerChangeValue(_ sender: UIButton) {
-        guard isOwner else { return }
+        guard isOwnerEditing else { return }
         
         switch sender.tag {
             
         case 0 :
             print(0)
             if theCurBtn == detailsBtn {
-                presentAlert("Enter Field Name", "", "Field Name", view1SecLbl)
+                presentAlert(langDicClass().getLocalizedTitle("Enter Field Name"), "", langDicClass().getLocalizedTitle("Field Name"), view1SecLbl)
             }
         case 1 :
             print(1)
             if theCurBtn == detailsBtn {//Details * FieldName, address Books Times , price
-                presentAlert("Enter Address", "", "Address", view2SecLbl)
+                presentAlert(langDicClass().getLocalizedTitle("Enter Address"), "", langDicClass().getLocalizedTitle("Address"), view2SecLbl)
             }else {//AboutField - Number of Fields X, Fields Type √
-                presentAlert("Enter Field Type", "", "Field Type", view2SecLbl)
+                presentAlert(langDicClass().getLocalizedTitle("Enter Field Type"), "", langDicClass().getLocalizedTitle("Field Type"), view2SecLbl)
             }
         case 2 :
             print(2)
@@ -566,7 +587,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         default :
             print(3)
             if theCurBtn == detailsBtn {
-                presentAlert("Enter Price for Hour", "", "Price", view4SecLbl)
+                presentAlert(langDicClass().getLocalizedTitle("Enter Price for Hour"), "", langDicClass().getLocalizedTitle("Price"), view4SecLbl)
             }else {
                 
                 if !haveLighting {

@@ -69,13 +69,14 @@
     
     @IBAction func searchBtnAct(_ sender: UIButton) {
         disableView(true)
-        guard let name =  fieldNameTxt.text, let city = cityTxt.text, let rate = rateTxt.text, let fromDate = fromTxt.text, let toDate = toTxt.text,(!name.isEmpty || !city.isEmpty || !rate.isEmpty || !fromDate.isEmpty || !toDate.isEmpty ) else{
-            ad.showAlert(langDicClass().getLocalizedTitle("Error"), langDicClass().getLocalizedTitle("At least one Field has to be filled"))
-            disableView(false)
-            return
-        }
+        //        guard let name =  fieldNameTxt.text, let city = cityTxt.text, let rate = rateTxt.text, let fromDate = fromTxt.text, let toDate = toTxt.text,(!name.isEmpty || !city.isEmpty || !rate.isEmpty || !fromDate.isEmpty || !toDate.isEmpty ) else{
+        //            ad.showAlert(langDicClass().getLocalizedTitle("Error"), langDicClass().getLocalizedTitle("At least one Field has to be filled"))
+        //            disableView(false)
+        //            return
+        //        }
         searchModel = Search_Model()
-        searchModel.getSearchData(pg_name: name, address: city, rating: rate, fromData: fromDate, toDate: toDate) {[weak self] (data) in
+        //        searchModel.getSearchData(pg_name: name, address: city, rating: rate, fromData: fromDate, toDate: toDate) {[weak self] (data) in
+        searchModel.getSearchData(pg_name: fieldNameTxt.text, address: cityTxt.text, rating: rateTxt.text, fromData: fromTxt.text, toDate: toTxt.text) {[weak self] (data) in
             if data.2 {
                 guard let searchResult = data.0 , searchResult.count > 0 else {
                     DispatchQueue.main.async {
@@ -115,9 +116,13 @@
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fieldNameTxt.text = ""
+        cityTxt.text = ""
+        rateTxt.text = ""
+        fromTxt.text = ""
+        toTxt.text = ""
     }
     
     
@@ -179,12 +184,12 @@
             clearBtnUIMangment(clearCityBtn, cityTxt)
             
         }
-  
-
+        
+        
     }
     
     func clearBtnUIMangment(_ btn : UIButton, _ txt : UITextField){
-    
+        
         if let txt = txt.text , !txt.isEmpty {
             btn.alpha = 1
         }else {
@@ -195,7 +200,7 @@
     
     @IBAction func clearTextBtnAct(_ sender: UIButton) {
         sender.alpha = 0
-
+        
         switch sender.tag  {
         case 1:
             rateTxt.text = ""
@@ -206,12 +211,12 @@
         default:
             cityTxt.text = ""
         }
-//            if sender.tag == 0 {//City
-//                cityTxt.text = ""
-//        }else { //Rate
-//            rateTxt.text = ""
-//            sender.alpha = 0
-//        }
+        //            if sender.tag == 0 {//City
+        //                cityTxt.text = ""
+        //        }else { //Rate
+        //            rateTxt.text = ""
+        //            sender.alpha = 0
+        //        }
     }
     
     
@@ -226,7 +231,7 @@
  extension SearchVC :  UIPickerViewDelegate, UIPickerViewDataSource {
     
     
- 
+    
     func setupPicker() {
         citiesPickerV = UIPickerView()
         citiesPickerV.dataSource = self
@@ -265,13 +270,13 @@
             
             cityTxt.text = selectedCity == "" ? cities[0] : selectedCity
             selectedCity = ""
-//            clearCityBtn.alpha = 1
+            //            clearCityBtn.alpha = 1
             
         }else {
             
             rateTxt.text = selectedCity == "" ? rateList[0] : selectedRate
             selectedRate = ""
-//            clearRateBtn.alpha = 1
+            //            clearRateBtn.alpha = 1
         }
         self.view.endEditing(true)
     }

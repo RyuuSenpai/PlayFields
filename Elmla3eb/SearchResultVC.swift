@@ -77,6 +77,7 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         
         let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
         detailVC.pg_id =  sender.tag
+        detailVC.bookNowCellTrigger = true 
         print("that is the field name : \(title)")
         
         self.navigationController?.pushViewController(detailVC, animated: true)

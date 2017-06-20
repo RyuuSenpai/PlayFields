@@ -82,7 +82,15 @@ class LanguagesDict {
                          "Verification Code has been Sent": "تم ارسال رمز التفعيل",
                          "Player" : "لاعب",
                          "Owner" : "صاحب ملعب",
-                         "Ok" : "تم"
+                         "Ok" : "تم",
+                         "Enter Field Name" : "ادخل اسم الملعب",
+                         "Field Name" : "اسم الملعب",
+                         "Enter Address" : "ادخل العنوان",
+                         "Address" : "العنوان" ,
+                         "Enter Field Type" : "ادخل نوع أرضيه الملعب",
+                         "Field Type" : "نوع الأرضيه ",
+                         "Enter Price for Hour" : "ادخل سعر الساعه",
+                         "Price" : "السعر"
         //                             "":"",
         //                             "":"",
         //                             "":"",

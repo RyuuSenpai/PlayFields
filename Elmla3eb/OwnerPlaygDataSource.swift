@@ -64,7 +64,7 @@ extension OwnerPlaygroundsVC : UITableViewDataSource {
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewPlayFeildVC" ) as! ViewPlayFeildVC
             
-            vc.isOwner = true
+            vc.isOwnerEditing = true
             vc.pg_id = sender.tag
             
             self.navigationController?.pushViewController(vc, animated: true)
