@@ -132,6 +132,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         fbLogOut()
+//          self.window?.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func backBtnAct(_ sender: UIButton) {
@@ -190,25 +191,14 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
                     ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
                 ad.fcm()
                     ad.reloadApp()
-//                guard   let parent = self.presentingViewController ,parent.isKind(of: ViewPlayFeildVC.self)else {
-//
-//                    weakSelf?.dismiss(animated: true, completion: nil)
-//                    return
-//                }
-//                    weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender: weakSelf)
-                    //Trash
-//                let data = data.3
  
-//                print("that is the login response : \(data?["id"] as? Int)")
-//                print("that is the login response : \(data?["name"] as? String)")
-//                self.setUIEnabled(enabled: true)
             }else if let data = data.3 , let id = data["id"] as? Int, let name = data["name"] as? String   {
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id
                 vc.userName = name
                 vc.codeVerfication = true 
-                self.present(vc, animated: true, completion: nil)
+                weakSelf?.present(vc, animated: true, completion: nil)
                 
             }else {
                 if data.2 == "User not found" {

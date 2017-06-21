@@ -80,7 +80,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
             //            window!.makeKeyAndVisible()
             //@end test end
         }
-                setupFCM()
+        setupFCM()
         
         //        let notificationTypes : UIUserNotificationType = [.alert, .badge, .sound]
         //        let notificationSettings : UIUserNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
@@ -144,15 +144,15 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     //        print("Registration failed!")
     //    }
     //
-
+    
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        print(response)
+        //        print(response)
         //            print("Handle push from background or closed\(response.notification.request.content.userInfo)")
         //write your action here
     }
- 
+    
     ///Delete if needed
     // This method will be called when app received push notifications in foreground
     @available(iOS 10.0, *)
@@ -218,33 +218,33 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         print(remoteMessage.appData)
     }
     //@ENd
-//    func fcm() { }
-        func fcm() {
-            guard let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
-                UserDefaults.standard.setValue(nil, forKey: "FCMToken")
-                print("⚠️No userID Found  ❌ "); return }
-    
-            guard  let refreshedToken = FIRInstanceID.instanceID().token() else {
-                print("⚠️No Token Returned From FCM  ❌ "); return }
-            print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
-    
-                if     UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
-                    print("✅Updating Token ✳️found  userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? String))\n ,FCMToken \(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String))\n, refreshedToken \(refreshedToken)\n")
-    
-                    let userFCM = MUserData()
-                    userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
-    
-                        if state {
-                            UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
-                            print("✅Updated Token  ✅ ")
-    
-                        }
-                    })
-                }else {
-                    print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? Int))\n ,♎️FCMTokenNSDefault  📴📳\(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String)) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
+    //    func fcm() { }
+    func fcm() {
+        guard let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
+            UserDefaults.standard.setValue(nil, forKey: "FCMToken")
+            print("⚠️No userID Found  ❌ "); return }
+        
+        guard  let refreshedToken = FIRInstanceID.instanceID().token() else {
+            print("⚠️No Token Returned From FCM  ❌ "); return }
+        print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
+        
+        if     UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
+            print("✅Updating Token ✳️found  userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? String))\n ,FCMToken \(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String))\n, refreshedToken \(refreshedToken)\n")
+            
+            let userFCM = MUserData()
+            userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
+                
+                if state {
+                    UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
+                    print("✅Updated Token  ✅ ")
+                    
                 }
-    
+            })
+        }else {
+            print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? Int))\n ,♎️FCMTokenNSDefault  📴📳\(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String)) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
         }
+        
+    }
     //    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     //        print(error.localizedDescription)
     //    }
@@ -253,13 +253,13 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         print("that's the userInfo : \(userInfo)")
         print("that's the message Id  : \(String(describing: userInfo["gcm_message_id"]))")
         print("application.applicationState: \(application.applicationState)")
-//        if application.applicationState == .active {
-//            //write your code here when app is in foreground
-////            print("User is in here")
-////            if let title = userInfo["title"] as? String , let body = userInfo["body"] as? String {
-////            showAlert( title , body)
-////            }
-//        }
+        //        if application.applicationState == .active {
+        //            //write your code here when app is in foreground
+        ////            print("User is in here")
+        ////            if let title = userInfo["title"] as? String , let body = userInfo["body"] as? String {
+        ////            showAlert( title , body)
+        ////            }
+        //        }
     }
     
     //@End Notification
@@ -284,6 +284,11 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         }
         guard title != "X" else {
             let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong With"), message:langDicClass().getLocalizedTitle(sms) , type: .warning)
+            alert.show()
+            return
+        }
+        guard title != "XX" else {
+            let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Error"), message:langDicClass().getLocalizedTitle(sms) , type: .warning)
             alert.show()
             return
         }
@@ -372,4 +377,3 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     }
 }
 let ad = UIApplication.shared.delegate as! AppDelegate
-

@@ -90,7 +90,10 @@ class LanguagesDict {
                          "Enter Field Type" : "ادخل نوع أرضيه الملعب",
                          "Field Type" : "نوع الأرضيه ",
                          "Enter Price for Hour" : "ادخل سعر الساعه",
-                         "Price" : "السعر"
+                         "Price" : "السعر",
+                         "Attendance" : "حضور",
+                         "You Can't cancel Attendance" : "لا يمكنك الفاء حجز لاعب بعد تاكيده"
+        
         //                             "":"",
         //                             "":"",
         //                             "":"",

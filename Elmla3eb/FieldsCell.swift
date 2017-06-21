@@ -32,7 +32,7 @@ class FieldsCell: UITableViewCell {
         // Initialization code
     }
     
-    func configNearFields(_ data :NearByFields_Data? ) { // address, price, bookingTimes 
+    func configNearFields(_ data :NearByFields_Data? ,_ isOwner : Bool ) { // address, price, bookingTimes
         guard let data = data else { return }
             bookNowBtn.tag = data.id
             
@@ -50,11 +50,12 @@ class FieldsCell: UITableViewCell {
             }else {
                 courtImage.image = UIImage(named: "courtplaceholder_3x")
         }
-        if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
-            bookNowBtn.alpha = 0
-            
-        }else {
+        if isOwner {
+            bookNowBtn.setTitle(langDicClass().getLocalizedTitle("Edit Field"), for: .normal)
             bookNowBtn.alpha = 1
+
+        }else {
+            bookNowBtn.alpha = 0
         }
     }
     
@@ -104,7 +105,7 @@ class FieldsCell: UITableViewCell {
 
     func configCell(_ data : Search_Data?) {
 //                    _ location : String?,_ price : String?,_ bookingTimes : String?,_ date : String?) {
-        self.bookingTimesAndRate.text = langDicClass().getLocalizedTitle("Total Rate :")
+//        self.bookingTimesAndRate.text = langDicClass().getLocalizedTitle("Total Rate :")
         if let data = data   {
             bookNowBtn.tag = data.id
     

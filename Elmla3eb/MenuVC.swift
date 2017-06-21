@@ -31,6 +31,8 @@ class MenuVC: UIViewController {
                 playerNameLabel?.text = name
             }else  if let email = UserDefaults.standard.value(forKey: "userEmail") as? String{
                 playerNameLabel?.text = email
+            }else {
+                playerNameLabel?.text = " "
             }
         }
     }
@@ -41,8 +43,10 @@ class MenuVC: UIViewController {
         didSet {
             if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
                 userTypeLbl?.text =  langDicClass().getLocalizedTitle("Owner" )
-            }else {
+            }else  if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "player" {
                 userTypeLbl?.text =  langDicClass().getLocalizedTitle("Player") 
+            }else {
+                userTypeLbl?.text = ""
             }
         }
     }
@@ -100,7 +104,7 @@ class MenuVC: UIViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-    
+        self.view.backgroundColor = .white
     }
     
     func loadImage() {
@@ -256,25 +260,26 @@ class MenuVC: UIViewController {
     }
     
     func changeLanguage() {
-        var transition: UIViewAnimationOptions = .transitionFlipFromLeft
+        var transition: UIViewAnimationOptions = [.transitionFlipFromLeft, .showHideTransitionViews]
         if L102Language.currentAppleLanguage() == "en" {
             L102Language.setAppleLAnguageTo(lang: "ar")
             UIView.appearance().semanticContentAttribute = .forceRightToLeft
         } else {
             L102Language.setAppleLAnguageTo(lang: "en")
-            transition = .transitionFlipFromRight
+//            transition = .transitionFlipFromRight
             UIView.appearance().semanticContentAttribute = .forceLeftToRight
         }
-        let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-        rootviewcontroller.rootViewController = storyb.instantiateViewController(withIdentifier: "rootNav")
-        let mainwindow = (UIApplication.shared.delegate?.window!)!
-        mainwindow.backgroundColor = UIColor(hue: 0.6477, saturation: 0.6314, brightness: 0.6077, alpha: 0.8)
-        UIView.transition(with: mainwindow, duration: 0.55001, options: transition, animations: { () -> Void in
-        }) { (finished) -> Void in
-            
-            
-        }
+        ad.reloadApp()
+//        let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+//        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        rootviewcontroller.rootViewController = storyb.instantiateViewController(withIdentifier: "rootNav")
+//        let mainwindow = (UIApplication.shared.delegate?.window!)!
+//        mainwindow.backgroundColor = UIColor(hue: 1, saturation: 1, brightness: 1, alpha: 1)
+//        UIView.transition(with: mainwindow, duration: 0.55001, options: transition, animations: { () -> Void in
+//        }) { (finished) -> Void in
+//            
+//            
+//        }
     }
     
     /*

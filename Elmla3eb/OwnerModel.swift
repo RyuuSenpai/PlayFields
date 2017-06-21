@@ -180,7 +180,7 @@ class OwnerModel {
     
     func getOwnerPlayG_PaymentStatics(  completed:@escaping ([PaymentStatics_Data]?,String,Bool) -> ()) {
         
-        let url = source.GET_OWNER_PAYMENTS_STATICS + source.API_TOKEN +  "&user_id=\(53)"
+        let url = source.GET_OWNER_PAYMENTS_STATICS + source.API_TOKEN +  "&user_id=\(USER_ID)"
         print("getOwnerPlayG_PaymentStatics URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         

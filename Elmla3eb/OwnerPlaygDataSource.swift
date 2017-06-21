@@ -40,10 +40,9 @@ extension OwnerPlaygroundsVC : UITableViewDataSource {
         if buttonTag == 0 {//PlayGrounds
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FieldsCell
             cell.cellState(0)
-            cell.configNearFields(ownerPlaygrounds[indexPath.row])
+            cell.configNearFields(ownerPlaygrounds[indexPath.row],true)
 
             
-            cell.bookNowBtn.setTitle(langDicClass().getLocalizedTitle("Edit Field"), for: .normal)
             cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
             cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
             cell.bookNowBtn.tag = ownerPlaygrounds[indexPath.row].id

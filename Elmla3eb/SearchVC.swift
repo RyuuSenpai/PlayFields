@@ -57,7 +57,11 @@
         global.readJson(langIs: langIs, completed: { [weak self] (data) in
             
             self?.cities = data
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5
+            ) {
+
             self?.view.squareLoading.stop(0)
+            }
         })
         
     }
@@ -273,8 +277,7 @@
             //            clearCityBtn.alpha = 1
             
         }else {
-            
-            rateTxt.text = selectedCity == "" ? rateList[0] : selectedRate
+             rateTxt.text = selectedRate == "" ? rateList[0] : selectedRate
             selectedRate = ""
             //            clearRateBtn.alpha = 1
         }

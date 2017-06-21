@@ -58,7 +58,7 @@ extension PlayFieldsVC : UITableViewDataSource {
           cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
 
             guard let data = nearFieldsData else {print("⛑ Fatal Error the nearFieldsData count Equal 0 ❗️"); return cell }
-            cell.configNearFields(data[indexPath.row])
+            cell.configNearFields(data[indexPath.row],false )
             cell.bookNowBtn.tag = indexPath.row
         case 1 :
             

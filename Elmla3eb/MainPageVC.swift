@@ -100,8 +100,9 @@
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         collectionView.addSubview(refreshControl)
         collectionView.alwaysBounceVertical = true
-        
-    }
+        ////            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
+
+     }
     
     func refreshData()
     {
@@ -110,21 +111,8 @@
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-       
-        
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
+  
+  
     
     
     func setupRatingView() {
@@ -183,7 +171,7 @@
     
     
     func updateUI() {
-        getData.getPlayFieldsData { [weak   self ] (data) in
+         getData.getPlayFieldsData { [weak   self ] (data) in
             if !data.1 , data.2 == "User is banned"   {
                 DispatchQueue.main.async {
                  ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
@@ -219,6 +207,7 @@
                 self?.ratePg_Data = [RatePg_Data]()
                  self?.ratePg_Data = rating
              }
+          
              //            weakSelf?.delegate?.headerDataRetriver(statics: statics, pager: pagerData)
             //            weakSelf?.delegate?.playPauseDidTap()
             //            for x in pg {
@@ -237,6 +226,7 @@
                  self?.stopRefresher()
                 self?.menuBtn.isEnabled = true
                 self?.menuBtn.image = UIImage(named: "Menu_Btn")
+                self?.view.squareLoading.stop(0)
                  self?.collectionView.reloadData()
              }
 

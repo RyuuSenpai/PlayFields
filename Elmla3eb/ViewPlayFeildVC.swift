@@ -131,9 +131,11 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("that is the pg_id : \(pg_id)")
+//        print("that is the pg_id : \(pg_id)")
+        navigationController?.navigationBar.topItem?.title = ""
+        pagerNilDataPlaceHolder.alpha = 1
+
         self.view.squareLoading.start(0.0)
-        
         newsTableView.delegate = self
         newsTableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -179,6 +181,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ViewPlayFeildVC.seletedTimes_ID = []
@@ -189,6 +192,9 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.view4SecLbl.textAlignment = .left
             
         }
+
+    //    self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -233,6 +239,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 }
                 DispatchQueue.main.async {
                     weakSelf?.imagesStringList = imageS
+                    weakSelf?.pagerNilDataPlaceHolder.alpha = 0
                 }
             }else {
                 DispatchQueue.main.async {
@@ -245,7 +252,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             
             weakSelf?.view.squareLoading.stop(0.0)
             
-            print("that is times : \(data.times)")
+//            print("that is times : \(data.times)")
             guard let times = data.times else { return }
             //            weakSelf?.bookNowDays = [String]()
             //            weakSelf?.bookNowTimes = [Pg_Times_Data]()

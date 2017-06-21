@@ -141,6 +141,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
             self.selectedDay = dayAvailable[indexPath.row]
             self.selectedDayFromlist(index: indexPath.row)
             self.dateLabel.text = selectedDay
+ 
             amBtnClicked()
             self.datestableView.reloadData()
             if isAraLang {

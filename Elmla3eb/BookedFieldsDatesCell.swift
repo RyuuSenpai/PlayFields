@@ -130,10 +130,10 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
         if isBooked {
             cell.selectRow.alpha = 1
             if data[indexPath.row].confirmedBool {
-                cell.selectRow.setTitle("Attendance", for: .normal)
+                cell.selectRow.setTitle(langDicClass().getLocalizedTitle("Attendance"), for: .normal)
                 
             }else {
-                cell.selectRow.setTitle("Confirm", for: .normal)
+                cell.selectRow.setTitle(langDicClass().getLocalizedTitle("Confirm"), for: .normal)
                 
             }
             
@@ -236,10 +236,14 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     
         if editingStyle == .delete {
             print("Deleted")
-            guard let id =  self.currentTimeArray?[indexPath.row].id , id != 0  else {
+            guard let id =  self.currentTimeArray?[indexPath.row].id, id != 0  else {
                 ad.showAlert("default", "")
+                return }
+               guard  let confirmationState = self.currentTimeArray?[indexPath.row].confirmedBool/* if attendance  do nothing*/ ,!confirmationState else {
+               ad.showAlert("XX", langDicClass().getLocalizedTitle("You Can't cancel Attendance"))
                 return }
             self.delegate?.startLoading()
             self.isUserInteractionEnabled = false
@@ -254,8 +258,6 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     self?.currentTimeArray = self?.pmData
                 }
                 DispatchQueue.main.async {
-                    self?.tableView.deleteRows(at: [indexPath], with: .top)
-                    //                    self?.tableView.reloadData()
                     self?.isUserInteractionEnabled = true
                     self?.delegate?.triggerupdate()
                 }

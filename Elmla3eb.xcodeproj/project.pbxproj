@@ -39,6 +39,7 @@
 		525C343C1EEFE6C10043B512 /* OwnerPlaygDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C343B1EEFE6C10043B512 /* OwnerPlaygDataSource.swift */; };
 		525C343E1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C343D1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift */; };
 		525C34421EF000BF0043B512 /* PaymentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525C34411EF000BF0043B512 /* PaymentCell.swift */; };
+		527F8D0E1EFA99FE00295448 /* MainPageNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F8D0D1EFA99FE00295448 /* MainPageNavigation.swift */; };
 		52850AB61E87ABF300C54168 /* GetPlayGroundsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52850AB51E87ABF300C54168 /* GetPlayGroundsData.swift */; };
 		528623251EDD8EAF0048E95F /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528623231EDD8EAF0048E95F /* SearchResultVC.swift */; };
 		528623261EDD8EAF0048E95F /* SearchResultVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 528623241EDD8EAF0048E95F /* SearchResultVC.xib */; };
@@ -148,6 +149,7 @@
 		525C343B1EEFE6C10043B512 /* OwnerPlaygDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPlaygDataSource.swift; sourceTree = "<group>"; };
 		525C343D1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerPlaygroundsVC.swift; sourceTree = "<group>"; };
 		525C34411EF000BF0043B512 /* PaymentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentCell.swift; sourceTree = "<group>"; };
+		527F8D0D1EFA99FE00295448 /* MainPageNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageNavigation.swift; sourceTree = "<group>"; };
 		52850AB51E87ABF300C54168 /* GetPlayGroundsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlayGroundsData.swift; sourceTree = "<group>"; };
 		528623231EDD8EAF0048E95F /* SearchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		528623241EDD8EAF0048E95F /* SearchResultVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultVC.xib; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */,
 				520044B71EC1DE300030B772 /* NoNetConnectionVC.xib */,
 				52BCB8781EBB2D42007298D4 /* ratingCell.swift */,
+				527F8D0D1EFA99FE00295448 /* MainPageNavigation.swift */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				525C343A1EEFE6B60043B512 /* OwnerPlaygDelegate.swift in Sources */,
 				52AFAA8F1E828318009F6467 /* UIPickerViewX.swift in Sources */,
 				52AFAA951E828318009F6467 /* UIViewXRadialGradient.swift in Sources */,
+				527F8D0E1EFA99FE00295448 /* MainPageNavigation.swift in Sources */,
 				525C343C1EEFE6C10043B512 /* OwnerPlaygDataSource.swift in Sources */,
 				714AECEC1E6303EF001127CE /* AppDelegate.swift in Sources */,
 				52AFAA8E1E828318009F6467 /* UILabelX.swift in Sources */,
