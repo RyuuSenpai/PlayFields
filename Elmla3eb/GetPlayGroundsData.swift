@@ -254,7 +254,7 @@ class GetPlayGroundsData {
                 break
             case .failure(_) :
                 print("that is fail putEdit_Playground i n getting the data Mate : \(response.result.error)")
-                completed(false,"Network timeout")
+                completed(false,langDicClass().getLocalizedTitle("Network timeout"))
                 break
             }
         }
@@ -356,7 +356,7 @@ class GetPlayGroundsData {
                 break
             case .failure(_) :
                 print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
-                completed(nil,"Network Timeout",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }
@@ -367,7 +367,7 @@ class GetPlayGroundsData {
     
     func getNearByFields(lat : String,long: String, completed:@escaping ([NearByFields_Data]?,String,Bool) -> ()) {
         
-        let url = source.GET_NEARBY_FIELDS + "/\(30.7949059)/\(30.9961017)" + source.API_TOKEN  //+ lat + "/" + long
+        let url = source.GET_NEARBY_FIELDS + "/\(lat)/\(long)" + source.API_TOKEN  //+ lat + "/" + long
         print("getNearByFields URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
@@ -403,7 +403,7 @@ class GetPlayGroundsData {
                 break
             case .failure(_) :
                 print("that is fail i n getting the getNearByFields data Mate : \(response.result.error)")
-                completed(nil,"Network Error",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }

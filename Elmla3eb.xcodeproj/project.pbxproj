@@ -46,6 +46,7 @@
 		528623291EDDABF60048E95F /* ChangePassViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528623281EDDABF60048E95F /* ChangePassViewX.swift */; };
 		5291BC841E8AB583008132BC /* MUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5291BC831E8AB583008132BC /* MUserData.swift */; };
 		529AAC8E1E782B4300505BC5 /* RegisterationSplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */; };
+		52A030811EFBE94A0073DFBD /* ExtensionCurrentDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A030801EFBE94A0073DFBD /* ExtensionCurrentDevice.swift */; };
 		52A6C7431EA3860100DD4352 /* PlayGroundsVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6C7421EA3860100DD4352 /* PlayGroundsVars.swift */; };
 		52A6C7451EA38A3700DD4352 /* Pg_Info_Vars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6C7441EA38A3700DD4352 /* Pg_Info_Vars.swift */; };
 		52A6C7471EA43A3400DD4352 /* AASquaresLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6C7461EA43A3400DD4352 /* AASquaresLoading.swift */; };
@@ -84,7 +85,6 @@
 		52E9DF5E1EACCC43004563CA /* DownloadImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E9DF5D1EACCC43004563CA /* DownloadImages.swift */; };
 		52EA87431EEE93CF000C0C52 /* OwnerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA87421EEE93CF000C0C52 /* OwnerModel.swift */; };
 		52F016791EC08D4A008962AF /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */; };
-		52F0CB851E8BCE20001C2223 /* MHomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0CB841E8BCE20001C2223 /* MHomeData.swift */; };
 		52F0CB881E8BF04E001C2223 /* TestBackEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */; };
 		52F0CB8B1E8C07B6001C2223 /* MPgNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0CB8A1E8C07B6001C2223 /* MPgNews.swift */; };
 		52F5C7131E793AED00B77500 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5C7121E793AED00B77500 /* LoginVC.swift */; };
@@ -156,6 +156,7 @@
 		528623281EDDABF60048E95F /* ChangePassViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePassViewX.swift; sourceTree = "<group>"; };
 		5291BC831E8AB583008132BC /* MUserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MUserData.swift; sourceTree = "<group>"; };
 		529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterationSplashVC.swift; path = Sources/RegisterationSplashVC.swift; sourceTree = "<group>"; };
+		52A030801EFBE94A0073DFBD /* ExtensionCurrentDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionCurrentDevice.swift; sourceTree = "<group>"; };
 		52A6C7421EA3860100DD4352 /* PlayGroundsVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayGroundsVars.swift; sourceTree = "<group>"; };
 		52A6C7441EA38A3700DD4352 /* Pg_Info_Vars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pg_Info_Vars.swift; sourceTree = "<group>"; };
 		52A6C7461EA43A3400DD4352 /* AASquaresLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AASquaresLoading.swift; sourceTree = "<group>"; };
@@ -195,7 +196,6 @@
 		52E9DF5D1EACCC43004563CA /* DownloadImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImages.swift; sourceTree = "<group>"; };
 		52EA87421EEE93CF000C0C52 /* OwnerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnerModel.swift; sourceTree = "<group>"; };
 		52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
-		52F0CB841E8BCE20001C2223 /* MHomeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MHomeData.swift; sourceTree = "<group>"; };
 		52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBackEnd.swift; sourceTree = "<group>"; };
 		52F0CB8A1E8C07B6001C2223 /* MPgNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPgNews.swift; sourceTree = "<group>"; };
 		52F5C7121E793AED00B77500 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -306,6 +306,7 @@
 				528623271EDDABE20048E95F /* Profile */,
 				52F60A561EDED5C600B79520 /* Search */,
 				52EA87451EEECA31000C0C52 /* Others */,
+				52A030821EFBF0820073DFBD /* Login */,
 				52355EC91EB88D86005A9217 /* Owner */,
 			);
 			name = C;
@@ -318,7 +319,6 @@
 				52355ECF1EB8A1A6005A9217 /* Helper */,
 				52F0CB871E8BF04E001C2223 /* TestBackEnd.swift */,
 				52E9DF5D1EACCC43004563CA /* DownloadImages.swift */,
-				52F0CB861E8BD0E0001C2223 /* HomeData */,
 				52F0CB891E8BFE71001C2223 /* Pg_Info */,
 				52F0CB8C1E8C07CB001C2223 /* Pg_News */,
 				52F8B1381E8CFE6C0091FE09 /* Pg_Times */,
@@ -349,6 +349,15 @@
 				520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */,
 			);
 			name = Users;
+			sourceTree = "<group>";
+		};
+		52A030821EFBF0820073DFBD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				52F5C7121E793AED00B77500 /* LoginVC.swift */,
+				714AED0B1E6321E4001127CE /* FBLoggin.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		52AF58981E7697D4001284DD /* Home Page */ = {
@@ -432,20 +441,10 @@
 				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
 				52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */,
 				52AFAA971E82955D009F6467 /* MenuVC.swift */,
-				52F5C7121E793AED00B77500 /* LoginVC.swift */,
 				52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */,
-				714AED0B1E6321E4001127CE /* FBLoggin.swift */,
 				529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */,
 			);
 			name = Others;
-			sourceTree = "<group>";
-		};
-		52F0CB861E8BD0E0001C2223 /* HomeData */ = {
-			isa = PBXGroup;
-			children = (
-				52F0CB841E8BCE20001C2223 /* MHomeData.swift */,
-			);
-			name = HomeData;
 			sourceTree = "<group>";
 		};
 		52F0CB891E8BFE71001C2223 /* Pg_Info */ = {
@@ -581,6 +580,7 @@
 				5236EC201EE958A60005A2F6 /* LanguagesDict.swift */,
 				522AAC8F1E880A1600E0AC5B /* GlobalFuncs.swift */,
 				524E21E51E9E1D2D00CF92C7 /* ExtensionsClass.swift */,
+				52A030801EFBE94A0073DFBD /* ExtensionCurrentDevice.swift */,
 				52850AB71E87AC0300C54168 /* M */,
 				525BEFFD1E83CBA6003FE82E /* C */,
 				525BEFFC1E83CB97003FE82E /* V */,
@@ -805,6 +805,7 @@
 				52F0CB8B1E8C07B6001C2223 /* MPgNews.swift in Sources */,
 				52355ECD1EB8933C005A9217 /* SearchVC.swift in Sources */,
 				52BA8A7D1E92925300BFDC3C /* SplashLoginVC.swift in Sources */,
+				52A030811EFBE94A0073DFBD /* ExtensionCurrentDevice.swift in Sources */,
 				52AFAA941E828318009F6467 /* UIViewX.swift in Sources */,
 				525BEFFF1E83CBCC003FE82E /* PlayFieldsVC.swift in Sources */,
 				52C0E3681E8A8950005ABCAD /* BookNowTablesVC.swift in Sources */,
@@ -842,7 +843,6 @@
 				521DBE7A1EAF4082005D06A5 /* NoNetConnectionVC.swift in Sources */,
 				525BF0011E83CC29003FE82E /* PlayFieldsTableDelagate.swift in Sources */,
 				52E8D0E81E89210F007E1CE2 /* BookNowCell.swift in Sources */,
-				52F0CB851E8BCE20001C2223 /* MHomeData.swift in Sources */,
 				525C343E1EEFEFC40043B512 /* OwnerPlaygroundsVC.swift in Sources */,
 				52AFAA8C1E828318009F6467 /* UIButtonX.swift in Sources */,
 				52355ED11EB8A1DA005A9217 /* ToSideMenuClass.swift in Sources */,

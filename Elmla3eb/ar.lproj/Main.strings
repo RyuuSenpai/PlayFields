@@ -269,6 +269,16 @@
 "bhe-39-7Zb.text" = "لا توجد ملاعب";
 //@End
 
+//LoginVC
+
+"uge-HE-haX.text" = "من فضلك قم بإدخال رقم الهاتف" ;
+    //phoneNumber placeHolder Phone Number
+"VyZ-Hs-RTk.placeholder" = "رقم الهاتف" ;
+    //Cancel
+"HBn-FT-bUQ.normalTitle" = "إالغاء";
+    //Send
+"4fK-61-KUi.normalTitle" = "إرسال";
+//@End LoginVC
 
 //@end
 

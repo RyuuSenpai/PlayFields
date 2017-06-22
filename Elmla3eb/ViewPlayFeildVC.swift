@@ -205,7 +205,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             
             //            print("that is arabic sentince : \(data)")
             guard let data = dataOBject else {
-                print("GetPgInfosByID equal NIL ç≈Ωß")
+//                print("GetPgInfosByID equal NIL ç≈Ωß")
                 ad.userOffline(self)
                 return
             }
@@ -213,14 +213,14 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             weakSelf?.pgInfo = data.info
             weakSelf?.times_msg = data.info?.times_msg
             
-            print("that is  weakSelf? \n .times_msg : \(weakSelf?.times_msg )")
+//            print("that is  weakSelf? \n .times_msg : \(weakSelf?.times_msg )")
             
             //News
             if let newsData = data.news {
                 weakSelf?.newsList = [String]()
                 for news in newsData {
                     weakSelf?.newsList?.append(news.title)
-                    print("news.title : \(news.title)")
+//                    print("news.title : \(news.title)")
                     
                 }
                 DispatchQueue.main.async {
@@ -232,7 +232,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             //MARK:  @Pager
             if let imgData = data.images ,imgData.count > 0 {
                 var imageS = [String]()
-                print("that's the returned data : \(imgData)")
+//                print("that's the returned data : \(imgData)")
                 for imageString in imgData  {
                     imageS.append(imageString.image)
                     
@@ -324,7 +324,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         self.vanisher()
         switch sender.tag {
         case 0: //Details
-            print(sender.tag)
+//            print(sender.tag)
             self.theView = self.labelsDataView
             self.theView.accessibilityIdentifier = "labelsDataView"
             self.theCurBtn = detailsBtn
@@ -335,7 +335,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             //                self.view4SecLbl.isEnabled = true
         //            }
         case 1: //AboutField
-            print(sender.tag)
+//            print(sender.tag)
             self.theView = self.labelsDataView
             self.theView.accessibilityIdentifier = "labelsDataView2"
             self.theCurBtn = infoBtn
@@ -347,14 +347,14 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             //                self.view4SecLbl.isEnabled = false
         //            }
         case 2:  //Hours
-            print(sender.tag)
+//            print(sender.tag)
             self.theView = self.bookNowView
             //            self.theView.accessibilityIdentifier = "bookNowView"
             self.bookNowTableChildView.view.isHidden =  false
             self.theCurBtn = datesBtn
             self.CurrBtnLine = datesBtnLine
         default:  // Latest News
-            print(sender.tag)
+//            print(sender.tag)
             self.theView = self.newsView
             self.theView.accessibilityIdentifier = "newsView"
             self.theCurBtn = newsBtn
@@ -368,7 +368,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         guard !isOwnerEditing else {
             
-            print(("tbhat's the changed value : price : \(price ?? 0) , hasball \(haveBall ? 1 : 0)  haslight \(haveLighting ? 1 : 0):"))
+//            print(("tbhat's the changed value : price : \(price ?? 0) , hasball \(haveBall ? 1 : 0)  haslight \(haveLighting ? 1 : 0):"))
             self.activityIndicator.startAnimating()
             let editPG = GetPlayGroundsData()
             guard let pgId = pg_id, let name = ownerDataDict["name"], let address = ownerDataDict["address"], let price = price, let type = ownerDataDict["type"] else {
@@ -410,7 +410,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 activityIndicator.startAnimating()
                 sender?.isEnabled = false
                 sender?.alpha = 0.5
-                print("that's the selected dataes ID : \(ViewPlayFeildVC.seletedTimes_ID)")
+//                print("that's the selected dataes ID : \(ViewPlayFeildVC.seletedTimes_ID)")
                 guard let pgID = pg_id else { print("pg_id is Equal to NIL \(pg_id)"); return }
                 pf_Info.postBookDate(pg_Id : pgID , reservationArray: ViewPlayFeildVC.seletedTimes_ID, completed: { [weak self ](isIt) in
                     
@@ -443,7 +443,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                     
                 })
             }else { //no data in array
-                print("day arary :\(bookNowDays) \(bookNowDays.count)")
+//                print("day arary :\(bookNowDays) \(bookNowDays.count)")
                 var sms  = "You didn't pick Booking Date"
                 if bookNowDays.count < 1 {
                     sms = "There's no Dates to pick"
@@ -471,7 +471,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         ownerDataDict["name"] = pgD.pgName
         ownerDataDict["address"] = pgD.address
         ownerDataDict["type"] = pgInf.groundType
-        if title == nil { title = pgD.pgName }
+        if title == nil || title == "" || title == " " { title = pgD.pgName }
         setLabelsTitle(fieldName: pgD.pgName, address: pgD.address, booksTimes: "\(pgD.pgBookingTimes)", price: pgD.price, numberOfFields: "\(pgInf.pgNumbersOfFeilds)", fieldType: pgInf.groundType, hasBall: pgInf.footballAvailable, hasLight: pgInf.lightAvailable)
     }
     
@@ -611,20 +611,17 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         switch sender.tag {
             
         case 0 :
-            print(0)
-            if theCurBtn == detailsBtn {
+             if theCurBtn == detailsBtn {
                 presentAlert(langDicClass().getLocalizedTitle("Enter Field Name"), "", langDicClass().getLocalizedTitle("Field Name"), view1SecLbl)
             }
         case 1 :
-            print(1)
-            if theCurBtn == detailsBtn {//Details * FieldName, address Books Times , price
+             if theCurBtn == detailsBtn {//Details * FieldName, address Books Times , price
                 presentAlert(langDicClass().getLocalizedTitle("Enter Address"), "", langDicClass().getLocalizedTitle("Address"), view2SecLbl)
             }else {//AboutField - Number of Fields X, Fields Type √
                 presentAlert(langDicClass().getLocalizedTitle("Enter Field Type"), "", langDicClass().getLocalizedTitle("Field Type"), view2SecLbl)
             }
         case 2 :
-            print(2)
-            if theCurBtn == detailsBtn {//AboutField - Number of Fields X, Fields Type √
+             if theCurBtn == detailsBtn {//AboutField - Number of Fields X, Fields Type √
                 //                presentAlert("Enter Address", "", "Address", view2SecLbl)
             }else {
                 if !haveBall {
@@ -635,8 +632,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 haveBall = !haveBall
             }
         default :
-            print(3)
-            if theCurBtn == detailsBtn {
+             if theCurBtn == detailsBtn {
                 presentAlert(langDicClass().getLocalizedTitle("Enter Price for Hour"), "", langDicClass().getLocalizedTitle("Price"), view4SecLbl)
             }else {
                 
@@ -721,7 +717,7 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: true)
-        print("that is the item number in Header : \(pagerView.currentIndex) ")
+//        print("that is the item number in Header : \(pagerView.currentIndex) ")
         self.delegate?.didSelectImageAt(index: pagerView.currentIndex)
     }
     

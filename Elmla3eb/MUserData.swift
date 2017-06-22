@@ -18,7 +18,7 @@ class MUserData {
     private  let source = Constants.API.URLS()
     private   let parSource = Constants.API.Parameters()
     
-    func postLoginData(mobileNum: String , userPassword:String ,completed : @escaping ((PostLoginVars?,Bool,String,[String:Any]?))->()) {
+    func postLoginData(mobileNum: String , userPassword:String ,completed : @escaping ((PostLoginVars?,Bool,String,[String:Any]?,String))->()) {
         let parameters : Parameters = [ parSource.mobile : mobileNum , parSource.password : userPassword ]
         print("that is the parameters in postLoginData : \(parameters)")
         
@@ -48,22 +48,30 @@ class MUserData {
                 let data = json[self.parSource.data]
                 
                 let success = json[self.parSource.success].intValue
-                let sms = json[self.parSource.message].stringValue
+                var sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
 
                 print("KILLVA: _PostLoginData success : \(success) STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
+                let code = data["code"].intValue
+                var smsREsponse = ""
+                switch code {
+               case 1 : smsREsponse = langDicClass().getLocalizedTitle("User not found")
+                case 2 :smsREsponse = langDicClass().getLocalizedTitle("Wrong password")
+                case 3 :smsREsponse = langDicClass().getLocalizedTitle("User not confirmed")
+            default  :  smsREsponse = langDicClass().getLocalizedTitle("Request can't be empty")
+                }
 
                 if sms == "User not confirmed" {
                     let userId = data[self.parSource.id].intValue
                     let name = data[self.parSource.name].string
                     let dict : [String : Any] = ["id":userId,"name":name ?? ""]
-                    completed((nil,state,sms,dict))
+                    completed((nil,state,sms,dict, smsREsponse))
                  }else {
                     
                  let xUser = PostLoginVars(jsonData: data)
                     print("that's the userType : \(xUser.type)")
                     UserDefaults.standard.setValue(xUser.type, forKey: "User_Type")
-                    completed((xUser,state,sms,nil))
+                    completed((xUser,state,sms,nil,smsREsponse))
                 }
                 break
             case .failure(_) :
@@ -74,7 +82,7 @@ class MUserData {
                 }
                 print("that is fail i n getting the Login data Mate : \(response.result.error?.localizedDescription)")
  
-                completed((nil,false, "Network Time out",nil ))
+                completed((nil,false, "Network Time out",nil ,"Network Time out"))
                 break
             }
         }
@@ -118,12 +126,19 @@ class MUserData {
                 let data = json[self.parSource.data]
                 
                 let success = json[self.parSource.success].intValue
-                let sms = json[self.parSource.message].stringValue
+                var sms = json[self.parSource.message].stringValue
                 
                 let userId = data[self.parSource.id].intValue
                  let dict : [String : Any] = ["id":userId,"name":name ]
                 
                 let  state =  success == 1 ? true : false
+                let code = data["code"].intValue
+                switch code {
+                case 1 : sms = langDicClass().getLocalizedTitle("mobile number already exist")
+                    case 2 :sms = langDicClass().getLocalizedTitle("Username already exist, please choose another one")
+                    case 3 :sms = langDicClass().getLocalizedTitle("Sorry some error occurred, please try again later")
+                default  :  sms = langDicClass().getLocalizedTitle("Request can't be empty")
+                }
                 print("KILLVA: _postRegisterUser STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
 
 //                let xUser = PostLoginVars(jsonData: data)
@@ -232,14 +247,18 @@ class MUserData {
     }
     
     
-    func postFaceBLogin(mobile: String , image :String,fbID : String ,completed : @escaping ([String:Any]?,Bool,String)->()) {
+    func postFaceBLogin(mobile: String , image :String,fbID : String ,completed : @escaping ([String:Any]?,Bool,String, Bool)->()) {
         var parameters : Parameters!
+        var name = ""
+        if let userName = UserDefaults.standard.value(forKey: "usreName") as? String {
+            name = userName
+        }
         if ad.production {
-
-              parameters =  [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ]
+            
+            parameters =  [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID , "name" : name ]
 
         }else {
-              parameters = [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID ,"test":"test"]
+              parameters = [ parSource.mobile : mobile , parSource.image : image , parSource.fb_user_id : fbID, "name" : name  ,"test":"test"]
 
         }
 
@@ -271,12 +290,25 @@ class MUserData {
                 let codeD = data["code"].intValue
                 let  code =  codeD == 1 ? true : false
 
+            
                 print("KILLVA: postFaceBLogin success : \(success) STATUS:\(state), CodeVerification : \(code), sms: \(sms) data : \(response.result.value)\n")
+                
+//                switch codeD {
+//                case 1 : sms = langDicClass().getLocalizedTitle("Mobile number is required in order to create user.")
+////                case 2 :sms = langDicClass().getLocalizedTitle("Mobile number already exist, please try another one.")
+//                case 2 : sms = "Dublicated_Num"
+//                case 3 :sms = langDicClass().getLocalizedTitle("Sorry some error occurred, please try again later.")
+//                case 4 :sms = langDicClass().getLocalizedTitle("User not confirmed")
+////                default  :  sms = langDicClass().getLocalizedTitle("New user, please send with valid mobile number")
+//                default  :  sms =  "New_User"
+//                }
+                
+                print("that's the nerw sms ; \(sms)")
 //                if !code {
                     let userId = data[self.parSource.id].intValue
-                    let name = data[self.parSource.username].string
-                    let dict : [String : Any] = ["id":userId,"name":name ?? "" ]
-                    completed(dict,code,sms)
+                    let name = data[self.parSource.name].string
+                let dict : [String : Any] = ["id":userId,"name":name ?? "", "state" : state ]
+                    completed(dict,code,sms,state)
 //                }else {
 //                    
 ////                    let xUser = PostLoginVars(jsonData: data)
@@ -286,7 +318,7 @@ class MUserData {
                 break
             case .failure(_) :
                 print("that is fail i n getting the postFaceBLogin data Mate : \(response.result.error)")
-                completed(nil,false, "Network Time out" )
+                completed(nil,false, "Network Time out",false  )
                 break
             }
         }
@@ -335,7 +367,7 @@ class MUserData {
                 break
             case .failure(_) :
                 print("that is fail i n getting the postResendVerificationCode data Mate : \(response.result.error)")
-                completed( "Network Error",false)
+                completed( langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }
@@ -377,7 +409,8 @@ class MUserData {
                 //                let data = json["data"]
                 
                 let success = json[self.parSource.success].intValue
-                let sms = json[self.parSource.message].stringValue
+//                let sms = json[self.parSource.message].stringValue
+                let sms = langDicClass().getLocalizedTitle("Wrong Old Password")
                 let  state =  success == 1 ? true : false
                 print("KILLVA: postForgotPassword STATUS:\(state) , sms: \(sms) \n")
                 
@@ -386,7 +419,7 @@ class MUserData {
                 break
             case .failure(_) :
                 print("that is fail i n getting the postForgotPassword data Mate : \(response.result.error)")
-                completed( "Network Error",false)
+                completed( langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }
@@ -432,7 +465,7 @@ class MUserData {
                 break
             case .failure(_) :
                 print("that is fail i n getting the postLogout data Mate : \(response.result.error)")
-                completed( "Network Error",false)
+                completed( langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }

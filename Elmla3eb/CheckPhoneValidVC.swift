@@ -259,12 +259,12 @@ class CheckPhoneValidVC: UIViewController {
             setUIEnabled(enabled: true)
             return
         }
-        if let id = userId , let name = userName    {
+        if let id = userId   {
             userModel.getPhoneConfirmation(user_id: id , code :code, completed: { [weak weakSelf = self ] (state, sms) in
                 
                 print("that's the state :\(state), and that's sms : \(sms)")
                 if state {
-                    ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:name)
+                    ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:"default")
                     ad.reloadApp()
                     
                     

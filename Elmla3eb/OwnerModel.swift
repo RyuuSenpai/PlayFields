@@ -119,7 +119,7 @@ class OwnerModel {
                 break
             case .failure(_) :
                 print("that is fail getP_GBooksManager i n getting the data Mate : \(response.result.error)")
-                completed(nil,"Network Timeout",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }
@@ -168,7 +168,7 @@ class OwnerModel {
                 break
             case .failure(_) :
                 print("that is fail i n getting the getOwnerPlayGrounds data Mate : \(response.result.error)")
-                completed(nil,"Network Error",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }
@@ -216,7 +216,7 @@ class OwnerModel {
                 break
             case .failure(_) :
                 print("that is fail i n getting the getOwnerPlayG_PaymentStatics data Mate : \(response.result.error)")
-                completed(nil,"Network Error",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }

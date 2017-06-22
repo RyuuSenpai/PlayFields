@@ -51,7 +51,7 @@ class ReservationModel {
 //                break
 //            case .failure(_) :
 //                print("that is fail i n getting the deleteReservation data Mate : \(response.result.error)")
-//                completed("Network Error",false)
+//                completed(langDicClass().getLocalizedTitle("Network timeout"),false)
 //                break
 //            }
 //        }
@@ -101,7 +101,7 @@ class ReservationModel {
                 break
             case .failure(_) :
                 print("that is fail postConfirmRequest i n getting the data Mate : \(response.result.error)")
-                completed("Network Timeout",false)
+                completed(langDicClass().getLocalizedTitle(langDicClass().getLocalizedTitle("Network timeout")),false)
                 break
             }
         }
@@ -150,7 +150,7 @@ class ReservationModel {
                 break
             case .failure(_) :
                 print("that is fail postCancelRequest i n getting the data Mate : \(response.result.error)")
-                completed("Network Timeout",false)
+                completed(langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }
@@ -197,7 +197,7 @@ class ReservationModel {
                 break
             case .failure(_) :
                 print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
-                completed("Network Timeout",false)
+                completed(langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }

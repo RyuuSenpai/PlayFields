@@ -84,6 +84,8 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                     print("that is facebook data \(id) \(fName) \(self?.fbEmail) ")
                     DispatchQueue.main.async {
                         self?.setupFbLogin("", "", id)
+//                        ad.saveUserLogginData(email: self?.fbEmail, photoUrl: "default", uid: -1, name: fName)
+                        UserDefaults.standard.setValue(fName, forKey: "usreName")
                         self?.fbActivityInd.stopAnimating()
                     }
                     //                    self.afterLogginView.fadeIn(duration: 1.5, delay: 0, completion: { (finished: Bool) in
@@ -146,22 +148,30 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
 //            return
 //        }
 
-        user.postFaceBLogin(mobile: mobile, image: image, fbID:id , completed: { [weak weakSelf = self ] (data, codeVerification, sms ) in
-            print("that's the sms : \(sms)")
-            guard !sms.contains("resend with valid") else {
+        user.postFaceBLogin(mobile: mobile, image: image, fbID:id , completed: { [weak weakSelf = self ] (data, codeVerification, sms ,state) in
+            print("that's the sms : \(sms), and that's the state : \(state)")
+            if sms.contains("New user")  {
                 DispatchQueue.main.async {
                     weakSelf?.setupfbMobileNumView()
                 }
                 return
             }
-            guard  let data = data , let id = data["id"] as? Int  , let name = data["name"] as? String else {
+            if  sms.contains("already exist")  {
+                DispatchQueue.main.async {
+                    ad.showAlert("X", "Mobile number already exist, please try another one.")
+//                    weakSelf?.setupfbMobileNumView()
+                }
+                return
+            }
+            
+            if sms.contains("logged in") {
+            guard let data = data , let id = data["id"] as? Int  /*, let name = data["name"] as? String */else {
                 weakSelf?.fbActivityInd.stopAnimating()
                 weakSelf?.showAlert(langDicClass().getLocalizedTitle("Something Went Wrong"), langDicClass().getLocalizedTitle("try again!!"))
                 return
             }
             
-            guard !codeVerification else {
-                ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id, name : name)
+                ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id, name : "default")
                 UserDefaults.standard.setValue("player", forKey: "User_Type")
                 ad.fcm()
                 ad.reloadApp()
@@ -169,15 +179,21 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
 //                weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender:weakSelf)
                 return
             }
-        
+            
+            if sms.contains("User created") || sms.contains("not confirmed"){
+                guard let data = data , let id = data["id"] as? Int  /*, let name = data["name"] as? String */else {
+                    weakSelf?.fbActivityInd.stopAnimating()
+                    weakSelf?.showAlert(langDicClass().getLocalizedTitle("Something Went Wrong"), langDicClass().getLocalizedTitle("try again!!"))
+                    return
+                }
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id
-                vc.userName = name
+//                vc.userName = name
             vc.codeVerfication = true 
                 weakSelf?.present(vc, animated: true, completion: nil)
           
-        })
+            } })
     }
     
 }

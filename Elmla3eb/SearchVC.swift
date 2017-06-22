@@ -81,7 +81,7 @@
         searchModel = Search_Model()
         //        searchModel.getSearchData(pg_name: name, address: city, rating: rate, fromData: fromDate, toDate: toDate) {[weak self] (data) in
         searchModel.getSearchData(pg_name: fieldNameTxt.text, address: cityTxt.text, rating: rateTxt.text, fromData: fromTxt.text, toDate: toTxt.text) {[weak self] (data) in
-            if data.2 {
+            if data.2 /* -> State */{
                 guard let searchResult = data.0 , searchResult.count > 0 else {
                     DispatchQueue.main.async {
                         
@@ -127,6 +127,10 @@
         rateTxt.text = ""
         fromTxt.text = ""
         toTxt.text = ""
+        clearCityBtn.alpha = 0
+        clearRateBtn.alpha = 0
+        clearFromTimebtn.alpha = 0
+        clearToTimeBtn.alpha = 0
     }
     
     

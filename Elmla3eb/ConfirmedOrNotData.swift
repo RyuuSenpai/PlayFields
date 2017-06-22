@@ -64,7 +64,7 @@ class ConfirmedOrNotData {
                 break
             case .failure(_) :
                 print("that is fail i n getting the getPGReservationStatus data Mate : \(response.result.error)")
-                completed(nil,"Network Error",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }

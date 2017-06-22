@@ -72,6 +72,7 @@ class SplashLoginVC: UIViewController {
         
     }
     
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -81,9 +82,7 @@ class SplashLoginVC: UIViewController {
         //        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         //        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
         
-        self.ballTopConstrain.constant += self.view.bounds.height
-        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
+       setupSplashLoginAnimation()
         
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(gesture:)))
@@ -149,6 +148,12 @@ class SplashLoginVC: UIViewController {
         //        TestBackEnd.playgTeams()
         //        TestBackEnd.User()
         //@End_Test_back_End
+    }
+    
+    func setupSplashLoginAnimation() {
+        self.ballTopConstrain.constant += self.view.bounds.height
+        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
     }
     
     func animateToOriginal() {

@@ -61,7 +61,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     var isFbUser = false
     var imageUrl = "" {
         didSet {
-            print("thatis the image url : \(imageUrl)")
+//            print("thatis the image url : \(imageUrl)")
             guard let url = URL(string: imageUrl ) else { return }
             profileImage.af_setImage(
                 withURL: url,
@@ -103,7 +103,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         disableTxts = true
         title =  langDicClass().getLocalizedTitle("Profile")
         emptyFields()
-        print("that's positions : \(positions)")
+//        print("that's positions : \(positions)")
         if  L102Language.currentAppleLanguage() != "ar"   {
             positions =  ["Goalkeeper","Defence","Striker","Midfield"]
         }else {
@@ -135,7 +135,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.cityTxt.text = data.city
                     self?.isFbUser = data.isFbUser
                     self?.imageResponse = data.image_Response
-                    print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
+//                    print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
                     //                    self?.imageUrl = data.image
                     if   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String  {
                         self?.imageUrl = imageurl
@@ -158,7 +158,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                 }
             }else {
                 self?.view.squareLoading.stop(0)
-                self?.showAlert("Network Error", "failed to get Data")
+                self?.showAlert(langDicClass().getLocalizedTitle("Network timeout"), "failed to get Data")
             }
         }
         
@@ -219,7 +219,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     @IBAction func doneBtnAct(_ sender: UIButton) {
         setUIEnabled(enabled: false )
-        print("that's the  url : \(imageUrl)\n Base64 : \(base64String)\n changedImage: \(changedImage) ")
+//        print("that's the  url : \(imageUrl)\n Base64 : \(base64String)\n changedImage: \(changedImage) ")
         user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageResponse ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
             
             if state {
@@ -290,12 +290,12 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         self.view.endEditing(true) //This will hide the keyboard
         switch sender.tag {
         case 1 :
-            print("city")
+//            print("city")
             cityTxt.becomeFirstResponder()
         case 2:
             presentAlert(langDicClass().getLocalizedTitle("Team"), langDicClass().getLocalizedTitle("Team Name"), langDicClass().getLocalizedTitle("Team Name"), teamName)
         case 3 :
-            print("Position")
+//            print("Position")
             positionTxt.becomeFirstResponder()
         default :
             presentAlert("name", "enter your nickname", "nickname", userName)
@@ -308,7 +308,6 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     // MARK: - UIImagePickerControllerDelegate Methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        print("DONEnenenewnewnewnnew")
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImage.contentMode = .scaleAspectFill
             let myThumb  = pickedImage.resizeImageWith(newSize: CGSize(width: 200, height: 200))
@@ -358,7 +357,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print(("Canceleeeeddd"))
+//        print(("Canceleeeeddd"))
         dismiss(animated: true, completion: nil)
     }
     //    func imagePickerControllerDidCancel(picker: UIImagePickerController) {

@@ -51,7 +51,7 @@ class Profile_Model {
                 break
             case .failure(_) :
                 print("that is fail i n getting the getProfileData data Mate : \(response.result.error)")
-                completed(nil,"Network Error",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }

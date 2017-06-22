@@ -305,7 +305,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     }
     
     func saveUserLogginData(email:String?,photoUrl : String? , uid : Int?,name:String?) {
-        print("saving User Data email: \(String(describing: email)) , photoUrl: \(String(describing: photoUrl)),uid: \(String(describing: uid))")
+        print("saving User Data email: \(String(describing: email)) , photoUrl: \(String(describing: photoUrl)),uid: \(String(describing: uid)),  , photoUrl: \(String(describing: name))")
         if email != "default" {
             if   let email = email   {
                 UserDefaults.standard.setValue(email, forKey: "userEmail")
@@ -337,7 +337,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
             if let name = name {
                 UserDefaults.standard.setValue(name, forKey: "usreName")
             }else {
-                UserDefaults.standard.setValue(nil, forKey: "userName")
+                UserDefaults.standard.setValue(nil, forKey: "usreName")
             }
         }
     }
@@ -346,6 +346,10 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         if (UserDefaults.standard.value(forKey: "userId") != nil) {
             return true
         }else {
+            guard let _ = UserDefaults.standard.value(forKey: "usreName") as? String else {
+                return false
+            }
+            saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
             return false
         }
     }

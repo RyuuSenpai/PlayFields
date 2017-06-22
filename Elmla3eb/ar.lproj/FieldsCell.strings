@@ -11,7 +11,7 @@
 /* Class = "UILabel"; text = "Gadahh Playfield"; ObjectID = "7NG-2v-1a7"; */
 "7NG-2v-1a7.text" = "";
 
-/* Class = "UILabel"; text = "Confirming Reservetion"; ObjectID = "a81-MV-HUy"; */
+/* Class = "UILabel"; text = "Confirmed Reservetion"; ObjectID = "a81-MV-HUy"; */
 "a81-MV-HUy.text" = "تاكيد الحجز";
 
 /* Class = "UIButton"; normalTitle = "Book Now"; ObjectID = "ewj-Jd-Wk4"; */

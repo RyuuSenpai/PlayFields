@@ -27,6 +27,7 @@ class MenuVC: UIViewController {
 
     @IBOutlet weak var playerNameLabel: UILabel!{
         didSet {
+           
             if let name = UserDefaults.standard.value(forKey: "usreName") as? String{
                 playerNameLabel?.text = name
             }else  if let email = UserDefaults.standard.value(forKey: "userEmail") as? String{
@@ -95,13 +96,24 @@ class MenuVC: UIViewController {
         //        self.navigationItem.hidesBackButton = true
 //        self.profileImage.layer.cornerRadius = (profileImage.bounds.width * 0.6 ) / 4
 
-        self.profileImage.layer.cornerRadius =  profileImage.bounds.width   / 2
+//        self.profileImage.layer.cornerRadius =  profileImage.bounds.width   / 2
+//        self.profileImage.clipsToBounds = true
+        
         print("print that's the width : \(profileImage.bounds.width), height : \(profileImage.bounds.height)"    )
         print("print that's the width : \(        self.profileImage.layer.cornerRadius)"    )
         print("print that's the width : \(self.view.bounds.height)"    )
   //        self.layer.cornerRadius = self.bounds.width / 2
 
     }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.profileImage.layer.cornerRadius =  profileImage.bounds.size.width   / 2
+        self.profileImage.clipsToBounds = true
+    }
+    
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.view.backgroundColor = .white

@@ -56,9 +56,9 @@ class Search_Model {
                     //                let data = response.result.value
                 }
                 let success = json[succe].intValue
-                let sms = json[sm].stringValue
+//                let sms = json[sm].stringValue
                 let  state =  success == 1 ? true : false
-                
+                let sms = langDicClass().getLocalizedTitle("No Playfields matched your Search.")
                 print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
@@ -68,7 +68,7 @@ class Search_Model {
                 break
             case .failure(_) :
                 print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
-                completed(nil,"Network Timeout",false)
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
         }
@@ -90,7 +90,7 @@ class Search_Data {
     private var _image : String?
     private var _address : String?
     private var _price : String?
-
+    private var _pg_BookingNumbers : Int?
     private   let source = Constants.API.Parameters()
     private   let imageURL = Constants.API.URLS()
     
@@ -123,7 +123,10 @@ class Search_Data {
         }
         return "\(x) SAR"
     }
-    
+    var pg_BookingNumbers : Int{
+        guard  let x = _pg_BookingNumbers else { return 0 }
+        return x
+    }
     init(json:JSON) {
         self._pg_name = json[source.pg_name].stringValue
         self._rating = json[source.rating].intValue
@@ -131,6 +134,7 @@ class Search_Data {
         self._image = json[source.image].string
         self._address = json[source.address].string
         self._price = json[source.price].string
+        self._pg_BookingNumbers = json["pg_BookingNumbers"].int
     }
 }
 

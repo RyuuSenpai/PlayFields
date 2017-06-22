@@ -112,7 +112,7 @@ class FieldsCell: UITableViewCell {
             fieldLocationLbl.text = data.address
             priceLbl.text = data.price + " " + langDicClass().getLocalizedTitle("per Hour")
             fieldNameLbl.text = data.pg_name
-            bookingtimesLbl.text =   "\(data.rating)"
+            bookingtimesLbl.text =   "\(data.pg_BookingNumbers)"
             if let url = URL(string: data.image) {
             courtImage.af_setImage(
                 withURL: url ,
