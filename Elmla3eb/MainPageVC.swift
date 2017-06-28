@@ -16,6 +16,7 @@
  //    func playPauseDidTap()
  //
  //}
+ var firstLaunchMainpage = true
  class MainPageVC: UIViewController  , UIGestureRecognizerDelegate {
     
     //Outer RatingView
@@ -37,10 +38,10 @@
        let imageURL = Constants.API.URLS()
     var ratePg_Data : [RatePg_Data]? {
         didSet {
-            if  let data = ratePg_Data , data.count > 0 , firstLaunch{
+            if  let data = ratePg_Data , data.count > 0 , firstLaunchMainpage{
                 rateData = ratePg_Data
                 setupRatingView()
-                firstLaunch = false
+                firstLaunchMainpage = false
             }
         }
     }
@@ -64,7 +65,6 @@
     var addedStatics  = 0
     var bookedStatics = 0
     var visitorsStatics = 0
-    var firstLaunch = true
     var backGroundBlackView : UIView!
     var ratingPageeControl : UIPageControl!
     

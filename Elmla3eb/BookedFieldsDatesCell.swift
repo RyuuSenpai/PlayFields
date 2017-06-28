@@ -151,88 +151,109 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     //    }
     
     func selectedCell(_ sender : UIButton) {
-        self.delegate?.startLoading()
+        ad.confirmationAlert("", "proceed with the process?") { 
+            weak var weakSelf = self
+            
+        weakSelf?.delegate?.startLoading()
         print("thats the index : \(sender.tag)")
         //        self.loadingActivity.startAnimating()
-        self.isUserInteractionEnabled = false
+        weakSelf?.isUserInteractionEnabled = false
         //        print("sndertag : \(sender.tag) currentTimeArray count before : \(self.currentTimeArray?.count) and the selected array is :\(currentarrayTitle)")
-        guard let data = currentTimeArray , sender.tag <= data.count  else {
-            self.delegate?.stopLoading()
+        guard let data = weakSelf?.currentTimeArray , sender.tag <=  data.count  else {
+            weakSelf?.delegate?.stopLoading()
             //            self.loadingActivity.stopAnimating()
-            self.isUserInteractionEnabled = true
+            weakSelf?.isUserInteractionEnabled = true
             return  }
         let id = data[sender.tag].id
-        let time = data[sender.tag].time
+//        let time = data[sender.tag].time
         //        print("that the timee selected : \(time)")
         let isConfirmed = data[sender.tag].confirmedBool
         guard id != 0 else {
             //            print("❌fatal error id equal 0 selectedCell(_ sender : UIButton)" ) ;
             return }
         if isConfirmed {
-            reservationModel.postAttendanceRequest(id: id, completed: {[weak self] (sms, state) in
-                guard state else {
-                    DispatchQueue.main.async {
-                        
-                        self?.isUserInteractionEnabled = true
-                        self?.delegate?.stopLoading()
-                        ad.showAlert("X", sms) ;print("Attendance request has failed❗️");
-                        
-                    }
-                    return }
-                
-                //                self?.currentTimeArray?.remove(at: sender.tag)
-                if self?.currentarrayTitle == "am" {
-                    self?.amData?.remove(at: sender.tag)
-                    self?.currentTimeArray = self?.amData
-                }else {
-                    self?.pmData?.remove(at: sender.tag)
-                    self?.currentTimeArray = self?.pmData
-                }
-                //                self?.tableView.reloadData()
-                DispatchQueue.main.async {
-                    //didn't Work
-                    //                    let indexPath = IndexPath(item: sender.tag, section: 0)
-                    
-                    //                    self?.tableView.reloadData()
-                    self?.isUserInteractionEnabled = true
-                    self?.delegate?.triggerupdate()
-                }
-                
-            })
+            weakSelf?.attendanceRequest(sender.tag, id )
         }else {
-            guard let data = currentTimeArray , sender.tag <= data.count  else { return  }
             
-            reservationModel.postConfirmRequest(id: id) { [weak self] (sms, state) in
-                guard state else {
-                    DispatchQueue.main.async {
-                        
-                        self?.delegate?.stopLoading()
-                        self?.isUserInteractionEnabled = true
-                        ad.showAlert("X", sms) ;print("confirm request has failed❗️")
-                    }
-                    return }
-                
-                if self?.currentarrayTitle == "am" {
-                    self?.amData?[sender.tag]._confirmed = 1
-                    self?.currentTimeArray = self?.amData
-                }else {
-                    self?.pmData?[sender.tag]._confirmed = 1
-                    self?.currentTimeArray = self?.pmData
-                }
-                //                self?.tableView.reloadRows(at: [[0,sender.tag]], with: UITableViewRowAnimation.automatic )
-                //                self?.tableView.reloadData()
+            weakSelf?.confirmationRequest(sender.tag, id )
+        }
+        }
+    }
+    
+    
+    func confirmationRequest(_ senderTag : Int,_ id : Int ) {
+        guard let data = currentTimeArray , senderTag <= data.count  else { return  }
+        
+        reservationModel.postConfirmRequest(id: id) { [weak self] (sms, state) in
+            guard state else {
                 DispatchQueue.main.async {
-                    self?.tableView.beginUpdates()
-                    let indexPath = IndexPath(item: sender.tag, section: 0)
-                    self?.tableView.reloadRows(at: [indexPath], with: .top)
-                    self?.tableView.endUpdates()
+                    
+                    self?.delegate?.stopLoading()
                     self?.isUserInteractionEnabled = true
-                    ad.showAlert("√", "")
-                    self?.delegate?.triggerupdate()
+                    ad.showAlert("X", sms) ;print("confirm request has failed❗️")
                 }
+                return }
+            
+            if self?.currentarrayTitle == "am" {
+                self?.amData?[senderTag]._confirmed = 1
+                self?.currentTimeArray = self?.amData
+            }else {
+                self?.pmData?[senderTag]._confirmed = 1
+                self?.currentTimeArray = self?.pmData
+            }
+            //                self?.tableView.reloadRows(at: [[0,sender.tag]], with: UITableViewRowAnimation.automatic )
+            //                self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.beginUpdates()
+                let indexPath = IndexPath(item: senderTag, section: 0)
+                self?.tableView.reloadRows(at: [indexPath], with: .top)
+                self?.tableView.endUpdates()
+                self?.isUserInteractionEnabled = true
+                ad.showAlert("√", "")
+                self?.delegate?.triggerupdate()
+            }
+        }
+        
+    }
+    
+    func attendanceRequest(_ senderTag : Int,_ id : Int ) {
+        reservationModel.postAttendanceRequest(id: id, completed: {[weak self] (sms, state) in
+            guard state else {
+                DispatchQueue.main.async {
+                    
+                    self?.isUserInteractionEnabled = true
+                    self?.delegate?.stopLoading()
+                    ad.showAlert("X", sms) ;print("Attendance request has failed❗️");
+                    
+                }
+                return }
+            
+            //                self?.currentTimeArray?.remove(at: sender.tag)
+            if self?.currentarrayTitle == "am" {
+                self?.amData?.remove(at: senderTag)
+                self?.currentTimeArray = self?.amData
+            }else {
+                self?.pmData?.remove(at: senderTag)
+                self?.currentTimeArray = self?.pmData
+            }
+            //                self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                //didn't Work
+                //                    let indexPath = IndexPath(item: sender.tag, section: 0)
+                
+                //                    self?.tableView.reloadData()
+                self?.isUserInteractionEnabled = true
+                self?.delegate?.triggerupdate()
             }
             
-        }
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        guard let id =  self.currentTimeArray?[indexPath.row].id, id != 0  else {
+             return false }
+        return true 
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -245,24 +266,29 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                guard  let confirmationState = self.currentTimeArray?[indexPath.row].confirmedBool/* if attendance  do nothing*/ ,!confirmationState else {
                ad.showAlert("XX", langDicClass().getLocalizedTitle("You Can't cancel Attendance"))
                 return }
-            self.delegate?.startLoading()
-            self.isUserInteractionEnabled = false
-            
-            reservationModel.postCancelRequest(id, completed: { [weak self ] (sms, state) in
+
+            ad.confirmationAlert("Cancel Reservation!!", "proceed with the process?", {
+                weak var weakSelf = self
+                self.delegate?.startLoading()
+                self.isUserInteractionEnabled = false
+                weakSelf?.reservationModel.postCancelRequest(id, completed: { [weak self ] (sms, state) in
+                    
+                    if self?.currentarrayTitle == "am" {
+                        self?.amData?.remove(at: indexPath.row)
+                        self?.currentTimeArray = self?.amData
+                    }else {
+                        self?.pmData?.remove(at: indexPath.row)
+                        self?.currentTimeArray = self?.pmData
+                    }
+                    DispatchQueue.main.async {
+                        self?.isUserInteractionEnabled = true
+                        self?.delegate?.triggerupdate()
+                    }
+                })
+ 
                 
-                if self?.currentarrayTitle == "am" {
-                    self?.amData?.remove(at: indexPath.row)
-                    self?.currentTimeArray = self?.amData
-                }else {
-                    self?.pmData?.remove(at: indexPath.row)
-                    self?.currentTimeArray = self?.pmData
-                }
-                DispatchQueue.main.async {
-                    self?.isUserInteractionEnabled = true
-                    self?.delegate?.triggerupdate()
-                }
             })
-        }
+                    }
     }
     
     

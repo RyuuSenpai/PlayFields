@@ -134,9 +134,11 @@ import CDAlertView
      }
     
     @IBAction func ownerBtnAct(_ sender: UIButton) {
+
         sender.isSelected = !sender.isSelected
           self.disableButtons
           if sender.isSelected {
+            UserDefaults.standard.setValue("pg_owner", forKey: "User_Type")
             UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [.curveEaseIn , .allowUserInteraction], animations: {
                 self.playerViewHeightConstant.constant -= ( self.view.bounds.height * 0.13 )
                 self.playerViewTopSpaceToView.constant =  ((self.playerView.bounds.height * -1) + ( self.view.bounds.height * 0.13 ))
@@ -147,6 +149,7 @@ import CDAlertView
                 self.view.layoutIfNeeded()
             })
         }else {
+            UserDefaults.standard.setValue(nil, forKey: "User_Type")
             view.endEditing(true)
             self.playerView.alpha = 1
             UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [.curveEaseIn, .allowUserInteraction], animations: {
@@ -167,10 +170,12 @@ import CDAlertView
      }
     
     @IBAction func playerBtnAct(_ sender: UIButton) {
+
         sender.isSelected = !sender.isSelected
         self.disableButtons
         
          if sender.isSelected {
+            UserDefaults.standard.setValue("player", forKey: "User_Type")
          self.ownerView.alpha = 0
             UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [.curveEaseIn , .allowUserInteraction], animations: {
                self.playerViewHeightConstant.constant -= ( self.view.bounds.height * 0.13 )
@@ -180,6 +185,7 @@ import CDAlertView
                 self.playFieldType = 0
             })
          }else {
+            UserDefaults.standard.setValue(nil, forKey: "User_Type")
             view.endEditing(true)
             self.ownerView.alpha = 1
             UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [.curveEaseIn, .allowUserInteraction], animations: {
@@ -220,7 +226,7 @@ import CDAlertView
             alert.show()
             self.setUIEnabled(enabled: true)
         }else {
-  
+          
         }
     }
     
@@ -286,6 +292,7 @@ import CDAlertView
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id
                 vc.userName = name
+                UserDefaults.standard.setValue(name, forKey: "usreName")
                 vc.codeVerfication = true 
                 self.present(vc, animated: true, completion: nil)
                 self.setUIEnabled(enabled: true)

@@ -117,7 +117,7 @@ class  PlayGroundsData_Data {
         self._price = json[source.price].intValue
         self._reservation_count = json[source.reservation_count].intValue
         self._image = json[source.image].stringValue
-        self._rating = json[source.updated_at].intValue
+        self._rating = json[source.rating].intValue
         
     }
 }

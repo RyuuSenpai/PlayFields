@@ -107,9 +107,11 @@ class LanguagesDict {
                          "Mobile number is required in order to create user." : "رقم الهاتف مطلوب لاتمام عمليه التسجيل",
                          "Mobile number already exist, please try another one." : "رقم الهاتف مستخدم من قبل",
                          "Sorry some error occurred, please try again later.": "حدث خطأ, حاول مره اخري",
-                         "New user, please send with valid mobile number" : "رقم الهاتف مطلوب لاتمام عمليه التسجيل"
-        
-        //                             "":"",
+                         "New user, please send with valid mobile number" : "رقم الهاتف مطلوب لاتمام عمليه التسجيل",
+                         "Logging out!!" : "تسجيل الخروج!!",
+                         "proceed with the process?" : "تأكيد العملية؟",
+                         "Cancel Reservation!!" : "الغاء الحجز!!" ,
+         //                             "":"",
         //                             "":"",
         //                             "":"",
         //                             "":"",

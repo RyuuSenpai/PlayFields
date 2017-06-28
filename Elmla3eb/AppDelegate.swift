@@ -21,7 +21,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     
     var window: UIWindow?
     
-    var production = true
+    var production = true 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -379,5 +379,20 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         return myActivityIndicator
         
     }
+    
+    
+    func confirmationAlert(_ mainTitle : String ,_ smsTitle : String, _ functionality :  @escaping () -> Void ) {
+        let alert = CDAlertView(title: langDicClass().getLocalizedTitle(mainTitle), message: langDicClass().getLocalizedTitle(smsTitle), type: .notification)
+        
+        let actopn = CDAlertViewAction(title: langDicClass().getLocalizedTitle("Confirm")) {  (_) in
+            functionality()
+        }
+        alert.add(action: actopn)
+        let nevermindAction = CDAlertViewAction(title: langDicClass().getLocalizedTitle("Cancel"))
+        alert.add(action: nevermindAction)
+        alert.show()
+    }
+    
+    
 }
 let ad = UIApplication.shared.delegate as! AppDelegate

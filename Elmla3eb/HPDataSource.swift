@@ -46,7 +46,6 @@ extension MainPageVC : UICollectionViewDataSource {
         cell.title.text = data.name
         print("data name : \(data.name)")
         cell.subtitle.text = data.address
-        
         if 0...5 ~=  data.rate {
             cell.starRatingView.value = CGFloat(data.rate)
         }else {

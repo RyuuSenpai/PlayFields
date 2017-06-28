@@ -305,9 +305,9 @@
 				52B976031E841FFB008B31C7 /* PlayFields */,
 				528623271EDDABE20048E95F /* Profile */,
 				52F60A561EDED5C600B79520 /* Search */,
-				52EA87451EEECA31000C0C52 /* Others */,
 				52A030821EFBF0820073DFBD /* Login */,
 				52355EC91EB88D86005A9217 /* Owner */,
+				52EA87451EEECA31000C0C52 /* Others */,
 			);
 			name = C;
 			sourceTree = "<group>";

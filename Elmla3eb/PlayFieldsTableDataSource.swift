@@ -87,20 +87,23 @@ extension PlayFieldsVC : UITableViewDataSource {
     }
     
     func cancelResrvation(_ sender: UIButton) {
-        self.activityIndector.startAnimating()
-        self.view.isUserInteractionEnabled = false
-        print("Cancel reservation plz my itcket number is : \(sender.tag)\n and that's the count : \(unconfirmedP_G?.count)")
-        guard let data = unconfirmedP_G else { self.activityIndector.stopAnimating()
-            self.view.isUserInteractionEnabled = true
+        
+        ad.confirmationAlert("Cancel Reservation!!", "proceed with the process?") {
+            weak var weakSelf = self
+        weakSelf?.activityIndector.startAnimating()
+        weakSelf?.view.isUserInteractionEnabled = false
+
+            guard let data = weakSelf?.unconfirmedP_G else { weakSelf?.activityIndector.stopAnimating()
+            weakSelf?.view.isUserInteractionEnabled = true
             print("❗️unconfirmed data == nil "); return }
         guard sender.tag <= data.count else { self.activityIndector.stopAnimating()
-            self.view.isUserInteractionEnabled = true
+            weakSelf?.view.isUserInteractionEnabled = true
             print("❗️sender tag <= data.count");  return }
         let reservationId = data[sender.tag].id
-        guard reservationId != 0 else { self.activityIndector.stopAnimating()
-            self.view.isUserInteractionEnabled = true
+        guard reservationId != 0 else { weakSelf?.activityIndector.stopAnimating()
+            weakSelf?.view.isUserInteractionEnabled = true
             print("⛑ Fatal Error the id is Equal 0 ❗️") ;return }
-        deletereservation.postCancelRequest( reservationId) {[weak self] (sms, state) in
+        weakSelf?.deletereservation.postCancelRequest( reservationId) {[weak self] (sms, state) in
             
             guard state else {
                 print(" ❗️ State is False ❗️")
@@ -135,6 +138,7 @@ extension PlayFieldsVC : UITableViewDataSource {
             }
 //
         }
+    }
     }
     
     func bookNow(_ sender: UIButton) {

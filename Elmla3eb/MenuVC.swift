@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import Alamofire
 import AlamofireImage
+import CDAlertView
 
 class MenuVC: UIViewController {
     
@@ -188,9 +189,23 @@ class MenuVC: UIViewController {
     
     
     @IBAction func signouBtnAct(_ sender: UIButton) {
+ 
+        ad.confirmationAlert("Logging out!!", "proceed with the process?") {
+            
+            self.loggoutAction()
+
+        }
+    }
+    
+    
+ 
+    
+    func loggoutAction() {
         let user = MUserData()
         setUIEnabled(false)
-        self.view.isUserInteractionEnabled = false
+        view.isUserInteractionEnabled = false
+        
+        
         user.postLogout { [weak self ]  (data) in
             if data.1 {
                 DispatchQueue.main.async{
@@ -207,15 +222,13 @@ class MenuVC: UIViewController {
                 }
             }else {
                 DispatchQueue.main.async{
-                self?.setUIEnabled(true)
-                ad.showAlert("default","")
-                
-                self?.view.isUserInteractionEnabled = true
+                    self?.setUIEnabled(true)
+                    ad.showAlert("default","")
+                    
+                    self?.view.isUserInteractionEnabled = true
                 }
             }
         }
-       
-        
     }
     
     func setUIEnabled(_ state : Bool) {
