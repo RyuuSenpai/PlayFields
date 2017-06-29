@@ -21,7 +21,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     
     var window: UIWindow?
     
-    var production = true 
+    var production = false 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -62,6 +62,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
             // In project directory storyboard looks like Main.storyboard,
             // you should use only part before ".storyboard" as it's name,
             // so in this example name is "Main".
+            
             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             //
             //            // controller identifier sets up in storyboard utilities
@@ -70,14 +71,15 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
             
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
+ 
             //test Nib
-            //           let initialViewController  = CheckPhoneValidVC(nibName:"CheckPhoneValidVC",bundle:nil)
-            //
-            //            let frame = UIScreen.main.bounds
-            //            window = UIWindow(frame: frame)
-            //
-            //            window!.rootViewController = initialViewController
-            //            window!.makeKeyAndVisible()
+//            let initialViewController  = PointsViewController(nibName:"PointsViewController",bundle:nil)
+//            
+//            let frame = UIScreen.main.bounds
+//            window = UIWindow(frame: frame)
+//            
+//            window!.rootViewController = initialViewController
+//            window!.makeKeyAndVisible()
             //@end test end
         }
         setupFCM()
@@ -95,10 +97,70 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     func reloadApp() {
         
         let x = self.isUserLoggedIn()
+//        self.window?.rootViewController?.dismiss(animated: false, completion: nil) //MainPageNavigation
+       
         if x {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            self.window?.rootViewController = storyboard.instantiateInitialViewController()
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            self.window?.rootViewController = storyboard.instantiateInitialViewController()
+//            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
+//              self.window?.makeKeyAndVisible()
+//             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
             
+            // controller identifier sets up in storyboard utilities
+            // panel (on the right), it called Storyboard ID
+//            let viewController = storyboard.instantiateViewController(withIdentifier: "rootNav") as! MainPageNavigation
+//            
+//            self.window?.rootViewController = viewController
+//            
+//            self.window?.makeKeyAndVisible()
+//            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
+            
+//            let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+//            let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
+//            let navb = UINavigationController(rootViewController: x)
+//            _ = navb.popViewController(animated: true);
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "rootNav") as! MainPageNavigation
+            initialViewControlleripad.view.frame =  UIScreen.main.bounds
+             self.window?.rootViewController = initialViewControlleripad
+            self.window?.makeKeyAndVisible()
+ 
+            /*
+            if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rootNav") as? MainPageNavigation {
+                if let window = self.window, let rootViewController = window.rootViewController {
+                    var currentController = rootViewController
+                    while let presentedController = currentController.presentedViewController {
+                        currentController = presentedController
+                    }
+                    currentController.present(controller, animated: true, completion: nil)
+                }
+            }*/
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//
+//                         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//
+//            let viewController = storyboard.instantiateViewController(withIdentifier :"MainPageVC") as! MainPageVC
+//            let rootVC = UINavigationController.init(rootViewController: viewController)
+//            rootVC.view.frame = UIScreen.main.bounds
+//            UIView.transition(with: self.window!, duration: 0.3, options: [], animations: {
+//                self.window?.rootViewController = rootVC
+//            }, completion: nil)
+            /*
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"MainPageVC") as! MainPageVC
+            let navController = UINavigationController.init(rootViewController: viewController)
+            
+            if let window = self.window, let rootViewController = window.rootViewController {
+                var currentController = rootViewController
+                while let presentedController = currentController.presentedViewController {
+                    currentController = presentedController
+                }
+                currentController.present(navController, animated: true, completion: nil)
+            }
+            */
         }else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
@@ -109,9 +171,16 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
             
             // controller identifier sets up in storyboard utilities
             // panel (on the right), it called Storyboard ID
-            let viewController = storyboard.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
-            
-            self.window?.rootViewController = viewController
+//            let viewController = storyboard.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
+//            
+//            self.window?.rootViewController = viewController
+//            self.window?.makeKeyAndVisible()
+//            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
+
+            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = initialViewControlleripad
             self.window?.makeKeyAndVisible()
         }
         

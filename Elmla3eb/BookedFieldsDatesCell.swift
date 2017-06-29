@@ -133,7 +133,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                 cell.selectRow.setTitle(langDicClass().getLocalizedTitle("Attendance"), for: .normal)
                 
             }else {
-                cell.selectRow.setTitle(langDicClass().getLocalizedTitle("Confirm"), for: .normal)
+                cell.selectRow.setTitle(langDicClass().getLocalizedTitle("Confirm "), for: .normal)
                 
             }
             

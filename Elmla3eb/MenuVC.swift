@@ -66,7 +66,7 @@ class MenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          currentTag = turnCurrentPageNameToTag(currentPage)
-        print("that's the nib name ; \(currentPage)")
+//        print("that's the nib name ; \(String(describing: currentPage))")
         if L102Language.currentAppleLanguage() == "ar" {
              backButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
             
@@ -285,7 +285,7 @@ class MenuVC: UIViewController {
     }
     
     func changeLanguage() {
-        var transition: UIViewAnimationOptions = [.transitionFlipFromLeft, .showHideTransitionViews]
+        let transition: UIViewAnimationOptions = [.transitionFlipFromLeft, .showHideTransitionViews]
         if L102Language.currentAppleLanguage() == "en" {
             L102Language.setAppleLAnguageTo(lang: "ar")
             UIView.appearance().semanticContentAttribute = .forceRightToLeft

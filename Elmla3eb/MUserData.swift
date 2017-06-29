@@ -620,11 +620,11 @@ class PostLoginVars {
     }
     
     var teamName : String {
-        guard let x = _team , x != "" , x != " " else { return "unknown" }
+        guard let x = _team , x != "" , x != " " else { return langDicClass().getLocalizedTitle("Team") }
         return x
     }
     var positionName : String {
-        guard let x = _position , x != "" , x != " "  else { return "unknown" }
+        guard let x = _position , x != "" , x != " "  else { return langDicClass().getLocalizedTitle("Position") }
          return x
     }
     var snapChat : String {

@@ -69,6 +69,8 @@
 		52AFAA951E828318009F6467 /* UIViewXRadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA8A1E828318009F6467 /* UIViewXRadialGradient.swift */; };
 		52AFAA961E828318009F6467 /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */; };
 		52AFAA981E82955D009F6467 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA971E82955D009F6467 /* MenuVC.swift */; };
+		52B418C01F04F26800966587 /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B418BE1F04F26800966587 /* PointsViewController.swift */; };
+		52B418C11F04F26800966587 /* PointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B418BF1F04F26800966587 /* PointsViewController.xib */; };
 		52B716571EDC69EB006B1A79 /* CheckPhoneValidVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */; };
 		52BA8A7D1E92925300BFDC3C /* SplashLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */; };
 		52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52BBF11C1ECB3659002AE6EA /* GoogleService-Info.plist */; };
@@ -179,6 +181,8 @@
 		52AFAA8A1E828318009F6467 /* UIViewXRadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewXRadialGradient.swift; sourceTree = "<group>"; };
 		52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
 		52AFAA971E82955D009F6467 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		52B418BE1F04F26800966587 /* PointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
+		52B418BF1F04F26800966587 /* PointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointsViewController.xib; sourceTree = "<group>"; };
 		52B716581EDC69EB006B1A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CheckPhoneValidVC.xib; sourceTree = "<group>"; };
 		52B7165B1EDC6A04006B1A79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CheckPhoneValidVC.strings; sourceTree = "<group>"; };
 		52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashLoginVC.swift; sourceTree = "<group>"; };
@@ -528,6 +532,8 @@
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
 				520044AC1EC1D5060030B772 /* SearchVC.xib */,
 				52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */,
+				52B418BE1F04F26800966587 /* PointsViewController.swift */,
+				52B418BF1F04F26800966587 /* PointsViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -701,6 +707,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B418C11F04F26800966587 /* PointsViewController.xib in Resources */,
 				52AF58A31E769EB0001284DD /* 3-star-rating.png in Resources */,
 				528623261EDD8EAF0048E95F /* SearchResultVC.xib in Resources */,
 				714AECF61E6303EF001127CE /* LaunchScreen.storyboard in Resources */,
@@ -796,6 +803,7 @@
 				529AAC8E1E782B4300505BC5 /* RegisterationSplashVC.swift in Sources */,
 				52AFAA8D1E828318009F6467 /* UIImageViewX.swift in Sources */,
 				52A6C7431EA3860100DD4352 /* PlayGroundsVars.swift in Sources */,
+				52B418C01F04F26800966587 /* PointsViewController.swift in Sources */,
 				714AED081E632170001127CE /* MirroringLabel.swift in Sources */,
 				52AFAA921E828318009F6467 /* UIViewAnchorPoint.swift in Sources */,
 				525BF0031E83CC7A003FE82E /* PlayFieldsTableDataSource.swift in Sources */,

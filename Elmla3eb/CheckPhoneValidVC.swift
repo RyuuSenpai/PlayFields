@@ -164,6 +164,7 @@ class CheckPhoneValidVC: UIViewController {
 //                        let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
 //                        let navb = UINavigationController(rootViewController: x)
 //                        self.present(navb, animated: true, completion: nil)
+                        weakSelf?.timer?.invalidate()
                         ad.fcm()
                         ad.reloadApp()
 //                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
@@ -264,6 +265,7 @@ class CheckPhoneValidVC: UIViewController {
                 
                 print("that's the state :\(state), and that's sms : \(sms)")
                 if state {
+                      weakSelf?.timer?.invalidate()
                     ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:"default")
                     ad.reloadApp()
                     
@@ -277,6 +279,7 @@ class CheckPhoneValidVC: UIViewController {
         }
     }
     @IBAction func resetAppBtnAct(_ sender: UIButton) {
+          timer?.invalidate()
         ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
         ad.reloadApp()
     }

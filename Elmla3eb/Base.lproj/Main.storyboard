@@ -616,11 +616,11 @@
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                                         </variation>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="d9A-z3-7Ut" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
-                                                        <rect key="frame" x="155.5" y="4" width="177.5" height="29.5"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" adjustsFontForContentSizeCategory="YES" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="d9A-z3-7Ut" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
+                                                        <rect key="frame" x="155.5" y="4" width="177.5" height="30"/>
                                                         <color key="backgroundColor" red="0.80609840150000001" green="0.84683185819999995" blue="0.85591924190000002" alpha="0.075717037670000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2474,7 +2474,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="345" height="35"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qo5-Mz-JEX" id="u6x-2J-Vop">
-                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="34"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news_icon" translatesAutoresizingMaskIntoConstraints="NO" id="7sQ-6O-JTh">
@@ -2938,7 +2938,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="345" height="253"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XwW-t9-ehN" id="zHr-JE-GkX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="252"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="253"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-9F-43S">
@@ -2965,14 +2965,14 @@
                                                                                     <rect key="frame" x="225" y="0.0" width="120" height="47"/>
                                                                                     <subviews>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKy-d6-U22">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="58" height="47"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="47"/>
                                                                                             <color key="backgroundColor" red="0.28977522249999998" green="0.54629486800000004" blue="0.12660208340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <state key="normal" title="am">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
                                                                                         </button>
                                                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEg-pZ-hi0">
-                                                                                            <rect key="frame" x="62" y="0.0" width="58" height="47"/>
+                                                                                            <rect key="frame" x="120" y="0.0" width="0.0" height="47"/>
                                                                                             <state key="normal" title="pm">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
@@ -3375,7 +3375,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xb-ZJ-7Gw" id="O1X-lQ-hbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-QM-GgM">
