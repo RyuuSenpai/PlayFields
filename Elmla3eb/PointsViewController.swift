@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class PointsViewController: UIViewController {
 
@@ -33,38 +34,56 @@ class PointsViewController: UIViewController {
 
       let gray = UIColor(colorLiteralRed: 204/255, green: 204/255, blue: 204/255, alpha: 1)     //   #989898
     
-    var currentPoints : Int = 0 {
-        didSet {
-            totalPointLbl.text = "\(currentPoints)"
-            guard currentPoints > 1000 else {
+    let getPointClass = Profile_Model()
+    var myRewardPointReached : Int?
+    var pointsData : [Points_Data]? {
+        didSet{
+            guard let data = pointsData , data.count > 2 else { fatalError("PointData"); return }
+            firstSlider.maximumValue = Float(data[1].points)
+            secondSlider.maximumValue = Float(data[2].points)
+            self.points1000.text = "\(data[0].points)"
+            self.points5000.text = "\(data[1].points)"
+            self.points10000.text = "\(data[2].points)"
+
+            print("that is the points : \(data[0].points , data[0])")
+            guard currentPoints > data[0].points else {
                 undo1rdSenaryo()
-                firstSlider.value = 0
+                firstSlider?.value = 0
                 return
             }
             
-            guard currentPoints != 10000 else {
-                firstSlider.value = 5000
-                secondSlider.value = Float(currentPoints - 5000)
+            guard currentPoints < data[2].points else {
+                myRewardPointReached = data[2].points
+                firstSlider?.value = Float(data[1].points)
+                secondSlider?.value = Float( data[2].points)
                 thirdSenaryo()
                 return
             }
             
-            if currentPoints < 5000 , currentPoints >= 1000 {
+            if currentPoints < data[1].points , currentPoints >= data[0].points {
+                myRewardPointReached = data[0].points
                 undo2rdSenaryo()
                 firstSenaryo()
                 firstSlider.value = Float(currentPoints)
-            }else if currentPoints >= 5000 {
+            }else if currentPoints >= data[1].points {
                 undo3rdSenaryo()
                 secondSenaryo()
-                firstSlider.value = 5000
-                secondSlider.value = Float(currentPoints - 5000 )
+                 myRewardPointReached = data[1].points
+                firstSlider?.value = Float(data[1].points)
+                secondSlider?.value = Float(currentPoints - data[1].points )
             }
-        }
+                 self.view?.squareLoading.stop(0)
+         }
     }
+    var currentPoints : Int = 0
+    
+    var imgUrlDict = [String:String ]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        totalPointLbl?.text = "\(currentPoints)"
+        self.edgesForExtendedLayout = []
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)// CGRectMake(0,0,1,1)
         UIGraphicsBeginImageContextWithOptions(CGSize(width:1,height:1), false, 0)
         UIColor.clear.setFill()
@@ -82,9 +101,26 @@ class PointsViewController: UIViewController {
         secondSlider.transform = CGAffineTransform(scaleX: 1, y: 2);
 
         // Do any additional setup after loading the view.
-        currentPoints = 10000
-    }
 
+        fetchData()
+        
+        
+    }
+    
+    func fetchData() {
+        self.view.squareLoading.start(0)
+        getPointClass.getPointsData { [weak self] (dataArray, sms, state) in
+            guard state , let data = dataArray , data.count > 2 else {
+                print("Soomething wentWoring  the data count is : \( dataArray) and state is : \(state)" )
+                return }
+            DispatchQueue.main.async {
+                
+            self?.pointsData = data
+                
+            }
+        }
+    }
+ 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.firstRewardView.layer.cornerRadius =  firstRewardView.bounds.size.width   / 2
@@ -99,9 +135,20 @@ class PointsViewController: UIViewController {
     
     
     @IBAction func usePointsBtnAct(_ sender: UIButton) {
-        currentPoints -= 500
         
-        print("that is the c urrent points : \(currentPoints)")
+        print("that is the c urrent points : \(currentPoints) , \(myRewardPointReached)")
+        guard let point = myRewardPointReached else { return }
+        getPointClass.post_PointsReward(points: point) { [weak self] (state, sms) in
+            guard state else {
+                ad.showAlert("deafult", sms) ;
+                return }
+            DispatchQueue.main.async {
+                ad.showAlert("√", "")
+                self?.fetchData()
+            }
+            
+        }
+        
     }
 
     /*
@@ -115,44 +162,86 @@ class PointsViewController: UIViewController {
     */
 
     func firstSenaryo() {
-    points1000.textColor = .black
-        point1.textColor = .black
-        firstRewardImage.image = #imageLiteral(resourceName: "BlackFootball")
-        firstRewardView.borderColor = .black
+    points1000?.textColor = .black
+        point1?.textColor = .black
+//        firstRewardImage?.image = #imageLiteral(resourceName: "BlackFootball")
+        firstRewardView?.borderColor = .black
+        guard let url = URL(string: pointsData![0].img_achieved ) else { return }
+        firstRewardImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "question_mark_filled"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
     }
     func secondSenaryo() {
         firstSenaryo()
-        points5000.textColor = .black
-        point2.textColor = .black
-        secondRewardImage.image = #imageLiteral(resourceName: "BlackTshirt")
-        secondRewardView.borderColor = .black
+        points5000?.textColor = .black
+        point2?.textColor = .black
+//        secondRewardImage?.image = #imageLiteral(resourceName: "BlackTshirt")
+        secondRewardView?.borderColor = .black
+        guard let url = URL(string: pointsData![1].img_achieved ) else { return }
+        secondRewardImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "question_mark_filled"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
     }
     func thirdSenaryo() {
         secondSenaryo()
-        points10000.textColor = .black
-        point3.textColor = .black
-        finalRewardImage.image = #imageLiteral(resourceName: "BlackCup")
-        finalrewardView.borderColor = .black
+        points10000?.textColor = .black
+        point3?.textColor = .black
+//        finalRewardImage?.image = #imageLiteral(resourceName: "BlackCup")
+        finalrewardView?.borderColor = .black
+        guard let url = URL(string: pointsData![2].img_achieved ) else { return }
+        finalRewardImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "question_mark_filled"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
     }
     
     func undo3rdSenaryo() {
-        points10000.textColor = gray
-        point3.textColor = gray
-        finalRewardImage.image = #imageLiteral(resourceName: "WhiteCup")
-        finalrewardView.borderColor = gray
+        points10000?.textColor = gray
+        point3?.textColor = gray
+//        finalRewardImage?.image = #imageLiteral(resourceName: "WhiteCup")
+        finalrewardView?.borderColor = gray
+        guard let url = URL(string: pointsData![2].img_unachieved ) else { return }
+        finalRewardImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "question_mark_filled"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
     }
     func undo2rdSenaryo() {
         undo3rdSenaryo()
-        points5000.textColor = gray
-        point2.textColor = gray
-        secondRewardImage.image = #imageLiteral(resourceName: "WhiteTshirt")
-        secondRewardView.borderColor = gray
+        points5000?.textColor = gray
+        point2?.textColor = gray
+//        secondRewardImage?.image = #imageLiteral(resourceName: "WhiteTshirt")
+        secondRewardView?.borderColor = gray
+        guard let url = URL(string: pointsData![1].img_unachieved ) else { return }
+        secondRewardImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "question_mark_filled"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
     }
     func undo1rdSenaryo() {
         undo2rdSenaryo()
-        points1000.textColor = gray
-        point1.textColor = gray
-        firstRewardImage.image = #imageLiteral(resourceName: "WhiteFootball")
-        firstRewardView.borderColor = gray
+        points1000?.textColor = gray
+        point1?.textColor = gray
+//        firstRewardImage?.image = #imageLiteral(resourceName: "WhiteFootball")
+        firstRewardView?.borderColor = gray
+        guard let url = URL(string: pointsData![0].img_unachieved ) else { return }
+        firstRewardImage.af_setImage(
+            withURL: url,
+            placeholderImage: UIImage(named: "question_mark_filled"),
+            filter: nil,
+            imageTransition: .crossDissolve(0.2)
+        )
     }
 }

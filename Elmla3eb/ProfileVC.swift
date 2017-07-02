@@ -57,11 +57,12 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     //            }
     //    }
     //    }
+    var intPoints = 0 
     var positions =  [String]()
     var isFbUser = false
     var imageUrl = "" {
         didSet {
-//            print("thatis the image url : \(imageUrl)")
+            //            print("thatis the image url : \(imageUrl)")
             guard let url = URL(string: imageUrl ) else { return }
             profileImage.af_setImage(
                 withURL: url,
@@ -95,7 +96,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             }
         }
     }
-    
+    var isOwner = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,16 +104,17 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         disableTxts = true
         title =  langDicClass().getLocalizedTitle("Profile")
         emptyFields()
-//        print("that's positions : \(positions)")
+        //        print("that's positions : \(positions)")
         if  L102Language.currentAppleLanguage() != "ar"   {
             positions =  ["Goalkeeper","Defence","Striker","Midfield"]
         }else {
             positions =  ["حارس مرمي","مدافع","مهاجم","وسط"]
         }
-
+        
         if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" { // Hide Bar
             playerStackBar.alpha =  0
-        }else {//Show Bar 
+            isOwner = true
+        }else {//Show Bar
             playerStackBar.alpha =  1
         }
         
@@ -128,14 +130,15 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.birthDateTxt.text = data.birth_date
                     self?.teamName.text = data.team
                     self?.playerPosition.text = data.positionName
-                    self?.favPoints.text =  "\(data.points)"
+                    self?.favPoints.text =  data.points
+                    self?.intPoints = data.intPoints
                     self?.cityLbl.text = data.city
                     self?.phoneNumTxt.text = data.mobile
                     self?.positionTxt.text = data.positionName
                     self?.cityTxt.text = data.city
                     self?.isFbUser = data.isFbUser
                     self?.imageResponse = data.image_Response
-//                    print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
+                    //                    print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
                     //                    self?.imageUrl = data.image
                     if   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String  {
                         self?.imageUrl = imageurl
@@ -204,8 +207,8 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             self.doneButton.alpha = 1
             self.doneButton.isEnabled = true
             if  !isFbUser{
-            changePassword.alpha = 1
-            changePassword.isEnabled = true
+                changePassword.alpha = 1
+                changePassword.isEnabled = true
             }
         }else {
             disableTxts = true
@@ -219,7 +222,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     @IBAction func doneBtnAct(_ sender: UIButton) {
         setUIEnabled(enabled: false )
-//        print("that's the  url : \(imageUrl)\n Base64 : \(base64String)\n changedImage: \(changedImage) ")
+        //        print("that's the  url : \(imageUrl)\n Base64 : \(base64String)\n changedImage: \(changedImage) ")
         user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageResponse ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
             
             if state {
@@ -227,7 +230,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     
                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
                     alert.show()
-                     self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+                    self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
                     self?.editProfileBtn.isSelected = false
                     self?.setUIEnabled(enabled: true)
                     self?.doneButton.alpha = 0
@@ -286,22 +289,32 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     
     @IBAction func LabelTapAction(_ sender: UIButton) {
-        guard   !disableTxts else { return }
+        guard   !disableTxts  else { return }
         self.view.endEditing(true) //This will hide the keyboard
         switch sender.tag {
-        case 1 :
-//            print("city")
+        case 1 : // City
+            //            print("city")
             cityTxt.becomeFirstResponder()
-        case 2:
-            presentAlert(langDicClass().getLocalizedTitle("Team"), langDicClass().getLocalizedTitle("Team Name"), langDicClass().getLocalizedTitle("Team Name"), teamName)
-        case 3 :
-//            print("Position")
+        case 2: // Team
+            guard !isOwner else { return }
+            presentAlert(langDicClass().getLocalizedTitle("Pick Team"), langDicClass().getLocalizedTitle("Team Name"), langDicClass().getLocalizedTitle("Team Name"), teamName)
+        case 3 : // Position
+            //            print("Position")
+               guard !isOwner else { return }
             positionTxt.becomeFirstResponder()
+      
         default :
             presentAlert("name", "enter your nickname", "nickname", userName)
         }
     }
     
+    @IBAction func pointsBtnAct(_ sender: UIButton) {
+        guard !isOwner else { return }
+        print("Pointssssss")
+        let vc = PointsViewController(nibName : "PointsViewController" , bundle : nil )
+        vc.currentPoints = intPoints
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     
     
@@ -357,7 +370,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        print(("Canceleeeeddd"))
+        //        print(("Canceleeeeddd"))
         dismiss(animated: true, completion: nil)
     }
     //    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -372,7 +385,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         if enabled {
             loadingActivity.stopAnimating()
             self.uploadingPhotoLbl.alpha = 0
-             profileImageBtn.isEnabled = true
+            profileImageBtn.isEnabled = true
             doneButton.isEnabled = true
             doneButton.alpha = 1
             editProfileBtn.alpha = 1
@@ -383,7 +396,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             }
             
         }else {
-             loadingActivity.startAnimating()
+            loadingActivity.startAnimating()
             if changedImage {
                 self.uploadingPhotoLbl.alpha = 1
             }
@@ -397,7 +410,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                 changePassword.alpha = 0.5
                 changePassword.isEnabled = false
             }
-         }
+        }
         
     }
     
@@ -416,7 +429,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         guard let new = newPassTxt.text , !new.isEmpty  , let old = oldPassTxt.text , !old.isEmpty else {
             showAlert(langDicClass().getLocalizedTitle("All Fields are Required"),"")
             disableChangePassView(false)
-
+            
             return
         }
         guard let oldPass = oldPassTxt.text , oldPass.isValidPassword else {
@@ -429,7 +442,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
             disableChangePassView(false)
             return
         }
-     
+        
         
         user.postChangeUserPassword(userID: USER_ID, oldPassword: oldPass, newPassword: newPass) {[weak self] (state, sms) in
             
@@ -626,7 +639,7 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
             let datePicker = UIDatePicker()
             datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())
             datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -90, to: Date())
- 
+            
             //            let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
             //            datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
             

@@ -206,6 +206,7 @@
             ad.saveUserLogginData(email: "default", photoUrl: i.image, uid: -1, name: "default")
             }
             if let rating = i.ratePg_Data {
+                print("that's the data : \(data.0)\n and that's the rating : \(rating[0].pg_name,rating[0].id)")
                 self?.ratePg_Data = [RatePg_Data]()
                  self?.ratePg_Data = rating
              }

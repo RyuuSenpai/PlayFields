@@ -57,10 +57,11 @@ class GetPlayGroundsData {
 //                print("that is  playgroundsJsonData getting the data Mate : %@", playgroundsJsonData)
 //                print("that is  pagerJsonData getting the data Mate : %@", pagerJsonData)
 //                print("that is  staticsJsonData getting the data Mate : %@", staticsJsonData)
-                
+                print("nonrated_playgrounds : \(nonrated_playgrounds)")
                 var ratePg_Data = [RatePg_Data]()
                 for i in 0..<nonrated_playgrounds.count {
-                    let x = RatePg_Data(json: playgroundsJsonData[i])
+                    let x = RatePg_Data(json: nonrated_playgrounds[i])
+                    print("nonrated_playgrounds Name  : \(x.pg_name)")
                     ratePg_Data.append(x)
                 }
                 
@@ -111,7 +112,7 @@ class GetPlayGroundsData {
                 
                 mainPageData.image = imageUrl
                 let  state =  success == 1 ? true : false
-                print("KILLVA: _GetPlayFieldsData STATUS:\(state) , sms: \(sms) playGroundsCount : \(mainPageData.playGrounds?.count) pagerData : \(mainPageData.pagerData?.count) \n")
+                print("KILLVA: _GetPlayFieldsData STATUS:\(state) , sms: \(sms) playGroundsCount : \(mainPageData.playGrounds?.count) pagerData : \(mainPageData.pagerData?.count) \n data : \(json)")
                 
                 completed(mainPageData,state,sms)
                 

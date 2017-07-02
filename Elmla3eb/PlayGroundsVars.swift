@@ -100,7 +100,7 @@ class  PlayGroundsData_Data {
         return x
     }
     var rate : Int{
-        guard  let x = _rating else { return 3 }
+        guard  let x = _rating else { return 0 }
         return x
     }
     
@@ -205,6 +205,7 @@ class  RatePg_Data {
      private   let source = Constants.API.Parameters()
     
     var pg_name : String {
+        print("That's the pg_name : \(_pg_name)")
         guard  let x = _pg_name else { return "" }
         return x
     }
@@ -218,9 +219,12 @@ class  RatePg_Data {
     }
  
     init(json:JSON) {
+        print("that intel data : \(json)")
          self._pg_name = json[source.pg_name].stringValue
         self._rating = json[source.rating].intValue
         self._id = json[source.id].intValue
+        print("that intel _pg_name : \(_pg_name)")
+
     }
 }
 

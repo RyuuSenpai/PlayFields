@@ -95,6 +95,10 @@ class Constants  {
             let GET_OWNER_SYSTEM_MANAGER = API.main_url + "owners/pgtimes"
             let GET_OWNERPLAY_G =  API.main_url +  "owners/playgrounds"	
             let GET_OWNER_PAYMENTS_STATICS = API.main_url +  "owners/report"
+            
+            //Points not sure where it located in backend but it should be in Profile 
+            let  GET_POINTS_REQUEST =  API.main_url +   "prizes"
+             let  POST_POINTS_REQUEST = API.main_url + "points"
         }
         
         class Parameters {

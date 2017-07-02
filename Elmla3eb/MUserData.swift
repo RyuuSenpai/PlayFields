@@ -430,7 +430,7 @@ class MUserData {
  
    
     func postLogout( completed : @escaping ( String,Bool)->()) {
-        let parameters : Parameters = [ parSource.user_id : USER_ID ]
+         let parameters : Parameters = [ parSource.user_id : USER_ID  , parSource.token : UserDefaults.standard.value(forKey: "FCMToken") as? String  ?? "" ]
         print("parameters postLogout: \(parameters)")
 
         let url = source.POST_LOGOUT  + source.API_TOKEN
@@ -556,7 +556,7 @@ class PostLoginVars {
         return x
     }
     var team :String {
-        guard let x = _team else { return "unknown" }
+        guard let x = _team, x != "" , x != " " else { return langDicClass().getLocalizedTitle("Pick Team") }
         return x
     }
     var id :Int {
@@ -570,6 +570,10 @@ class PostLoginVars {
            }
         return "\(x) نقطه "
 
+    }
+    var intPoints :Int {
+        guard let x = _points else { return 0 }
+        return x
     }
     var birth_date  : String {
         guard let x = _birth_date , x != " " else { return "unknown" }
@@ -620,7 +624,7 @@ class PostLoginVars {
     }
     
     var teamName : String {
-        guard let x = _team , x != "" , x != " " else { return langDicClass().getLocalizedTitle("Team") }
+        guard let x = _team , x != "" , x != " " else { return "unknown" }
         return x
     }
     var positionName : String {

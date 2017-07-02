@@ -857,6 +857,13 @@
                                             <action selector="LabelTapAction:" destination="1iL-1e-YNB" eventType="touchUpInside" id="6pI-0x-JVa"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e64-0L-TQO" userLabel="Points">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="pointsBtnAct:" destination="1iL-1e-YNB" eventType="touchUpInside" id="2aM-ii-Zq3"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5P-tl-fF8" userLabel="position">
                                         <rect key="frame" x="250.5" y="0.0" width="124.5" height="35"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -868,10 +875,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="CCM-fA-1SA" secondAttribute="bottom" id="AUj-EB-guD"/>
+                                    <constraint firstItem="e64-0L-TQO" firstAttribute="leading" secondItem="TM4-tM-kgs" secondAttribute="leading" id="Ass-bl-mDn"/>
                                     <constraint firstItem="ecQ-ov-KY0" firstAttribute="bottom" secondItem="UWa-f7-e8j" secondAttribute="bottom" id="BWC-fr-OZM"/>
                                     <constraint firstAttribute="trailing" secondItem="o2M-Sa-3Vv" secondAttribute="trailing" constant="20" id="Dvp-QS-O4N">
                                         <variation key="heightClass=regular-widthClass=regular" constant="100"/>
                                     </constraint>
+                                    <constraint firstItem="e64-0L-TQO" firstAttribute="trailing" secondItem="TM4-tM-kgs" secondAttribute="trailing" id="Lu0-Ay-bEI"/>
                                     <constraint firstItem="ecQ-ov-KY0" firstAttribute="top" secondItem="UWa-f7-e8j" secondAttribute="top" id="MvI-mO-DHO"/>
                                     <constraint firstItem="DH7-ht-yHN" firstAttribute="leading" secondItem="Thq-cJ-YBN" secondAttribute="leading" id="NFP-hH-dqH"/>
                                     <constraint firstItem="ecQ-ov-KY0" firstAttribute="trailing" secondItem="UWa-f7-e8j" secondAttribute="trailing" id="Sg3-Ra-fCQ"/>
@@ -879,9 +888,11 @@
                                         <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                                     </constraint>
                                     <constraint firstAttribute="bottom" secondItem="BPb-2K-0Ob" secondAttribute="bottom" id="Ubd-so-1hH"/>
+                                    <constraint firstItem="e64-0L-TQO" firstAttribute="top" secondItem="TM4-tM-kgs" secondAttribute="top" id="WwX-3q-PsY"/>
                                     <constraint firstItem="tQJ-8h-AX1" firstAttribute="bottom" secondItem="R5P-tl-fF8" secondAttribute="bottom" id="dPB-vd-H3g"/>
                                     <constraint firstItem="ecQ-ov-KY0" firstAttribute="leading" secondItem="UWa-f7-e8j" secondAttribute="leading" id="fOb-41-8lj"/>
                                     <constraint firstItem="DH7-ht-yHN" firstAttribute="top" secondItem="Thq-cJ-YBN" secondAttribute="top" id="gS7-kp-YZQ"/>
+                                    <constraint firstItem="e64-0L-TQO" firstAttribute="bottom" secondItem="TM4-tM-kgs" secondAttribute="bottom" id="gT5-d4-GDT"/>
                                     <constraint firstItem="tQJ-8h-AX1" firstAttribute="top" secondItem="R5P-tl-fF8" secondAttribute="top" id="irW-Jf-26M"/>
                                     <constraint firstItem="BPb-2K-0Ob" firstAttribute="leading" secondItem="Thq-cJ-YBN" secondAttribute="leading" id="j1g-mI-Mbz"/>
                                     <constraint firstItem="o2M-Sa-3Vv" firstAttribute="leading" secondItem="Thq-cJ-YBN" secondAttribute="leading" constant="20" id="js9-sg-dcP">
@@ -1952,7 +1963,7 @@
                                     <rect key="frame" x="0.0" y="0.5" width="276" height="274"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                        <rect key="frame" x="0.0" y="0.0" width="276" height="274"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="276" height="275"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate The Field" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aem-4P-Siv">
@@ -1996,7 +2007,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Green Field" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Y1o-Rd-yTI">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Y1o-Rd-yTI">
                                                 <rect key="frame" x="38" y="99" width="200" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="ZKr-Jr-irH"/>
@@ -2474,7 +2485,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="345" height="35"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qo5-Mz-JEX" id="u6x-2J-Vop">
-                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="34"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="35"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news_icon" translatesAutoresizingMaskIntoConstraints="NO" id="7sQ-6O-JTh">
@@ -2938,7 +2949,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="345" height="253"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XwW-t9-ehN" id="zHr-JE-GkX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="253"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="252"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-9F-43S">
@@ -2965,14 +2976,14 @@
                                                                                     <rect key="frame" x="225" y="0.0" width="120" height="47"/>
                                                                                     <subviews>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKy-d6-U22">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="47"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="58" height="47"/>
                                                                                             <color key="backgroundColor" red="0.28977522249999998" green="0.54629486800000004" blue="0.12660208340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <state key="normal" title="am">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
                                                                                         </button>
                                                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEg-pZ-hi0">
-                                                                                            <rect key="frame" x="120" y="0.0" width="0.0" height="47"/>
+                                                                                            <rect key="frame" x="62" y="0.0" width="58" height="47"/>
                                                                                             <state key="normal" title="pm">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
@@ -3375,7 +3386,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xb-ZJ-7Gw" id="O1X-lQ-hbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-QM-GgM">

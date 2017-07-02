@@ -71,7 +71,6 @@ class LanguagesDict {
                          "Resend in " : "إعاده إرسال ",
                          "Save" : "حفظ",
                          "Book Field Now" : "احجز الملعب الآن",
-//                         "Team" : "ادخل اسم الفريق",
                          "Team Name" : "اسم الفريق",
                          " SAR" : " ريال ",
                          "Edit Field" : "تعديل الملعب",
@@ -102,7 +101,7 @@ class LanguagesDict {
                          "Username already exist, please choose another one" : "الاسم مستخدم من قبل" ,
                          "Sorry some error occurred, please try again later" : "حدث خطأ, حاول مره اخري" ,
                          "Request can't be empty" : "جميع الحقول مطلوبه" ,
-                         "User not found" : "حدث خطأ, حاول مره اخري" ,
+                         "User not found" : "هذا الحساب غير مسجل,برجاءالتاكد من البيانات" ,
                          "Wrong password" : "خطأ في رقم المرور" ,
                          "User not confirmed" : "برجاء تفعيل رقم الهاتف" ,
                          "Mobile number is required in order to create user." : "رقم الهاتف مطلوب لاتمام عمليه التسجيل",
@@ -113,7 +112,7 @@ class LanguagesDict {
                          "proceed with the process?" : "تأكيد العملية؟",
                          "Cancel Reservation!!" : "الغاء الحجز!!" ,
                          "Position" : "التمركز",
-                         "Team" : "الفريق"
+                         "Pick Team" : "إختر فريق"
          //                             "":"",
         //                             "":"",
         //                             "":"",

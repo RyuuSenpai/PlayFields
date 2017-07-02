@@ -201,16 +201,18 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
                 weakSelf?.present(vc, animated: true, completion: nil)
                 
             }else {
+                DispatchQueue.main.async {
+
                 if data.2 == "User not found" {
-                    DispatchQueue.main.async {
-                        weakSelf?.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
-                    }
+                        weakSelf?.showAlert( langDicClass().getLocalizedTitle("User not found"), "")
+                    }else if data.2 == "Wrong password" {
+                        weakSelf?.showAlert( langDicClass().getLocalizedTitle("Wrong password"), "")
                 }else {
                     DispatchQueue.main.async {
                         weakSelf?.showAlert( langDicClass().getLocalizedTitle(" Network Time out "), "")
                     }
                 }
-                
+                }
             }
         }
         return "Done"

@@ -166,7 +166,93 @@ class Profile_Model {
     }
 
     
+    func getPointsData( completed:@escaping ([Points_Data]?,String,Bool) -> ()) {
+        
+        let url = source.GET_POINTS_REQUEST + source.API_TOKEN
+        print("getPointsData URL: \(url)")
+        //        let request = GLOBAL.alamoRequest(query_url: url)
+        
+        Alamofire.request(url, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url getPointsData")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                print("that is  getPointsData getting the data Mate : %@", response.result.value!)
+                
+                
+                let data = json["data"]
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: getPointsData STATUS:\(state) , sms: \(sms) \n")
+                var pointsDataArray = [Points_Data]()
+                for item in data {
+                    let pointsClass = Points_Data(jsonData: item.1)
+                    pointsDataArray.append(pointsClass)
+                }
+                
+                completed(pointsDataArray,sms,state)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the getPointsData data Mate : \(response.result.error)")
+                completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
+                break
+            }
+        }
+    }
     
+    func post_PointsReward(points : Int ,completed : @escaping (Bool,String)->()) {
+        let parameters : Parameters = [parSource.user_id : USER_ID , "points" : "\(points)" ]
+        print("that is the parameters in post_PointsReward : \(parameters)")
+        
+        //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
+        
+        //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
+        let url = source.POST_POINTS_REQUEST + source.API_TOKEN
+        print("URL: is post_PointsReward   : \(url)")
+        
+        Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    print("error fetching data from url")
+                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+                
+                
+                
+                let success = json[self.parSource.success].intValue
+                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                print("KILLVA: post_PointsReward success : \(success) STATUS:\(state) , sms: \(sms)")
+                
+                
+                completed(state,sms)
+                break
+            case .failure(_) :
+                print("that is fail i n getting the post_PointsReward Mate : \(response.result.error))")
+                completed(false, "Network Time out" )
+                break
+            }
+        }
+    }
+
     
 }
 
@@ -198,6 +284,55 @@ class profile_Data {
     
 }
 
+
+class Points_Data {
+    private   let source = Constants.API.Parameters()
+    private   let imageURL = Constants.API.URLS()
+    
+    
+ 
+    private var _img_achieved  : String?
+    private var _img_unachieved  : String?
+    private var _points : Int?
+    
+    
+
+    
+    var img_achieved : String{
+        guard  let x = _img_achieved , x != "" else {print("that's the _image path : \(String(describing: _img_achieved))"); return "" }
+        print("that's the imageURL.IMAGES_URL + x   : \(x)")
+        return imageURL.IMAGES_URL + x
+    }
+
+    var img_unachieved : String{
+        guard  let x = _img_unachieved , x != "" else {print("that's the _image path : \(String(describing: _img_achieved))"); return "" }
+        print("that's the imageURL.IMAGES_URL + x   : \(x)")
+        return imageURL.IMAGES_URL + x
+    }
+    
+    var points : Int {
+        print("that's the points : \(_points)")
+        guard let x = _points else { return 0 }
+        return x
+    }
+    //]
+    
+    //    init(name : String?,mobile:String?, city:String?,area:String?,ph_type:String?, map_lon:Double?,map_lat:Double?,email:String?,password:String?,rememberToken:String?,apiToken:String?,createdAt:String?,updatedAt:String?,deletedAt:String?,success:Bool?,message:String?) {
+    //
+    //
+    //    }
+    
+    //    convenience init(name:String?,email:String?,city:String?,type:String?) {
+    //        self.init(name : nil,mobile:nil, city:nil,area:nil,ph_type:nil, map_lon:nil,map_lat:nil,email:nil,password:nil,rememberToken:nil,apiToken:nil,createdAt:nil,updatedAt:nil,deletedAt:nil,success:nil,message:nil)
+    init(jsonData : JSON) {
+        self._img_achieved = jsonData["img_achieved"].stringValue
+        self._img_unachieved = jsonData["img_unachieved"].stringValue
+        self._points = jsonData["points"].intValue
+        
+    }
+    
+    
+}
 
 
 

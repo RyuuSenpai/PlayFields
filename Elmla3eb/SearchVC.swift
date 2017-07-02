@@ -32,7 +32,8 @@
     var searchModel : Search_Model!
     var cities = ["cairo","Alex"]
     let rateList = ["1","2","3","4","5"]
-    
+    var fromDateVar : Date?
+    var toMinDate : Date?
     var selectedCity = ""
     var selectedRate = ""
     fileprivate var citiesPickerV: UIPickerView!
@@ -145,6 +146,7 @@
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         if isFromDate {
+            fromDateVar = sender.date
             fromTxt.text = formatter.string(from: sender.date)
         }else {
             toTxt.text = formatter.string(from: sender.date)
@@ -152,11 +154,27 @@
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        let datePicker = UIDatePicker()
+        
         if textField == toTxt || textField == fromTxt {
-            if textField == toTxt {    isFromDate = false } else {   isFromDate = true }
+            if textField == toTxt {
+                guard let fromTxt = fromTxt.text , !fromTxt.isEmpty , let fromDate = fromDateVar else {
+                ad.showAlert(langDicClass().getLocalizedTitle("Error"), langDicClass().getLocalizedTitle("'From' Field is required to fill 'To' Field."))
+                    toTxt.resignFirstResponder()
+                    return }
+                isFromDate = false
+                 toTxt.text = ""
+                let secondsInDay: TimeInterval = 86400
+                toMinDate = Date(timeInterval: secondsInDay, since: fromDate)
+                datePicker.minimumDate = toMinDate
+            } else {
+                isFromDate = true
+                toTxt.text = ""
+                fromTxt.text = ""
+                 clearBtnUIMangment(clearToTimeBtn, toTxt)
+                datePicker.minimumDate = Date()
+            }
             
-            let datePicker = UIDatePicker()
-            datePicker.minimumDate = Date()
             
             let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
             datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
@@ -171,9 +189,18 @@
         if   textField == toTxt || textField == fromTxt  ,  textField.text == "" {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
-            let date  = formatter.string(from: NSDate() as Date)
+            var date = ""
+            if   textField == toTxt , let minDate = toMinDate{
+                date  = formatter.string(from:minDate)
+            }else if   textField == fromTxt{
+                fromDateVar = NSDate() as Date
+                 date  = formatter.string(from: NSDate() as Date)
+
+            }
             textField.text = date
             
+            if textField == fromTxt {
+            }
         } /*else if  textField == cityTxt ,  textField.text == "" {
          textField.text = cities[0]
          
@@ -187,6 +214,9 @@
         case fromTxt :
             clearBtnUIMangment(clearFromTimebtn, fromTxt)
         case toTxt :
+            guard let fromTxt = fromTxt.text , !fromTxt.isEmpty , let fromDate = fromDateVar else {
+                toTxt.text = ""
+                return }
             clearBtnUIMangment(clearToTimeBtn, toTxt)
         default:
             clearBtnUIMangment(clearCityBtn, cityTxt)

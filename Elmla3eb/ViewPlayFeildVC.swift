@@ -11,6 +11,17 @@ import CDAlertView
 import Alamofire
 import AlamofireImage
 
+class PlaygroundDBData {
+    var  name = ""
+    var address = ""
+   var booksTimes = ""
+    var price = ""
+    var originalPrice = 0
+    var numOfFields = ""
+    var type = ""
+    var ball = false
+    var light = false
+}
 class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSource  {
     
     @IBOutlet weak var bookNowDoneBtn: UIButton!
@@ -83,7 +94,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     var globalClass : GLOBAL!
     var pagerCont = FSPageControl()
     
-    
+    var semiDBData = PlaygroundDBData()
     let textList = ["1","2","3","4"]
     var pg_id : Int?
     var times_msg : String?
@@ -105,9 +116,9 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     let pfInfo = GetpgInfosWebServ()
     var indexIs : Int?
     var playFieldInfo : PlayGroundsInfoSubData?
-    private var theView : UIView!
-    private var theCurBtn : UIButton!
-    private var CurrBtnLine : UIView!
+    fileprivate var theView : UIView!
+    fileprivate var theCurBtn : UIButton!
+    fileprivate var CurrBtnLine : UIView!
     var originalBottomConstant : CGFloat?
     
     var pgInfo : Pg_Info_Data?
@@ -212,7 +223,19 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             weakSelf?.pgDetails = data.details
             weakSelf?.pgInfo = data.info
             weakSelf?.times_msg = data.info?.times_msg
-            
+            if let detailss = data.details , let infoo = data.info {
+            weakSelf?.semiDBData.name =  detailss.pgName
+            weakSelf?.semiDBData.address =  detailss.address
+            weakSelf?.semiDBData.booksTimes =  "\(detailss.pgBookingTimes)"
+            weakSelf?.semiDBData.price =  detailss.price
+                weakSelf?.semiDBData.originalPrice = detailss.originalPrice
+            weakSelf?.semiDBData.numOfFields =  "\(infoo.pgNumbersOfFeilds)"
+            weakSelf?.semiDBData.type =  infoo.groundType
+                weakSelf?.semiDBData.ball =  infoo.footballAvailable
+                weakSelf?.semiDBData.light =  infoo.lightAvailable
+              
+
+            }
 //            print("that is  weakSelf? \n .times_msg : \(weakSelf?.times_msg )")
             
             //News
@@ -371,12 +394,12 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
 //            print(("tbhat's the changed value : price : \(price ?? 0) , hasball \(haveBall ? 1 : 0)  haslight \(haveLighting ? 1 : 0):"))
             self.activityIndicator.startAnimating()
             let editPG = GetPlayGroundsData()
-            guard let pgId = pg_id, let name = ownerDataDict["name"], let address = ownerDataDict["address"], let price = price, let type = ownerDataDict["type"] else {
+            guard let pgId = pg_id, let name = ownerDataDict["name"], let address = ownerDataDict["address"]/*, let price = price*/, let type = ownerDataDict["type"] else {
                 self.activityIndicator.stopAnimating()
                 ad.showAlert("default","")
                 return
             }
-            editPG.putEdit_Playground(pg_id: pgId, pg_name: name, address: address, price: price, ground_type: type, light_available: haveLighting ? "1" : "0" , football_available: haveBall ? "1" : "0", completed: { [weak self] (state,sms) in
+            editPG.putEdit_Playground(pg_id: pgId, pg_name: name, address: address, price: semiDBData.originalPrice, ground_type: type, light_available: haveLighting ? "1" : "0" , football_available: haveBall ? "1" : "0", completed: { [weak self] (state,sms) in
                 guard state else { ad.showAlert("X", sms); return }
                 let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message: langDicClass().getLocalizedTitle(""), type: .success)
                 
@@ -461,18 +484,16 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     func setPlaygDetails() {
         
-        guard  let pgD = pgDetails , let pgInf = pgInfo else {
-            print("didn't find data in pg_Details and Info ßΩ≈ç")
-            return
-        }
-        haveBall =  pgInf.footballAvailable
-        haveLighting = pgInf.lightAvailable
-        price = pgD.originalPrice
-        ownerDataDict["name"] = pgD.pgName
-        ownerDataDict["address"] = pgD.address
-        ownerDataDict["type"] = pgInf.groundType
-        if title == nil || title == "" || title == " " { title = pgD.pgName }
-        setLabelsTitle(fieldName: pgD.pgName, address: pgD.address, booksTimes: "\(pgD.pgBookingTimes)", price: pgD.price, numberOfFields: "\(pgInf.pgNumbersOfFeilds)", fieldType: pgInf.groundType, hasBall: pgInf.footballAvailable, hasLight: pgInf.lightAvailable)
+       
+        haveBall =  semiDBData.ball
+        haveLighting = semiDBData.light
+        price = semiDBData.originalPrice
+        ownerDataDict["name"] = semiDBData.name
+        ownerDataDict["address"] = semiDBData.address
+        ownerDataDict["type"] = semiDBData.type
+        if title == nil || title == "" || title == " " { title = semiDBData.name }
+        
+        setLabelsTitle(fieldName: semiDBData.name, address: semiDBData.address, booksTimes: semiDBData.booksTimes, price: semiDBData.price, numberOfFields: semiDBData.numOfFields, fieldType: semiDBData.type, hasBall: haveBall, hasLight: haveLighting)
     }
     
     func vanisher()  {
@@ -603,6 +624,14 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         vc.didMove(toParentViewController: vc)
     }
     
+
+    
+    
+}
+
+//Owner
+extension ViewPlayFeildVC {
+    
     
     //MARK: Owner set new data
     @IBAction func ownerChangeValue(_ sender: UIButton) {
@@ -611,35 +640,39 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         switch sender.tag {
             
         case 0 :
-             if theCurBtn == detailsBtn {
+            if theCurBtn == detailsBtn {
                 presentAlert(langDicClass().getLocalizedTitle("Enter Field Name"), "", langDicClass().getLocalizedTitle("Field Name"), view1SecLbl)
             }
         case 1 :
-             if theCurBtn == detailsBtn {//Details * FieldName, address Books Times , price
+            if theCurBtn == detailsBtn {//Details * FieldName, address Books Times , price
                 presentAlert(langDicClass().getLocalizedTitle("Enter Address"), "", langDicClass().getLocalizedTitle("Address"), view2SecLbl)
             }else {//AboutField - Number of Fields X, Fields Type √
                 presentAlert(langDicClass().getLocalizedTitle("Enter Field Type"), "", langDicClass().getLocalizedTitle("Field Type"), view2SecLbl)
             }
         case 2 :
-             if theCurBtn == detailsBtn {//AboutField - Number of Fields X, Fields Type √
+            if theCurBtn == detailsBtn {//AboutField - Number of Fields X, Fields Type √
                 //                presentAlert("Enter Address", "", "Address", view2SecLbl)
             }else {
                 if !haveBall {
                     self.footballAvailabilityImage.image = UIImage(named: "true_icon")
+                    semiDBData.ball = true
                 }else {
                     self.footballAvailabilityImage.image = UIImage(named: "faulse_icon")
+                    semiDBData.ball = false
                 }
                 haveBall = !haveBall
             }
         default :
-             if theCurBtn == detailsBtn {
+            if theCurBtn == detailsBtn {
                 presentAlert(langDicClass().getLocalizedTitle("Enter Price for Hour"), "", langDicClass().getLocalizedTitle("Price"), view4SecLbl)
             }else {
                 
                 if !haveLighting {
                     self.fieldLightingAvailabilityImage.image = UIImage(named: "true_icon")
+                    semiDBData.light = true
                 }else {
                     self.fieldLightingAvailabilityImage.image = UIImage(named: "faulse_icon")
+                    semiDBData.light = false
                 }
                 haveLighting = !haveLighting
             }
@@ -659,15 +692,20 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                         return  }
                     label.text = txt + " \(langDicClass().getLocalizedTitle(" SAR"))"
                     self?.price = Int(txt)
+                    self?.semiDBData.price = txt + " \(langDicClass().getLocalizedTitle(" SAR"))"
+                    self?.semiDBData.originalPrice = self?.price ?? 0
                 }else{
                     label.text = txt
                 }
                 if placeHolder == "Address" {
                     self?.ownerDataDict["address"] = txt
+                    self?.semiDBData.address = txt
                 }else  if placeHolder == "Field Type" {
                     self?.ownerDataDict["type"] = txt
+                    self?.semiDBData.type = txt
                 }else if placeHolder == "Field Name" {
                     self?.ownerDataDict["name"] = txt
+                    self?.semiDBData.name = txt
                 }
             } else {
                 // user did not fill field
@@ -690,9 +728,17 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         self.present(alertController, animated: true, completion: nil)
     }
     
-    
-    
 }
+
+
+
+
+
+
+
+
+
+
 
 extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
     

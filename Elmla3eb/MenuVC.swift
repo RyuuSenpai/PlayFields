@@ -43,9 +43,13 @@ class MenuVC: UIViewController {
     @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var userTypeLbl: UILabel!{
         didSet {
-            if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
+            guard let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  else {
+                userTypeLbl?.text = ""
+                return
+            }
+            if   userType == "pg_owner" {
                 userTypeLbl?.text =  langDicClass().getLocalizedTitle("Owner" )
-            }else  if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "player" {
+            }else  if userType == "player" {
                 userTypeLbl?.text =  langDicClass().getLocalizedTitle("Player") 
             }else {
                 userTypeLbl?.text = ""
