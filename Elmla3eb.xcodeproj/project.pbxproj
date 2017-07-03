@@ -341,6 +341,7 @@
 			children = (
 				52F985841EB601E8001DA530 /* ProfileVC.swift */,
 				528623281EDDABF60048E95F /* ChangePassViewX.swift */,
+				52B418BE1F04F26800966587 /* PointsViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -358,6 +359,7 @@
 		52A030821EFBF0820073DFBD /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */,
 				52F5C7121E793AED00B77500 /* LoginVC.swift */,
 				714AED0B1E6321E4001127CE /* FBLoggin.swift */,
 			);
@@ -445,7 +447,6 @@
 				52BBF11E1ECB4CFF002AE6EA /* CheckPhoneValidVC.swift */,
 				52F016771EC08D4A008962AF /* ForgotPasswordVC.swift */,
 				52AFAA971E82955D009F6467 /* MenuVC.swift */,
-				52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */,
 				529AAC8D1E782B4300505BC5 /* RegisterationSplashVC.swift */,
 			);
 			name = Others;
@@ -532,7 +533,6 @@
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
 				520044AC1EC1D5060030B772 /* SearchVC.xib */,
 				52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */,
-				52B418BE1F04F26800966587 /* PointsViewController.swift */,
 				52B418BF1F04F26800966587 /* PointsViewController.xib */,
 			);
 			name = Xibs;

@@ -166,7 +166,9 @@ class CheckPhoneValidVC: UIViewController {
 //                        self.present(navb, animated: true, completion: nil)
                         weakSelf?.timer?.invalidate()
                         ad.fcm()
-                        ad.reloadApp()
+                        
+                     weakSelf?.dismissVCs()
+
 //                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
 //                        let xy = storyboard.instantiateViewController(withIdentifier: "MainPageVC")
 //                        let navb = UINavigationController()
@@ -220,6 +222,23 @@ class CheckPhoneValidVC: UIViewController {
     }
     }
     
+    func dismissVCs() {
+        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
+            let transition: CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            //                    self.dismissViewControllerAnimated(false, completion: nil)
+            
+            x.dismiss(animated: false , completion: nil)
+        }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
+            print("YOYOOY 2 Views ")
+            y.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func sendPhoneNumBtnAct(_ sender: UIButtonX) {
         //        codeVerfication =  true\
         guard let mobile = confirmationCodeTxt.text ,mobile.validPhoneNumber else {
@@ -267,8 +286,7 @@ class CheckPhoneValidVC: UIViewController {
                 if state {
                       weakSelf?.timer?.invalidate()
                     ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:"default")
-                    ad.reloadApp()
-                    
+                     weakSelf?.dismissVCs()
                     
                 }else {
                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle(""), message: langDicClass().getLocalizedTitle("Error with ") + "\(sms)" , type: .warning)
@@ -281,7 +299,7 @@ class CheckPhoneValidVC: UIViewController {
     @IBAction func resetAppBtnAct(_ sender: UIButton) {
           timer?.invalidate()
         ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
-        ad.reloadApp()
+dismissVCs()
     }
     
     

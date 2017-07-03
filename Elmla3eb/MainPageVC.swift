@@ -17,8 +17,9 @@
  //
  //}
  var firstLaunchMainpage = true
- class MainPageVC: UIViewController  , UIGestureRecognizerDelegate {
+ class MainPageVC: UIViewController  , UIGestureRecognizerDelegate  {
     
+    static var mainStaticVC : MainPageVC?
     //Outer RatingView
     @IBOutlet weak var ratingActivityIndector: UIActivityIndicatorView!
     @IBOutlet var ratingView: UIView!
@@ -41,7 +42,7 @@
             if  let data = ratePg_Data , data.count > 0 , firstLaunchMainpage{
                 rateData = ratePg_Data
                 setupRatingView()
-                firstLaunchMainpage = false
+                
             }
         }
     }
@@ -72,8 +73,7 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ad.isUserLoggedIn()
-        ViewPlayFeildVC.seletedTimes_ID = []
+         ViewPlayFeildVC.seletedTimes_ID = []
          collectionView.delegate = self
         collectionView.dataSource = self
         // Do any additional setup after loading the view.
@@ -102,8 +102,40 @@
         collectionView.alwaysBounceVertical = true
         ////            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
 
-     }
+        MainPageVC.mainStaticVC = self
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        firstLaunchMainpage = false
+    }
+    
+    
+    func changeLang() {//
+        let transition: UIViewAnimationOptions = [.transitionFlipFromLeft, .showHideTransitionViews]
+        if L102Language.currentAppleLanguage() == "en" {
+            L102Language.setAppleLAnguageTo(lang: "ar")
+            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        } else {
+            L102Language.setAppleLAnguageTo(lang: "en")
+            //            transition = .transitionFlipFromRight
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+        }
+        
+        let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        rootviewcontroller.rootViewController = storyb.instantiateViewController(withIdentifier: "rootNav")
+        let mainwindow = (UIApplication.shared.delegate?.window!)!
+        mainwindow.backgroundColor = UIColor(hue: 1, saturation: 1, brightness: 1, alpha: 1)
+        UIView.transition(with: mainwindow, duration: 0.55001, options: transition, animations: { () -> Void in
+        }) { (finished) -> Void in
+            
+            
+        }
+
+    }
+    
+   
     func refreshData()
     {
         //DO
@@ -175,7 +207,6 @@
             if !data.1 , data.2 == "User is banned"   {
                 DispatchQueue.main.async {
                  ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
-                ad.reloadApp()
                 }
                 return
             }
@@ -227,10 +258,19 @@
             //            weakSelf?.collectionView.sub
             DispatchQueue.main.async {
                  self?.stopRefresher()
-                self?.menuBtn.isEnabled = true
                 self?.menuBtn.image = UIImage(named: "Menu_Btn")
                 self?.view.squareLoading.stop(0)
                  self?.collectionView.reloadData()
+                let isUserLogged = ad.isUserLoggedIn()
+                if !isUserLogged  , firstLaunchMainpage{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+
+                    self?.performSegue(withIdentifier: "NotLogged", sender: self)
+                        
+
+                         }
+                }
+                self?.menuBtn.isEnabled = true
              }
 
         }

@@ -450,7 +450,6 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                             alert.hide(animations: nil, isPopupAnimated: true )
                             self?.navigationController?.popViewController(animated: true )
                             
-                            //                            ad.reloadApp()
                         }
                     }else {
                         let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Something Went Wrong"), message: langDicClass().getLocalizedTitle("try again!!"), type: .error)

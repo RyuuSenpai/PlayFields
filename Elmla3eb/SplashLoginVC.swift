@@ -29,44 +29,63 @@ class SplashLoginVC: UIViewController {
     var originalBallLocation : CGFloat!
     let animationD = 0.35
 
+    var appearedOnce = false
     override func viewDidLoad() {
         super.viewDidLoad()
         setUIEnabled(false )
         // Do any additional setup after loading the view.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2)  {            // Code
-            self.signinBtn.addTarget(self, action: #selector(self.animateToOriginal), for: .touchUpInside  )
-            self.ballImageVIEW.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1)  {            // Code
+            self.signinBtn?.addTarget(self, action: #selector(self.animateToOriginal), for: .touchUpInside  )
+            self.ballImageVIEW?.isUserInteractionEnabled = false
             self.setUIEnabled(true )
         }
-        
-        
+        self.view.clipsToBounds = true
         
     }
     
+    @IBAction func DissmissView(_ sender: UIButton) {
+        dismiss(animated: true , completion: nil )
+    }
   
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Cancel All Animation
+        nukeAllAnimations()
+        //@end
+    }
     
+    func nukeAllAnimations() {
+        self.view.subviews.forEach({$0.layer.removeAllAnimations()})
+        self.view.layer.removeAllAnimations()
+        self.view.layoutIfNeeded()
+    }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        appearedOnce = true
+
+    }
     func  setUIEnabled(_ enabled:Bool) {
         
         if enabled {
-            activityIndector.stopAnimating()
-            signupBtn.alpha = 1
-            signinBtn.alpha = 1
+            activityIndector?.stopAnimating()
+            signupBtn?.alpha = 1
+            signinBtn?.alpha = 1
              
-            signupBtn.isEnabled = true
-            signinBtn.isEnabled = true
+            signupBtn?.isEnabled = true
+            signinBtn?.isEnabled = true
             
-            skipLoginBtn.alpha = 1
-            skipLoginBtn.isEnabled = true 
+            skipLoginBtn?.alpha = 1
+            skipLoginBtn?.isEnabled = true
         }else {
-            activityIndector.startAnimating()
-            signupBtn.alpha = 0.5
-            signinBtn.alpha = 0.5
+            activityIndector?.startAnimating()
+            signupBtn?.alpha = 0.5
+            signinBtn?.alpha = 0.5
             
-            signupBtn.isEnabled = false
-            signinBtn.isEnabled = false
-            skipLoginBtn.alpha = 0.5
-            skipLoginBtn.isEnabled = false
+            signupBtn?.isEnabled = false
+            signinBtn?.isEnabled = false
+            skipLoginBtn?.alpha = 0.5
+            skipLoginBtn?.isEnabled = false
             //            signBtnOL.alpha = 0.5
             //            dissMissView.alpha = 0.5
         }
@@ -77,33 +96,33 @@ class SplashLoginVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        originalBallLocation = self.ballTopConstrain.constant
+        if !appearedOnce {
+        originalBallLocation = self.ballTopConstrain?.constant
         //        self.ballTopConstrain.constant -= 50
         //        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         //        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
         
        setupSplashLoginAnimation()
-        
+        }
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(gesture:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.ballImageVIEW.addGestureRecognizer(swipeRight)
+        self.ballImageVIEW?.addGestureRecognizer(swipeRight)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(gesture:)))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.ballImageVIEW.addGestureRecognizer(swipeLeft)
+        self.ballImageVIEW?.addGestureRecognizer(swipeLeft)
         
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(gesture:)))
         swipeUp.direction = UISwipeGestureRecognizerDirection.up
-        self.ballImageVIEW.addGestureRecognizer(swipeUp)
+        self.ballImageVIEW?.addGestureRecognizer(swipeUp)
         
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
-        self.ballImageVIEW.addGestureRecognizer(swipeDown)
+        self.ballImageVIEW?.addGestureRecognizer(swipeDown)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(randomAnimation))
-        self.ballImageVIEW.addGestureRecognizer(tap)
+        self.ballImageVIEW?.addGestureRecognizer(tap)
         
     }
  
@@ -137,9 +156,10 @@ class SplashLoginVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if !appearedOnce {
         startingAnimation
         self.upAnimation()
-        
+        }
         //@Test_back_End
         ////        TestBackEnd.HOmePage()
 //                TestBackEnd.PLayField_INfo()
@@ -152,22 +172,22 @@ class SplashLoginVC: UIViewController {
     }
     
     func setupSplashLoginAnimation() {
-        self.ballTopConstrain.constant += self.view.bounds.height
-        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
+        self.ballTopConstrain?.constant += self.view.bounds.height
+        self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        self.ballImage?.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
     }
     
     func animateToOriginal() {
         
         UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [.curveEaseInOut], animations: {
-            self.ballTopConstrain.constant = self.originalBallLocation
+            self.ballTopConstrain?.constant = self.originalBallLocation
         })
     }
 
     func upAnimation() {
         UIView.animate(withDuration: 0.5, animations: {
-            self.ballTopConstrain.constant -= self.view.bounds.height
-            self.ballImage.transform = .identity
+            self.ballTopConstrain?.constant -= self.view.bounds.height
+            self.ballImage?.transform = .identity
             self.view.layoutIfNeeded()
         }){ [ unowned self ] (true) in
             //            UIView.animate(withDuration: self.animationD, animations: {
@@ -181,13 +201,13 @@ class SplashLoginVC: UIViewController {
             //            { (true) in
             
             UIView.animate(withDuration: self.animationD    , animations: {
-                self.ballTopConstrain.constant += 150
-                self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+                self.ballTopConstrain?.constant += 150
+                self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
                 
                 self.view.layoutIfNeeded()
             } )
             UIView.animate(withDuration: self.animationD , delay: self.animationD / 2  , animations: {
-                self.ballImage.transform = .identity
+                self.ballImage?.transform = .identity
                 
                 
                 self.view.layoutIfNeeded()
@@ -196,27 +216,27 @@ class SplashLoginVC: UIViewController {
             
             
             UIView.animate(withDuration: self.animationD    , delay: self.animationD  , animations: {
-                self.ballTopConstrain.constant -= 150
+                self.ballTopConstrain?.constant -= 150
                 //                    self.ballImage.transform = .identity
                 
                 self.view.layoutIfNeeded()
             } )
             
             UIView.animate(withDuration: self.animationD   , delay: self.animationD * 2, animations: {
-                self.ballTopConstrain.constant += 75
-                self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
+                self.ballTopConstrain?.constant += 75
+                self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
                 //                self.ballImage.transform = .identity
                 
                 self.view.layoutIfNeeded()
             } )
             UIView.animate(withDuration: self.animationD   , delay: self.animationD * 3 , animations: {
-                self.ballTopConstrain.constant -= 75
+                self.ballTopConstrain?.constant -= 75
                 //                                    self.ballImage.transform = .identity
                 
                 self.view.layoutIfNeeded()
             } )
             UIView.animate(withDuration: self.animationD  , delay: self.animationD * 4, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [], animations: {
-                self.ballTopConstrain.constant += 37.5
+                self.ballTopConstrain?.constant += 37.5
                 //                                        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi )
                 //                self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 //                self.ballImage.transform = .identity
@@ -224,10 +244,10 @@ class SplashLoginVC: UIViewController {
                 self.view.layoutIfNeeded()
             } )
             UIView.animate(withDuration: self.animationD   , delay: self.animationD * 5, animations: {
-                self.ballTopConstrain.constant -= 37.5
+                self.ballTopConstrain?.constant -= 37.5
                 //                                                            self.ballImage.transform = .identity
                 //                self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-                self.ballImage.transform = .identity
+                self.ballImage?.transform = .identity
                 
                 self.view.layoutIfNeeded()
             } ){ (true) in self.DoneWithAnimation }
@@ -247,29 +267,29 @@ class SplashLoginVC: UIViewController {
     
     func animateToRight() {
         UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: [.curveEaseIn], animations: {
-            self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-            self.ballImageXConstraint.constant += self.view.bounds.width
+            self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            self.ballImageXConstraint?.constant += self.view.bounds.width
             
             self.view.layoutIfNeeded()
         }){ [ unowned self ] (true) in
-            self.ballImageXConstraint.constant -= self.view.bounds.width * 2
+            self.ballImageXConstraint?.constant -= self.view.bounds.width * 2
             self.view.layoutIfNeeded()
             
             UIView.animate(withDuration: 1.1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: [.curveEaseIn], animations: {
-                self.ballImage.transform = .identity
-                self.ballImageXConstraint.constant += self.view.bounds.width
+                self.ballImage?.transform = .identity
+                self.ballImageXConstraint?.constant += self.view.bounds.width
                 
                 self.view.layoutIfNeeded()
             }){ (true) in
                 
                 UIView.animate(withDuration: 1, animations: {
                     
-                    self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                    self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                     
                     self.view.layoutIfNeeded()
                 })
                 UIView.animate(withDuration: 1.7, delay: 0.5  , usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: [.curveEaseIn], animations: {
-                    self.ballImage.transform = .identity
+                    self.ballImage?.transform = .identity
                     
                     self.view.layoutIfNeeded()
                 }){ (true) in self.DoneWithAnimation }
@@ -293,20 +313,20 @@ class SplashLoginVC: UIViewController {
     }
     
     func animateUp() {
-        self.ballTopConstrain.constant -= 50
-        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
+        self.ballTopConstrain?.constant -= 50
+        self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        self.ballImage?.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
         
          //        let animationD = 0.5
         
         UIView.animate(withDuration: 0.8, animations: {
-            self.ballTopConstrain.constant += 150
-            self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -1 )
-            self.ballImage.transform = CGAffineTransform(scaleX: 1  , y: 1)
+            self.ballTopConstrain?.constant += 150
+            self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi * -1 )
+            self.ballImage?.transform = CGAffineTransform(scaleX: 1  , y: 1)
             self.view.layoutIfNeeded()
         }){ [unowned self](true) in
             UIView.animate(withDuration: self.animationD, animations: {
-                self.ballTopConstrain.constant -= 100
+                self.ballTopConstrain?.constant -= 100
                 self.view.layoutIfNeeded()
             })
                 //            UIView.animate(withDuration: self.animationD , delay: 0.3, animations: {
@@ -318,19 +338,19 @@ class SplashLoginVC: UIViewController {
                 
                 
                 UIView.animate(withDuration: self.animationD + 0.1, animations: {
-                    self.ballTopConstrain.constant += 75
+                    self.ballTopConstrain?.constant += 75
                     self.view.layoutIfNeeded()
                 } ) { (true) in
                     UIView.animate(withDuration: self.animationD , animations: {
-                        self.ballTopConstrain.constant -= 75
+                        self.ballTopConstrain?.constant -= 75
                         self.view.layoutIfNeeded()
                     } ) { (true) in
                         UIView.animate(withDuration: self.animationD - 0.05, delay: 0.0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
-                            self.ballTopConstrain.constant += 37.5
+                            self.ballTopConstrain?.constant += 37.5
                             self.view.layoutIfNeeded()
                         } ) { (true) in
                             UIView.animate(withDuration: self.animationD - 0.05, delay: 0.0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
-                                self.ballTopConstrain.constant -= 37.5
+                                self.ballTopConstrain?.constant -= 37.5
                                 self.view.layoutIfNeeded()
                             } ){ (true) in self.DoneWithAnimation }
                         }
@@ -345,23 +365,23 @@ class SplashLoginVC: UIViewController {
     
     func animateDown() {
         
-         self.ballTopConstrain.constant += self.view.bounds.height
-        self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
+         self.ballTopConstrain?.constant += self.view.bounds.height
+        self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+        self.ballImage?.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
         
         UIView.animate(withDuration: 0.8, animations: {
             //             self.ballTopConstrain.constant += 200
-            self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-            self.ballImage.transform = CGAffineTransform(scaleX: 1  , y: 1)
+            self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            self.ballImage?.transform = CGAffineTransform(scaleX: 1  , y: 1)
             self.view.layoutIfNeeded()
         }){ [unowned self ] (true) in
             UIView.animate(withDuration: self.animationD, animations: {
-                self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-                self.ballTopConstrain.constant -= self.view.bounds.height
+                self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                self.ballTopConstrain?.constant -= self.view.bounds.height
                 self.view.layoutIfNeeded()
             })
             UIView.animate(withDuration: self.animationD , delay: 0.3, animations: {
-                self.ballImage.transform = .identity
+                self.ballImage?.transform = .identity
                 self.view.layoutIfNeeded()
             }){ (true) in self.DoneWithAnimation }
         }
@@ -370,17 +390,17 @@ class SplashLoginVC: UIViewController {
     
     func animateLeft() {
 
-        self.ballTopConstrain.constant -= 50
-        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
+        self.ballTopConstrain?.constant -= 50
+        self.ballImage?.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
         
         
         UIView.animate(withDuration: 0.9, animations: {
-            self.ballTopConstrain.constant += 50
-            self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-            self.ballImage.transform = CGAffineTransform(scaleX: 1  , y: 1)
+            self.ballTopConstrain?.constant += 50
+            self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            self.ballImage?.transform = CGAffineTransform(scaleX: 1  , y: 1)
             self.view.layoutIfNeeded()
         }){ [unowned self] (true) in
-            self.ballImage.transform = .identity ;
+            self.ballImage?.transform = .identity ;
             self.view.layoutIfNeeded()
             self.DoneWithAnimation
         }
@@ -388,25 +408,25 @@ class SplashLoginVC: UIViewController {
     }
     
     func animate4() {
-        self.ballTopConstrain.constant -= 50
-        self.ballImage.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
+        self.ballTopConstrain?.constant -= 50
+        self.ballImage?.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
         
         let animationD = self.animationD - 0.15
         
         
         UIView.animate(withDuration: 0.5, animations: {
-            self.ballTopConstrain.constant += 200
-            self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-            self.ballImage.transform = CGAffineTransform(scaleX: 1  , y: 1)
+            self.ballTopConstrain?.constant += 200
+            self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            self.ballImage?.transform = CGAffineTransform(scaleX: 1  , y: 1)
             self.view.layoutIfNeeded()
         }){ [unowned self] (true) in
             UIView.animate(withDuration: self.animationD, animations: {
-                self.ballImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-                self.ballTopConstrain.constant -= 150
+                self.ballImage?.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+                self.ballTopConstrain?.constant -= 150
                 self.view.layoutIfNeeded()
             })
             UIView.animate(withDuration: self.animationD , delay: 0.3, animations: {
-                self.ballImage.transform = .identity
+                self.ballImage?.transform = .identity
                 self.view.layoutIfNeeded()
             }){ (true) in self.DoneWithAnimation }
         }

@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import CDAlertView
 
 class PointsViewController: UIViewController {
 
@@ -60,6 +61,7 @@ class PointsViewController: UIViewController {
             
             guard currentPoints < data[2].points else {
 //                myRewardPointReached = data[2].points
+                myRewardPointReached =  data[2].points
                 firstSlider?.value = Float(data[1].points)
                 secondSlider?.value = Float( data[2].points)
                 thirdSenaryo()
@@ -159,7 +161,10 @@ class PointsViewController: UIViewController {
                 return }
             DispatchQueue.main.async {
                 self?.myRewardPointReached = nil
-                ad.showAlert("√", "")
+                let done = " 🎉 " + langDicClass().getLocalizedTitle("Done") + " 🎉 "
+                 let alert = CDAlertView(title:done, message:langDicClass().getLocalizedTitle("Wait for our representative Call") , type: .success)
+                alert.show()
+
                 if let point = points {
                     self?.totalPointLbl.text = "\(point)"
                     self?.currentPoints = point

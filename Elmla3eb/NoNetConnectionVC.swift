@@ -23,7 +23,7 @@ class NoNetConnectionVC: UIViewController {
     
     @IBAction func tryAgainBtnAct(_ sender: UIButton) {
         
-        ad.reloadApp()
+        dismiss(animated: true, completion: nil)
     }
 
     /*

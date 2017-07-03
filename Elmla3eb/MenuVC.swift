@@ -12,6 +12,7 @@ import Alamofire
 import AlamofireImage
 import CDAlertView
 
+
 class MenuVC: UIViewController {
     
     @IBOutlet weak var loggingOutView: UIView!
@@ -96,21 +97,12 @@ class MenuVC: UIViewController {
      override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAnimation()
-        //        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
-        //        navigationItem.leftBarButtonItem = backButton
-        //        self.navigationItem.hidesBackButton = true
-//        self.profileImage.layer.cornerRadius = (profileImage.bounds.width * 0.6 ) / 4
-
-//        self.profileImage.layer.cornerRadius =  profileImage.bounds.width   / 2
-//        self.profileImage.clipsToBounds = true
-        
-        print("print that's the width : \(profileImage.bounds.width), height : \(profileImage.bounds.height)"    )
-        print("print that's the width : \(        self.profileImage.layer.cornerRadius)"    )
-        print("print that's the width : \(self.view.bounds.height)"    )
-  //        self.layer.cornerRadius = self.bounds.width / 2
-
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startAnimation()
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -119,11 +111,7 @@ class MenuVC: UIViewController {
     }
     
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.view.backgroundColor = .white
-    }
-    
+ 
     func loadImage() {
         guard   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String else { return }
         guard let url = URL(string: imageurl ) else { return }
@@ -136,10 +124,7 @@ class MenuVC: UIViewController {
         
 
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.startAnimation()
-     }
+
     
  private func goTOProfileVC() {
         print("Image Tapped ")
@@ -149,7 +134,7 @@ class MenuVC: UIViewController {
     let userLogged = ad.isUserLoggedIn()
     guard userLogged else {
         let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc = storyb.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        let vc = storyb.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
          self.present(vc, animated: true, completion: nil)
         return 
     }
@@ -165,7 +150,7 @@ class MenuVC: UIViewController {
        let userLogged = ad.isUserLoggedIn()
         guard userLogged else {
             let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let vc = storyb.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            let vc = storyb.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
             self.present(vc, animated: true, completion: nil)
             return
         }
@@ -222,7 +207,8 @@ class MenuVC: UIViewController {
                     UserDefaults.standard.setValue(nil, forKey: "User_Type")
                     self?.view.isUserInteractionEnabled = true
                     self?.setUIEnabled(true)
-                    ad.reloadApp()
+//                    self?.dismiss(animated: true, completion: nil)
+                    ad.reload()
                 }
             }else {
                 DispatchQueue.main.async{
@@ -289,27 +275,14 @@ class MenuVC: UIViewController {
     }
     
     func changeLanguage() {
-        let transition: UIViewAnimationOptions = [.transitionFlipFromLeft, .showHideTransitionViews]
-        if L102Language.currentAppleLanguage() == "en" {
-            L102Language.setAppleLAnguageTo(lang: "ar")
-            UIView.appearance().semanticContentAttribute = .forceRightToLeft
-        } else {
-            L102Language.setAppleLAnguageTo(lang: "en")
-//            transition = .transitionFlipFromRight
-            UIView.appearance().semanticContentAttribute = .forceLeftToRight
-        }
-        ad.reloadApp()
-//        let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-//        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        rootviewcontroller.rootViewController = storyb.instantiateViewController(withIdentifier: "rootNav")
-//        let mainwindow = (UIApplication.shared.delegate?.window!)!
-//        mainwindow.backgroundColor = UIColor(hue: 1, saturation: 1, brightness: 1, alpha: 1)
-//        UIView.transition(with: mainwindow, duration: 0.55001, options: transition, animations: { () -> Void in
-//        }) { (finished) -> Void in
-//            
-//            
+  
+//        self.delegate?.changeLang()
+
+//    dismiss(animated: true) { 
+        MainPageVC.mainStaticVC?.changeLang()
 //        }
     }
+    
     
     /*
      // MARK: - Navigation

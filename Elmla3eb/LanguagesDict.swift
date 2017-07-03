@@ -113,7 +113,8 @@ class LanguagesDict {
                          "Cancel Reservation!!" : "الغاء الحجز!!" ,
                          "Position" : "التمركز",
                          "Pick Team" : "إختر فريق",
-                         "Not Enough Points!!": "لا توجد نقاط كافيه!!"
+                         "Not Enough Points!!": "لا توجد نقاط كافيه!!",
+                         "Wait for our representative Call" : "انتظر إتصال  من الإداره"
          //                             "":"",
         //                             "":"",
         //                             "":"",

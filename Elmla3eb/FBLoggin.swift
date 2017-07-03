@@ -19,7 +19,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
     @IBAction func fbLoginBtnAct(_ sender: AnyObject) {
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: self) { (result, err ) in
             if err != nil {
-                print("Custom FB Login failed : \(err)")
+                print("Custom FB Login failed : \(String(describing: err))")
                 self.setUIEnabled(enabled: true)
                 return
             }
@@ -92,8 +92,8 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                    
                     //Gon Commit
 //                    ad.saveUserLogginData(email: email, photoUrl: imageString , uid : 0,name: fName)
-//                    ad.reloadApp()
-//                    self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
+
+                    //                    self.performSegue(withIdentifier: "LoggedInSegue", sender: self)
 
                     //                    })
                 }
@@ -174,8 +174,8 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                 ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id, name : "default")
                 UserDefaults.standard.setValue("player", forKey: "User_Type")
                 ad.fcm()
-                ad.reloadApp()
-
+                 self.dismissVCs()
+            
 //                weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender:weakSelf)
                 return
             }

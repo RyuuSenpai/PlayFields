@@ -132,7 +132,13 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         fbLogOut()
+        nukeAllAnimations()
 //          self.window?.rootViewController?.dismiss(animated: false, completion: nil)
+    }
+    func nukeAllAnimations() {
+        self.view.subviews.forEach({$0.layer.removeAllAnimations()})
+        self.view.layer.removeAllAnimations()
+        self.view.layoutIfNeeded()
     }
     
     @IBAction func backBtnAct(_ sender: UIButton) {
@@ -190,8 +196,8 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
                 
                     ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
                 ad.fcm()
-                    ad.reloadApp()
- 
+
+                 weakSelf?.dismissVCs()
             }else if let data = data.3 , let id = data["id"] as? Int, let name = data["name"] as? String   {
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
@@ -221,6 +227,32 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true) //This will hide the keyboard
+    }
+    
+    func dismissVCs() {
+        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
+            let transition: CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            //                    self.dismissViewControllerAnimated(false, completion: nil)
+            
+            x.dismiss(animated: false , completion: nil)
+        }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
+            print("YOYOOY 3 Views ")
+            let transition: CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            y.dismiss(animated: false, completion: nil)
+        }else if let y =  self.presentingViewController?.presentingViewController {
+            print("YOYOOY 2 Views ")
+            y.dismiss(animated: true, completion: nil)
+        }
     }
     
     func showAlert(_ title : String,_ sms : String) {

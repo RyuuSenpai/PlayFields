@@ -55,165 +55,17 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         //        FIRApp.configure()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
-        let x = self.isUserLoggedIn()
-        if !x {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            
-            // In project directory storyboard looks like Main.storyboard,
-            // you should use only part before ".storyboard" as it's name,
-            // so in this example name is "Main".
-            
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            //
-            //            // controller identifier sets up in storyboard utilities
-            //            // panel (on the right), it called Storyboard ID
-            let viewController = storyboard.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
-            
-            self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()
- 
-            //test Nib
-//            let initialViewController  = PointsViewController(nibName:"PointsViewController",bundle:nil)
-//            
-//            let frame = UIScreen.main.bounds
-//            window = UIWindow(frame: frame)
-//            
-//            window!.rootViewController = initialViewController
-//            window!.makeKeyAndVisible()
-            //@end test end
-        }
-        setupFCM()
+         setupFCM()
         
-        //        let notificationTypes : UIUserNotificationType = [.alert, .badge, .sound]
-        //        let notificationSettings : UIUserNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-        //        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-        
-        print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
-        
-        
-        return true
+         print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
+         return true
     }
     
-    func reloadApp() {
+    func reload() {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let x = self.isUserLoggedIn()
-//        self.window?.rootViewController?.dismiss(animated: false, completion: nil) //MainPageNavigation
-       
-        if x {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            self.window?.rootViewController = storyboard.instantiateInitialViewController()
-//            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
-//              self.window?.makeKeyAndVisible()
-//             let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            
-            // controller identifier sets up in storyboard utilities
-            // panel (on the right), it called Storyboard ID
-//            let viewController = storyboard.instantiateViewController(withIdentifier: "rootNav") as! MainPageNavigation
-//            
-//            self.window?.rootViewController = viewController
-//            
-//            self.window?.makeKeyAndVisible()
-//            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
-            
-//            let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-//            let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
-//            let navb = UINavigationController(rootViewController: x)
-//            _ = navb.popViewController(animated: true);
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "rootNav") as! MainPageNavigation
-            initialViewControlleripad.view.frame =  UIScreen.main.bounds
-             self.window?.rootViewController = initialViewControlleripad
-            self.window?.makeKeyAndVisible()
- 
-            /*
-            if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rootNav") as? MainPageNavigation {
-                if let window = self.window, let rootViewController = window.rootViewController {
-                    var currentController = rootViewController
-                    while let presentedController = currentController.presentedViewController {
-                        currentController = presentedController
-                    }
-                    currentController.present(controller, animated: true, completion: nil)
-                }
-            }*/
-//            self.window = UIWindow(frame: UIScreen.main.bounds)
-//
-//                         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//
-//            let viewController = storyboard.instantiateViewController(withIdentifier :"MainPageVC") as! MainPageVC
-//            let rootVC = UINavigationController.init(rootViewController: viewController)
-//            rootVC.view.frame = UIScreen.main.bounds
-//            UIView.transition(with: self.window!, duration: 0.3, options: [], animations: {
-//                self.window?.rootViewController = rootVC
-//            }, completion: nil)
-            /*
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier :"MainPageVC") as! MainPageVC
-            let navController = UINavigationController.init(rootViewController: viewController)
-            
-            if let window = self.window, let rootViewController = window.rootViewController {
-                var currentController = rootViewController
-                while let presentedController = currentController.presentedViewController {
-                    currentController = presentedController
-                }
-                currentController.present(navController, animated: true, completion: nil)
-            }
-            */
-        }else {
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            
-            // In project directory storyboard looks like Main.storyboard,
-            // you should use only part before ".storyboard" as it's name,
-            // so in this example name is "Main".
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            
-            // controller identifier sets up in storyboard utilities
-            // panel (on the right), it called Storyboard ID
-//            let viewController = storyboard.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
-//            
-//            self.window?.rootViewController = viewController
-//            self.window?.makeKeyAndVisible()
-//            self.window?.rootViewController?.dismiss(animated: false, completion: nil)
-
-            let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "SplashLoginVC") as! SplashLoginVC
-            self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = initialViewControlleripad
-            self.window?.makeKeyAndVisible()
-        }
-        
+        UIApplication.shared.keyWindow?.rootViewController = storyboard.instantiateViewController(withIdentifier: "rootNav")
     }
-    
-    
-    //    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)
-    //    {
-    //        UIApplication.shared.registerForRemoteNotifications()
-    //    }
-    
-    
-    //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    ////        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-    ////        print(token)
-    //
-    ////        fcm()
-    //
-    //    }
-    //
-    //    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    //        var token = ""
-    //        for i in 0..<deviceToken.count {
-    //            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
-    //        }
-    //        print("Registration succeeded! Token: ", token)
-    //    }
-    //
-    //    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-    //        print("Registration failed!")
-    //    }
-    //
-    
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
@@ -222,46 +74,15 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         //write your action here
     }
     
-    ///Delete if needed
-    // This method will be called when app received push notifications in foreground
+     // This method will be called when app received push notifications in foreground
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
         completionHandler([.alert, .badge, .sound])
     }
-    //
-    //    func showAlertAppDelegate(title: String,message : String,buttonTitle: String,window: UIWindow){
-    //        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    //        alert.addAction(UIAlertAction(title: buttonTitle, style: UIAlertActionStyle.default, handler: nil))
-    //        window.rootViewController?.present(alert, animated: false, completion: nil)
-    //    }
-    //    // Firebase ended here
-    //
-    //    func setupFCM() {
-    //        //create the notificationCenter
-    //        if #available(iOS 10.0, *) {
-    //            // For iOS 10 display notification (sent via APNS)
-    //            UNUserNotificationCenter.current().delegate = self
-    //
-    //            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-    //            UNUserNotificationCenter.current().requestAuthorization(
-    //                options: authOptions,
-    //                completionHandler: {_, _ in })
-    //
-    //            // For iOS 10 data message (sent via FCM)
-    //            //FIRMessaging.messaging().remoteMessageDelegate = self
-    //
-    //        } else {
-    //            let settings: UIUserNotificationSettings =
-    //                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-    //            UIApplication.shared.registerUserNotificationSettings(settings)
-    //        }
-    //
-    //        UIApplication.shared.registerForRemoteNotifications()
-    //        FIRApp.configure()
-    //
-    //    }
-    //
+    
+    
+    
     func setupFCM() {
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
