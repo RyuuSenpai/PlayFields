@@ -15,6 +15,7 @@ class PointsViewController: UIViewController {
     @IBOutlet weak var points5000: UILabel!
     @IBOutlet weak var points10000: UILabel!
 
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
     @IBOutlet weak var point1: UILabel!
     @IBOutlet weak var point2: UILabel!
     @IBOutlet weak var point3: UILabel!
@@ -38,7 +39,10 @@ class PointsViewController: UIViewController {
     var myRewardPointReached : Int?
     var pointsData : [Points_Data]? {
         didSet{
-            guard let data = pointsData , data.count > 2 else { fatalError("PointData"); return }
+            guard let data = pointsData , data.count > 2 else { fatalError("PointData");
+                self.view?.squareLoading.stop(0)
+                self.navigationController?.popViewController(animated: true)
+                return }
             firstSlider.maximumValue = Float(data[1].points)
             secondSlider.maximumValue = Float(data[2].points)
             self.points1000.text = "\(data[0].points)"
@@ -48,15 +52,18 @@ class PointsViewController: UIViewController {
             print("that is the points : \(data[0].points , data[0])")
             guard currentPoints > data[0].points else {
                 undo1rdSenaryo()
+                myRewardPointReached = nil
                 firstSlider?.value = 0
+                self.view?.squareLoading.stop(0)
                 return
             }
             
             guard currentPoints < data[2].points else {
-                myRewardPointReached = data[2].points
+//                myRewardPointReached = data[2].points
                 firstSlider?.value = Float(data[1].points)
                 secondSlider?.value = Float( data[2].points)
                 thirdSenaryo()
+                self.view?.squareLoading.stop(0)
                 return
             }
             
@@ -75,6 +82,9 @@ class PointsViewController: UIViewController {
                  self.view?.squareLoading.stop(0)
          }
     }
+    
+    
+    
     var currentPoints : Int = 0
     
     var imgUrlDict = [String:String ]()
@@ -133,18 +143,30 @@ class PointsViewController: UIViewController {
         self.finalrewardView.clipsToBounds = true
     }
     
-    
     @IBAction func usePointsBtnAct(_ sender: UIButton) {
-        
         print("that is the c urrent points : \(currentPoints) , \(myRewardPointReached)")
-        guard let point = myRewardPointReached else { return }
-        getPointClass.post_PointsReward(points: point) { [weak self] (state, sms) in
+        guard let point = myRewardPointReached , let data = pointsData , point >= data[0].points else {
+            ad.showAlert(langDicClass().getLocalizedTitle("Not Enough Points!!"), "")
+            return }
+        self.loadingActivity.startAnimating()
+        getPointClass.post_PointsReward(points: point) { [weak self] (points , state, sms) in
             guard state else {
-                ad.showAlert("deafult", sms) ;
+                DispatchQueue.main.async {
+                    
+                    ad.showAlert("deafult", sms) ;
+                    self?.loadingActivity.stopAnimating()
+                }
                 return }
             DispatchQueue.main.async {
+                self?.myRewardPointReached = nil
                 ad.showAlert("√", "")
-                self?.fetchData()
+                if let point = points {
+                    self?.totalPointLbl.text = "\(point)"
+                    self?.currentPoints = point
+                }
+                self?.loadingActivity.stopAnimating()
+                self?.navigationController?.popViewController(animated: true )
+//                self?.fetchData()
             }
             
         }

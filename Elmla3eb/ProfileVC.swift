@@ -119,6 +119,17 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         }
         
         setupPickerV()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated )
+        fetchdata()
+    }
+    
+    
+    func fetchdata() {
         user.getProfileData { [weak self] (data, sms, state) in
             
             
@@ -164,9 +175,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                 self?.showAlert(langDicClass().getLocalizedTitle("Network timeout"), "failed to get Data")
             }
         }
-        
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true) //This will hide the keyboard
     }

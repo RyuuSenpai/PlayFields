@@ -33,7 +33,7 @@ extension MainPageVC : UICollectionViewDataSource {
             guard let rateData = rateData else { return cell }
             cell.tag = indexPath.row
             cell.fieldName.text = rateData[indexPath.row].pg_name
-            print("that's the field Name : \(rateData[indexPath.row].pg_name)")
+//            print("that's the field Name : \(rateData[indexPath.row].pg_name)")
             //        cell.skipBtn.tag = cell.tag
             cell.ratingStarsView.tag = indexPath.row
             cell.ratingStarsView.value = 0

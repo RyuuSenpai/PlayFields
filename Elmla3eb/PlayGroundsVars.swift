@@ -219,11 +219,11 @@ class  RatePg_Data {
     }
  
     init(json:JSON) {
-        print("that intel data : \(json)")
+//        print("that intel data : \(json)")
          self._pg_name = json[source.pg_name].stringValue
         self._rating = json[source.rating].intValue
         self._id = json[source.id].intValue
-        print("that intel _pg_name : \(_pg_name)")
+//        print("that intel _pg_name : \(_pg_name)")
 
     }
 }

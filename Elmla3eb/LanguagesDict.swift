@@ -112,7 +112,8 @@ class LanguagesDict {
                          "proceed with the process?" : "تأكيد العملية؟",
                          "Cancel Reservation!!" : "الغاء الحجز!!" ,
                          "Position" : "التمركز",
-                         "Pick Team" : "إختر فريق"
+                         "Pick Team" : "إختر فريق",
+                         "Not Enough Points!!": "لا توجد نقاط كافيه!!"
          //                             "":"",
         //                             "":"",
         //                             "":"",

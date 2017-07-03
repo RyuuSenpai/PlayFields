@@ -210,8 +210,8 @@ class Profile_Model {
         }
     }
     
-    func post_PointsReward(points : Int ,completed : @escaping (Bool,String)->()) {
-        let parameters : Parameters = [parSource.user_id : USER_ID , "points" : "\(points)" ]
+    func post_PointsReward(points : Int ,completed : @escaping (Int?,Bool,String)->()) {
+        let parameters : Parameters = [parSource.user_id : USER_ID , "points" : points ]
         print("that is the parameters in post_PointsReward : \(parameters)")
         
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
@@ -240,14 +240,15 @@ class Profile_Model {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: post_PointsReward success : \(success) STATUS:\(state) , sms: \(sms)")
+                let point = json["data"] ["points"].intValue
+                print("KILLVA: post_PointsReward success : \(success) STATUS:\(state) , sms: \(sms) returned points : \(point)")
                 
                 
-                completed(state,sms)
+                completed(point,state,sms)
                 break
             case .failure(_) :
                 print("that is fail i n getting the post_PointsReward Mate : \(response.result.error))")
-                completed(false, "Network Time out" )
+                completed(nil,false, "Network Time out" )
                 break
             }
         }

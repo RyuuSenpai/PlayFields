@@ -17,6 +17,7 @@
                 <outlet property="firstRewardImage" destination="x3U-5t-fZl" id="4gh-jI-gti"/>
                 <outlet property="firstRewardView" destination="v9d-ew-cYP" id="8ya-d4-lcs"/>
                 <outlet property="firstSlider" destination="4Ap-dh-izR" id="FdO-og-Pvc"/>
+                <outlet property="loadingActivity" destination="NEs-4R-Mqr" id="LoA-c9-rKm"/>
                 <outlet property="point1" destination="Tjd-29-P7h" id="De0-Qh-Yae"/>
                 <outlet property="point2" destination="MLZ-fL-5G6" id="hFS-f2-1Ed"/>
                 <outlet property="point3" destination="Dk0-b2-Ir3" id="QE1-aN-qr0"/>
@@ -248,6 +249,10 @@
                         <action selector="usePointsBtnAct:" destination="-1" eventType="touchUpInside" id="jQJ-hc-wYK"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NEs-4R-Mqr">
+                    <rect key="frame" x="141" y="265" width="37" height="37"/>
+                    <color key="color" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -262,6 +267,8 @@
                 <constraint firstItem="bNl-lq-zFF" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="bGC-YB-klJ"/>
                 <constraint firstItem="2Rn-og-ULu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eeG-6u-B7P"/>
                 <constraint firstItem="8Fu-ha-MF1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="is8-fI-eTt"/>
+                <constraint firstItem="NEs-4R-Mqr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="pXP-7v-SIf"/>
+                <constraint firstItem="NEs-4R-Mqr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="t7p-qj-luy"/>
                 <constraint firstItem="Lbm-oB-t61" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.38" id="thc-YX-4kx"/>
                 <constraint firstItem="bNl-lq-zFF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="veN-6v-Nm7"/>
             </constraints>
