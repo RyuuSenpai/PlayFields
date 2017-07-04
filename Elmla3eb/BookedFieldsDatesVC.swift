@@ -22,12 +22,12 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
      let  ownerModel = OwnerModel()
     var pg_id : Int? {
         didSet {
-            print("✅pg_Id has been sent")
+//            print("✅pg_Id has been sent")
         }
     }
     var btnSelected = 0 {
         didSet {
-            print("that's the old cvalue : \(btnSelected) and that's the new \(oldValue)")
+//            print("that's the old cvalue : \(btnSelected) and that's the new \(oldValue)")
             guard btnSelected != oldValue else { return }
            expandTableView.reloadData()
         }
@@ -35,13 +35,17 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     
     var notBooked : [OwnerP_G_BookingData]?{
         didSet {
-            guard let _ = notBooked else{ print("nil NOtBooked🛂"); return }
+            guard let _ = notBooked else{
+//                print("nil NOtBooked🛂");
+                return }
             expandTableView.reloadData()
         }
     }
     var booked : [OwnerP_G_BookingData]?{
         didSet {
-            guard let _ = booked else{ print("nil NOtBooked🛂"); return }
+            guard let _ = booked else{
+//                print("nil NOtBooked🛂");
+                return }
         }
     }
     
@@ -64,7 +68,9 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     
     func getAPIData() {
         self.loadingDataIndector.startAnimating()
-        guard let pgId = pg_id else { print("❗️Fatal Error pg_id equal nil "); return}
+        guard let pgId = pg_id else {
+//            print("❗️Fatal Error pg_id equal nil ");
+            return}
         ownerModel.getP_GBooksManager(userID: USER_ID, pgID: pgId) { [weak self] (dataR, sms, state) in
             guard state else {
                 self?.loadingDataIndector.stopAnimating()
@@ -86,7 +92,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
     
     func methodOfReceivedNotification(notification: Notification){
         //Take Action on Notification
-        print("that is the data of times : \(notification.userInfo?["times"])")
+//        print("that is the data of times : \(notification.userInfo?["times"])")
     }
     
     override func didReceiveMemoryWarning() {
@@ -160,7 +166,7 @@ class BookedFieldsDatesVC: UIViewController , UITableViewDataSource , UITableVie
         selectedIndex = -1 
         guard sender.tag != self.btnSelected else { return }
         self.btnSelected = sender.tag
-        print("that's button tag : \(self.btnSelected) ")
+//        print("that's button tag : \(self.btnSelected) ")
         
         if sender.tag == 0 {
 
@@ -202,7 +208,7 @@ extension BookedFieldsDatesVC : updateDataTrigger {
     
     func triggerupdate() {
         getAPIData()
-        print("TRIGGERED")
+//        print("TRIGGERED")
     }
     
     func startLoading() {

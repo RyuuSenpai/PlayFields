@@ -319,7 +319,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     
     @IBAction func pointsBtnAct(_ sender: UIButton) {
         guard !isOwner else { return }
-        print("Pointssssss")
+//        print("Pointssssss")
         let vc = PointsViewController(nibName : "PointsViewController" , bundle : nil )
         vc.currentPoints = intPoints
         self.navigationController?.pushViewController(vc, animated: true)

@@ -69,21 +69,21 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
          detailVC.pg_id =  id
              detailVC.pg_title = data[indexPath.row].pg_name
-            print("that is the field name : \(title)")
+//            print("that is the field name : \(title)")
         
         self.navigationController?.pushViewController(detailVC, animated: true)
      }
     
     func bookNow(_ sender: UIButton) {
         guard let data = searchResultData else { return }
-        print("can i book an reservation plz , my id is : \(sender.tag)")
+//        print("can i book an reservation plz , my id is : \(sender.tag)")
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
         let detailVC = storyBoard.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
         detailVC.pg_id =  sender.tag
         detailVC.bookNowCellTrigger = true 
-        print("that is the field name : \(title)")
+//        print("that is the field name : \(title)")
         
         self.navigationController?.pushViewController(detailVC, animated: true)
     }

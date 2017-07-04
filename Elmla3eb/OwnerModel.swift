@@ -23,16 +23,16 @@ class OwnerModel {
         
         
         let url = source.GET_OWNER_SYSTEM_MANAGER + source.API_TOKEN + "&user_id=\(userID)&pg_id=\(pgID)"
-        print("getP_GBooksManager URL: \(url)")
+//        print("getP_GBooksManager URL: \(url)")
         Alamofire.request(url , method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { [weak self]  (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from getSearchData url")
-                    print(response.result.error!)
+//                    print("error fetching data from getSearchData url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -72,7 +72,7 @@ class OwnerModel {
                 let success = json[succe].intValue
                 let sms = json[sm].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: getP_GBooksManager STATUS:\(state) , sms: \(sms)")
+//                print("KILLVA: getP_GBooksManager STATUS:\(state) , sms: \(sms)")
 //                print("KILLVA: getP_GBooksManager STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 let info = data["info"]
                 let pgName = info["pg_name"].stringValue
@@ -118,7 +118,7 @@ class OwnerModel {
                 
                 break
             case .failure(_) :
-                print("that is fail getP_GBooksManager i n getting the data Mate : \(response.result.error)")
+//                print("that is fail getP_GBooksManager i n getting the data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -133,23 +133,23 @@ class OwnerModel {
     func getOwnerPlayGrounds(  completed:@escaping ([NearByFields_Data]?,String,Bool) -> ()) {
         
         let url = source.GET_OWNERPLAY_G + source.API_TOKEN +  "&user_id=\(USER_ID)"
-        print("getOwnerPlayGrounds URL: \(url)")
+//        print("getOwnerPlayGrounds URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url getOwnerPlayGrounds")
-                    print(response.result.error!)
+//                    print("error fetching data from url getOwnerPlayGrounds")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  getOwnerPlayGrounds getting the data Mate : %@", response.result.value!)
+//                print("that is  getOwnerPlayGrounds getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json["data"]
@@ -161,13 +161,13 @@ class OwnerModel {
                 let success = json["success"].intValue
                 let sms = json["message"].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: getOwnerPlayGrounds STATUS:\(state) , sms: \(sms) \n, data: \(data)")
+//                print("KILLVA: getOwnerPlayGrounds STATUS:\(state) , sms: \(sms) \n, data: \(data)")
                 
                 
                 completed(nearPGData,sms,state)
                 break
             case .failure(_) :
-                print("that is fail i n getting the getOwnerPlayGrounds data Mate : \(response.result.error)")
+//                print("that is fail i n getting the getOwnerPlayGrounds data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -181,23 +181,23 @@ class OwnerModel {
     func getOwnerPlayG_PaymentStatics(  completed:@escaping ([PaymentStatics_Data]?,String,Bool) -> ()) {
         
         let url = source.GET_OWNER_PAYMENTS_STATICS + source.API_TOKEN +  "&user_id=\(USER_ID)"
-        print("getOwnerPlayG_PaymentStatics URL: \(url)")
+//        print("getOwnerPlayG_PaymentStatics URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url getOwnerPlayG_PaymentStatics")
-                    print(response.result.error!)
+//                    print("error fetching data from url getOwnerPlayG_PaymentStatics")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  getOwnerPlayG_PaymentStatics getting the data Mate : %@", response.result.value!)
+//                print("that is  getOwnerPlayG_PaymentStatics getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json["data"]
@@ -209,13 +209,13 @@ class OwnerModel {
                 let success = json["success"].intValue
                 let sms = json["message"].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: getOwnerPlayG_PaymentStatics STATUS:\(state) , sms: \(sms) \n, data: \(data)")
+//                print("KILLVA: getOwnerPlayG_PaymentStatics STATUS:\(state) , sms: \(sms) \n, data: \(data)")
                 
                 
                 completed(ownerPGData,sms,state)
                 break
             case .failure(_) :
-                print("that is fail i n getting the getOwnerPlayG_PaymentStatics data Mate : \(response.result.error)")
+//                print("that is fail i n getting the getOwnerPlayG_PaymentStatics data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }

@@ -21,7 +21,7 @@ extension MainPageVC : UICollectionViewDelegate , UICollectionViewDelegateFlowLa
         detailVC.pg_id =  id
         if let title =  self.playGroundData?[indexPath.row].name {
             detailVC.pg_title = title
-            print("that is the field name : \(title)")
+//            print("that is the field name : \(title)")
         }
 
          self.navigationController?.pushViewController(detailVC, animated: true)

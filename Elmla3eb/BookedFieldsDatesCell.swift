@@ -50,7 +50,9 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     //    var  xcz = [ 1 , 2 ,3 ,4 ,5 ]
     var bookingData : OwnerP_G_BookingData?{
         didSet {
-            guard let data = bookingData else { print("📍notBooked_Data == nil");return }
+            guard let data = bookingData else {
+//                print("📍notBooked_Data == nil");
+                return }
             amData = data.amData
             pmData = data.pmData
             if currentarrayTitle == "am" {
@@ -60,28 +62,33 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             }
             //                        currentTimeArray = amData
             //                        self.tableView?.reloadData()
-            print("testtt")
-            //            amBtnClicked()
+           //            amBtnClicked()
         }
     }
     
     
     var currentTimeArray : [AmPm_data]?{
         didSet {
-            guard let _ = currentTimeArray else{ print("📍currentTimeArray == nil"); return }
+            guard let _ = currentTimeArray else{
+//                print("📍currentTimeArray == nil");
+                return }
             
             //            tableView.reloadData()
         }
     }
     var amData : [AmPm_data]?{
         didSet {
-            guard let _ = amData else{ print("📍Am_data == nil"); return }
+            guard let _ = amData else{
+//                print("📍Am_data == nil");
+                return }
             //            currentTimeArray = amData
         }
     }
     var pmData : [AmPm_data]?{
         didSet {
-            guard let _ = pmData else{ print("📍Pm_data == nil"); return }
+            guard let _ = pmData else{
+//                print("📍Pm_data == nil");
+                return }
         }
     }
     
@@ -108,7 +115,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("that is the row : \(indexPath.row)")
+//        print("that is the row : \(indexPath.row)")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,7 +162,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             weak var weakSelf = self
             
         weakSelf?.delegate?.startLoading()
-        print("thats the index : \(sender.tag)")
+//        print("thats the index : \(sender.tag)")
         //        self.loadingActivity.startAnimating()
         weakSelf?.isUserInteractionEnabled = false
         //        print("sndertag : \(sender.tag) currentTimeArray count before : \(self.currentTimeArray?.count) and the selected array is :\(currentarrayTitle)")
@@ -190,7 +197,8 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     
                     self?.delegate?.stopLoading()
                     self?.isUserInteractionEnabled = true
-                    ad.showAlert("X", sms) ;print("confirm request has failed❗️")
+                    ad.showAlert("X", sms) ;
+//                    print("confirm request has failed❗️")
                 }
                 return }
             
@@ -223,7 +231,8 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
                     
                     self?.isUserInteractionEnabled = true
                     self?.delegate?.stopLoading()
-                    ad.showAlert("X", sms) ;print("Attendance request has failed❗️");
+                    ad.showAlert("X", sms) ;
+//                    print("Attendance request has failed❗️");
                     
                 }
                 return }
@@ -259,7 +268,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
      
         if editingStyle == .delete {
-            print("Deleted")
+//            print("Deleted")
             guard let id =  self.currentTimeArray?[indexPath.row].id, id != 0  else {
                 ad.showAlert("default", "")
                 return }

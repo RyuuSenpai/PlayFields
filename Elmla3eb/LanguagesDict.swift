@@ -133,11 +133,11 @@ class LanguagesDict {
     func getLocalizedTitle(_ title : String) -> String {
         if L102Language.currentAppleLanguage() == "ar" {
             if let arTitle = dict[title] {
-                print("that's the loclized value : \(arTitle)")
+//                print("that's the loclized value : \(arTitle)")
                 return arTitle
             }
         }
-        print("that's the loclized value : \(title)")
+//        print("that's the loclized value : \(title)")
         return title
     }
     

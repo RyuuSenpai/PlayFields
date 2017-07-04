@@ -131,17 +131,17 @@ class SplashLoginVC: UIViewController {
             startingAnimation
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                print("Swiped right")
+//                print("Swiped right")
                 //                self.animat1()
                 self.animateToRight()
             case UISwipeGestureRecognizerDirection.down:
-                print("Swiped down")
+//                print("Swiped down")
                 self.animateDown()
             case UISwipeGestureRecognizerDirection.left:
-                print("Swiped left")
+//                print("Swiped left")
                 self.animateLeft()
             case UISwipeGestureRecognizerDirection.up:
-                print("Swiped up")
+//                print("Swiped up")
                 self.animateUp()
             default:
                 self.animateLeft()

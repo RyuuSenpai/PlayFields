@@ -58,7 +58,7 @@ self.view.squareLoading.start(0)
         
         guard sender.tag != self.buttonTag else { return }
         self.buttonTag = sender.tag
-        print("that's button tag : \(self.buttonTag) ")
+//        print("that's button tag : \(self.buttonTag) ")
         
         if sender.tag == 0 {
             playgroundBtn.backgroundColor = Constants.Colors.green

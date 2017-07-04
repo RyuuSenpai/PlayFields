@@ -127,7 +127,7 @@ class MenuVC: UIViewController {
 
     
  private func goTOProfileVC() {
-        print("Image Tapped ")
+//        print("Image Tapped ")
 //         let x = ProfileVC()
 //        let navb = UINavigationController(rootViewController: x)
 //        self.present(navb, animated: true, completion: nil)
@@ -154,7 +154,7 @@ class MenuVC: UIViewController {
             self.present(vc, animated: true, completion: nil)
             return
         }
-        print("that's the pg_type : \(UserDefaults.standard.value(forKey: "User_Type") )")
+//        print("that's the pg_type : \(UserDefaults.standard.value(forKey: "User_Type") )")
         if let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  , userType == "pg_owner" {
             let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
             let x = storyb.instantiateViewController(withIdentifier: "OwnerPlaygroundsVC") as! OwnerPlaygroundsVC
@@ -199,7 +199,7 @@ class MenuVC: UIViewController {
             if data.1 {
                 DispatchQueue.main.async{
                     ad.saveUserLogginData(email: nil, photoUrl: nil , uid : nil, name : nil )
-                    print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current())")
+//                    print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current())")
                     let manager = FBSDKLoginManager()
                     manager.logOut()
                     FBSDKAccessToken.setCurrent(nil)
@@ -242,13 +242,13 @@ class MenuVC: UIViewController {
         }
         switch sender.tag {
         case 1 :
-            print("2nd Btn")
+//            print("2nd Btn")
             //SearchVC
             let searchVC = SearchVC(nibName: "SearchVC", bundle: nil)
                let navb = UINavigationController(rootViewController: searchVC)
             self.present(navb, animated: true, completion: nil)
         case 2 :
-            print("3rd Btn Settings")
+//            print("3rd Btn Settings")
             self.goTOPlayerPG()
 //            self.goTOProfileVC()
 

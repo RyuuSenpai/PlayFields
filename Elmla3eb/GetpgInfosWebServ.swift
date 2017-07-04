@@ -18,21 +18,21 @@ class GetpgInfosWebServ  {
     func getPgInfosByID(id:Int , completed : @escaping (PlayGroundsInfoSubData?) -> ()) {
         
         let url = source.GET_PG_INFO_DATA_BY_ID + "\(id)" + source.API_TOKEN
-        print("_GET_PLAY_FIELD_INFO_by_ID URL: \(url)")
+//        print("_GET_PLAY_FIELD_INFO_by_ID URL: \(url)")
         Alamofire.request(url , method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  _GET_PLAY_FIELD_INFO_by_ID getting the data Mate : %@", response.result.value!)
+//                                print("that is  _GET_PLAY_FIELD_INFO_by_ID getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json["data"]
@@ -57,7 +57,7 @@ class GetpgInfosWebServ  {
                 //                print("TIME: pm : \(pm)")
                 
                 for (_,i) in times  {
-                    print("that is i : \(i)")
+//                    print("that is i : \(i)")
                     let timesClass = Pg_Times_Data(json: i)
                     
                     var amList = [AmPm_data]()
@@ -96,12 +96,12 @@ class GetpgInfosWebServ  {
                     let y = Pg_News_Data(json: news[i])
                     newsArray.append(y)
                 }
-                print("images : \(images)")
+//                print("images : \(images)")
                 var imagesArray = [Pg_Images_Data]()
                 for i in 0..<images.count {
                     let y = Pg_Images_Data(json: images[i])
                     imagesArray.append(y)
-                    print("that's the Pg_Images_Data_images : \(y.image)")
+//                    print("that's the Pg_Images_Data_images : \(y.image)")
 
                 }
                 let infoObject = Pg_Info_Data(jsonData: info)
@@ -123,14 +123,14 @@ class GetpgInfosWebServ  {
                 pgData.images = imagesArray
                 pgData.info = infoObject
                 pgData.details = detailsObject
-                                print("KILLVA: _GET_PLAY_FIELD_INFO_by_ID STATUS:\(success) , sms: \(sms) data : \(response.result.value) \n")
+//                                print("KILLVA: _GET_PLAY_FIELD_INFO_by_ID STATUS:\(success) , sms: \(sms) data : \(response.result.value) \n")
                 
                 //                let pfInfo = PlayGroundsInfo(success: success, data: pgData, sms: sms)
              
                 completed(pgData)
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : \(response.result.error)")
+//                print("that is fail i n getting the data Mate : \(response.result.error)")
                 completed(nil)
                 break
             }
@@ -139,7 +139,7 @@ class GetpgInfosWebServ  {
         //        URLSession.shared.dataTask(with: urlR!, completionHandler: {
         //            (data, response, error) in
         //            if(error != nil){
-        //                print("error")
+//                        print("error")
         //            }else{
         //                do{
         //                    let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String : AnyObject]
@@ -164,7 +164,7 @@ class GetpgInfosWebServ  {
         Alamofire.request(imageString).responseImage { response in
             
             if let image = response.result.value {
-                print("image downloaded: \(image)")
+//                print("image downloaded: \(image)")
                completedImageDownload(image)
             }else {
                 completedImageDownload(nil)
@@ -176,30 +176,30 @@ class GetpgInfosWebServ  {
         
         let parameters : Parameters = [parSource.ground_type :groundType, parSource.light_available : lighValid, parSource.football_available:footballValid, parSource.pg_id : playgID, parSource.pg_numberoffields: pgNumbers ?? "" ]
         
-        print("PARAMETERS: _PostRegisterPlayFieldInfo \(parameters)")
+//        print("PARAMETERS: _PostRegisterPlayFieldInfo \(parameters)")
         let url = source.POST_PG_INFO_DATA + source.API_TOKEN
-        print("URL: _PostRegisterPlayFieldInfo \(url)")
+//        print("URL: _PostRegisterPlayFieldInfo \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json[self.parSource.data]
                 
                 let success = json[self.parSource.success].boolValue
                 let sms = json[self.parSource.message].stringValue
-                print("KILLVA: _PostRegisterPlayFieldInfo STATUS:\(success) , sms: \(sms) data : \(data)\n")
+//                print("KILLVA: _PostRegisterPlayFieldInfo STATUS:\(success) , sms: \(sms) data : \(data)\n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -207,7 +207,7 @@ class GetpgInfosWebServ  {
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : \(response.result.error)")
+//                print("that is fail i n getting the data Mate : \(response.result.error)")
                 completed(false)
                 break
             }
@@ -223,31 +223,31 @@ class GetpgInfosWebServ  {
         }
         
         let stringParm = yzx.joined(separator: ",")
-        print("thats the seleected dates_ID : \(stringParm)")
+//        print("thats the seleected dates_ID : \(stringParm)")
         var userId : Int?
         if let id = UserDefaults.standard.value(forKey: "userId") as? Int   {
             userId = id
         }
-        print("thats the seleected userId : \(userId)")
+//        print("thats the seleected userId : \(userId)")
         let parameters : Parameters =  ["time_id":stringParm ,"player_id" : userId ?? "","pg_id" : pg_Id]
-        print("that is postBookDate param : \(parameters)")
+//        print("that is postBookDate param : \(parameters)")
         let url = source.POST_Reservation + source.API_TOKEN
 
-        print("postBookDate URL: \(url)")
+//        print("postBookDate URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = response.result.value
@@ -256,7 +256,7 @@ class GetpgInfosWebServ  {
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: postRegisterNewPlayg STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: postRegisterNewPlayg STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -264,7 +264,7 @@ class GetpgInfosWebServ  {
                 
                 break
             case .failure(_) :
-                print("that is fail postRegisterNewPlayg i n getting the data Mate : %@",response.result.error)
+//                print("that is fail postRegisterNewPlayg i n getting the data Mate : %@",response.result.error?.localizedDescription)
                 completed(false)
                 break
             }

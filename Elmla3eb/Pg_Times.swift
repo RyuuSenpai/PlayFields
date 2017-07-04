@@ -18,18 +18,18 @@ class MPg_Times  {
     func getPgTimesByID(id:Int , completed : @escaping (VarsPlaygTimes?) -> ()) {
         
         let url = source.GET_PG_TIMES_BY_ID + "\(id)" + source.API_TOKEN
-        print("_GET_PLAY_FIELD_INFO_by_ID URL: \(url)")
+//        print("_GET_PLAY_FIELD_INFO_by_ID URL: \(url)")
 //        let url_ = URL(string: url)
 //        guard let _url = url_ else {   assertionFailure("didn't get the url of  getPgTimesByID right") ;return}
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -45,14 +45,14 @@ class MPg_Times  {
 
                 
                 let  pgData = VarsPlaygTimes(jsonData: data)
-                print("KILLVA: _GetPgTimesByID STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: _GetPgTimesByID STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let pfInfo = PlayGroundsInfo(success: success, data: pgData, sms: sms)
                 
                 completed(pgData)
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+//                print("that is fail i n getting the data Mate : %@",response.result.error)
                 completed(nil)
                 break
             }
@@ -69,16 +69,16 @@ class MPg_Times  {
         
         
         let url = source.POST_PG_TIMES_DATA + source.API_TOKEN
-        print("postRegisterPlayField URL: \(url)")
+//        print("postRegisterPlayField URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -91,7 +91,7 @@ class MPg_Times  {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: _PostRegisterNewTime STATUS:\(state) , sms: \(sms) data : \(response.result.value) \n")
+//                print("KILLVA: _PostRegisterNewTime STATUS:\(state) , sms: \(sms) data : \(response.result.value) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -99,7 +99,7 @@ class MPg_Times  {
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+//                print("that is fail i n getting the data Mate : %@",response.result.error)
                 completed(false)
                 break
             }

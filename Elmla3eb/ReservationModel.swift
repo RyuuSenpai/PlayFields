@@ -67,16 +67,16 @@ class ReservationModel {
         
         
         let url = source.POST_CONFIRM_REQUEST + source.API_TOKEN
-        print("postConfirmRequest URL: \(url)")
+//        print("postConfirmRequest URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {  (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from postConfirmRequest url")
-                    print(response.result.error!)
+//                    print("error fetching data from postConfirmRequest url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -92,7 +92,7 @@ class ReservationModel {
                 let sms = json[sm].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: postConfirmRequest STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: postConfirmRequest STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -100,7 +100,7 @@ class ReservationModel {
                 
                 break
             case .failure(_) :
-                print("that is fail postConfirmRequest i n getting the data Mate : \(response.result.error)")
+//                print("that is fail postConfirmRequest i n getting the data Mate : \(response.result.error)")
                 completed(langDicClass().getLocalizedTitle(langDicClass().getLocalizedTitle("Network timeout")),false)
                 break
             }
@@ -110,22 +110,22 @@ class ReservationModel {
     
     
     func postCancelRequest(_ id:Int , completed:@escaping (String,Bool) -> ()) {
-        print("that's the uer : \(UserDefaults.standard.value(forKey: "User_Type") as? String)")
+//        print("that's the uer : \(UserDefaults.standard.value(forKey: "User_Type") as? String)")
        guard  let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  else { return }
         let parameters : Parameters = [parSource.id:id , "player" : userType]
         
         
         let url = source.POST_CANCEL_REQUEST + source.API_TOKEN
-        print("postCancelRequest URL: \(url)")
+//        print("postCancelRequest URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {  (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from postCancelRequest url")
-                    print(response.result.error!)
+//                    print("error fetching data from postCancelRequest url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -134,14 +134,14 @@ class ReservationModel {
                 let succe = parSource.success; let sm = parSource.message; let dataa = parSource.data
                 
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 let data = json[dataa]
                 
                 let success = json[succe].intValue
                 let sms = json[sm].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: postCancelRequest STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: postCancelRequest STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -149,7 +149,7 @@ class ReservationModel {
                 
                 break
             case .failure(_) :
-                print("that is fail postCancelRequest i n getting the data Mate : \(response.result.error)")
+//                print("that is fail postCancelRequest i n getting the data Mate : \(response.result.error)")
                 completed(langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -163,7 +163,7 @@ class ReservationModel {
         
         
         let url = source.POST_ATTENDANCE_REQUEST + source.API_TOKEN
-        print("getSearchData URL: \(url)")
+//        print("getSearchData URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {  (response:DataResponse<Any>) in
             print(response.result)
             switch(response.result) {
@@ -171,8 +171,8 @@ class ReservationModel {
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from getSearchData url")
-                    print(response.result.error!)
+//                    print("error fetching data from getSearchData url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -188,7 +188,7 @@ class ReservationModel {
                 let sms = json[sm].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -196,7 +196,7 @@ class ReservationModel {
                 
                 break
             case .failure(_) :
-                print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
+//                print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
                 completed(langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }

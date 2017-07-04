@@ -32,7 +32,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     var addImageCenter : CGPoint!
     var shieldOnCenter : CGPoint!
     var backGroundBlackView : UIView!
-    var fbId : String?
+    var fbId : String?/////////////
     var fbImage : String?
     var fbEmail : String?
     var fbMobile : String?
@@ -191,7 +191,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
         let user = MUserData()
         
         user.postLoginData(mobileNum: mobile , userPassword: password) { [weak weakSelf = self ] (data) in
-            print("that is the login response : \(data)")
+//            print("that is the login response : \(data)")
             if data.1 , let x = data.0 {
                 
                     ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
@@ -230,7 +230,18 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     }
     
     func dismissVCs() {
-        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
+        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
+            let transition: CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            //                    self.dismissViewControllerAnimated(false, completion: nil)
+            
+            x.dismiss(animated: false , completion: nil)
+        }
+        else if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
             let transition: CATransition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -241,7 +252,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
             
             x.dismiss(animated: false , completion: nil)
         }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
-            print("YOYOOY 3 Views ")
+//            print("YOYOOY 3 Views ")
             let transition: CATransition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -250,7 +261,7 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
             self.view.window?.layer.add(transition, forKey: nil)
             y.dismiss(animated: false, completion: nil)
         }else if let y =  self.presentingViewController?.presentingViewController {
-            print("YOYOOY 2 Views ")
+//            print("YOYOOY 2 Views ")
             y.dismiss(animated: true, completion: nil)
         }
     }

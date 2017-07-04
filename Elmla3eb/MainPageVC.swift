@@ -80,9 +80,9 @@
         //        HPHeaderVC.Instance.delegate = self
         //        GetMainPageData.
         if let x = UserDefaults.standard.value(forKey: "userId") {
-            print("that's userID : \(x)")
+//            print("that's userID : \(x)")
         }else {
-         print("user id == nil ")
+//         print("user id == nil ")
         }
           self.menuBtn.isEnabled = false
         self.menuBtn.image = UIImage(named: "")
@@ -186,7 +186,7 @@
     }
     
     func dismissView(sender: UITapGestureRecognizer? = nil) {
-        print("Tapped")
+//        print("Tapped")
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
             self.backGroundBlackView.alpha = 0
             self.ratingView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -296,7 +296,7 @@
             headerView.pagerData = pagerData
             //        headerView.mainPage.delegate = HPHeaderVC()
         }
-        print("that is the array of pagerData : \(self.pagerData)")
+//        print("that is the array of pagerData : \(self.pagerData)")
         //        headerView.pagerData = self.pagerData
         return headerView
         
@@ -360,7 +360,7 @@
     
  
     func rateField(_ sender : SwiftyStarRatingView ) {
-        print(print("that's the state \(sender.state)"))
+//        print("that's the state \(sender.state)")
         self.view.isUserInteractionEnabled = false
         self.ratingActivityIndector.startAnimating()
 //        print("that's the sender value : \(sender.value) and that's the id:  \(rateData[sender.tag].id) ,name: \(rateData[sender.tag].pg_name)")
@@ -415,7 +415,7 @@
 //        }
 //    }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print(" scoll : \(scrollView)")
+//        print(" scoll : \(scrollView)")
         for cell in ratingCollectionView.visibleCells  as [UICollectionViewCell]    {
             let indexPath = ratingCollectionView.indexPath(for: cell as UICollectionViewCell)
             if let index = indexPath?.row {
@@ -441,7 +441,7 @@
  extension MainPageVC : pagerTappeingControll {
     
     func didSelectImageAt(index: Int) {
-        print("that is the item number in main page  : \(index) PlayFieldsVC")
+//        print("that is the item number in main page  : \(index) PlayFieldsVC")
         performSegue(withIdentifier: "ToPlayFieldsVC", sender: self)
         
     }

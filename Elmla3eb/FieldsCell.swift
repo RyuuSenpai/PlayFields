@@ -67,7 +67,7 @@ class FieldsCell: UITableViewCell {
         fieldLocationLbl.text = data.address
 //        priceLbl.text = data. + " " + langDicClass().getLocalizedTitle("per Hour")
         fieldNameLbl.text = data.pg_name
-        print("confirmed data : \(data.pg_name)")
+//        print("confirmed data : \(data.pg_name)")
 
         timeLbl.text =   "\(data.time)"
         calnderDateLbl.text = "\(data.date)"
@@ -87,7 +87,7 @@ class FieldsCell: UITableViewCell {
         fieldLocationLbl.text = data.address
 //        priceLbl.text = data.price + " " + langDicClass().getLocalizedTitle("per Hour")
         fieldNameLbl.text = data.pg_name
-        print("confirmed data : \(data.time)")
+//        print("confirmed data : \(data.time)")
 //        bookingtimesLbl.text =   "\(data.pgBookingTimes)"
         timeLbl.text =   "\(data.time)"
         calnderDateLbl.text = "\(data.date)"
@@ -156,7 +156,7 @@ class FieldsCell: UITableViewCell {
             bookingStateView.alpha = 1
             bookNowBtn.alpha = 0
         default :
-            print("error with Cell State Setter")
+//            print("error with Cell State Setter")
             bookedFieldsstackView.alpha = 0
             nearbyStackView.alpha = 1
             bookingStateView.alpha = 0

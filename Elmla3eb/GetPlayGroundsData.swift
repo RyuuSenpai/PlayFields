@@ -23,16 +23,16 @@ class GetPlayGroundsData {
 //        let parameters : Parameters = [parSource.user_id : userID ]
 
                 let url = source.GET_PLAY_GROUNDS_ALL + source.API_TOKEN + "&user_id=\(USER_ID)"
-        print("URL: is getPlayFieldsData  : \(url)")
+//        print("URL: is getPlayFieldsData  : \(url)")
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { [weak self](response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -112,14 +112,14 @@ class GetPlayGroundsData {
                 
                 mainPageData.image = imageUrl
                 let  state =  success == 1 ? true : false
-                print("KILLVA: _GetPlayFieldsData STATUS:\(state) , sms: \(sms) playGroundsCount : \(mainPageData.playGrounds?.count) pagerData : \(mainPageData.pagerData?.count) \n ")
+//                print("KILLVA: _GetPlayFieldsData STATUS:\(state) , sms: \(sms) playGroundsCount : \(mainPageData.playGrounds?.count) pagerData : \(mainPageData.pagerData?.count) \n ")
                 
                 completed(mainPageData,state,sms)
                 
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : \(response.result.error.debugDescription)")
+//                print("that is fail i n getting the data Mate : \(response.result.error.debugDescription)")
                 completed(nil,false,"")
                 break
             }
@@ -136,21 +136,21 @@ class GetPlayGroundsData {
         
         
         let url = source.POST_PLAY_GROUNDS_DATA + source.API_TOKEN
-        print("postRegisterNewPlayg URL: \(url)")
+//        print("postRegisterNewPlayg URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = response.result.value
@@ -159,7 +159,7 @@ class GetPlayGroundsData {
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: postRegisterNewPlayg STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: postRegisterNewPlayg STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -167,7 +167,7 @@ class GetPlayGroundsData {
                 
                 break
             case .failure(_) :
-                print("that is fail postRegisterNewPlayg i n getting the data Mate : \(response.result.error)")
+//                print("that is fail postRegisterNewPlayg i n getting the data Mate : \(response.result.error)")
                 completed(false)
                 break
             }
@@ -220,24 +220,24 @@ class GetPlayGroundsData {
     func putEdit_Playground(pg_id:Int ,pg_name : String? , address : String?, price : Int?, ground_type : String?, light_available : String,football_available:String  ,completed:@escaping (Bool,String) -> ()) {
         let parameters : Parameters = [parSource.pg_id : pg_id,parSource.pg_name : pg_name ,parSource.address : address ,parSource.price : price ,parSource.ground_type : ground_type ,parSource.light_available : light_available ,parSource.football_available : football_available ]
         
-        print("putEdit_Playground parameters: \(parameters)")
+//        print("putEdit_Playground parameters: \(parameters)")
 
         let url = source.PUT_EDIT_PLAYGROUND + "\(pg_id)" + source.API_TOKEN
-        print("putEdit_Playground URL: \(url)")
+//        print("putEdit_Playground URL: \(url)")
         Alamofire.request(url , method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = response.result.value
@@ -246,7 +246,7 @@ class GetPlayGroundsData {
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: putEdit_Playground STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: putEdit_Playground STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -254,7 +254,7 @@ class GetPlayGroundsData {
                 
                 break
             case .failure(_) :
-                print("that is fail putEdit_Playground i n getting the data Mate : \(response.result.error)")
+//                print("that is fail putEdit_Playground i n getting the data Mate : \(response.result.error)")
                 completed(false,langDicClass().getLocalizedTitle("Network timeout"))
                 break
             }
@@ -268,21 +268,21 @@ class GetPlayGroundsData {
         
         
         let url = source.POST_PLAY_GROUND_RATE + source.API_TOKEN
-        print("postPlay_gRateing URL: \(url)")
+//        print("postPlay_gRateing URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = response.result.value
@@ -291,7 +291,7 @@ class GetPlayGroundsData {
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: postPlay_gRateing STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: postPlay_gRateing STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -299,7 +299,7 @@ class GetPlayGroundsData {
                 
                 break
             case .failure(_) :
-                print("that is fail postPlay_gRateing i n getting the data Mate : \(response.result.error)")
+//                print("that is fail postPlay_gRateing i n getting the data Mate : \(response.result.error)")
                 completed(false)
                 break
             }
@@ -313,16 +313,16 @@ class GetPlayGroundsData {
         
         
         let url = source.SEARCH_URL + source.API_TOKEN
-        print("getSearchData URL: \(url)")
+//        print("getSearchData URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { [weak self ] (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from getSearchData url")
-                    print(response.result.error!)
+//                    print("error fetching data from getSearchData url")
+//                    print(response.result.error!)
                     return
                     
                 }
@@ -331,24 +331,24 @@ class GetPlayGroundsData {
                 let succe = parSource.success; let sm = parSource.message; let dataa = parSource.data  
                 
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 let data = json[dataa]
                 var play_grounds : [Search_Data]?
                 if data.count >  0 {
                  play_grounds = [Search_Data]()
                 for item in data {
-                    print("that's the item : \(item)")
+//                    print("that's the item : \(item)")
                     let x = Search_Data(json: item.1)
                     play_grounds?.append(x)
                 }
-                    print("thats the array of fields : \(play_grounds)")
+//                    print("thats the array of fields : \(play_grounds)")
 //                let data = response.result.value
                 }
                 let success = json[succe].intValue
                 let sms = json[sm].stringValue
                 let  state =  success == 1 ? true : false
                 
-                print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
+//                print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -356,7 +356,7 @@ class GetPlayGroundsData {
                 
                 break
             case .failure(_) :
-                print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
+//                print("that is fail getSearchData i n getting the data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -369,23 +369,23 @@ class GetPlayGroundsData {
     func getNearByFields(lat : String,long: String, completed:@escaping ([NearByFields_Data]?,String,Bool) -> ()) {
         
         let url = source.GET_NEARBY_FIELDS + "/\(lat)/\(long)" + source.API_TOKEN  //+ lat + "/" + long
-        print("getNearByFields URL: \(url)")
+//        print("getNearByFields URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url getNearByFields")
-                    print(response.result.error!)
+//                    print("error fetching data from url getNearByFields")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  getNearByFields getting the data Mate : %@", response.result.value!)
+//                print("that is  getNearByFields getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json[self.parSource.data]
@@ -397,13 +397,13 @@ class GetPlayGroundsData {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: getNearByFields STATUS:\(state) , sms: \(sms) \n")
+//                print("KILLVA: getNearByFields STATUS:\(state) , sms: \(sms) \n")
                 
                  
                 completed(nearPGData,sms,state)
                 break
             case .failure(_) :
-                print("that is fail i n getting the getNearByFields data Mate : \(response.result.error)")
+//                print("that is fail i n getting the getNearByFields data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }

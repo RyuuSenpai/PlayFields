@@ -21,30 +21,30 @@ class ConfirmedOrNotData {
     func getPGReservationStatus( completed:@escaping (FieldsReservStatusData?,String,Bool) -> ()) {
         
         let url = source.GET_PLAYGROUNDS_RESERVATION_STATUS + source.API_TOKEN
-        print("getPGReservationStatus URL: \(url)")
+//        print("getPGReservationStatus URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url getPGReservationStatus")
-                    print(response.result.error!)
+//                    print("error fetching data from url getPGReservationStatus")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  getPGReservationStatus getting the data Mate : %@", response.result.value!)
+//                print("that is  getPGReservationStatus getting the data Mate : %@", response.result.value!)
                 let data = json["data"]
                 
                 
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: getPGReservationStatus STATUS:\(state) , sms: \(sms) \n")
+//                print("KILLVA: getPGReservationStatus STATUS:\(state) , sms: \(sms) \n")
                 
                 let conf = data[self.parSource.confirmed]
                 var confirmedFields = [ConfirmedFields_Data]()
@@ -63,7 +63,7 @@ class ConfirmedOrNotData {
                 completed(playGData,sms,state)
                 break
             case .failure(_) :
-                print("that is fail i n getting the getPGReservationStatus data Mate : \(response.result.error)")
+//                print("that is fail i n getting the getPGReservationStatus data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }

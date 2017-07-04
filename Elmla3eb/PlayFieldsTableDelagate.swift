@@ -13,30 +13,36 @@ extension PlayFieldsVC : UITableViewDelegate {
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("that's indexPath \(indexPath.row)")
+//        print("that's indexPath \(indexPath.row)")
         switch self.buttonTag {
         case 0 :
             guard let data = nearFieldsData else {
-                print("NearBy Fields fatal error: Index out of range ") ;     return    }
+//                print("NearBy Fields fatal error: Index out of range ") ;  
+                return    }
             guard indexPath.row <= data.count else {
-                print("NearBy Fields fatal error: Index out of range ") ;     return     }
-            print("that is the index : \(data.count) and index is : \(indexPath.row)")
+//                print("NearBy Fields fatal error: Index out of range ") ;    
+                return     }
+//            print("that is the index : \(data.count) and index is : \(indexPath.row)")
 
       setUpPlayGView(data[indexPath.row].id,data[indexPath.row].pgName)
             case 1:
                 guard let data = unconfirmedP_G else {
-                    print("unconfirmedP_G Fields fatal error: Index out of range ") ;     return    }
+//                    print("unconfirmedP_G Fields fatal error: Index out of range ") ;  
+                    return    }
                 guard indexPath.row <= data.count else {
-                    print("unconfirmedP_G Fields fatal error: Index out of range ") ;     return     }
-                print("that is the unconfirmedP_G index : \(data.count) and index is : \(indexPath.row)")
+//                    print("unconfirmedP_G Fields fatal error: Index out of range ") ;
+                    return     }
+//                print("that is the unconfirmedP_G index : \(data.count) and index is : \(indexPath.row)")
                 
                 setUpPlayGView(data[indexPath.row].pg_id,data[indexPath.row].pg_name)
         case 2 :
             guard let data = confirmedP_G else {
-                print("confirmedP_G Fields fatal error: Index out of range ") ;     return    }
+//                print("confirmedP_G Fields fatal error: Index out of range ") ;
+                return    }
             guard indexPath.row <= data.count else {
-                print("confirmedP_G Fields fatal error: Index out of range ") ;     return     }
-            print("that is the confirmedP_G index : \(data.count) and index is : \(indexPath.row)")
+//                print("confirmedP_G Fields fatal error: Index out of range ") ;
+                return     }
+//            print("that is the confirmedP_G index : \(data.count) and index is : \(indexPath.row)")
             
             setUpPlayGView(data[indexPath.row].pg_id,data[indexPath.row].pg_name)
         default :
@@ -46,14 +52,14 @@ extension PlayFieldsVC : UITableViewDelegate {
     
     
     func  setUpPlayGView(_ id : Int , _ name : String   ) {
-        print("that is the index : \(index)")
+//        print("that is the index : \(index)")
       
        
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
              detailVC.pg_id = id
         detailVC.title = name
        
-        print("that is the field name : \(title)")
+//        print("that is the field name : \(title)")
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     

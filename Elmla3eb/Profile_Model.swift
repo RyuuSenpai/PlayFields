@@ -19,23 +19,23 @@ class Profile_Model {
     func getProfileData( completed:@escaping (PostLoginVars?,String,Bool) -> ()) {
         
         let url = source.POST_Register_USER_DATA + "/\(USER_ID)" + source.API_TOKEN
-        print("getProfileData URL: \(url)")
+//        print("getProfileData URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url getProfileData")
-                    print(response.result.error!)
+//                    print("error fetching data from url getProfileData")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  getProfileData getting the data Mate : %@", response.result.value!)
+//                print("that is  getProfileData getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json["data"]
@@ -43,14 +43,14 @@ class Profile_Model {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: getProfileData STATUS:\(state) , sms: \(sms) \n")
+//                print("KILLVA: getProfileData STATUS:\(state) , sms: \(sms) \n")
                 
          let profileData = PostLoginVars(jsonData: data)
                 
                 completed(profileData,sms,state)
                 break
             case .failure(_) :
-                print("that is fail i n getting the getProfileData data Mate : \(response.result.error)")
+//                print("that is fail i n getting the getProfileData data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -71,22 +71,22 @@ class Profile_Model {
 //        print("that is the parameters in postProfileData : \([parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : "",parSource.snap_chat : snap_chat ?? "",parSource.position : position])")
    
         let url = source.POST_PROFILE_DATA + source.API_TOKEN
-        print("URL: is postProfileData   : \(url)")
+//        print("URL: is postProfileData   : \(url)")
         
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url postProfileData")
-                    print(response.result.error!)
+//                    print("error fetching data from url postProfileData")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 
@@ -102,7 +102,7 @@ class Profile_Model {
                     imageUrl = ""
                 }
                 let  state =  success == 1 ? true : false
-                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)\n data :  \(json)")
+//                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)\n data :  \(json)")
                 
                 
                 completed( state,sms )
@@ -110,10 +110,10 @@ class Profile_Model {
             case .failure(_) :
                 if let data = response.data {
                     let json = String(data: data, encoding: String.Encoding.utf8)
-                    print("Failure Response: \(json)")
+//                    print("Failure Response: \(json)")
                 }
-                print("that is fail i n getting the postProfileData data Mate : \(response.result.error?.localizedDescription)")
-                print("that is fail i n getting the postProfileData Mate :\(response.result.error)")
+//                print("that is fail i n getting the postProfileData data Mate : \(response.result.error?.localizedDescription)")
+//                print("that is fail i n getting the postProfileData Mate :\(response.result.error)")
                 completed( false, "Network Time out" )
                 break
             }
@@ -123,42 +123,42 @@ class Profile_Model {
     
     func postChangeUserPassword(userID: Int , oldPassword:String,newPassword : String ,completed : @escaping (Bool,String)->()) {
         let parameters : Parameters = [parSource.user_id : userID , parSource.old_password : oldPassword,parSource.new_password : newPassword  ]
-        print("that is the parameters in postChangeUserPassword : \(parameters)")
+//        print("that is the parameters in postChangeUserPassword : \(parameters)")
         
         
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
         
         //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
         let url = source.POST_CHANGE_PASSWORD + source.API_TOKEN
-        print("URL: is postChangeUserPassword   : \(url)")
+//        print("URL: is postChangeUserPassword   : \(url)")
         
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: postChangeUserPassword success : \(success) STATUS:\(state) , sms: \(sms)")
+//                print("KILLVA: postChangeUserPassword success : \(success) STATUS:\(state) , sms: \(sms)")
                 
                 
                 completed(state,sms)
                 break
             case .failure(_) :
-                print("that is fail i n getting the postChangeUserPassword Mate : \(response.result.error))")
+//                print("that is fail i n getting the postChangeUserPassword Mate : \(response.result.error))")
                 completed(false, "Network Time out" )
                 break
             }
@@ -169,23 +169,23 @@ class Profile_Model {
     func getPointsData( completed:@escaping ([Points_Data]?,String,Bool) -> ()) {
         
         let url = source.GET_POINTS_REQUEST + source.API_TOKEN
-        print("getPointsData URL: \(url)")
+//        print("getPointsData URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .get , parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url getPointsData")
-                    print(response.result.error!)
+//                    print("error fetching data from url getPointsData")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  getPointsData getting the data Mate : %@", response.result.value!)
+//                print("that is  getPointsData getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json["data"]
@@ -193,7 +193,7 @@ class Profile_Model {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: getPointsData STATUS:\(state) , sms: \(sms) \n")
+//                print("KILLVA: getPointsData STATUS:\(state) , sms: \(sms) \n")
                 var pointsDataArray = [Points_Data]()
                 for item in data {
                     let pointsClass = Points_Data(jsonData: item.1)
@@ -203,7 +203,7 @@ class Profile_Model {
                 completed(pointsDataArray,sms,state)
                 break
             case .failure(_) :
-                print("that is fail i n getting the getPointsData data Mate : \(response.result.error)")
+//                print("that is fail i n getting the getPointsData data Mate : \(response.result.error)")
                 completed(nil,langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -212,28 +212,28 @@ class Profile_Model {
     
     func post_PointsReward(points : Int ,completed : @escaping (Int?,Bool,String)->()) {
         let parameters : Parameters = [parSource.user_id : USER_ID , "points" : points ]
-        print("that is the parameters in post_PointsReward : \(parameters)")
+//        print("that is the parameters in post_PointsReward : \(parameters)")
         
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
         
         //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
         let url = source.POST_POINTS_REQUEST + source.API_TOKEN
-        print("URL: is post_PointsReward   : \(url)")
+//        print("URL: is post_PointsReward   : \(url)")
         
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 
@@ -241,13 +241,13 @@ class Profile_Model {
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
                 let point = json["data"] ["points"].intValue
-                print("KILLVA: post_PointsReward success : \(success) STATUS:\(state) , sms: \(sms) returned points : \(point)")
+//                print("KILLVA: post_PointsReward success : \(success) STATUS:\(state) , sms: \(sms) returned points : \(point)")
                 
                 
                 completed(point,state,sms)
                 break
             case .failure(_) :
-                print("that is fail i n getting the post_PointsReward Mate : \(response.result.error))")
+//                print("that is fail i n getting the post_PointsReward Mate : \(response.result.error))")
                 completed(nil,false, "Network Time out" )
                 break
             }
@@ -300,19 +300,23 @@ class Points_Data {
 
     
     var img_achieved : String{
-        guard  let x = _img_achieved , x != "" else {print("that's the _image path : \(String(describing: _img_achieved))"); return "" }
-        print("that's the imageURL.IMAGES_URL + x   : \(x)")
+        guard  let x = _img_achieved , x != "" else {
+//            print("that's the _image path : \(String(describing: _img_achieved))");
+            return "" }
+//        print("that's the imageURL.IMAGES_URL + x   : \(x)")
         return imageURL.IMAGES_URL + x
     }
 
     var img_unachieved : String{
-        guard  let x = _img_unachieved , x != "" else {print("that's the _image path : \(String(describing: _img_achieved))"); return "" }
-        print("that's the imageURL.IMAGES_URL + x   : \(x)")
+        guard  let x = _img_unachieved , x != "" else {
+//            print("that's the _image path : \(String(describing: _img_achieved))");
+            return "" }
+//        print("that's the imageURL.IMAGES_URL + x   : \(x)")
         return imageURL.IMAGES_URL + x
     }
     
     var points : Int {
-        print("that's the points : \(_points)")
+//        print("that's the points : \(_points)")
         guard let x = _points else { return 0 }
         return x
     }

@@ -57,7 +57,9 @@ extension PlayFieldsVC : UITableViewDataSource {
           cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
           cell.bookNowBtn.addTarget(self, action: #selector(self.bookNow(_:)), for: UIControlEvents.touchUpInside )
 
-            guard let data = nearFieldsData else {print("⛑ Fatal Error the nearFieldsData count Equal 0 ❗️"); return cell }
+            guard let data = nearFieldsData else {
+//                print("⛑ Fatal Error the nearFieldsData count Equal 0 ❗️");
+                return cell }
             cell.configNearFields(data[indexPath.row],false )
             cell.bookNowBtn.tag = indexPath.row
         case 1 :
@@ -67,15 +69,19 @@ extension PlayFieldsVC : UITableViewDataSource {
             cell.bookNowBtn.removeTarget(nil, action: nil, for: .allEvents)
             cell.bookNowBtn.addTarget(self, action: #selector(self.cancelResrvation(_:)), for: UIControlEvents.touchUpInside )
             
-            guard let data = unconfirmedP_G , data.count >= indexPath.row else { print("⛑ Fatal Error the unconfirmedP_G count is Equal 0 ❗️");return cell }
-            print("that is the unconfirmed data count : \(data.count) and that's the index \(indexPath.row)")
+            guard let data = unconfirmedP_G , data.count >= indexPath.row else {
+//                print("⛑ Fatal Error the unconfirmedP_G count is Equal 0 ❗️");
+                return cell }
+//            print("that is the unconfirmed data count : \(data.count) and that's the index \(indexPath.row)")
             cell.configNotConfirmedFields(data[indexPath.row])
             cell.bookNowBtn.tag = indexPath.row
         case 2 :
 //          
             cell.cellState(2)
             
-            guard let data = confirmedP_G , data.count >= indexPath.row else {print("⛑ Fatal Error the confirmedP_G count is Equal 0 ❗️"); return cell }
+            guard let data = confirmedP_G , data.count >= indexPath.row else {
+//                print("⛑ Fatal Error the confirmedP_G count is Equal 0 ❗️");
+                return cell }
             cell.configConfirmedFields(data[indexPath.row])
 //
         default:
@@ -95,18 +101,21 @@ extension PlayFieldsVC : UITableViewDataSource {
 
             guard let data = weakSelf?.unconfirmedP_G else { weakSelf?.activityIndector.stopAnimating()
             weakSelf?.view.isUserInteractionEnabled = true
-            print("❗️unconfirmed data == nil "); return }
+//            print("❗️unconfirmed data == nil ");
+                return }
         guard sender.tag <= data.count else { self.activityIndector.stopAnimating()
             weakSelf?.view.isUserInteractionEnabled = true
-            print("❗️sender tag <= data.count");  return }
+//            print("❗️sender tag <= data.count");
+            return }
         let reservationId = data[sender.tag].id
         guard reservationId != 0 else { weakSelf?.activityIndector.stopAnimating()
             weakSelf?.view.isUserInteractionEnabled = true
-            print("⛑ Fatal Error the id is Equal 0 ❗️") ;return }
+//            print("⛑ Fatal Error the id is Equal 0 ❗️");
+            return }
         weakSelf?.deletereservation.postCancelRequest( reservationId) {[weak self] (sms, state) in
             
             guard state else {
-                print(" ❗️ State is False ❗️")
+//                print(" ❗️ State is False ❗️")
                 DispatchQueue.main.async {
                     self?.view.isUserInteractionEnabled = true
                 self?.activityIndector.stopAnimating()

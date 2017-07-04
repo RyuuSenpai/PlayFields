@@ -45,7 +45,7 @@ extension MainPageVC : UICollectionViewDataSource {
           let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HomePageCell
         guard  let data = self.playGroundData?[indexPath.row] else { return cell }
         cell.title.text = data.name
-        print("data name : \(data.name)")
+//        print("data name : \(data.name)")
         cell.subtitle.text = data.address
         if 0...5 ~=  data.rate {
             cell.starRatingView.value = CGFloat(data.rate)

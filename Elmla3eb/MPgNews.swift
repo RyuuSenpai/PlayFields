@@ -18,23 +18,23 @@ class MPgNews {
     func getPgNewsByID(id:Int , completed : @escaping ([VarsPlaygNews]?) -> ()) {
         
         let url = source.GET_PG_NEWS_BY_ID + "\(id)" + source.API_TOKEN
-        print("_GetPgNewsByID URL: \(url)")
+//        print("_GetPgNewsByID URL: \(url)")
 //        let request = GLOBAL.alamoRequest(query_url: url)
 
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  _GetPgNewsByID getting the data Mate : %@", response.result.value!)
+//                print("that is  _GetPgNewsByID getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json["data"]
@@ -42,7 +42,7 @@ class MPgNews {
                 let success = data[self.parSource.success].intValue
                 let sms = data[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: _GetPgNewsByID STATUS:\(state) , sms: \(sms) \n")
+//                print("KILLVA: _GetPgNewsByID STATUS:\(state) , sms: \(sms) \n")
 
                 var pgsData = [VarsPlaygNews]()
                 for i in 0..<data.count {
@@ -56,7 +56,7 @@ class MPgNews {
                 completed(pgsData)
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+//                print("that is fail i n getting the data Mate : %@",response.result.error)
                 completed(nil)
                 break
             }
@@ -73,28 +73,28 @@ class MPgNews {
         
         
         let url = source.POST_PG_NEWS_DATA + source.API_TOKEN
-        print("postRegisterPlayField URL: \(url)")
+//        print("postRegisterPlayField URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
                 let data = json[self.parSource.data]
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: _PostPgNews STATUS:\(state) , sms: \(sms)\n")
+//                print("KILLVA: _PostPgNews STATUS:\(state) , sms: \(sms)\n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
                 
@@ -102,7 +102,7 @@ class MPgNews {
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+//                print("that is fail i n getting the data Mate : %@",response.result.error)
                 completed(false)
                 break
             }
@@ -137,9 +137,9 @@ class VarsPlaygNews {
         self._pgID = jsonData[source.pg_id].intValue
         self._title = jsonData[source.title].stringValue
         self._content = jsonData[source.content].stringValue
-        print("that is the _content : \(self._content)")
+//        print("that is the _content : \(self._content)")
 
-        print("that is the title : \(self._title)")
+//        print("that is the title : \(self._title)")
     }
 }
 

@@ -19,11 +19,11 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
     @IBAction func fbLoginBtnAct(_ sender: AnyObject) {
         FBSDKLoginManager().logIn(withReadPermissions: ["email","public_profile"], from: self) { (result, err ) in
             if err != nil {
-                print("Custom FB Login failed : \(String(describing: err))")
+//                print("Custom FB Login failed : \(String(describing: err))")
                 self.setUIEnabled(enabled: true)
                 return
             }
-            //            print(result?.token.tokenString)
+//                        print(result?.token.tokenString)
             self.setUIEnabled(enabled: false)
             self.showFbEmailAddress()
         }
@@ -31,18 +31,18 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
     
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("Did log out of facebook")
+//        print("Did log out of facebook")
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         self.setUIEnabled(enabled: false )
         if error != nil {
-            print(error)
+//            print(error)
             self.setUIEnabled(enabled: true)
             return
         }
         
-        print("Successfully logged in with facebook...")
+//        print("Successfully logged in with facebook...")
         
         showFbEmailAddress()
     }
@@ -56,13 +56,13 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                 DispatchQueue.main.async {
                 self?.fbActivityInd.stopAnimating()
                 self?.setUIEnabled(enabled: true)
-                print("failed to start graph request :  \(err)")
+//                print("failed to start graph request :  \(err)")
                 }
             }else {
                 
                 let resultD = result as? NSDictionary
                 if let result = resultD {
-                    print("that's the result : \(result)")
+//                    print("that's the result : \(result)")
                     guard let id = result["id"] as? String , let fName = result["first_name"] as? String  else {
                         DispatchQueue.main.async {
                             self?.showAlert(langDicClass().getLocalizedTitle("Something Went Wrong"), langDicClass().getLocalizedTitle("try again!!"))
@@ -71,7 +71,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                         }
                         return
                     }
-                    print(id)
+//                    print(id)
                     //                    self.afterLogginUserName.text = fName.capitalized
                     let url = "http://graph.facebook.com/\(id)/picture?type=large"
 //                    let imageURL = URL(string: url )
@@ -81,7 +81,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                     if  let email  = result["email"] as? String {
                     self?.fbEmail = email
                     }
-                    print("that is facebook data \(id) \(fName) \(self?.fbEmail) ")
+//                    print("that is facebook data \(id) \(fName) \(self?.fbEmail) ")
                     DispatchQueue.main.async {
                         self?.setupFbLogin("", "", id)
 //                        ad.saveUserLogginData(email: self?.fbEmail, photoUrl: "default", uid: -1, name: fName)
@@ -113,7 +113,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
     
     
     func fbLogOut() {
-        print("that is the facToken : \(FBSDKAccessToken.current()) )")
+//        print("that is the facToken : \(FBSDKAccessToken.current()) )")
         let manager = FBSDKLoginManager()
         manager.logOut()
         if FBSDKAccessToken.current() != nil {
@@ -149,7 +149,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
 //        }
 
         user.postFaceBLogin(mobile: mobile, image: image, fbID:id , completed: { [weak weakSelf = self ] (data, codeVerification, sms ,state) in
-            print("that's the sms : \(sms), and that's the state : \(state)")
+//            print("that's the sms : \(sms), and that's the state : \(state)")
             if sms.contains("New user")  {
                 DispatchQueue.main.async {
                     weakSelf?.setupfbMobileNumView()

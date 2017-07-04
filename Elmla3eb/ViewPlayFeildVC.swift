@@ -102,7 +102,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     var newsList : [String]?{
         didSet {
             guard let data = newsList , data.count > 0 else{
-                print("Empty News Data")
+//                print("Empty News Data")
                 self.newsTableView?.alpha = 0
                 self.noNewsLbl.alpha = 1
                 return
@@ -210,7 +210,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let id = self.pg_id else { print("error with pg_id == nil : \(self.pg_id)");
+        guard let id = self.pg_id else {
+//            print("error with pg_id == nil : \(self.pg_id)");
             ad.userOffline(self); return }
         pf_Info.getPgInfosByID(id: id) { [weak weakSelf = self ](dataOBject) in
             
@@ -434,7 +435,9 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 sender?.isEnabled = false
                 sender?.alpha = 0.5
 //                print("that's the selected dataes ID : \(ViewPlayFeildVC.seletedTimes_ID)")
-                guard let pgID = pg_id else { print("pg_id is Equal to NIL \(pg_id)"); return }
+                guard let pgID = pg_id else {
+//                    print("pg_id is Equal to NIL \(pg_id)")
+                    return }
                 pf_Info.postBookDate(pg_Id : pgID , reservationArray: ViewPlayFeildVC.seletedTimes_ID, completed: { [weak self ](isIt) in
                     
                     if isIt {

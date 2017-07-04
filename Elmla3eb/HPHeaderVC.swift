@@ -55,9 +55,9 @@ class HPHeaderVC: UICollectionReusableView ,FSPagerViewDelegate,FSPagerViewDataS
 
     var pagerData : [HomePagerData_Data]? {
         didSet {
-            print("That's the value of pagerData : \(pagerData)" )
+//            print("That's the value of pagerData : \(pagerData)" )
             guard let data = pagerData else {
-                print("Found nil in pagerData ");
+//                print("Found nil in pagerData ");
                 return
             }
             if !hasSetPAGERDATA {
@@ -98,7 +98,9 @@ class HPHeaderVC: UICollectionReusableView ,FSPagerViewDelegate,FSPagerViewDataS
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        guard let data = self.pagerData , index <= data.count else { print("Nil in pagerdata"); return cell }
+        guard let data = self.pagerData , index <= data.count else {
+//            print("Nil in pagerdata");
+            return cell }
         
         if  imagesData[index] != "" {
 //            
@@ -121,7 +123,9 @@ class HPHeaderVC: UICollectionReusableView ,FSPagerViewDelegate,FSPagerViewDataS
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {
  
-        guard let data = self.pagerData else { print("Nil in pagerdata"); return   }
+        guard let data = self.pagerData else {
+//            print("Nil in pagerdata");
+            return   }
 
         guard self.pagerCont.currentPage != pagerView.currentIndex else {
             return

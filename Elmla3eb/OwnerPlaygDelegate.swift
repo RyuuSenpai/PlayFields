@@ -12,7 +12,7 @@ extension OwnerPlaygroundsVC : UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("selected row ; \(indexPath.row)")
+//        print("selected row ; \(indexPath.row)")
         
         if buttonTag == 0 {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "BookedFieldsDatesVC") as! BookedFieldsDatesVC

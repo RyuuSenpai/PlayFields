@@ -14,7 +14,7 @@ import Alamofire
 //var USER_ID  = 53
 var USER_ID :Int {
     guard  let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
-        print("error fetching userId from NSUserD.userId")
+//        print("error fetching userId from NSUserD.userId")
         return 0
     }
     return userID
@@ -41,7 +41,7 @@ class GLOBAL {
         Alamofire.request(imageString).responseImage { response in
             
             if let image = response.result.value {
-                print("image downloaded: \(image)")
+//                print("image downloaded: \(image)")
                 completedImageDownload(image)
             }else {
                 completedImageDownload(nil)
@@ -62,11 +62,11 @@ class GLOBAL {
                         // json is a dictionary
                      } else if let object = json as? [Any] {
                         // json is an array
-                        //                    print(object)
+//                                            print(object)
                         var citiesAraName = [String]()
                         var citiesEngName = [String]()
                         for cityObject in object {
-                            //                        print("that's the city : \(cityObject)")
+//                                                    print("that's the city : \(cityObject)")
                             if let name = cityObject as? [String:Any] {
                                 if let cityName = name["name"] as? [String:String] {
                                       citiesAraName.append(cityName["ar"]!)
@@ -89,13 +89,13 @@ class GLOBAL {
                         
                         
                     } else {
-                        print("JSON is invalid")
+//                        print("JSON is invalid")
                     }
                 } else {
-                    print("no file")
+//                    print("no file")
                 }
             } catch {
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
             }
         }
     }

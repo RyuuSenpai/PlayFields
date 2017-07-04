@@ -280,7 +280,7 @@ open class CDAlertView: UIView {
         addSubview(backgroundView)
         backgroundView.alignToParent(with: 0)
         if !isActionButtonsVertical && actions.count > 3 {
-            debugPrint("CDAlertView: You can't use more than 3 actions in horizontal mode. If you need more than 3 buttons, consider using vertical alignment for buttons. Setting vertical alignments for buttons is available via isActionButtonsVertical property of AlertView")
+//            debugPrint("CDAlertView: You can't use more than 3 actions in horizontal mode. If you need more than 3 buttons, consider using vertical alignment for buttons. Setting vertical alignments for buttons is available via isActionButtonsVertical property of AlertView")
             actions.removeSubrange(3..<actions.count)
         }
         createViews()

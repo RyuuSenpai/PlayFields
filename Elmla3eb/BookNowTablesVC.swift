@@ -66,13 +66,13 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     //    var seletedTimes_ID = [Int]()
     var pg_ID  : Int? {
         didSet {
-            print("that's the new value of worked : \(pg_ID)")
+//            print("that's the new value of worked : \(pg_ID)")
         }
     }
     
     var times_msg : String? {
         didSet {
-            print("that's the times sms : \(times_msg)")
+//            print("that's the times sms : \(times_msg)")
             
         }
     }
@@ -130,7 +130,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         
         UIView.transition(from: self.datesView, to: daysView, duration: 0.5, options: [.transitionFlipFromRight,.showHideTransitionViews])
         
-        print("that is the current array : \(selectedDatesDict)")
+//        print("that is the current array : \(selectedDatesDict)")
         
     }
     
@@ -174,7 +174,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
                 self.selected_PmTimes_ID.append(y.id)
             }
         }
-        print("that is am : \(self.am) and pm : \(self.pm)")
+//        print("that is am : \(self.am) and pm : \(self.pm)")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -198,7 +198,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
             
             if selectedDatesDict.count > 0 {
                 for (key,_) in selectedDatesDict {
-                    print("that is the value and : \("\(self.selectedDay),\(currentArray[indexPath.row])") , that's the key : \(key)")
+//                    print("that is the value and : \("\(self.selectedDay),\(currentArray[indexPath.row])") , that's the key : \(key)")
                     if  "\(self.selectedDay),\(currentArray[indexPath.row])" == key {
                         cell.selectRow.isSelected = true
                     }
@@ -268,9 +268,9 @@ extension BookNowTablesVC {
             //            sender.setBackgroundImage(#imageLiteral(resourceName: "Circled Down Left 2_77cd52_32"), for: .selected)
             if let index = self.selectedDatesDict["\(self.selectedDay),\(currentArray[sender.tag])"] , index == "\(currentArray[sender.tag])" {
                 //                selectedDatesDict.remove(at: index)
-                print("that is the current array before deletion : \(selectedDatesDict)")
+//                print("that is the current array before deletion : \(selectedDatesDict)")
                 selectedDatesDict.removeValue(forKey: "\(self.selectedDay),\(currentArray[sender.tag])")
-                print("that is the current array after : \(selectedDatesDict)")
+//                print("that is the current array after : \(selectedDatesDict)")
             }
             let index = self.theSelectedArray[sender.tag]
             
@@ -279,7 +279,7 @@ extension BookNowTablesVC {
             }
             
         }
-        print("that is the current array : \(selectedDatesDict)")
+//        print("that is the current array : \(selectedDatesDict)")
     }
     
     

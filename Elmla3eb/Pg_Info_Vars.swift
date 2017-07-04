@@ -184,8 +184,10 @@ class Pg_Images_Data {
         return x
     }
     var image : String{
-        guard  let x = _image , x != "" else {print("that's the _image path : \(_image)"); return "" }
-        print("that's the imageURL.IMAGES_URL + x   : \(x)")
+        guard  let x = _image , x != "" else {
+//            print("that's the _image path : \(_image)");
+            return "" }
+//        print("that's the imageURL.IMAGES_URL + x   : \(x)")
         return imageURL.IMAGES_URL + x
     }
     

@@ -40,7 +40,7 @@ class PointsViewController: UIViewController {
     var myRewardPointReached : Int?
     var pointsData : [Points_Data]? {
         didSet{
-            guard let data = pointsData , data.count > 2 else { fatalError("PointData");
+            guard let data = pointsData , data.count > 2 else { /*fatalError("PointData");*/
                 self.view?.squareLoading.stop(0)
                 self.navigationController?.popViewController(animated: true)
                 return }
@@ -50,7 +50,7 @@ class PointsViewController: UIViewController {
             self.points5000.text = "\(data[1].points)"
             self.points10000.text = "\(data[2].points)"
 
-            print("that is the points : \(data[0].points , data[0])")
+//            print("that is the points : \(data[0].points , data[0])")
             guard currentPoints > data[0].points else {
                 undo1rdSenaryo()
                 myRewardPointReached = nil
@@ -123,7 +123,7 @@ class PointsViewController: UIViewController {
         self.view.squareLoading.start(0)
         getPointClass.getPointsData { [weak self] (dataArray, sms, state) in
             guard state , let data = dataArray , data.count > 2 else {
-                print("Soomething wentWoring  the data count is : \( dataArray) and state is : \(state)" )
+//                print("Soomething wentWoring  the data count is : \( dataArray) and state is : \(state)" )
                 return }
             DispatchQueue.main.async {
                 
@@ -146,12 +146,14 @@ class PointsViewController: UIViewController {
     }
     
     @IBAction func usePointsBtnAct(_ sender: UIButton) {
-        print("that is the c urrent points : \(currentPoints) , \(myRewardPointReached)")
-        guard let point = myRewardPointReached , let data = pointsData , point >= data[0].points else {
+//        print("that is the c urrent points : \(currentPoints) , \(myRewardPointReached)")
+        guard let point = myRewardPointReached , let data = pointsData , point >= data[0].points  else {
             ad.showAlert(langDicClass().getLocalizedTitle("Not Enough Points!!"), "")
             return }
+        let points =  abs(currentPoints - point)
         self.loadingActivity.startAnimating()
-        getPointClass.post_PointsReward(points: point) { [weak self] (points , state, sms) in
+//        print("that's my currentPoints : \(currentPoints)\n myRewardPointReached : \(point)\n new Points : \(points)")
+        getPointClass.post_PointsReward(points: points) { [weak self] (points , state, sms) in
             guard state else {
                 DispatchQueue.main.async {
                     

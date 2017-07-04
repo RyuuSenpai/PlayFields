@@ -205,7 +205,7 @@ class  RatePg_Data {
      private   let source = Constants.API.Parameters()
     
     var pg_name : String {
-        print("That's the pg_name : \(_pg_name)")
+//        print("That's the pg_name : \(_pg_name)")
         guard  let x = _pg_name else { return "" }
         return x
     }
@@ -254,8 +254,10 @@ class NearByFields_Data {
     private var _image  : String?
     
     var image : String{
-        guard  let x = _image , x != "" else {print("that's the _image path : \(_image)"); return "" }
-        print("that's the imageURL.IMAGES_URL + x   : \(x)")
+        guard  let x = _image , x != "" else {
+//            print("that's the _image path : \(_image)");
+            return "" }
+//        print("that's the imageURL.IMAGES_URL + x   : \(x)")
         return imageURL.IMAGES_URL + x
     }
     

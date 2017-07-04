@@ -134,7 +134,9 @@ class CheckPhoneValidVC: UIViewController {
                 //active
                 sendConfirmatioCode()
             }else {//resend
-                guard let id = userId else { print("User id == nil "); return }
+                guard let id = userId else {
+//                    print("User id == nil ");
+                    return }
                 setUIEnabled(enabled: false )
                 user.postResendVerificationCode(user_id: id ,completed: {[weak weakSelf = self] (sms, state) in
                     
@@ -154,7 +156,7 @@ class CheckPhoneValidVC: UIViewController {
                 ad.showAlert( langDicClass().getLocalizedTitle("All Fields are Required"), "")
                 return }
             user.postLoginData(mobileNum: mobile , userPassword: password) { [weak weakSelf = self ] (data) in
-                print("that is the login response : \(data)")
+//                print("that is the login response : \(data)")
                 if data.1 {
                     if  let x = data.0 {
                         
@@ -223,7 +225,18 @@ class CheckPhoneValidVC: UIViewController {
     }
     
     func dismissVCs() {
-        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
+        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
+            let transition: CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            //                    self.dismissViewControllerAnimated(false, completion: nil)
+            
+            x.dismiss(animated: false , completion: nil)
+        }
+        else if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
             let transition: CATransition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -234,7 +247,7 @@ class CheckPhoneValidVC: UIViewController {
             
             x.dismiss(animated: false , completion: nil)
         }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
-            print("YOYOOY 2 Views ")
+//            print("YOYOOY 2 Views ")
             y.dismiss(animated: true, completion: nil)
         }
     }
@@ -282,7 +295,7 @@ class CheckPhoneValidVC: UIViewController {
         if let id = userId   {
             userModel.getPhoneConfirmation(user_id: id , code :code, completed: { [weak weakSelf = self ] (state, sms) in
                 
-                print("that's the state :\(state), and that's sms : \(sms)")
+//                print("that's the state :\(state), and that's sms : \(sms)")
                 if state {
                       weakSelf?.timer?.invalidate()
                     ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:"default")

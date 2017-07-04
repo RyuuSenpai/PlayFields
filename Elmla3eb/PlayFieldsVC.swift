@@ -34,7 +34,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     var userLong : String?
     var nearFieldsData : [NearByFields_Data]?{
         didSet {
-            print("that's the data : \(nearFieldsData)")
+//            print("that's the data : \(nearFieldsData)")
             nearFieldsSelected()
             tableView?.reloadData()
         }
@@ -60,10 +60,8 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         navigationItem.leftBarButtonItem?.isEnabled = false
         //        self.menuBtn.isEnabled = false
         navigationItem.leftBarButtonItem?.image = UIImage(named: "")
-        self.view.squareLoading.start(0)
         tableView.delegate = self
         tableView.dataSource = self
-        setupLocationM()
         
         let nib = UINib(nibName: "FieldsCell", bundle: nil)
         
@@ -73,13 +71,18 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         //
         //        self.view.addGestureRecognizer(tapped)
         
-        reservationAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.alpha = 0
+        self.view.squareLoading.start(0)
+        setupLocationM()
+
+        reservationAPI()
+
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -87,11 +90,14 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         animateTableView()
     }
     
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.servicesCount = 0
+    }
     func reservationAPI() {
         reservationsArray.getPGReservationStatus { [weak self]  (data, sms, state) in
             
-            print("that's the data \(data)")
+//            print("that's the data \(data)")
             guard state else { self?.servicesCount += 1;return }
             self?.confirmedP_G = data?.confirmed
             self?.unconfirmedP_G = data?.not_confirmed
@@ -123,7 +129,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
             
         }
         self.buttonTag = sender.tag
-        print("that's button tag : \(self.buttonTag) ")
+//        print("that's button tag : \(self.buttonTag) ")
         switch sender.tag {
         case 0:
             nearFieldsSelected()
@@ -170,13 +176,13 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
             case  .notDetermined :
                 print("Not  .notDetermined")
             case .restricted, .denied:
-                print("No access")
+//                print("No access")
                 servicesCount += 1
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Access")
             }
         } else {
-            print("Location services are not enabled")
+//            print("Location services are not enabled")
         }
         
         
@@ -184,7 +190,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
             self.locationManager.requestWhenInUseAuthorization()
         }else {
             servicesCount += 1
-            print("2- Location services are not enabled")
+//            print("2- Location services are not enabled")
 
         }
         locationManager.distanceFilter = kCLDistanceFilterNone

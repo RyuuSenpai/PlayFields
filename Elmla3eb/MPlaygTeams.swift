@@ -18,33 +18,33 @@ class MPlaygTeams {
     func getAllTeamsData(completed:@escaping ([VarsPlaygTeams]?) ->()) {
         
         let url = source.GET_TEAMS_ALL + source.API_TOKEN
-        print("URL: is get all data RL : \(url)")
+//        print("URL: is get all data RL : \(url)")
         
 //        let request = GLOBAL.alamoRequest(query_url: url )
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             //        Alamofire.request(request).responseJSON { (response) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("KILLVA: is  MHomeData_GET_ALL_HOME_DATA getting the data Mate : %@", response.result.value!)
+//                                print("KILLVA: is  MHomeData_GET_ALL_HOME_DATA getting the data Mate : %@", response.result.value!)
                 
                 
                 
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: is  ـGetAllTeamsData state : \(state) sms : \(sms)  data : %@ \n", response.result.value!)
+//                print("KILLVA: is  ـGetAllTeamsData state : \(state) sms : \(sms)  data : %@ \n", response.result.value!)
                 
-                print("_GetAllHomeData STATUS:\(success) , sms: \(sms) \n")
+//                print("_GetAllHomeData STATUS:\(success) , sms: \(sms) \n")
                 
                 //                    let playGrounds = PlayGrounds(success: success, sms: sms)
                 
@@ -62,7 +62,7 @@ class MPlaygTeams {
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+//                print("that is fail i n getting the data Mate : %@",response.result.error)
                 completed(nil)
                 break
             }
@@ -73,34 +73,34 @@ class MPlaygTeams {
     func getTeamDataById(id:Int , completed : @escaping (VarsPlaygTeams?) ->()) {
         
         let url = source.GET_TEAMS_BY_ID + "\(id)" + source.API_TOKEN
-        print("URL: is getHomeDataById URL : \(url)")
+//        print("URL: is getHomeDataById URL : \(url)")
         
 //        let request = GLOBAL.alamoRequest(query_url: url )
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             //        Alamofire.request(request).responseJSON { (response) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                //                print("KILLVA: is  MHomeData_GET_ALL_HOME_DATA getting the data Mate : %@", response.result.value!)
+//                                print("KILLVA: is  MHomeData_GET_ALL_HOME_DATA getting the data Mate : %@", response.result.value!)
                 
                 
                 
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                //                print("KILLVA: is  getHomeDataById state : \(success) sms : \(sms)  data : %@", response.result.value!)
+//                                print("KILLVA: is  getHomeDataById state : \(success) sms : \(sms)  data : %@", response.result.value!)
                 
                 //                    let playGrounds = PlayGrounds(success: success, sms: sms)
-                print("KILLVA: _GetTeamDataById STATUS:\(state) , sms: \(sms) data : \(response.result.value) \n")
+//                print("KILLVA: _GetTeamDataById STATUS:\(state) , sms: \(sms) data : \(response.result.value) \n")
                 
                 let playGJData = json[self.parSource.data]
                 
@@ -113,7 +113,7 @@ class MPlaygTeams {
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+//                print("that is fail i n getting the data Mate : %@",response.result.error)
                 completed(nil)
                 break
             }
@@ -123,28 +123,28 @@ class MPlaygTeams {
     
     func postTeamDataCreated(name:String  , completed:@escaping (Bool)-> ()) {
         let parameters : Parameters = [parSource.pg_name : name ]
-        print("that is the parameters in getReviewRequesData : \(parameters)")
+//        print("that is the parameters in getReviewRequesData : \(parameters)")
         
         
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
         
         //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
         let url = source.POST_TEAMS_DATA + source.API_TOKEN
-        print("THAT: is Post all data RL : \(url)")
+//        print("THAT: is Post all data RL : \(url)")
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
                     
                     // got an error in getting the data, need to handle it
-                    print("error fetching data from url")
-                    print(response.result.error!)
+//                    print("error fetching data from url")
+//                    print(response.result.error!)
                     return
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  _PostHomedataCreated getting the data Mate : %@", response.result.value!)
+//                print("that is  _PostHomedataCreated getting the data Mate : %@", response.result.value!)
                 
                 
                 //                let data = json[self.parSource.data]
@@ -154,13 +154,13 @@ class MPlaygTeams {
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
                 //                let xData = VarsHomeData(jsonData: data)
-                print("KILLVA: _PostTeamDataCreated STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
+//                print("KILLVA: _PostTeamDataCreated STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
                 
                 completed(state)
                 
                 break
             case .failure(_) :
-                print("that is fail i n getting the data Mate : %@",response.result.error)
+//                print("that is fail i n getting the data Mate : %@",response.result.error)
                 completed(false)
                 break
             }

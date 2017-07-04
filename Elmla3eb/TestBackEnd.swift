@@ -18,7 +18,7 @@ class TestBackEnd {
 //        
 ////        homePage.postHomedataCreated(title: "Apps1011", image: "ss") { (booleanD) in
 ////            
-////            //            print("the operation success is : \(booleanD)")
+//                        print("the operation success is : \(booleanD)")
 ////        }
 //         homePage.getAllHomeData { (dataArray) in
 //            
@@ -60,14 +60,16 @@ class TestBackEnd {
         }
         playgNews.getPgNewsByID(id: 1) { (data) in
             
-            guard let data = data else { print("error getting pg news by id data is empty"); return }
+            guard let data = data else {
+//                print("error getting pg news by id data is empty");
+                return }
             
             for x in data {
-            print("that is arabic sentince : \(x.content)")
-            print("that is arabic sentince : \(x.title)")
+//            print("that is arabic sentince : \(x.content)")
+//            print("that is arabic sentince : \(x.title)")
             }
         }
-        print("--------------------------")
+//        print("--------------------------")
 //        playgNews.callWebService()
        
         
@@ -80,8 +82,8 @@ class TestBackEnd {
         
         pg_Times.getPgTimesByID(id: 1) { (data) in
             
-            print("that is arabic sentince : \(data?.pg_id)")
-            print("that is arabic sentince : \(data?.times)")
+//            print("that is arabic sentince : \(data?.pg_id)")
+//            print("that is arabic sentince : \(data?.times)")
 
         }
         
@@ -119,7 +121,6 @@ class TestBackEnd {
         
 //        x.getSearchData(pg_name: "Code Grass", address: "", rating: "", fromData: "", toDate: "") { (data) in
 //            
-//            print("YAYAYAYAYA")
 //        }
     }
     

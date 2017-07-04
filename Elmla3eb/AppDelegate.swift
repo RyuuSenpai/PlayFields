@@ -21,7 +21,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     
     var window: UIWindow?
     
-    var production = false 
+    var production = true 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -57,7 +57,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         
          setupFCM()
         
-         print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
+//         print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
          return true
     }
     
@@ -105,33 +105,35 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     }
     //@NOtification
     func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
-        print(remoteMessage.appData)
+//        print(remoteMessage.appData)
     }
     //@ENd
     //    func fcm() { }
     func fcm() {
         guard let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
             UserDefaults.standard.setValue(nil, forKey: "FCMToken")
-            print("⚠️No userID Found  ❌ "); return }
+//            print("⚠️No userID Found  ❌ ");
+            return }
         
         guard  let refreshedToken = FIRInstanceID.instanceID().token() else {
-            print("⚠️No Token Returned From FCM  ❌ "); return }
-        print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
+//            print("⚠️No Token Returned From FCM  ❌ ");
+            return }
+//        print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
         
         if     UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
-            print("✅Updating Token ✳️found  userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? String))\n ,FCMToken \(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String))\n, refreshedToken \(refreshedToken)\n")
+//            print("✅Updating Token ✳️found  userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? String))\n ,FCMToken \(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String))\n, refreshedToken \(refreshedToken)\n")
             
             let userFCM = MUserData()
             userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
                 
                 if state {
                     UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
-                    print("✅Updated Token  ✅ ")
+//                    print("✅Updated Token  ✅ ")
                     
                 }
             })
         }else {
-            print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? Int))\n ,♎️FCMTokenNSDefault  📴📳\(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String)) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
+//            print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? Int))\n ,♎️FCMTokenNSDefault  📴📳\(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String)) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
         }
         
     }
@@ -140,9 +142,9 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     //    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        print("that's the userInfo : \(userInfo)")
-        print("that's the message Id  : \(String(describing: userInfo["gcm_message_id"]))")
-        print("application.applicationState: \(application.applicationState)")
+//        print("that's the userInfo : \(userInfo)")
+//        print("that's the message Id  : \(String(describing: userInfo["gcm_message_id"]))")
+//        print("application.applicationState: \(application.applicationState)")
         //        if application.applicationState == .active {
         //            //write your code here when app is in foreground
         ////            print("User is in here")
@@ -195,7 +197,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     }
     
     func saveUserLogginData(email:String?,photoUrl : String? , uid : Int?,name:String?) {
-        print("saving User Data email: \(String(describing: email)) , photoUrl: \(String(describing: photoUrl)),uid: \(String(describing: uid)),  , photoUrl: \(String(describing: name))")
+//        print("saving User Data email: \(String(describing: email)) , photoUrl: \(String(describing: photoUrl)),uid: \(String(describing: uid)),  , photoUrl: \(String(describing: name))")
         if email != "default" {
             if   let email = email   {
                 UserDefaults.standard.setValue(email, forKey: "userEmail")
@@ -208,7 +210,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
             
             if  let photo = photoUrl {
                 UserDefaults.standard.setValue(photo, forKey: "profileImage")
-                print("saing this photo : \(photo)")
+//                print("saing this photo : \(photo)")
             }else {
                 UserDefaults.standard.setValue(nil, forKey: "profileImage")
             }
