@@ -21,7 +21,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     
     var window: UIWindow?
     
-    var production = true 
+    var production = false 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
@@ -57,6 +57,9 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         
          setupFCM()
         
+        if UserDefaults.standard.value(forKey: "FCMToken") as? String == nil || UserDefaults.standard.value(forKey: "userId") as? Int == nil {
+            saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
+        }
 //         print("that is UDID : \(UIDevice.current.identifierForVendor!.uuidString)")
          return true
     }
@@ -156,6 +159,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     
     //@End Notification
     
+
     
     func showAlert(_ title : String,_ sms : String) {
         guard title != "√√" else {

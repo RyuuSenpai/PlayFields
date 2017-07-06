@@ -167,21 +167,36 @@
                 let secondsInDay: TimeInterval = 86400
                 toMinDate = Date(timeInterval: secondsInDay, since: fromDate)
                 datePicker.minimumDate = toMinDate
+                let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
+                if let date = toMinDate {
+                datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: fromDate)
+                }
             } else {
                 isFromDate = true
                 toTxt.text = ""
                 fromTxt.text = ""
                  clearBtnUIMangment(clearToTimeBtn, toTxt)
                 datePicker.minimumDate = Date()
+                let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
+                datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
+
             }
             
             
-            let secondsInMonth: TimeInterval = 360 * 24 * 60 * 60
-            datePicker.maximumDate = Date(timeInterval: secondsInMonth, since: Date())
             
             datePicker.datePickerMode = UIDatePickerMode.date
             textField.inputView = datePicker
             datePicker.addTarget(self, action: #selector(self.timePickerChanged(_:)), for: .valueChanged)
+        }
+        
+        switch textField {
+          case fromTxt :
+            clearBtnUIMangment(clearFromTimebtn, fromTxt)
+        case toTxt :
+            clearBtnUIMangment(clearToTimeBtn, toTxt)
+        default:
+            clearBtnUIMangment(clearCityBtn, cityTxt)
+            
         }
     }
     

@@ -299,6 +299,7 @@ class CheckPhoneValidVC: UIViewController {
                 if state {
                       weakSelf?.timer?.invalidate()
                     ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:"default")
+                    ad.fcm()
                      weakSelf?.dismissVCs()
                     
                 }else {

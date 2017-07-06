@@ -8,14 +8,9 @@
  
  import UIKit
  import AlamofireImage
-// import InfiniteCollectionView
  import SwiftyStarRatingView
 
- //protocol homePagestaticsAndPagerData : class  {
- //    func headerDataRetriver(statics : Statics_Data, pager:[HomePagerData_Data])
- //    func playPauseDidTap()
- //
- //}
+
  var firstLaunchMainpage = true
  class MainPageVC: UIViewController  , UIGestureRecognizerDelegate  {
     
@@ -79,11 +74,11 @@
         // Do any additional setup after loading the view.
         //        HPHeaderVC.Instance.delegate = self
         //        GetMainPageData.
-        if let x = UserDefaults.standard.value(forKey: "userId") {
-//            print("that's userID : \(x)")
-        }else {
+//        if let x = UserDefaults.standard.value(forKey: "userId") {
+//            print("🔑that's userID : \(x)")
+//        }else {
 //         print("user id == nil ")
-        }
+//        }
           self.menuBtn.isEnabled = false
         self.menuBtn.image = UIImage(named: "")
         self.view.squareLoading.start(0.0)
@@ -399,41 +394,20 @@
     func skipRating(_ sender : UIButton) {
         self.dismissView()
     }
-    /*
-  - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{  
-     for (UICollectionViewCell *cell in [self.mainImageCollection visibleCells]) {   
-     NSIndexPath *indexPath = [self.mainImageCollection indexPathForCell:cell];        NSLog(@"%@",indexPath);    }}
-  */
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        for cell in ratingCollectionView.visibleCells  as [UICollectionViewCell]    {
-//            let indexPath = ratingCollectionView.indexPath(for: cell as UICollectionViewCell)
-//            if let index = indexPath?.row {
-//                ratingPageeControl.currentPage = index
-//            }
-//            print(" scoll : \(indexPath?.row)")
-//        }
-//    }
+
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        print(" scoll : \(scrollView)")
+
         for cell in ratingCollectionView.visibleCells  as [UICollectionViewCell]    {
             let indexPath = ratingCollectionView.indexPath(for: cell as UICollectionViewCell)
             if let index = indexPath?.row {
                 ratingPageeControl.currentPage = index
             }
-//            print(" scoll : \(indexPath?.row - 1)")
+
         }
 
     }
-//    func scrollView(_ scrollView: UIScrollView, pageIndex: Int) {
-//        print("index : \(pageIndex) , scoll : \(scrollView)")
-//        if scrollView == ratingCollectionView {
-//         ratingPageeControl.currentPage = pageIndex
-////        if rateData.count == 1 {
-////            self.ratingCollectionView.scrollsToTop = true
-////        }
-//    }
-//    }
+    
  }
  
  
@@ -441,7 +415,7 @@
  extension MainPageVC : pagerTappeingControll {
     
     func didSelectImageAt(index: Int) {
-//        print("that is the item number in main page  : \(index) PlayFieldsVC")
+
         performSegue(withIdentifier: "ToPlayFieldsVC", sender: self)
         
     }

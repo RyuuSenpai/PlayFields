@@ -151,11 +151,14 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
         return cell
     }
     
-    //    var showsDetails = false {
-    //        didSet {
-    //            secondViewHeight.priority = showsDetails ? 250 : 999
-    //        }
-    //    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        
+        return  langDicClass().getLocalizedTitle("Delete")
+    }
+   
+    
+    
     
     func selectedCell(_ sender : UIButton) {
         ad.confirmationAlert("", "proceed with the process?") { 
@@ -262,7 +265,9 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
         
         guard let id =  self.currentTimeArray?[indexPath.row].id, id != 0  else {
              return false }
-        return true 
+        guard  let confirmationState = self.currentTimeArray?[indexPath.row].confirmedBool/* if attendance  do nothing*/ ,!confirmationState else {
+             return false }
+        return true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -272,9 +277,7 @@ class BookedFieldsDatesCell: UITableViewCell , UITableViewDelegate,UITableViewDa
             guard let id =  self.currentTimeArray?[indexPath.row].id, id != 0  else {
                 ad.showAlert("default", "")
                 return }
-               guard  let confirmationState = self.currentTimeArray?[indexPath.row].confirmedBool/* if attendance  do nothing*/ ,!confirmationState else {
-               ad.showAlert("XX", langDicClass().getLocalizedTitle("You Can't cancel Attendance"))
-                return }
+            
 
             ad.confirmationAlert("Cancel Reservation!!", "proceed with the process?", {
                 weak var weakSelf = self

@@ -431,7 +431,7 @@ class MUserData {
    
     func postLogout( completed : @escaping ( String,Bool)->()) {
          let parameters : Parameters = [ parSource.user_id : USER_ID  , parSource.token : UserDefaults.standard.value(forKey: "FCMToken") as? String  ?? "" ]
-//        print("parameters postLogout: \(parameters)")
+        print("parameters postLogout: \(parameters)")
 
         let url = source.POST_LOGOUT  + source.API_TOKEN
 //        print("postLogout URL: \(url)")
@@ -450,7 +450,7 @@ class MUserData {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-//                print("that is  postLogout getting the data Mate : %@", response.result.value!)
+                print("that is  postLogout getting the data Mate : %@", response.result.value!)
                 
                 
                 //                let data = json["data"]
@@ -458,7 +458,7 @@ class MUserData {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-//                print("KILLVA: postLogout STATUS:\(state) , sms: \(sms) \n")
+                print("KILLVA: postLogout STATUS:\(state) , sms: \(sms) \n")
                 
                 
                 completed(sms,state)

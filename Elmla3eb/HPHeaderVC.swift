@@ -163,13 +163,6 @@ class HPHeaderVC: UICollectionReusableView ,FSPagerViewDelegate,FSPagerViewDataS
         }
         pagerCont.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
-//        fieldPagerLbl = UILabel(frame: CGRect(x: 10 , y: 2 , width: pagerCont.frame.width, height: pagerCont.frame.height))
-//        //        label.center = CGPoint(x: 8, y: 12)
-//        fieldPagerLbl.textAlignment = NSTextAlignment.center
-//        fieldPagerLbl.textColor = UIColor.white
-//        fieldPagerLbl.font = UIFont.boldSystemFont(ofSize: 16)
-//        pagerCont.addSubview(fieldPagerLbl)
-        
         pagerViewx.addSubview(pagerCont)
         self.addSubview(pagerViewx)
         

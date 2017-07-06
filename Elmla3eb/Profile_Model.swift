@@ -67,9 +67,9 @@ class Profile_Model {
         let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
         
         // for printing
-//        print("that's the edit profile parameters  : \(parameters)")
-//        print("that is the parameters in postProfileData : \([parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : "",parSource.snap_chat : snap_chat ?? "",parSource.position : position])")
-   
+//        let printIt :Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "nil",parSource.snap_chat : snap_chat ?? "",parSource.position : position] as [String : Any]
+//         print("that is the parameters in postProfileData : \(printIt)")
+//
         let url = source.POST_PROFILE_DATA + source.API_TOKEN
 //        print("URL: is postProfileData   : \(url)")
         
@@ -86,7 +86,7 @@ class Profile_Model {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value)
                 
                 
                 
@@ -101,6 +101,7 @@ class Profile_Model {
                 }else {
                     imageUrl = ""
                 }
+                print("That's the new im,age : \(imageUrl)")
                 let  state =  success == 1 ? true : false
 //                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)\n data :  \(json)")
                 

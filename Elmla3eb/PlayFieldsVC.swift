@@ -23,7 +23,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     
     var servicesCount = 0 {
         didSet {
-            if servicesCount == 2 {
+            if servicesCount >= 2 {
                 self.view.squareLoading.stop(0)
             }
         }
@@ -57,11 +57,15 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.squareLoading.start(0)
+
         navigationItem.leftBarButtonItem?.isEnabled = false
         //        self.menuBtn.isEnabled = false
         navigationItem.leftBarButtonItem?.image = UIImage(named: "")
+        
         tableView.delegate = self
         tableView.dataSource = self
+        setupLocationM()
         
         let nib = UINib(nibName: "FieldsCell", bundle: nil)
         
@@ -71,18 +75,15 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         //
         //        self.view.addGestureRecognizer(tapped)
         
+        reservationAPI()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.alpha = 0
-        self.view.squareLoading.start(0)
-        setupLocationM()
-
-        reservationAPI()
-
+        
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -90,10 +91,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         animateTableView()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.servicesCount = 0
-    }
+    
     func reservationAPI() {
         reservationsArray.getPGReservationStatus { [weak self]  (data, sms, state) in
             
@@ -175,6 +173,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
             switch(CLLocationManager.authorizationStatus()) {
             case  .notDetermined :
                 print("Not  .notDetermined")
+                   self.locationManager.requestWhenInUseAuthorization()
             case .restricted, .denied:
 //                print("No access")
                 servicesCount += 1
@@ -186,13 +185,13 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         }
         
         
-        if CLLocationManager.authorizationStatus() == .notDetermined {
-            self.locationManager.requestWhenInUseAuthorization()
-        }else {
-            servicesCount += 1
-//            print("2- Location services are not enabled")
-
-        }
+//        if CLLocationManager.authorizationStatus() == .notDetermined {
+//         
+//        }else {
+//            servicesCount += 1
+////            print("2- Location services are not enabled")
+//            
+//        }
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -239,7 +238,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         
         let userLocation:CLLocation = locations[0] as CLLocation // note that locations is same as the one in the function declaration
         
-//        print("that's the user Location : \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
+        //        print("that's the user Location : \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
         userLat = "\(userLocation.coordinate.latitude)"
         userLong = "\(userLocation.coordinate.longitude)"
         manager.stopUpdatingLocation()
@@ -254,7 +253,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     func getNearByFieldsData() {
         
         guard let lat = userLat, let long = userLong else {
-             self.servicesCount += 1
+            self.servicesCount += 1
             return
         }
         playGroudModel = GetPlayGroundsData()
@@ -262,7 +261,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
             
             if state {
                 guard let data = data else { DispatchQueue.main.async {
-                     self?.servicesCount += 1
+                    self?.servicesCount += 1
                     }; return }
                 self?.nearFieldsData = data
                 self?.servicesCount += 1
@@ -272,14 +271,15 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
         }
         
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+ 
+ 
+    
+}
+
+extension PlayFieldsVC : ViewPlayFeildVCDelegate_updateUnconfirmedList {
+    
+    func fetchPlay_gData() {
+         reservationAPI()
+    }
     
 }

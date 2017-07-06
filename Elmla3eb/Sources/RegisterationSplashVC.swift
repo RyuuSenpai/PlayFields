@@ -248,17 +248,18 @@ import CDAlertView
         //(name: "eslam", mobile: "0123123122", city: "cairo", area: "51", pgType: 1, email: "eslam@gmail.com", password: "1234§")
 //         guard let id = userNameText.text  else { return"Email Field can't be Empty" }
 //        guard  !passwordText.text .isEmpty,!mobile.isEmpty,!mobile.isEmpty,!mobile.isEmpty,!mobile.isEmpty,!mobile.isEmpty else { return"ld can't be Empty" }
-        guard  let userName = userNameText.text,!userName.isEmpty  else { return"User name Field can't be Empty" }
-        guard  let password = passwordText.text, !password.isEmpty else { return"password Field can't be Empty" }
-        guard   let mobile = self.phoneNumText.text,!password.isEmpty  else { return "Mobile Field can't be Empty" }
-        guard  let city = cityTxt.text, !city.isEmpty  else { return"City Field can't be Empty" }
-        guard  let district = districtTxt.text, !district.isEmpty  else { return"District Field can't be Empty" }
+        guard  let userName = userNameText.text,!userName.isEmpty  else { return langDicClass().getLocalizedTitle("User name Field can't be Empty") }
+        guard  let password = passwordText.text, !password.isEmpty else { return langDicClass().getLocalizedTitle("password Field can't be Empty") }
+        guard   let mobile = self.phoneNumText.text,!password.isEmpty  else { return langDicClass().getLocalizedTitle("Mobile Field can't be Empty") }
+        guard  let city = cityTxt.text, !city.isEmpty  else { return langDicClass().getLocalizedTitle("City Field can't be Empty") }
+        guard  let district = districtTxt.text, !district.isEmpty  else { return langDicClass().getLocalizedTitle("District Field can't be Empty")
+        }
         guard mobile.validPhoneNumber else {
-            return "Phone Number isn't in the right Format"
+            return langDicClass().getLocalizedTitle("Phone Number isn't in the right Format" )
         }
 
 //        guard id.doesNOTcontainSpecialCharacters else { return "UserName Contain Special Chars"  }
-        guard password.isValidPassword else { return "Password has to be more than 8 Characters" }
+        guard password.isValidPassword else { return langDicClass().getLocalizedTitle("Password has to be more than 8 Characters") }
 //        guard mobile.doesNOTcontainSpecialCharacters else { return "PhoneNumber Contain Special Chars" }
 
         let user = MUserData()
@@ -279,15 +280,19 @@ import CDAlertView
                 
 //                weakSelf?.performSegue(withIdentifier: "SignedupSegue", sender: weakSelf)
            
-            
+            let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:langDicClass().getLocalizedTitle(langDicClass().getLocalizedTitle("Verification Code has been Sent")) , type: .success)
+         
             DispatchQueue.main.async {
                 
-                ad.showAlert("√√", langDicClass().getLocalizedTitle("Verification Code has been Sent"))
-                
+                alert.isUserInteractionEnabled = false
+                alert.show()
             }
-
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1)  {            // Code
+                alert.hide(isPopupAnimated: true)
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.3)  {            // Code
                 // your code here
+                
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id

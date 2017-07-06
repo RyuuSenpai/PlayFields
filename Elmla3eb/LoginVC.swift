@@ -230,7 +230,17 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
     }
     
     func dismissVCs() {
-        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
+        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 6 Views
+            let transition: CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            //                    self.dismissViewControllerAnimated(false, completion: nil)
+            
+            x.dismiss(animated: false , completion: nil)
+        } else   if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
             let transition: CATransition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -259,7 +269,8 @@ class LoginVC: MirroringViewController , UIGestureRecognizerDelegate {
             transition.type = kCATransitionReveal
             transition.subtype = kCATransitionFromRight
             self.view.window?.layer.add(transition, forKey: nil)
-            y.dismiss(animated: false, completion: nil)
+//            y.dismiss(animated: false, completion: nil)
+            ad.reload()
         }else if let y =  self.presentingViewController?.presentingViewController {
 //            print("YOYOOY 2 Views ")
             y.dismiss(animated: true, completion: nil)

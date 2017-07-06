@@ -10,6 +10,9 @@ import UIKit
 import AlamofireImage
 import CDAlertView
 
+protocol pointsDelegateUpdateProfile : class {
+    func updateData()
+}
 class PointsViewController: UIViewController {
 
     @IBOutlet weak var points1000: UILabel!
@@ -35,12 +38,13 @@ class PointsViewController: UIViewController {
     @IBOutlet weak var secondSlider: UISlider!
 
       let gray = UIColor(colorLiteralRed: 204/255, green: 204/255, blue: 204/255, alpha: 1)     //   #989898
-    
-    let getPointClass = Profile_Model()
-    var myRewardPointReached : Int?
+    weak var delegate : pointsDelegateUpdateProfile?
+   private  let getPointClass = Profile_Model()
+  private   var myRewardPointReached : Int?
     var pointsData : [Points_Data]? {
         didSet{
             guard let data = pointsData , data.count > 2 else { /*fatalError("PointData");*/
+                delegate?.updateData()
                 self.view?.squareLoading.stop(0)
                 self.navigationController?.popViewController(animated: true)
                 return }
@@ -171,6 +175,7 @@ class PointsViewController: UIViewController {
                     self?.totalPointLbl.text = "\(point)"
                     self?.currentPoints = point
                 }
+                self?.delegate?.updateData()
                 self?.loadingActivity.stopAnimating()
                 self?.navigationController?.popViewController(animated: true )
 //                self?.fetchData()

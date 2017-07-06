@@ -118,7 +118,7 @@ class ReservationModel {
         let url = source.POST_CANCEL_REQUEST + source.API_TOKEN
 //        print("postCancelRequest URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {  (response:DataResponse<Any>) in
-//            print(response.result)
+            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {

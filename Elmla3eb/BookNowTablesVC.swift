@@ -199,7 +199,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
             if selectedDatesDict.count > 0 {
                 for (key,_) in selectedDatesDict {
 //                    print("that is the value and : \("\(self.selectedDay),\(currentArray[indexPath.row])") , that's the key : \(key)")
-                    if  "\(self.selectedDay),\(currentArray[indexPath.row])" == key {
+                    if  "\(self.selectedDay),\(theSelectedArray[indexPath.row])" == key {
                         cell.selectRow.isSelected = true
                     }
                 }
@@ -262,14 +262,14 @@ extension BookNowTablesVC {
                 ViewPlayFeildVC.seletedTimes_ID.append(selected_PmTimes_ID[sender.tag])
             }
             
-            self.selectedDatesDict["\(self.selectedDay),\(currentArray[sender.tag])"] = "\(currentArray[sender.tag])"
+            self.selectedDatesDict["\(self.selectedDay),\(theSelectedArray[sender.tag])"] = "\(currentArray[sender.tag])"
             
         }else {
             //            sender.setBackgroundImage(#imageLiteral(resourceName: "Circled Down Left 2_77cd52_32"), for: .selected)
-            if let index = self.selectedDatesDict["\(self.selectedDay),\(currentArray[sender.tag])"] , index == "\(currentArray[sender.tag])" {
+            if let index = self.selectedDatesDict["\(self.selectedDay),\(theSelectedArray[sender.tag])"] , index == "\(currentArray[sender.tag])" {
                 //                selectedDatesDict.remove(at: index)
 //                print("that is the current array before deletion : \(selectedDatesDict)")
-                selectedDatesDict.removeValue(forKey: "\(self.selectedDay),\(currentArray[sender.tag])")
+                selectedDatesDict.removeValue(forKey: "\(self.selectedDay),\(theSelectedArray[sender.tag])")
 //                print("that is the current array after : \(selectedDatesDict)")
             }
             let index = self.theSelectedArray[sender.tag]

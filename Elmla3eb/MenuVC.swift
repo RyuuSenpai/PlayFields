@@ -86,7 +86,6 @@ class MenuVC: UIViewController {
         }
         playgroundsBtn.setTitle(name, for: .normal)
 
-        loadImage()
         
         let userLogged = ad.isUserLoggedIn()
         if !userLogged   {
@@ -97,6 +96,7 @@ class MenuVC: UIViewController {
      override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupAnimation()
+        loadImage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -122,7 +122,7 @@ class MenuVC: UIViewController {
             imageTransition: .crossDissolve(0.2)
         )
         
-
+        print("That's the new image url : \(imageurl)")
     }
 
     
@@ -139,7 +139,8 @@ class MenuVC: UIViewController {
         return 
     }
     let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-    let x = storyb.instantiateViewController(withIdentifier: "ProfileVC")
+    let x = storyb.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+//    x.profileImageDelegate = self
     let navb = UINavigationController(rootViewController: x)
     self.present(navb, animated: true, completion: nil)
     }
@@ -368,3 +369,13 @@ extension MenuVC {
     }
 }
 
+
+
+//
+//extension MenuVC : profileupdatedImageDelegate {
+//    
+//    func delegateUpdate() {
+//        
+//        loadImage()
+//    }
+//}

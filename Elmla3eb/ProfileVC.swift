@@ -11,6 +11,10 @@ import CDAlertView
 import Alamofire
 import AlamofireImage
 
+
+//protocol profileupdatedImageDelegate : class {
+//    func delegateUpdate()
+//}
 class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
     
     @IBOutlet weak var cityTxt: UITextField!
@@ -57,6 +61,8 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     //            }
     //    }
     //    }
+    
+//    weak var profileImageDelegate : profileupdatedImageDelegate?
     var intPoints = 0 
     var positions =  [String]()
     var isFbUser = false
@@ -119,15 +125,12 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         }
         
         setupPickerV()
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated )
         fetchdata()
+
+        
     }
     
+  
     
     func fetchdata() {
         user.getProfileData { [weak self] (data, sms, state) in
@@ -167,12 +170,16 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                         })
                         
                     }
-                    
-                    self?.view.squareLoading.stop(0)
-                }
+                    DispatchQueue.main.async {
+                        self?.view.squareLoading.stop(0)
+                    }}
             }else {
+                DispatchQueue.main.async {
                 self?.view.squareLoading.stop(0)
-                self?.showAlert(langDicClass().getLocalizedTitle("Network timeout"), "failed to get Data")
+                self?.showAlert(langDicClass().getLocalizedTitle(" Network Time out "), langDicClass().getLocalizedTitle("Please Check Your Net Connection and try again!!"))
+                   
+                    self?.dismiss(animated: true, completion: nil)  
+                }
             }
         }
     }
@@ -250,6 +257,11 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
                     self?.disableTxts = true
                     self?.changedImage = false
                     UserDefaults.standard.setValue(self?.userName.text, forKey: "usreName")
+                    
+//                    let changedImageBool = self?.changedImage
+//                    if changedImageBool != nil , x {
+//                        self?.profileImageDelegate?.delegateUpdate()
+//                    }
                 }
             }else {
                 DispatchQueue.main.async {
@@ -322,6 +334,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
 //        print("Pointssssss")
         let vc = PointsViewController(nibName : "PointsViewController" , bundle : nil )
         vc.currentPoints = intPoints
+        vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -376,6 +389,8 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
         
     }// end convertImageToBase64
     
+    
+ 
     
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -672,10 +687,54 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         
-        present(imagePicker, animated: true, completion: nil)
+        self.present(imagePicker, animated: true, completion: nil)
+//        self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     
     
 }
 
+
+extension ProfileVC {
+    
+    func getTextfield(view: UIView) -> [UITextField] {
+        var results = [UITextField]()
+        for subview in view.subviews as [UIView] {
+            if let textField = subview as? UITextField {
+                results += [textField]
+            } else {
+                results += getTextfield(view: subview)
+            }
+        }
+        return results
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let allTextFields = getTextfield(view: self.view)
+        for textField in allTextFields
+        {
+            textField.font = UIFont.boldSystemFont(ofSize: 14)
+            var widthOfText: CGFloat = textField.text!.size(attributes: [NSFontAttributeName: textField.font!]).width
+            var widthOfFrame: CGFloat = textField.frame.size.width
+            while (widthOfFrame - 15) < widthOfText { // try here to find the value that fits your needs
+                let fontSize: CGFloat = textField.font!.pointSize
+                textField.font = textField.font?.withSize(CGFloat(fontSize - 0.5))
+                widthOfText = (textField.text?.size(attributes: [NSFontAttributeName: textField.font!]).width)!
+                widthOfFrame = textField.frame.size.width
+            }
+        }
+    }
+}
+
+
+
+extension ProfileVC : pointsDelegateUpdateProfile {
+    
+    func updateData() {
+        
+        print("Fetched Points Delegate ")
+        self.fetchdata()
+    }
+}

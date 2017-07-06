@@ -13,6 +13,7 @@
 		520044A51EC1CAAC0030B772 /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */; };
 		520044AA1EC1D5060030B772 /* SearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044AC1EC1D5060030B772 /* SearchVC.xib */; };
 		520044B51EC1DE300030B772 /* NoNetConnectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044B71EC1DE300030B772 /* NoNetConnectionVC.xib */; };
+		520292CA1F0CE22700E486C5 /* PointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520292CC1F0CE22700E486C5 /* PointsViewController.xib */; };
 		520B71671EE7F74B00C84591 /* ConfirmedOrNotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */; };
 		52178C8F1EC47D8900181384 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 52178C8E1EC47D8900181384 /* cities.json */; };
 		521DBE7A1EAF4082005D06A5 /* NoNetConnectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */; };
@@ -70,7 +71,6 @@
 		52AFAA961E828318009F6467 /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */; };
 		52AFAA981E82955D009F6467 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFAA971E82955D009F6467 /* MenuVC.swift */; };
 		52B418C01F04F26800966587 /* PointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B418BE1F04F26800966587 /* PointsViewController.swift */; };
-		52B418C11F04F26800966587 /* PointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B418BF1F04F26800966587 /* PointsViewController.xib */; };
 		52B716571EDC69EB006B1A79 /* CheckPhoneValidVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */; };
 		52BA8A7D1E92925300BFDC3C /* SplashLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */; };
 		52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52BBF11C1ECB3659002AE6EA /* GoogleService-Info.plist */; };
@@ -124,6 +124,8 @@
 		520044B41EC1D8990030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		520044B61EC1DE300030B772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoNetConnectionVC.xib; sourceTree = "<group>"; };
 		520044B91EC1DE330030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/NoNetConnectionVC.strings; sourceTree = "<group>"; };
+		520292CB1F0CE22700E486C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PointsViewController.xib; sourceTree = "<group>"; };
+		520292CE1F0CE23200E486C5 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/PointsViewController.strings; sourceTree = "<group>"; };
 		520B71661EE7F74B00C84591 /* ConfirmedOrNotData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmedOrNotData.swift; sourceTree = "<group>"; };
 		52178C8E1EC47D8900181384 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		521DBE781EAF4082005D06A5 /* NoNetConnectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoNetConnectionVC.swift; sourceTree = "<group>"; };
@@ -182,7 +184,6 @@
 		52AFAA8B1E828318009F6467 /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
 		52AFAA971E82955D009F6467 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		52B418BE1F04F26800966587 /* PointsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsViewController.swift; sourceTree = "<group>"; };
-		52B418BF1F04F26800966587 /* PointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointsViewController.xib; sourceTree = "<group>"; };
 		52B716581EDC69EB006B1A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CheckPhoneValidVC.xib; sourceTree = "<group>"; };
 		52B7165B1EDC6A04006B1A79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CheckPhoneValidVC.strings; sourceTree = "<group>"; };
 		52BA8A7C1E92925300BFDC3C /* SplashLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashLoginVC.swift; sourceTree = "<group>"; };
@@ -533,7 +534,7 @@
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
 				520044AC1EC1D5060030B772 /* SearchVC.xib */,
 				52B716591EDC69EB006B1A79 /* CheckPhoneValidVC.xib */,
-				52B418BF1F04F26800966587 /* PointsViewController.xib */,
+				520292CC1F0CE22700E486C5 /* PointsViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -707,7 +708,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52B418C11F04F26800966587 /* PointsViewController.xib in Resources */,
+				520292CA1F0CE22700E486C5 /* PointsViewController.xib in Resources */,
 				52AF58A31E769EB0001284DD /* 3-star-rating.png in Resources */,
 				528623261EDD8EAF0048E95F /* SearchResultVC.xib in Resources */,
 				714AECF61E6303EF001127CE /* LaunchScreen.storyboard in Resources */,
@@ -913,6 +914,15 @@
 				520044B91EC1DE330030B772 /* ar */,
 			);
 			name = NoNetConnectionVC.xib;
+			sourceTree = "<group>";
+		};
+		520292CC1F0CE22700E486C5 /* PointsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				520292CB1F0CE22700E486C5 /* Base */,
+				520292CE1F0CE23200E486C5 /* ar */,
+			);
+			name = PointsViewController.xib;
 			sourceTree = "<group>";
 		};
 		52257B351EF7FDC2004CF2A9 /* FieldsCell.xib */ = {

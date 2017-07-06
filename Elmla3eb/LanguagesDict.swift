@@ -46,6 +46,7 @@ class LanguagesDict {
                          "There's no Dates to pick":"لا توجد اوقات متوفره حاليا",
                          "Code Field is Empty" : "حقل رمز التاكيد فارغ",
                          " Network Time out " : " خطأ في الاتصال ",
+                         "Please Check Your Net Connection and try again!!" : "برجاء التأكد من وجود شبكه النت!",
                          "Failed to Upload Changes" : "فشل في تجديد البيانات",
                          "Confirm" :"تاكيد",
                          "Phone number isn't in a Correct Format":"رقم التلفون غير صحيح",
@@ -114,7 +115,18 @@ class LanguagesDict {
                          "Position" : "التمركز",
                          "Pick Team" : "إختر فريق",
                          "Not Enough Points!!": "لا توجد نقاط كافيه!!",
-                         "Wait for our representative Call" : "انتظر إتصال  من الإداره"
+                         "Wait for our representative Call" : "انتظر إتصال  من الإداره",
+                         "Delete" : "حذف",
+                         "'From' Field is required to fill 'To' Field." : "يجب اختيار تاريخ بدأ البحث اولا",
+                         "Phone Number isn't in the right Format" : "رقم الهاتف ليس بالصيغه الصحيحه٫",
+                         "District Field can't be Empty" : "حقل المنطقه يجب ان لا يكون فارع٫",
+                         "Password has to be more than 8 Characters" : "رقم المرور يجب ان يكون اكبر من ٨ احرف" ,
+                         "City Field can't be Empty" : "حقل المدينه مطلوب لانهاء العمليه" ,
+                         "Mobile Field can't be Empty" : "رقم الهاتف مطلوب لانهاء العمليه" ,
+                         "password Field can't be Empty" : "كلمه السرب مطلوبه لاتمام العمليه" ,
+                         "User name Field can't be Empty" : "الاسم مطلوب لانهاء العمليه",
+                         "Text Shouldn't Contain White Spaces" : "يجب ان لا يحتوي الحقل هلي مسافات فارغه"
+                         
          //                             "":"",
         //                             "":"",
         //                             "":"",

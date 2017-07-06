@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "Use Your Points"; ObjectID = "2Rn-og-ULu"; */
+"2Rn-og-ULu.normalTitle" = "إستبدال النقاط";
+
+/* Class = "UILabel"; text = "??"; ObjectID = "6zj-aM-Oe3"; */
+"6zj-aM-Oe3.text" = "??";
+
+/* Class = "UILabel"; text = "??"; ObjectID = "7wL-hy-WIb"; */
+"7wL-hy-WIb.text" = "??";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "A2T-Sd-Q6t"; */
+"A2T-Sd-Q6t.text" = "0";
+
+/* Class = "UILabel"; text = "Point"; ObjectID = "Dk0-b2-Ir3"; */
+"Dk0-b2-Ir3.text" = "نقطه";
+
+/* Class = "UILabel"; text = "Point"; ObjectID = "MLZ-fL-5G6"; */
+"MLZ-fL-5G6.text" = "نقطه";
+
+/* Class = "UILabel"; text = "Point"; ObjectID = "Tjd-29-P7h"; */
+"Tjd-29-P7h.text" = "نقطه";
+
+/* Class = "UILabel"; text = "??"; ObjectID = "flS-yW-cSp"; */
+"flS-yW-cSp.text" = "??";
+
+/* Class = "UILabel"; text = "Your Points"; ObjectID = "nz2-Xd-fDB"; */
+"nz2-Xd-fDB.text" = "نقاطك الحاليه";

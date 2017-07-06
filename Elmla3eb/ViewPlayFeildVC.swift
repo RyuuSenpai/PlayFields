@@ -22,6 +22,10 @@ class PlaygroundDBData {
     var ball = false
     var light = false
 }
+
+protocol ViewPlayFeildVCDelegate_updateUnconfirmedList : class {
+    func fetchPlay_gData()
+}
 class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSource  {
     
     @IBOutlet weak var bookNowDoneBtn: UIButton!
@@ -76,6 +80,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             }
         }
     }
+    
+    weak var delegate : ViewPlayFeildVCDelegate_updateUnconfirmedList?
     var haveBall : Bool = false
     var haveLighting :Bool = false
     //@end owner var
@@ -111,7 +117,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             self.noNewsLbl.alpha = 0
         }
     }
-    weak var delegate : pagerTappeingControll?
+    weak var delegatee : pagerTappeingControll?
     
     let pfInfo = GetpgInfosWebServ()
     var indexIs : Int?
@@ -389,7 +395,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     }
     
     @IBAction func bookNowBtnAct(_ sender: UIButton? = nil    ) {
-        
+       
         guard !isOwnerEditing else {
             
 //            print(("tbhat's the changed value : price : \(price ?? 0) , hasball \(haveBall ? 1 : 0)  haslight \(haveLighting ? 1 : 0):"))
@@ -444,6 +450,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                         let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message: langDicClass().getLocalizedTitle("You have Booked This Field waiting for approval"), type: .success)
                         
                         DispatchQueue.main.async {
+                            self?.callUnconfirmedDelegation()
                             alert.isUserInteractionEnabled = false
                             self?.activityIndicator.stopAnimating()
                             alert.show()
@@ -482,6 +489,14 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         
         
         
+    }
+    
+    func callUnconfirmedDelegation() {
+        let n = self.navigationController?.viewControllers.count
+        if let navCount = n ,let _ = self.navigationController?.viewControllers[navCount-2] as? PlayFieldsVC {
+            print("PlayField view i s the prev one ")
+            delegate?.fetchPlay_gData()
+        }
     }
     
     func setPlaygDetails() {
@@ -686,10 +701,17 @@ extension ViewPlayFeildVC {
         let alertController = UIAlertController(title: title, message: sms, preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: langDicClass().getLocalizedTitle("Confirm"), style: .default) { [weak self] (_) in
-            if let field = alertController.textFields?[0] , let txt = field.text ,!txt.isEmpty{
+            if let field = alertController.textFields?[0] , let txt = field.text ,!txt.isEmpty {
                 // store your data
                 //                    UserDefaults.standard.synchronize()
-                if placeHolder == "Price" {
+                guard  !txt.hasSuffix(" ") else {
+                    ad.showAlert("X", langDicClass().getLocalizedTitle("Text Shouldn't Contain White Spaces"))
+
+                    return }
+
+         
+                
+                if placeHolder == langDicClass().getLocalizedTitle("Price") {
                     guard txt.ispriceValue else { ad.showAlert("X", langDicClass().getLocalizedTitle("price has to be only written in numbers"))
                         return  }
                     label.text = txt + " \(langDicClass().getLocalizedTitle(" SAR"))"
@@ -699,13 +721,13 @@ extension ViewPlayFeildVC {
                 }else{
                     label.text = txt
                 }
-                if placeHolder == "Address" {
+                if placeHolder == langDicClass().getLocalizedTitle("Address") {
                     self?.ownerDataDict["address"] = txt
                     self?.semiDBData.address = txt
-                }else  if placeHolder == "Field Type" {
+                }else  if placeHolder == langDicClass().getLocalizedTitle("Field Type") {
                     self?.ownerDataDict["type"] = txt
                     self?.semiDBData.type = txt
-                }else if placeHolder == "Field Name" {
+                }else if placeHolder == langDicClass().getLocalizedTitle("Field Name") {
                     self?.ownerDataDict["name"] = txt
                     self?.semiDBData.name = txt
                 }
@@ -766,7 +788,7 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: true)
 //        print("that is the item number in Header : \(pagerView.currentIndex) ")
-        self.delegate?.didSelectImageAt(index: pagerView.currentIndex)
+        self.delegatee?.didSelectImageAt(index: pagerView.currentIndex)
     }
     
     // MARK:- FSPagerViewDelegate
@@ -816,7 +838,12 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
 //         self.view3SecLbl.delegate = self
 //         self.view4SecLbl.delegate = self
 //    }
-//
+
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        
+//    
+//        
+//    }
 //    func textFieldDidEndEditing(_ textField: UITextField) {
 //        switch textField {
 //        case view1SecLbl://FieldName //Number of fields

@@ -17,31 +17,25 @@ extension PlayFieldsVC : UITableViewDelegate {
         switch self.buttonTag {
         case 0 :
             guard let data = nearFieldsData else {
-//                print("NearBy Fields fatal error: Index out of range ") ;  
-                return    }
+                 return    }
             guard indexPath.row <= data.count else {
-//                print("NearBy Fields fatal error: Index out of range ") ;    
-                return     }
+                 return     }
 //            print("that is the index : \(data.count) and index is : \(indexPath.row)")
 
       setUpPlayGView(data[indexPath.row].id,data[indexPath.row].pgName)
             case 1:
                 guard let data = unconfirmedP_G else {
-//                    print("unconfirmedP_G Fields fatal error: Index out of range ") ;  
-                    return    }
+                     return    }
                 guard indexPath.row <= data.count else {
-//                    print("unconfirmedP_G Fields fatal error: Index out of range ") ;
-                    return     }
+                     return     }
 //                print("that is the unconfirmedP_G index : \(data.count) and index is : \(indexPath.row)")
-                
+//            self.performSegue(withIdentifier: "PlayFieldsVCSegue", sender: data[indexPath.row])
                 setUpPlayGView(data[indexPath.row].pg_id,data[indexPath.row].pg_name)
         case 2 :
             guard let data = confirmedP_G else {
-//                print("confirmedP_G Fields fatal error: Index out of range ") ;
-                return    }
+                 return    }
             guard indexPath.row <= data.count else {
-//                print("confirmedP_G Fields fatal error: Index out of range ") ;
-                return     }
+                 return     }
 //            print("that is the confirmedP_G index : \(data.count) and index is : \(indexPath.row)")
             
             setUpPlayGView(data[indexPath.row].pg_id,data[indexPath.row].pg_name)
@@ -57,6 +51,9 @@ extension PlayFieldsVC : UITableViewDelegate {
        
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "ViewPlayFeildVC") as! ViewPlayFeildVC
              detailVC.pg_id = id
+        if self.buttonTag == 1 {
+        detailVC.delegate = self
+        }
         detailVC.title = name
        
 //        print("that is the field name : \(title)")
