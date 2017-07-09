@@ -113,8 +113,10 @@ class MenuVC: UIViewController {
     
  
     func loadImage() {
-        guard   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String else { return }
-        guard let url = URL(string: imageurl ) else { return }
+        guard   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String else {
+//            print("that's the image : nil : \(UserDefaults.standard.value(forKey: "profileImage") as? String) ")
+            return }
+         guard let url = URL(string: imageurl ) else { return }
         self.profileImage.af_setImage(
             withURL: url,
             placeholderImage: UIImage(named: "nobody_m.original"),
@@ -122,7 +124,7 @@ class MenuVC: UIViewController {
             imageTransition: .crossDissolve(0.2)
         )
         
-        print("That's the new image url : \(imageurl)")
+//        print("That's the new image url : \(imageurl)")
     }
 
     

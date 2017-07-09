@@ -53,6 +53,14 @@ class MUserData {
 
 //                print("KILLVA: _PostLoginData success : \(success) STATUS:\(state) , sms: \(sms) data : \(response.result.value)\n")
                 let code = data["code"].intValue
+                let image = data["image"].stringValue
+                if image != "" {
+                    let imageURL = Constants.API.URLS()
+                    let imageUrl =  imageURL.IMAGES_URL + image
+//                    print("that's the Image Url : \(imageUrl)")
+                    UserDefaults.standard.setValue(imageUrl, forKey: "profileImage")
+                 }
+                
                 var smsREsponse = ""
                 switch code {
                case 1 : smsREsponse = langDicClass().getLocalizedTitle("User not found")
@@ -74,6 +82,7 @@ class MUserData {
                     completed((xUser,state,sms,nil,smsREsponse))
                 }
                 break
+                
             case .failure(_) :
                 
                 if let data = response.data {
@@ -431,7 +440,7 @@ class MUserData {
    
     func postLogout( completed : @escaping ( String,Bool)->()) {
          let parameters : Parameters = [ parSource.user_id : USER_ID  , parSource.token : UserDefaults.standard.value(forKey: "FCMToken") as? String  ?? "" ]
-        print("parameters postLogout: \(parameters)")
+//        print("parameters postLogout: \(parameters)")
 
         let url = source.POST_LOGOUT  + source.API_TOKEN
 //        print("postLogout URL: \(url)")
@@ -450,7 +459,7 @@ class MUserData {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  postLogout getting the data Mate : %@", response.result.value!)
+//                print("that is  postLogout getting the data Mate : %@", response.result.value!)
                 
                 
                 //                let data = json["data"]
@@ -458,7 +467,7 @@ class MUserData {
                 let success = json[self.parSource.success].intValue
                 let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
-                print("KILLVA: postLogout STATUS:\(state) , sms: \(sms) \n")
+//                print("KILLVA: postLogout STATUS:\(state) , sms: \(sms) \n")
                 
                 
                 completed(sms,state)

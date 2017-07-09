@@ -225,31 +225,26 @@ class CheckPhoneValidVC: UIViewController {
     }
     
     func dismissVCs() {
-        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
-            let transition: CATransition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            transition.type = kCATransitionReveal
-            transition.subtype = kCATransitionFromRight
-            self.view.window?.layer.add(transition, forKey: nil)
-            //                    self.dismissViewControllerAnimated(false, completion: nil)
-            
-            x.dismiss(animated: false , completion: nil)
-        }
-        else if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
-            let transition: CATransition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            transition.type = kCATransitionReveal
-            transition.subtype = kCATransitionFromRight
-            self.view.window?.layer.add(transition, forKey: nil)
-            //                    self.dismissViewControllerAnimated(false, completion: nil)
-            
-            x.dismiss(animated: false , completion: nil)
-        }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
-//            print("YOYOOY 2 Views ")
-            y.dismiss(animated: true, completion: nil)
-        }
+        let transition: CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionReveal
+        transition.subtype = kCATransitionFromRight
+        self.view.window?.layer.add(transition, forKey: nil)
+        ad.reload()
+//        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
+//           
+//            x.dismiss(animated: false , completion: nil)
+//        }
+//        else if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
+//          
+//            x.dismiss(animated: false , completion: nil)
+//        }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
+////            print("YOYOOY 3 Views ")
+//            y.dismiss(animated: true, completion: nil)
+//            
+////             ad.reload()
+//        }
     }
     
     @IBAction func sendPhoneNumBtnAct(_ sender: UIButtonX) {

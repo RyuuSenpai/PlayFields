@@ -76,8 +76,8 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                     let url = "http://graph.facebook.com/\(id)/picture?type=large"
 //                    let imageURL = URL(string: url )
 //                    let imageString : String =  "\(imageURL!)"
-                        let uniqUserId = FBSDKAccessToken.current().userID
-                    print("that is uniqUserId 🛡\(uniqUserId)🛡 and tyhat's the normal one : \(id)")
+//                        let uniqUserId = FBSDKAccessToken.current().userID
+//                    print("that is uniqUserId 🛡\(uniqUserId)🛡 and tyhat's the normal one : \(id)")
                     self?.fbId = id
                     self?.fbImage = url
                     if  let email  = result["email"] as? String {

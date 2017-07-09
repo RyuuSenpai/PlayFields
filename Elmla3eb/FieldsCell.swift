@@ -117,6 +117,7 @@ class FieldsCell: UITableViewCell {
             fieldNameLbl.text = data.pg_name
             bookingtimesLbl.text =   "\(data.pg_BookingNumbers)"
             
+          
             ratingContainerView.isHidden = false
             if 0...5 ~=  data.rating {
                 ratingView.value = CGFloat(data.rating)
