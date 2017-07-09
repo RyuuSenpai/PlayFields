@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import Alamofire
+import SwiftyStarRatingView
 
 class FieldsCell: UITableViewCell {
 
@@ -26,6 +27,8 @@ class FieldsCell: UITableViewCell {
     @IBOutlet weak var fieldNameLbl: UILabel!
     @IBOutlet weak var calnderDateLbl: UILabel!
     @IBOutlet weak var fieldLocationLbl: UILabel!
+    @IBOutlet weak var ratingView: SwiftyStarRatingView!
+    @IBOutlet weak var ratingContainerView: UIVisualEffectView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -113,6 +116,14 @@ class FieldsCell: UITableViewCell {
             priceLbl.text = data.price + " " + langDicClass().getLocalizedTitle("per Hour")
             fieldNameLbl.text = data.pg_name
             bookingtimesLbl.text =   "\(data.pg_BookingNumbers)"
+            
+            ratingContainerView.isHidden = false
+            if 0...5 ~=  data.rating {
+                ratingView.value = CGFloat(data.rating)
+            }else {
+                ratingView.value = 0
+            }
+            
             if let url = URL(string: data.image) {
             courtImage.af_setImage(
                 withURL: url ,
@@ -130,6 +141,7 @@ class FieldsCell: UITableViewCell {
         }else {
             bookNowBtn.alpha = 1
         }
+        
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

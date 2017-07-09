@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="404" height="147"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="404" height="146.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="404" height="147"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uyB-nL-lIV">
@@ -148,7 +148,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmed Reservations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="a81-MV-HUy">
-                                                        <rect key="frame" x="31" y="4" width="213" height="20.5"/>
+                                                        <rect key="frame" x="31" y="0.0" width="213" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -208,17 +208,63 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsa-cL-1FM">
+                                <rect key="frame" x="3" y="110" width="135" height="28"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QqJ-Tq-PLQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="135" height="28"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8pE-18-ir4" customClass="SwiftyStarRatingView" customModule="SwiftyStarRatingView">
+                                            <rect key="frame" x="5" y="0.0" width="73.5" height="28"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.84705882349999995" green="0.7843137255" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                                    <real key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="accurateHalfStars" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8pE-18-ir4" firstAttribute="height" secondItem="QqJ-Tq-PLQ" secondAttribute="height" id="Gm0-Sc-Nei"/>
+                                        <constraint firstItem="8pE-18-ir4" firstAttribute="leading" secondItem="QqJ-Tq-PLQ" secondAttribute="leading" constant="5" id="Wfz-uS-Zyk"/>
+                                        <constraint firstItem="8pE-18-ir4" firstAttribute="width" secondItem="QqJ-Tq-PLQ" secondAttribute="width" multiplier="0.55" id="ZCC-5z-agM"/>
+                                        <constraint firstItem="8pE-18-ir4" firstAttribute="centerY" secondItem="QqJ-Tq-PLQ" secondAttribute="centerY" id="pM5-nU-8pr"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.46192744006849318" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aUc-uk-E1K" firstAttribute="top" secondItem="uyB-nL-lIV" secondAttribute="top" constant="2" id="BOx-1o-j86"/>
                             <constraint firstAttribute="bottom" secondItem="aUc-uk-E1K" secondAttribute="bottom" constant="2" id="BQw-ca-QMH"/>
+                            <constraint firstItem="vsa-cL-1FM" firstAttribute="centerX" secondItem="9xk-K9-X2B" secondAttribute="centerX" id="Eb4-JQ-4N5"/>
+                            <constraint firstItem="vsa-cL-1FM" firstAttribute="height" secondItem="a81-MV-HUy" secondAttribute="height" id="GeY-xf-2O8"/>
                             <constraint firstItem="9xk-K9-X2B" firstAttribute="height" secondItem="uyB-nL-lIV" secondAttribute="height" id="Q3L-po-aWs"/>
                             <constraint firstItem="aUc-uk-E1K" firstAttribute="leading" secondItem="9xk-K9-X2B" secondAttribute="trailing" constant="4" id="RdI-iC-77J"/>
                             <constraint firstAttribute="height" constant="140.5" id="VjK-k2-fxy"/>
                             <constraint firstItem="9xk-K9-X2B" firstAttribute="centerY" secondItem="uyB-nL-lIV" secondAttribute="centerY" id="eb0-70-QkQ"/>
+                            <constraint firstItem="vsa-cL-1FM" firstAttribute="width" secondItem="9xk-K9-X2B" secondAttribute="width" constant="-6" id="fdJ-ME-ccv"/>
                             <constraint firstItem="9xk-K9-X2B" firstAttribute="leading" secondItem="uyB-nL-lIV" secondAttribute="leading" id="g3f-Lf-qpF"/>
                             <constraint firstAttribute="trailing" secondItem="aUc-uk-E1K" secondAttribute="trailing" id="mSB-0E-IIh"/>
+                            <constraint firstAttribute="bottom" secondItem="vsa-cL-1FM" secondAttribute="bottom" constant="3" id="w8T-r1-gUz"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="materialDesign" value="YES"/>
@@ -247,6 +293,8 @@
                 <outlet property="fieldNameLbl" destination="7NG-2v-1a7" id="Ifq-Oo-bp4"/>
                 <outlet property="nearbyStackView" destination="mun-0j-IBH" id="XZg-Ha-c9b"/>
                 <outlet property="priceLbl" destination="lQ7-eW-tTe" id="yd6-Vu-om2"/>
+                <outlet property="ratingContainerView" destination="vsa-cL-1FM" id="11U-IJ-SqD"/>
+                <outlet property="ratingView" destination="8pE-18-ir4" id="zyy-eb-OW3"/>
                 <outlet property="timeLbl" destination="xHX-LQ-NxL" id="IS2-BP-BMa"/>
             </connections>
             <point key="canvasLocation" x="-47" y="-23.5"/>

@@ -50,7 +50,7 @@ extension MainPageVC : UICollectionViewDataSource {
         if 0...5 ~=  data.rate {
             cell.starRatingView.value = CGFloat(data.rate)
         }else {
-            cell.starRatingView.value = 3
+            cell.starRatingView.value = 0
         }
 //
         cell.courtImage.image = UIImage(named: "courtplaceholder_3x")

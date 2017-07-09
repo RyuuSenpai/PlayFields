@@ -21,7 +21,7 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     
     var window: UIWindow?
     
-    var production = false 
+    var production = true 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         let FBhandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])

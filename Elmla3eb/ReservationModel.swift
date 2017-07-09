@@ -114,7 +114,8 @@ class ReservationModel {
        guard  let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  else { return }
         let parameters : Parameters = [parSource.id:id , "player" : userType]
         
-        
+//                print("postCancelRequest parameters: \(parameters)")
+
         let url = source.POST_CANCEL_REQUEST + source.API_TOKEN
 //        print("postCancelRequest URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {  (response:DataResponse<Any>) in
