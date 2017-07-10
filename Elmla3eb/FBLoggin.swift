@@ -174,8 +174,8 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
             }
             
                 ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id, name : "default")
-                UserDefaults.standard.setValue("player", forKey: "User_Type")
                 ad.fcm()
+                UserDefaults.standard.setValue("player", forKey: "User_Type")
                  self.dismissVCs()
             
 //                weakSelf?.performSegue(withIdentifier: "LoggedInSegue", sender:weakSelf)
@@ -188,6 +188,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                     weakSelf?.showAlert(langDicClass().getLocalizedTitle("Something Went Wrong"), langDicClass().getLocalizedTitle("try again!!"))
                     return
                 }
+                 UserDefaults.standard.setValue("player", forKey: "User_Type")
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id

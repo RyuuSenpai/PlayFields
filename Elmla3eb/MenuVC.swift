@@ -181,7 +181,8 @@ class MenuVC: UIViewController {
     
     
     @IBAction func signouBtnAct(_ sender: UIButton) {
- 
+        print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current()) \n andthat's the id :\(USER_ID)")
+
         ad.confirmationAlert("Logging out!!", "proceed with the process?") {
             
             self.loggoutAction()
@@ -202,7 +203,7 @@ class MenuVC: UIViewController {
             if data.1 {
                 DispatchQueue.main.async{
                     ad.saveUserLogginData(email: nil, photoUrl: nil , uid : nil, name : nil )
-//                    print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current())")
+//                    print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current()) \n andthat's the id :\(USER_ID)")
                     let manager = FBSDKLoginManager()
                     manager.logOut()
                     FBSDKAccessToken.setCurrent(nil)
@@ -214,10 +215,27 @@ class MenuVC: UIViewController {
                     ad.reload()
                 }
             }else {
+                guard  !data.0.contains("User not found") else {
+                    DispatchQueue.main.async{
+                        ad.saveUserLogginData(email: nil, photoUrl: nil , uid : nil, name : nil )
+                        //                    print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current()) \n andthat's the id :\(USER_ID)")
+                        let manager = FBSDKLoginManager()
+                        manager.logOut()
+                        FBSDKAccessToken.setCurrent(nil)
+                        FBSDKProfile.setCurrent(nil)
+                        UserDefaults.standard.setValue(nil, forKey: "User_Type")
+                        self?.view.isUserInteractionEnabled = true
+                        self?.setUIEnabled(true)
+                        //                    self?.dismiss(animated: true, completion: nil)
+                        ad.reload()
+                    }
+                    return
+                }
                 DispatchQueue.main.async{
                     self?.setUIEnabled(true)
                     ad.showAlert("default","")
-                    
+//                    print("that is the  Token :  \( UserDefaults.standard.value(forKey: "FCMToken") as? String) \n andthat's the id :\(USER_ID)")
+
                     self?.view.isUserInteractionEnabled = true
                 }
             }

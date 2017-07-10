@@ -254,8 +254,8 @@ class Pg_Details_Data {
     private var _user_Id : Int?
     private var _pg_name : String?
     private var _Address : String?
-    private var _lat : String?
-    private var _lang : String?
+    private var _lat : Double?
+    private var _lang : Double?
     private var _price : String?
     private var _pg_Booking_Num : Int?
     
@@ -277,12 +277,12 @@ class Pg_Details_Data {
         guard  let x = _Address else { return "" }
         return x
     }
-    var lat : String{
-        guard  let x = _lat else { return "" }
+    var lat : Double{
+        guard  let x = _lat else { return 0.0 }
         return x
     }
-    var lang : String{
-        guard  let x = _lang else { return "" }
+    var lang : Double{
+        guard  let x = _lang else { return 0.0 }
         return x
     }
     var price : String{
@@ -309,8 +309,8 @@ class Pg_Details_Data {
         self._user_Id = json[source.user_id].intValue
         self._pg_name = json[source.pg_name].stringValue
         self._Address = json[source.address].stringValue
-        self._lat = json[source.map_lat].stringValue
-        self._lang = json[source.map_lon].stringValue
+        self._lat = json[source.map_lat].doubleValue
+        self._lang = json[source.map_lon].doubleValue
         self._price = json[source.price].stringValue
         self._pg_Booking_Num = json[source.pg_BookingNumbers].intValue
         

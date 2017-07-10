@@ -69,6 +69,8 @@
 	<string>To find the Nearest Playfield for you.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To Display Your Profile Image</string>
+	<key>NSCameraUsageDescription</key>
+	<string>camera use for Profile Image </string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -11,6 +11,7 @@ import CDAlertView
 import Alamofire
 import AlamofireImage
 
+import MapKit
 class PlaygroundDBData {
     var  name = ""
     var address = ""
@@ -131,6 +132,9 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     var pgDetails : Pg_Details_Data?
     let pf_Info = GetpgInfosWebServ()
     
+    var lat : Double?
+    var long : Double?
+    
     lazy var bookNowTableChildView  : BookNowTablesVC = {
         let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc = storyb.instantiateViewController(withIdentifier: "BookNowTablesVC") as! BookNowTablesVC
@@ -195,7 +199,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         }
         
         
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"NavToMap"), style: .plain, target: self, action: #selector(getPlayGroundDirections))
+
     }
     
     
@@ -241,6 +246,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                 weakSelf?.semiDBData.ball =  infoo.footballAvailable
                 weakSelf?.semiDBData.light =  infoo.lightAvailable
               
+                weakSelf?.lat = detailss.lat
+                weakSelf?.long = detailss.lang
 
             }
 //            print("that is  weakSelf? \n .times_msg : \(weakSelf?.times_msg )")
@@ -585,6 +592,35 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
     }
     
     
+    func getPlayGroundDirections() {
+        //Defining destination
+        guard let latitude = lat ,latitude != 0.0  , let longitude = long , longitude != 0.0 else {
+            ad.showAlert("X" , langDicClass().getLocalizedTitle("This Field Doesn't Support This Feature"))
+            return
+        }
+        
+        let regionDistance:CLLocationDistance = 1000;
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        
+        let options = [MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)]
+        
+        var placemark : MKPlacemark?
+        if #available(iOS 10.0, *) {
+            placemark = MKPlacemark(coordinate: coordinates)
+        } else {
+            // Fallback on earlier versions
+            placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        }
+        guard let pm = placemark else { return }
+        let mapItem = MKMapItem(placemark: pm)
+        if let txt = title , !txt.isEmpty {
+            mapItem.name = txt
+        }
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    
     func setLabelsTitle(fieldName:String,address:String,booksTimes:String,price:String,numberOfFields:String,fieldType:String,hasBall:Bool,hasLight:Bool) {
         
         if self.theCurBtn == detailsBtn {
@@ -823,7 +859,7 @@ extension ViewPlayFeildVC : FSPagerViewDelegate , FSPagerViewDataSource{
     }
     
     
-    
+  
     
 }
 

@@ -119,13 +119,14 @@ class LanguagesDict {
                          "Delete" : "حذف",
                          "'From' Field is required to fill 'To' Field." : "يجب اختيار تاريخ بدأ البحث اولا",
                          "Phone Number isn't in the right Format" : "رقم الهاتف ليس بالصيغه الصحيحه٫",
-                         "District Field can't be Empty" : "حقل المنطقه يجب ان لا يكون فارع٫",
+                         "District Field can't be Empty" : "حقل المنطقه يجب ان لا يكون فارغ٫",
                          "Password has to be more than 8 Characters" : "رقم المرور يجب ان يكون اكبر من ٨ احرف" ,
                          "City Field can't be Empty" : "حقل المدينه مطلوب لانهاء العمليه" ,
                          "Mobile Field can't be Empty" : "رقم الهاتف مطلوب لانهاء العمليه" ,
-                         "password Field can't be Empty" : "كلمه السرب مطلوبه لاتمام العمليه" ,
+                         "password Field can't be Empty" : "كلمه السر مطلوبه لاتمام العمليه" ,
                          "User name Field can't be Empty" : "الاسم مطلوب لانهاء العمليه",
-                         "Text Shouldn't Contain White Spaces" : "يجب ان لا يحتوي الحقل هلي مسافات فارغه"
+                         "Text Shouldn't Contain White Spaces" : "يجب ان لا يحتوي الحقل علي مسافات فارغه",
+                         "This Field Doesn't Support This Feature" : "ذلك الملعب لا يدعم تلك الخاصيه"
                          
          //                             "":"",
         //                             "":"",

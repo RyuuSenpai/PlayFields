@@ -15,7 +15,7 @@ import AlamofireImage
 //protocol profileupdatedImageDelegate : class {
 //    func delegateUpdate()
 //}
-class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationControllerDelegate{
+class ProfileVC: ToSideMenuClass{
     
     @IBOutlet weak var cityTxt: UITextField!
     //ForgotPassword
@@ -339,68 +339,7 @@ class ProfileVC: ToSideMenuClass,UIImagePickerControllerDelegate , UINavigationC
     }
     
     
-    
-    // MARK: - UIImagePickerControllerDelegate Methods
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            profileImage.contentMode = .scaleAspectFill
-            let myThumb  = pickedImage.resizeImageWith(newSize: CGSize(width: 200, height: 200))
-            profileImage.image = myThumb
-            
-            base64String = convertImageToBase64(myThumb)
-            // //           base64String = pickedImage.base64EncodedString
-            //            print("that's base 64 : \(base64String)")
-            
-            //            let imageData:NSData = UIImagePNGRepresentation(pickedImage)! as NSData
-            
-            //            let selectedImage = info[UIImagePickerControllerOriginalImage] as!  UIImage
-            
-            
-            
-            
-            //                         if  let img = UIImageJPEGRepresentation((myThumb 	),1) {
-            //
-            //                let selectedImageData: NSData = NSData(data: img)
-            //
-            //                let selectedImageSize:Int = selectedImageData.length
-            //                print("myThumb3 Size:  KB : \( selectedImageSize / 1024)")
-            //                //OR next possibility
-            //            }
-            //Use image's path to create NSData
-            //            let url:NSURL = NSURL(string : "urlHere")!
-            //Now use image to create into NSData format
-            //            let imageData:NSData = NSData.init(contentsOfURL: url)!
-            
-            //            print("pickedImage 64 : \(convertImageToBase64(pickedImage))")
-            
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func convertImageToBase64(_ image: UIImage) -> String {
-        
-        guard let  imageData = UIImagePNGRepresentation(image) else { return "" }
-        //        let base64String = imageData.base64EncodedStringWithOptions(.allZeros)
-        let base64String = imageData.base64EncodedString()
-        
-        changedImage = true
-        return base64String
-        
-    }// end convertImageToBase64
-    
-    
- 
-    
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //        print(("Canceleeeeddd"))
-        dismiss(animated: true, completion: nil)
-    }
-    //    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    //        dismiss(animated: true, completion: nil)
-    //    }
-    
     func setUIEnabled(enabled:Bool) {
         //        self.fbSigninBtnOL.isEnabled = enabled
         //        self.googleSigninBtnOL.isEnabled = enabled
@@ -679,21 +618,10 @@ extension ProfileVC :  UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldD
         birthDateTxt.text = formatter.string(from: sender.date)
     }
     
-    
-    @IBAction func loadImageButtonTapped(sender: UIButton) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-        
-        self.present(imagePicker, animated: true, completion: nil)
-//        self.presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-    
+                                                         
     
 }
+
 
 
 extension ProfileVC {
@@ -729,6 +657,90 @@ extension ProfileVC {
 }
 
 
+extension ProfileVC : UIImagePickerControllerDelegate , UINavigationControllerDelegate {
+    
+    // MARK: - UIImagePickerControllerDelegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profileImage.contentMode = .scaleAspectFill
+            let myThumb  = pickedImage.resizeImageWith(newSize: CGSize(width: 200, height: 200))
+            profileImage.image = myThumb
+            
+            base64String = convertImageToBase64(myThumb)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func convertImageToBase64(_ image: UIImage) -> String {
+        
+        guard let  imageData = UIImagePNGRepresentation(image) else { return "" }
+        //        let base64String = imageData.base64EncodedStringWithOptions(.allZeros)
+        let base64String = imageData.base64EncodedString()
+        
+        changedImage = true
+        return base64String
+        
+    }// end convertImageToBase64
+    
+    
+    
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        //        print(("Canceleeeeddd"))
+        dismiss(animated: true, completion: nil)
+    }
+    //    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    //        dismiss(animated: true, completion: nil)
+    //    }
+    
+    @IBAction func loadImageButtonTapped(sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Pick Your Profile Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Photo Gallery", style: .default) { [weak self ] action in
+            self?.pickProfileImage(.photoLibrary)
+        })
+        
+        alert.addAction(UIAlertAction(title: "Camera", style: .default) { [weak self ] action in
+            // perhaps use action.title here
+            self?.pickProfileImage(.camera)
+        })
+        alert.addAction(UIAlertAction(title: "Delete Image", style: .destructive) { [weak self ] action in
+            // perhaps use action.title here
+            self?.base64String = "  "
+            self?.changedImage = true
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { action in
+            // perhaps use action.title here
+        })
+        self.present(alert, animated: true)
+    }
+    
+    func pickProfileImage(_ type : UIImagePickerControllerSourceType ) {
+        if type == .camera {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+
+                imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera)!
+                imagePicker.sourceType = .camera
+                imagePicker.allowsEditing = false
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+
+        }else {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            
+            imagePicker.allowsEditing = false
+            imagePicker.sourceType = type
+            
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        
+    }
+}
 
 extension ProfileVC : pointsDelegateUpdateProfile {
     
