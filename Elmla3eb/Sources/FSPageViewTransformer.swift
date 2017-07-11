@@ -172,7 +172,7 @@ open class FSPagerViewTransformer: NSObject {
                 return
             }
             let position = min(max(-position,-1) ,1)
-            let rotation = sin(position*CGFloat(M_PI_2)) * CGFloat(M_PI_4)*1.5
+            let rotation = sin(position*CGFloat(Double.pi / 2)) * CGFloat(Double.pi / 4 )*1.5
             let translationZ = -itemSpacing * 0.5 * abs(position)
             var transform3D = CATransform3DIdentity
             transform3D.m34 = -0.002
@@ -192,7 +192,7 @@ open class FSPagerViewTransformer: NSObject {
             case -5 ... 5:
                 let itemSpacing = attributes.bounds.width+self.proposedInteritemSpacing()
                 let count: CGFloat = 14
-                let circle: CGFloat = CGFloat(M_PI) * 2.0
+                let circle: CGFloat = CGFloat(Double.pi) * 2.0
                 let radius = itemSpacing * count / circle
                 let ty = radius * (self.type == .ferrisWheel ? 1 : -1)
                 let theta = circle / count
@@ -215,7 +215,7 @@ open class FSPagerViewTransformer: NSObject {
                 attributes.alpha = 1
                 attributes.zIndex = Int((1-position) * CGFloat(10))
                 let direction: CGFloat = position < 0 ? 1 : -1
-                let theta = position * CGFloat(M_PI_2) * (scrollDirection == .horizontal ? 1 : -1)
+                let theta = position * CGFloat(Double.pi / 2) * (scrollDirection == .horizontal ? 1 : -1)
                 let radius = scrollDirection == .horizontal ? attributes.bounds.width : attributes.bounds.height
                 var transform3D = CATransform3DIdentity
                 transform3D.m34 = -0.002
@@ -262,7 +262,7 @@ open class FSPagerViewTransformer: NSObject {
             guard scrollDirection == .horizontal else {
                 return 0
             }
-            return -pagerView.itemSize.width * sin(CGFloat(M_PI_4)/4.0*3.0)
+            return -pagerView.itemSize.width * sin(CGFloat(Double.pi / 4)/4.0*3.0)
         case .ferrisWheel,.invertedFerrisWheel:
             guard scrollDirection == .horizontal else {
                 return 0

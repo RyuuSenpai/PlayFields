@@ -19,10 +19,10 @@ class Search_Model {
     
     
     
-    func getSearchData(pg_name:String?,address : String?,rating:String?,fromData : String?,toDate:String? ,completed:@escaping ([Search_Data]?,String,Bool) -> ()) {
+    func getSearchData(pg_name:String?,address : Int?,rating:String?,fromData : String?,toDate:String? ,completed:@escaping ([Search_Data]?,String,Bool) -> ()) {
         let parameters : Parameters = [parSource.pg_name:pg_name ?? "",parSource.address : address ?? "", parSource.rating : rating ?? "" ,parSource.date_from:fromData ?? "",parSource.date_to:toDate ?? ""]
         
-        
+        print("that's the parameterss : \(parameters)")
         let url = source.SEARCH_URL + source.API_TOKEN
 //        print("getSearchData URL: \(url)")
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON {  (response:DataResponse<Any>) in
@@ -74,6 +74,86 @@ class Search_Model {
         }
     }
     
+    
+    
+    func getCitiesList( completed:@escaping ([Citieslist]?,String?,Bool) -> ()) {
+        
+        
+        let url = source.GET_CITIES_REQUEST + source.API_TOKEN
+        //        print("postRegisterPlayField URL: \(url)")
+        Alamofire.request(url , method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            //            print(response.result)
+            switch(response.result) {
+            case .success(_):
+                guard response.result.error == nil else {
+                    
+                    // got an error in getting the data, need to handle it
+                    //                    print("error fetching data from url")
+                    //                    print(response.result.error!)
+                    return
+                    
+                }
+                let json = JSON( response.result.value!) // SwiftyJSON
+//                print("that is  getCitiesList getting the data Mate : %@", response.result.value!)
+                
+                
+                                let data = json[self.parSource.data]
+                let success = json[self.parSource.success].intValue
+                                let sms = json[self.parSource.message].stringValue
+                let  state =  success == 1 ? true : false
+                //                print("KILLVA: _PostPgNews STATUS:\(state) , sms: \(sms)\n")
+                
+                //                let xUser = PostLoginVars(jsonData: data)
+                var cities = [Citieslist]()
+                for city in data {
+                    cities.append(Citieslist(json: city.1) )
+                }
+                completed(cities,sms,state)
+                
+                break
+            case .failure(_) :
+                //                print("that is fail i n getting the data Mate : %@",response.result.error)
+                completed(nil,nil,false)
+                break
+            }
+        }
+    }
+    
+    
+}
+
+
+
+class Citieslist {
+    
+//    "id": 1,
+//    "name_ar": "الحدود الشمالية",
+//    "name_en": "Northern Borders"
+//    
+    
+  private  var _id : Int?
+  private  var _name_ar : String?
+  private  var _name_en : String?
+    
+    var id : Int {
+        guard  let x = _id else { return 0 }
+        return x
+    }
+    var name_ar : String {
+        guard  let x = _name_ar else { return "" }
+        return x
+    }
+    var name_en : String {
+        guard  let x = _name_en else { return "" }
+        return x
+    }
+    
+    init(json:JSON) {
+         self._id = json["id"].intValue
+         self._name_ar = json["name_ar"].string
+        self._name_en = json["name_en"].string
+ 
+    }
     
 }
 

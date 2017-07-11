@@ -34,7 +34,7 @@ class SplashLoginVC: UIViewController {
         super.viewDidLoad()
         setUIEnabled(false )
         // Do any additional setup after loading the view.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1)  {            // Code
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6)  {            // Code
             self.signinBtn?.addTarget(self, action: #selector(self.animateToOriginal), for: .touchUpInside  )
             self.ballImageVIEW?.isUserInteractionEnabled = false
             self.setUIEnabled(true )
@@ -104,7 +104,7 @@ class SplashLoginVC: UIViewController {
         
        setupSplashLoginAnimation()
         }
-        
+        /*
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(gesture:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.ballImageVIEW?.addGestureRecognizer(swipeRight)
@@ -123,7 +123,7 @@ class SplashLoginVC: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(randomAnimation))
         self.ballImageVIEW?.addGestureRecognizer(tap)
-        
+        */
     }
  
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -411,8 +411,7 @@ class SplashLoginVC: UIViewController {
         self.ballTopConstrain?.constant -= 50
         self.ballImage?.transform = CGAffineTransform(scaleX: 0.1  , y: 0.1)
         
-        let animationD = self.animationD - 0.15
-        
+         
         
         UIView.animate(withDuration: 0.5, animations: {
             self.ballTopConstrain?.constant += 200

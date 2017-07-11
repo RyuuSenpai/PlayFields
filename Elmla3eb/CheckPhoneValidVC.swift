@@ -81,12 +81,12 @@ class CheckPhoneValidVC: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+//        super.viewDidLoad()
         
         setupView()
         // Do any additional setup after loading the view.
         if L102Language.currentAppleLanguage() == "ar" {
-            backButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
+            backButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi ))
             
         }
     }
@@ -95,9 +95,12 @@ class CheckPhoneValidVC: UIViewController {
         super.viewWillAppear(animated)
 //        passwordCenterX.constant += self.view.bounds.width
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//          self.view.endEditing(true)
+//    }
+
+    
     
     func setupView() {
         guard let state = codeVerfication else { return    }
@@ -125,6 +128,10 @@ class CheckPhoneValidVC: UIViewController {
             sendPhoneNumBtn.titleLabel?.text = langDicClass().getLocalizedTitle("Wow")
         }
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true) //This will hide the keyboard
     }
     
     @IBAction func btnAct(_ sender: UIButton) {
@@ -306,6 +313,7 @@ class CheckPhoneValidVC: UIViewController {
         }
     }
     @IBAction func resetAppBtnAct(_ sender: UIButton) {
+         self.view.endEditing(true)
           timer?.invalidate()
         ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
 dismissVCs()

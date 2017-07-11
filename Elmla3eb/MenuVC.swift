@@ -44,16 +44,15 @@ class MenuVC: UIViewController {
     @IBOutlet weak var profileImage: UIImageViewX!
     @IBOutlet weak var userTypeLbl: UILabel!{
         didSet {
-            guard let userType = UserDefaults.standard.value(forKey: "User_Type") as? String  else {
-                userTypeLbl?.text = ""
+            guard let _ = UserDefaults.standard.value(forKey: "userId") as? Int  else {
+                 userTypeLbl?.text = ""
                 return
             }
-            if   userType == "pg_owner" {
+
+            if  let userType = UserDefaults.standard.value(forKey: "User_Type") as? String , userType == "pg_owner" {
                 userTypeLbl?.text =  langDicClass().getLocalizedTitle("Owner" )
-            }else  if userType == "player" {
+            }else  {
                 userTypeLbl?.text =  langDicClass().getLocalizedTitle("Player") 
-            }else {
-                userTypeLbl?.text = ""
             }
         }
     }
@@ -73,7 +72,7 @@ class MenuVC: UIViewController {
          currentTag = turnCurrentPageNameToTag(currentPage)
 //        print("that's the nib name ; \(String(describing: currentPage))")
         if L102Language.currentAppleLanguage() == "ar" {
-             backButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
+             backButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi ))
             
         }
         // Do any additional setup after loading the view.let email = UserDefaults.standard.value(forKey: "userEmail") as? String ,
@@ -181,7 +180,7 @@ class MenuVC: UIViewController {
     
     
     @IBAction func signouBtnAct(_ sender: UIButton) {
-        print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current()) \n andthat's the id :\(USER_ID)")
+//        print("that is the facToken : \(FBSDKAccessToken.current())\n \(FBSDKProfile.current()) \n andthat's the id :\(USER_ID)")
 
         ad.confirmationAlert("Logging out!!", "proceed with the process?") {
             

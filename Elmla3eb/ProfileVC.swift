@@ -19,6 +19,8 @@ class ProfileVC: ToSideMenuClass{
     
     @IBOutlet weak var cityTxt: UITextField!
     //ForgotPassword
+    @IBOutlet weak var showNewPassBtn: UIButton!
+    @IBOutlet weak var showOldPassBtn: UIButton!
     @IBOutlet weak var loadingChangePass: UIActivityIndicatorView!
     
     @IBOutlet weak var confirmPassChange: UIButtonX!
@@ -63,7 +65,9 @@ class ProfileVC: ToSideMenuClass{
     //    }
     
 //    weak var profileImageDelegate : profileupdatedImageDelegate?
-    var intPoints = 0 
+    
+    var profileData : PostLoginVars?
+    var intPoints = 0
     var positions =  [String]()
     var isFbUser = false
     var imageUrl = "" {
@@ -125,59 +129,86 @@ class ProfileVC: ToSideMenuClass{
         }
         
         setupPickerV()
-        fetchdata()
+        
 
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchdata()
+        self.editUserDataBtnAct()
+    }
+    
   
     
+    func setupViewData(_ data : PostLoginVars) {
+        
+        self.userName.text = data.name
+        self.snapCTxt.text = data.snapChat
+        self.birthDateTxt.text = data.birth_date
+        self.teamName.text = data.team
+        self.playerPosition.text = data.positionName
+        self.favPoints.text =  data.points
+        self.intPoints = data.intPoints
+        self.cityLbl.text = data.city
+        self.phoneNumTxt.text = data.mobile
+        self.positionTxt.text = data.positionName
+        self.cityTxt.text = data.city
+        self.isFbUser = data.isFbUser
+        self.imageResponse = data.image_Response
+        //                    print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
+        //                    self?.imageUrl = data.image
+        if   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String  {
+            self.imageUrl = imageurl
+        }
+
+    }
     func fetchdata() {
         user.getProfileData { [weak self] (data, sms, state) in
             
             
             if state , let data = data  {
                 DispatchQueue.main.async {
+                    self?.profileData = data
+                    self?.setupViewData(data)
+                     /*
+ Eslam L: 9
+                     Ahmed Android : 7
+                     ahmned : 16
+ */
                     
-                    self?.userName.text = data.name
-                    self?.snapCTxt.text = data.snapChat
-                    self?.birthDateTxt.text = data.birth_date
-                    self?.teamName.text = data.team
-                    self?.playerPosition.text = data.positionName
-                    self?.favPoints.text =  data.points
-                    self?.intPoints = data.intPoints
-                    self?.cityLbl.text = data.city
-                    self?.phoneNumTxt.text = data.mobile
-                    self?.positionTxt.text = data.positionName
-                    self?.cityTxt.text = data.city
-                    self?.isFbUser = data.isFbUser
-                    self?.imageResponse = data.image_Response
-                    //                    print("that's the fb : \(data.isFbUser) , \(self?.isFbUser)")
-                    //                    self?.imageUrl = data.image
-                    if   let imageurl = UserDefaults.standard.value(forKey: "profileImage") as? String  {
-                        self?.imageUrl = imageurl
-                    }
-                    
-                    
-                    
-                    if  let count = self?.cities.count , count < 1 {
+                    let searchModel = Search_Model()
+                    searchModel.getCitiesList { [weak self] (_data, sms, state) in
+                        guard let data = _data else {
+                            self?.cities = []
+                            self?.view.squareLoading.stop(0.0)
+                            return
+                        }
+                        if  L102Language.currentAppleLanguage() == "ar"{
+                            for city in data {
+                                 self?.cities.append(city.name_ar)
+                            }
+                        }else {
+                            for city in data {
+                                 self?.cities.append(city.name_en)
+                            }
+                        }
                         
-                        let global = GLOBAL()
-                        let langIs = L102Language.currentAppleLanguage()
-                        global.readJson(langIs: langIs, completed: { [weak self] (data) in
-                            
-                            self?.cities = data
-                        })
-                        
+                        DispatchQueue.main.async {
+                            self?.view.squareLoading.stop(0)
+                        }}                        
                     }
-                    DispatchQueue.main.async {
-                        self?.view.squareLoading.stop(0)
-                    }}
+
+                    
+                    
+                    
+                   
             }else {
                 DispatchQueue.main.async {
                 self?.view.squareLoading.stop(0)
                 self?.showAlert(langDicClass().getLocalizedTitle(" Network Time out "), langDicClass().getLocalizedTitle("Please Check Your Net Connection and try again!!"))
-                   
+                
                     self?.dismiss(animated: true, completion: nil)  
                 }
             }
@@ -226,14 +257,23 @@ class ProfileVC: ToSideMenuClass{
                 changePassword.alpha = 1
                 changePassword.isEnabled = true
             }
+           
         }else {
-            disableTxts = true
-            sender.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
-            self.doneButton.alpha = 0
-            self.doneButton.isEnabled = false
-            changePassword.alpha = 0
-            changePassword.isEnabled = false
+        editUserDataBtnAct()
+            if let data = profileData  {
+                setupViewData(data)
+            }
         }
+    }
+    
+    func editUserDataBtnAct() {
+        disableTxts = true
+        editProfileBtn?.isSelected = false
+        editProfileBtn?.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
+        self.doneButton?.alpha = 0
+        self.doneButton?.isEnabled = false
+        changePassword?.alpha = 0
+        changePassword?.isEnabled = false
     }
     
     @IBAction func doneBtnAct(_ sender: UIButton) {
@@ -414,6 +454,7 @@ class ProfileVC: ToSideMenuClass{
                     
                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
                     alert.show()
+                    
                     self?.dismissView()
                     self?.disableChangePassView(false)
                 }
@@ -468,6 +509,12 @@ class ProfileVC: ToSideMenuClass{
     
     
     func dismissView() {
+        self.oldPassTxt.text = ""
+        self.newPassTxt.text = ""
+        showNewPassBtn.isSelected = false
+        showOldPassBtn.isSelected = false
+        showNewPassBtn.setImage(#imageLiteral(resourceName: "hidePass"), for: .normal)
+        showOldPassBtn.setImage(#imageLiteral(resourceName: "hidePass"), for: .normal)
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {
             self.backGroundBlackView.alpha = 0
             self.forgotPassView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -697,21 +744,23 @@ extension ProfileVC : UIImagePickerControllerDelegate , UINavigationControllerDe
     
     @IBAction func loadImageButtonTapped(sender: UIButton) {
         
-        let alert = UIAlertController(title: "Pick Your Profile Image", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Photo Gallery", style: .default) { [weak self ] action in
+        let alert = UIAlertController(title: langDicClass().getLocalizedTitle("Pick Your Profile Image"), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: langDicClass().getLocalizedTitle("Photo Gallery"), style: .default) { [weak self ] action in
             self?.pickProfileImage(.photoLibrary)
         })
         
-        alert.addAction(UIAlertAction(title: "Camera", style: .default) { [weak self ] action in
+        alert.addAction(UIAlertAction(title: langDicClass().getLocalizedTitle("Camera"), style: .default) { [weak self ] action in
             // perhaps use action.title here
             self?.pickProfileImage(.camera)
         })
-        alert.addAction(UIAlertAction(title: "Delete Image", style: .destructive) { [weak self ] action in
+        alert.addAction(UIAlertAction(title: langDicClass().getLocalizedTitle("Delete Image"), style: .destructive) { [weak self ] action in
             // perhaps use action.title here
-            self?.base64String = "  "
+            self?.base64String = "     "
             self?.changedImage = true
+            UserDefaults.standard.setValue(nil, forKey: "profileImage")
+            self?.profileImage.image =  UIImage(named: "nobody_m.original")
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { action in
+        alert.addAction(UIAlertAction(title: langDicClass().getLocalizedTitle("Cancel"), style: .cancel) { action in
             // perhaps use action.title here
         })
         self.present(alert, animated: true)
@@ -746,7 +795,7 @@ extension ProfileVC : pointsDelegateUpdateProfile {
     
     func updateData() {
         
-        print("Fetched Points Delegate ")
+//        print("Fetched Points Delegate ")
         self.fetchdata()
     }
 }

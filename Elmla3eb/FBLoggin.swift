@@ -87,6 +87,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                     DispatchQueue.main.async {
                         self?.setupFbLogin("", "", id)
 //                        ad.saveUserLogginData(email: self?.fbEmail, photoUrl: "default", uid: -1, name: fName)
+                         UserDefaults.standard.setValue("player", forKey: "User_Type")
                         UserDefaults.standard.setValue(fName, forKey: "usreName")
                         self?.fbActivityInd.stopAnimating()
                     }
@@ -188,7 +189,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
                     weakSelf?.showAlert(langDicClass().getLocalizedTitle("Something Went Wrong"), langDicClass().getLocalizedTitle("try again!!"))
                     return
                 }
-                 UserDefaults.standard.setValue("player", forKey: "User_Type")
+                
                 let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
                 vc.modalTransitionStyle = .crossDissolve
                 vc.userId = id

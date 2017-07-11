@@ -35,12 +35,12 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().barTintColor = Constants.Colors.blue
+        UINavigationBar.appearance().barTintColor = Constants.Colors.green
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().clipsToBounds = false
         UINavigationBar.appearance().backgroundColor = UIColor.green
-        let navBackgroundImage:UIImage! = UIImage(named: "bg_main")
-        UINavigationBar.appearance().setBackgroundImage(navBackgroundImage, for: .default)
+       // let navBackgroundImage:UIImage! = UIImage(named: "bg_main")
+      //  UINavigationBar.appearance().setBackgroundImage(navBackgroundImage, for: .default)
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName : UIFont.systemFont(ofSize: 18) , NSForegroundColorAttributeName: UIColor.white ]
     }
     

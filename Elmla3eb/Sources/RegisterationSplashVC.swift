@@ -62,6 +62,29 @@ import CDAlertView
         
         self.view.addGestureRecognizer(tapped)
         title =  langDicClass().getLocalizedTitle("Registration")
+        
+        let searchModel = Search_Model()
+        self.view.squareLoading.start(0)
+        searchModel.getCitiesList { [weak self] (_data, sms, state) in
+            guard let data = _data else {
+                self?.cities = []
+                self?.view.squareLoading.stop(0.0)
+                return
+            }
+            if  L102Language.currentAppleLanguage() == "ar"{
+                for city in data {
+                    self?.cities.append(city.name_ar)
+                }
+            }else {
+                for city in data {
+                    self?.cities.append(city.name_en)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self?.view.squareLoading.stop(0)
+            }
+        }
 
      }
     
@@ -79,18 +102,18 @@ import CDAlertView
         self.playerViewOriginalHeight = self.playerViewHeightConstant.constant
         self.registerViewOriginalTopSpace = self.registerationViewBottomSpaceToView.constant
         self.registerationViewBottomSpaceToView.constant = self.view.bounds.height * -1
-        if cities.count < 1 {
-        self.view.squareLoading.start(0)
+//        if cities.count < 1 {
+//        self.view.squareLoading.start(0)
             
-            let global = GLOBAL()
-            let langIs = L102Language.currentAppleLanguage()
-            global.readJson(langIs: langIs, completed: { [weak self] (data) in
-                
-                self?.cities = data
-                self?.view.squareLoading.stop(0)
-            })
+//            let global = GLOBAL()
+//            let langIs = L102Language.currentAppleLanguage()
+//            global.readJson(langIs: langIs, completed: { [weak self] (data) in
+//                
+//                self?.cities = data
+//                self?.view.squareLoading.stop(0)
+//            })
             
-        }
+//        }
         
         
         dissmissedLogin = true
@@ -106,10 +129,10 @@ import CDAlertView
         super.viewDidAppear(animated)
  
 //        self.ownerViewImageBk.image = #imageLiteral(resourceName: "BackGround")
-        print("that' the self.presentingViewController : \(self.presentingViewController)")
-        print("that' the self.presentingViewController nibName  : \(self.presentingViewController?.nibName)")
-        print("that' the self.presentingViewController title  : \(self.presentingViewController?.title)")
-       
+//        print("that' the self.presentingViewController : \(self.presentingViewController)")
+//        print("that' the self.presentingViewController nibName  : \(self.presentingViewController?.nibName)")
+//        print("that' the self.presentingViewController title  : \(self.presentingViewController?.title)")
+//       
      
 
     }

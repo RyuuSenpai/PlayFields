@@ -90,9 +90,9 @@ class MPgNews {
 //                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
                 
                 
-                let data = json[self.parSource.data]
+//                let data = json[self.parSource.data]
                 let success = json[self.parSource.success].intValue
-                let sms = json[self.parSource.message].stringValue
+//                let sms = json[self.parSource.message].stringValue
                 let  state =  success == 1 ? true : false
 //                print("KILLVA: _PostPgNews STATUS:\(state) , sms: \(sms)\n")
                 

@@ -126,7 +126,11 @@ class LanguagesDict {
                          "password Field can't be Empty" : "كلمه السر مطلوبه لاتمام العمليه" ,
                          "User name Field can't be Empty" : "الاسم مطلوب لانهاء العمليه",
                          "Text Shouldn't Contain White Spaces" : "يجب ان لا يحتوي الحقل علي مسافات فارغه",
-                         "This Field Doesn't Support This Feature" : "ذلك الملعب لا يدعم تلك الخاصيه"
+                         "This Field Doesn't Support This Feature" : "ذلك الملعب لا يدعم تلك الخاصيه",
+                         "Camera" : "كاميرا",
+                         "Delete Image" : "مسح الصوره",
+                         "Photo Gallery" : "البوم الصور",
+                         "Pick Your Profile Image" : "اختر صوره  للحساب",
                          
          //                             "":"",
         //                             "":"",

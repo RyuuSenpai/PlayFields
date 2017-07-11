@@ -981,6 +981,8 @@
                         <outlet property="positionTxt" destination="TQz-z8-Tu5" id="zKX-Lz-oRL"/>
                         <outlet property="profileImage" destination="LWg-kH-LRX" id="njk-a0-TQc"/>
                         <outlet property="profileImageBtn" destination="R9x-WA-uNs" id="uvT-xB-57n"/>
+                        <outlet property="showNewPassBtn" destination="6Ew-hv-dn2" id="STh-GD-FHk"/>
+                        <outlet property="showOldPassBtn" destination="2hL-A6-T7H" id="wHz-Uj-Ocs"/>
                         <outlet property="snapCTxt" destination="s9c-DZ-Gvv" id="RTu-fI-TAZ"/>
                         <outlet property="teamName" destination="UWa-f7-e8j" id="D5n-qt-n6o"/>
                         <outlet property="uploadingPhotoLbl" destination="poF-vO-azG" id="wmM-4N-nfr"/>

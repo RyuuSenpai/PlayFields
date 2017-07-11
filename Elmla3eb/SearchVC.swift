@@ -29,13 +29,14 @@
     @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
     
     var isCityPicker = true
-    var searchModel : Search_Model!
-    var cities = ["cairo","Alex"]
+    var searchModel = Search_Model()
+    var cities = [String]()
     let rateList = ["1","2","3","4","5"]
     var fromDateVar : Date?
     var toMinDate : Date?
     var selectedCity = ""
     var selectedRate = ""
+    var cityDic = [String:Int]()
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var ratePickerV: UIPickerView!
     var isFromDate = true
@@ -53,17 +54,38 @@
         setupPicker()
         
         self.view.squareLoading.start(0)
-        let global = GLOBAL()
-        let langIs = L102Language.currentAppleLanguage()
-        global.readJson(langIs: langIs, completed: { [weak self] (data) in
-            
-            self?.cities = data
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5
-            ) {
-
-            self?.view.squareLoading.stop(0)
+         searchModel.getCitiesList { [weak self] (_data, sms, state) in
+            guard let data = _data else {
+                self?.cities = []
+                self?.view.squareLoading.stop(0.0)
+                return
             }
-        })
+            if  L102Language.currentAppleLanguage() == "ar"{
+                for city in data {
+                    self?.cityDic[city.name_ar] = city.id
+                    self?.cities.append(city.name_ar)
+                }
+            }else {
+                for city in data {
+                    self?.cityDic[city.name_en] = city.id
+                    self?.cities.append(city.name_en)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self?.view.squareLoading.stop(0)
+            }
+        }
+        
+//        global.readJson(langIs: langIs, completed: { [weak self] (data) in
+//            
+//            self?.cities = data
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5
+//            ) {
+//
+//            self?.view.squareLoading.stop(0)
+//            }
+//        })
         
     }
     
@@ -73,15 +95,19 @@
     }
     
     @IBAction func searchBtnAct(_ sender: UIButton) {
+        var cityId : Int?
+        if  let citytxt = cityTxt.text ,  let cityid = cityDic[citytxt]  {
+            cityId = cityid
+        }
         disableView(true)
         //        guard let name =  fieldNameTxt.text, let city = cityTxt.text, let rate = rateTxt.text, let fromDate = fromTxt.text, let toDate = toTxt.text,(!name.isEmpty || !city.isEmpty || !rate.isEmpty || !fromDate.isEmpty || !toDate.isEmpty ) else{
         //            ad.showAlert(langDicClass().getLocalizedTitle("Error"), langDicClass().getLocalizedTitle("At least one Field has to be filled"))
         //            disableView(false)
         //            return
         //        }
-        searchModel = Search_Model()
-        //        searchModel.getSearchData(pg_name: name, address: city, rating: rate, fromData: fromDate, toDate: toDate) {[weak self] (data) in
-        searchModel.getSearchData(pg_name: fieldNameTxt.text, address: cityTxt.text, rating: rateTxt.text, fromData: fromTxt.text, toDate: toTxt.text) {[weak self] (data) in
+         //        searchModel.getSearchData(pg_name: name, address: city, rating: rate, fromData: fromDate, toDate: toDate) {[weak self] (data) in
+    
+        searchModel.getSearchData(pg_name: fieldNameTxt.text, address: cityId, rating: rateTxt.text, fromData: fromTxt.text, toDate: toTxt.text) {[weak self] (data) in
             if data.2 /* -> State */{
                 guard let searchResult = data.0 , searchResult.count > 0 else {
                     DispatchQueue.main.async {

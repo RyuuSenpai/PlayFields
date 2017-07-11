@@ -95,7 +95,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         
         if L102Language.currentAppleLanguage() == "ar" {
             isAraLang = true
-            backToDatesTableBtnOL.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
+            backToDatesTableBtnOL.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi ))
             
         }
         if let sms = times_msg, sms != "" {

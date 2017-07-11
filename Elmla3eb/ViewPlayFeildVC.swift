@@ -199,7 +199,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         }
         
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"NavToMap"), style: .plain, target: self, action: #selector(getPlayGroundDirections))
+ 
 
     }
     
@@ -288,7 +288,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             weakSelf?.setPlaygDetails()
             
             weakSelf?.view.squareLoading.stop(0.0)
-            
+            weakSelf?.setUpMapNavData()
 //            print("that is times : \(data.times)")
             guard let times = data.times else { return }
             //            weakSelf?.bookNowDays = [String]()
@@ -677,6 +677,10 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
         vc.didMove(toParentViewController: vc)
     }
     
+    
+    func setUpMapNavData() {
+               navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"NavToMap"), style: .plain, target: self, action: #selector(getPlayGroundDirections))
+    }
 
     
     

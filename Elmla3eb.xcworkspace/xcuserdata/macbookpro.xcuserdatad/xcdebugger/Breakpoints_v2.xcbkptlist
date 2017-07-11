@@ -110,13 +110,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520862483.090426"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Elmla3eb.CheckPhoneValidVC.btnAct (__ObjC.UIButton) -&gt; ()"
+                  moduleName = "Elmla3eb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
+                  timestampString = "521479258.850505"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
+                  offsetFromSymbolStart = "1863">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Elmla3eb.CheckPhoneValidVC.(btnAct (__ObjC.UIButton) -&gt; ()).(closure #2)"
+                  moduleName = "Elmla3eb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
+                  timestampString = "521479258.852547"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
+                  offsetFromSymbolStart = "4468">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -158,11 +190,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520862483.090426"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,45 +206,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520862483.090426"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.CheckPhoneValidVC.(btnAct (__ObjC.UIButton) -&gt; ()).(closure #2)"
-                  moduleName = "Elmla3eb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
-                  timestampString = "521394898.961663"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
-                  offsetFromSymbolStart = "3028">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.CheckPhoneValidVC.(btnAct (__ObjC.UIButton) -&gt; ()).(closure #2).(closure #1)"
-                  moduleName = "Elmla3eb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
-                  timestampString = "521394898.964799"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "196"
-                  endingLineNumber = "196"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -238,12 +238,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/GetPlayGroundsData.swift"
-                  timestampString = "521394898.971431"
+                  timestampString = "521479258.873856"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "312"
                   endingLineNumber = "312"
-                  offsetFromSymbolStart = "248">
+                  offsetFromSymbolStart = "401">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -253,12 +253,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/GetPlayGroundsData.swift"
-                  timestampString = "521394898.974313"
+                  timestampString = "521479258.875891"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "312"
                   endingLineNumber = "312"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -268,12 +268,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/GetPlayGroundsData.swift"
-                  timestampString = "521394898.976873"
+                  timestampString = "521479258.878144"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "312"
                   endingLineNumber = "312"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -283,12 +283,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/GetPlayGroundsData.swift"
-                  timestampString = "521394898.979835"
+                  timestampString = "521479258.880263"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "312"
                   endingLineNumber = "312"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -298,12 +298,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/GetPlayGroundsData.swift"
-                  timestampString = "521394898.982663"
+                  timestampString = "521479258.882451"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "312"
                   endingLineNumber = "312"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -313,12 +313,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/GetPlayGroundsData.swift"
-                  timestampString = "521394898.985137"
+                  timestampString = "521479258.884425"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "312"
                   endingLineNumber = "312"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -346,12 +346,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/MUserData.swift"
-                  timestampString = "521394898.9955"
+                  timestampString = "521479258.892978"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
                   endingLineNumber = "88"
-                  offsetFromSymbolStart = "7648">
+                  offsetFromSymbolStart = "10718">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -361,12 +361,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/MUserData.swift"
-                  timestampString = "521394898.999547"
+                  timestampString = "521479258.895152"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
                   endingLineNumber = "88"
-                  offsetFromSymbolStart = "7688">
+                  offsetFromSymbolStart = "10773">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520862483.090426"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520944180.450211"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520944589.515981"
+            timestampString = "521463924.562776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520944596.22492"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -506,74 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520944601.067981"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "btnAct(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.CheckPhoneValidVC.btnAct (__ObjC.UIButton) -&gt; ()"
-                  moduleName = "Elmla3eb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
-                  timestampString = "521394899.046938"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "158"
-                  endingLineNumber = "158"
-                  offsetFromSymbolStart = "1412">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.CheckPhoneValidVC.btnAct (__ObjC.UIButton) -&gt; ()"
-                  moduleName = "Elmla3eb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
-                  timestampString = "521394899.049835"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "158"
-                  endingLineNumber = "158"
-                  offsetFromSymbolStart = "1496">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Elmla3eb.CheckPhoneValidVC.(btnAct (__ObjC.UIButton) -&gt; ()).(closure #2)"
-                  moduleName = "Elmla3eb"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
-                  timestampString = "521394899.0528"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "158"
-                  endingLineNumber = "158"
-                  offsetFromSymbolStart = "76">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "520944732.298655"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "btnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -585,11 +522,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "521304117.447913"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "btnAct(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/CheckPhoneValidVC.swift"
+            timestampString = "521463984.274401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "setupPassword()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/CheckPhoneValidVC.swift"
+            timestampString = "521463984.274401"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "sendConfirmatioCode()"
             landmarkType = "7">
          </BreakpointContent>
@@ -601,29 +570,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "521304117.447913"
+            timestampString = "521463984.274401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "298"
             endingLineNumber = "298"
             landmarkName = "sendConfirmatioCode()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/CheckPhoneValidVC.swift"
-            timestampString = "521304117.447913"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "sendConfirmatioCode()"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Elmla3eb.CheckPhoneValidVC.sendConfirmatioCode () -&gt; ()"
+                  moduleName = "Elmla3eb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
+                  timestampString = "521479258.947352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "298"
+                  endingLineNumber = "298"
+                  offsetFromSymbolStart = "652">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Elmla3eb.CheckPhoneValidVC.sendConfirmatioCode () -&gt; ()"
+                  moduleName = "Elmla3eb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
+                  timestampString = "521479258.949433"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "298"
+                  endingLineNumber = "298"
+                  offsetFromSymbolStart = "751">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Elmla3eb.CheckPhoneValidVC.(sendConfirmatioCode () -&gt; ()).(closure #1)"
+                  moduleName = "Elmla3eb"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/CheckPhoneValidVC.swift"
+                  timestampString = "521479258.951728"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "298"
+                  endingLineNumber = "298"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -697,11 +697,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/MenuVC.swift"
-            timestampString = "521369437.515804"
+            timestampString = "521468870.798815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399">
+            startingLineNumber = "394"
+            endingLineNumber = "394">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -727,11 +727,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/ViewPlayFeildVC.swift"
-            timestampString = "521390166.890884"
+            timestampString = "521463247.653919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "756"
-            endingLineNumber = "756"
+            startingLineNumber = "760"
+            endingLineNumber = "760"
             landmarkName = "presentAlert(_:_:_:_:)"
             landmarkType = "7">
             <Locations>
@@ -743,12 +743,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ViewPlayFeildVC.swift"
-                  timestampString = "521394899.102321"
+                  timestampString = "521479258.971869"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "756"
-                  endingLineNumber = "756"
-                  offsetFromSymbolStart = "1924">
+                  startingLineNumber = "760"
+                  endingLineNumber = "760"
+                  offsetFromSymbolStart = "2504">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -758,12 +758,12 @@
                   moduleName = "Elmla3eb"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/macbookpro/Documents/new%20PlayFields/PlayFields/Elmla3eb/ViewPlayFeildVC.swift"
-                  timestampString = "521394899.104842"
+                  timestampString = "521479258.974429"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "756"
-                  endingLineNumber = "756"
-                  offsetFromSymbolStart = "12">
+                  startingLineNumber = "760"
+                  endingLineNumber = "760"
+                  offsetFromSymbolStart = "10">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -790,13 +790,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Elmla3eb/MenuVC.swift"
-            timestampString = "521368794.827845"
+            filePath = "Elmla3eb/ProfileVC.swift"
+            timestampString = "521479257.036043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "loggoutAction()"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -807,12 +807,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Elmla3eb/ProfileVC.swift"
-            timestampString = "521394720.613406"
+            timestampString = "521479257.036043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "663"
-            endingLineNumber = "663"
-            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            startingLineNumber = "726"
+            endingLineNumber = "726"
+            landmarkName = "convertImageToBase64(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/ProfileVC.swift"
+            timestampString = "521479257.036043"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "758"
+            endingLineNumber = "758"
+            landmarkName = "loadImageButtonTapped(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/ProfileVC.swift"
+            timestampString = "521479257.036043"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "759"
+            endingLineNumber = "759"
+            landmarkName = "loadImageButtonTapped(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Elmla3eb/CheckPhoneValidVC.swift"
+            timestampString = "521463931.574589"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "sendPhoneNumBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

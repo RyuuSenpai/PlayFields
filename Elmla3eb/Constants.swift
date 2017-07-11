@@ -99,6 +99,9 @@ class Constants  {
             //Points not sure where it located in backend but it should be in Profile 
             let  GET_POINTS_REQUEST =  API.main_url +   "prizes"
              let  POST_POINTS_REQUEST = API.main_url + "users/points"
+            
+            //cities
+            let GET_CITIES_REQUEST = API.main_url + "cities"
         }
         
         class Parameters {

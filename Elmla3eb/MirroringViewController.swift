@@ -22,7 +22,7 @@ extension UIViewController {
                     let subV =  subView as! UIButton
                     let toRightArrow = subV.imageView
                     if let _ = toRightArrow?.image {
-                         subV.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI ))
+                         subV.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi ))
                      }
                 }
                 loopThroughSubViewAndFlipTheImageIfItsAUIImageView(subviews: subView.subviews)
