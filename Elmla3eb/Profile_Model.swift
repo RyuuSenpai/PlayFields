@@ -63,12 +63,12 @@ class Profile_Model {
     
     
     
-    func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String?,position:String? , completed : @escaping (Bool,String) -> ()) {
+    func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String?,position:String? , completed : @escaping (PostLoginVars?,Bool,String) -> ()) {
         let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
         
         // for printing
 //        let printIt :Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "nil",parSource.snap_chat : snap_chat ?? "",parSource.position : position] as [String : Any]
-         print("that is the parameters in postProfileData : \(parameters)")
+//         print("that is the parameters in postProfileData : \(parameters)")
 //
         let url = source.POST_PROFILE_DATA + source.API_TOKEN
 //        print("URL: is postProfileData   : \(url)")
@@ -86,7 +86,7 @@ class Profile_Model {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value)
+                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value)
                 
                 
                 
@@ -105,8 +105,9 @@ class Profile_Model {
                 let  state =  success == 1 ? true : false
 //                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)\n data :  \(json)")
                 
-                
-                completed( state,sms )
+                let profileData = PostLoginVars(jsonData: data)
+
+                completed( profileData,state,sms )
                 break
             case .failure(_) :
                 if let data = response.data {
@@ -115,7 +116,7 @@ class Profile_Model {
                 }
 //                print("that is fail i n getting the postProfileData data Mate : \(response.result.error?.localizedDescription)")
 //                print("that is fail i n getting the postProfileData Mate :\(response.result.error)")
-                completed( false, "Network Time out" )
+                completed( nil , false, "Network Time out" )
                 break
             }
         }

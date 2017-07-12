@@ -5,7 +5,6 @@
 //  Created by Macbook Pro on 5/16/17.
 //  Copyright © 2017 Killvak. All rights reserved.
 //
-
 import UIKit
 import CDAlertView
 
@@ -44,8 +43,8 @@ class CheckPhoneValidVC: UIViewController {
                 verficationStack?.alpha = 1
                 sendPhoneNumBtn?.alpha = 0
                 passwordStack?.alpha = 0
-//                activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
-//                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+                //                activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
+                //                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
                 
             }else {
                 topLbl?.text = langDicClass().getLocalizedTitle("Please, Enter The Phone Number To Complete the Process")
@@ -64,24 +63,24 @@ class CheckPhoneValidVC: UIViewController {
     
     let userModel = MUserData()
     var count = 60
-   private weak var timer = Timer()
+    private weak var timer = Timer()
     var isTimerRunning = false
     let user = MUserData()
     var passwordAppeared = false {
         didSet {
             if passwordAppeared {
-            verficationStack?.alpha = 1
-            sendPhoneNumBtn?.alpha = 0
-//                passwordStack.alpha = 1
-//            activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Login")
+                verficationStack?.alpha = 1
+                sendPhoneNumBtn?.alpha = 0
+                //                passwordStack.alpha = 1
+                //            activeOL?.titleLabel?.text = langDicClass().getLocalizedTitle("Login")
                 timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-
+                
             }
         }
     }
     
     override func viewDidLoad() {
-//        super.viewDidLoad()
+        //        super.viewDidLoad()
         
         setupView()
         // Do any additional setup after loading the view.
@@ -93,13 +92,12 @@ class CheckPhoneValidVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        passwordCenterX.constant += self.view.bounds.width
+        //        passwordCenterX.constant += self.view.bounds.width
     }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//          self.view.endEditing(true)
-//    }
-
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //        super.viewWillDisappear(animated)
+    //          self.view.endEditing(true)
+    //    }
     
     
     func setupView() {
@@ -113,7 +111,7 @@ class CheckPhoneValidVC: UIViewController {
             verficationStack.alpha = 1
             sendPhoneNumBtn.alpha = 0
             passwordStack.alpha = 0
-//            activeOL.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
+            //            activeOL.titleLabel?.text = langDicClass().getLocalizedTitle("Activate")
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
             
         }else {
@@ -135,14 +133,14 @@ class CheckPhoneValidVC: UIViewController {
     }
     
     @IBAction func btnAct(_ sender: UIButton) {
-      
+        
         if !passwordAppeared  {
             if sender.tag == 0  {
                 //active
                 sendConfirmatioCode()
             }else {//resend
                 guard let id = userId else {
-//                    print("User id == nil ");
+                    //                    print("User id == nil ");
                     return }
                 setUIEnabled(enabled: false )
                 user.postResendVerificationCode(user_id: id ,completed: {[weak weakSelf = self] (sms, state) in
@@ -159,76 +157,76 @@ class CheckPhoneValidVC: UIViewController {
             }
         }else {
             if sender.tag == 0 {
-            guard let mobile = confirmationCodeTxt.text ,mobile.validPhoneNumber,let password = passwordText.text , password.isValidPassword else {
-                ad.showAlert( langDicClass().getLocalizedTitle("All Fields are Required"), "")
-                return }
-            user.postLoginData(mobileNum: mobile , userPassword: password) { [weak weakSelf = self ] (data) in
-//                print("that is the login response : \(data)")
-                if data.1 {
-                    if  let x = data.0 {
-                        
-                        ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
-                        
-//                        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
-//                        let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
-//                        let navb = UINavigationController(rootViewController: x)
-//                        self.present(navb, animated: true, completion: nil)
-                        weakSelf?.timer?.invalidate()
-                        ad.fcm()
-                        
-                     weakSelf?.dismissVCs()
-
-//                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
-//                        let xy = storyboard.instantiateViewController(withIdentifier: "MainPageVC")
-//                        let navb = UINavigationController()
-//                        navb.setViewControllers([xy ], animated: true)
-//                        weakSelf?.present(navb, animated: true, completion: nil)
-                        
-                    }
-                    weakSelf?.setUIEnabled(enabled: true)
-                }else if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
-                    let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
-                    vc.modalTransitionStyle = .crossDissolve
-                    vc.userId = id
-                    vc.userName = name
-                    vc.codeVerfication = true
-                    weakSelf?.present(vc, animated: true, completion: nil)
-//                    weakSelf?.passwordAppeared = false
-//                    weakSelf?.codeVerfication = true
-                    weakSelf?.setUIEnabled(enabled: true)
-
-                }else {
-                    if data.2 == "User not found" {
-                        DispatchQueue.main.async {
-                            ad.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
+                guard let mobile = confirmationCodeTxt.text ,mobile.validPhoneNumber,let password = passwordText.text , password.isValidPassword else {
+                    ad.showAlert( langDicClass().getLocalizedTitle("All Fields are Required"), "")
+                    return }
+                user.postLoginData(mobileNum: mobile , userPassword: password) { [weak weakSelf = self ] (data) in
+                    //                print("that is the login response : \(data)")
+                    if data.1 {
+                        if  let x = data.0 {
+                            
+                            ad.saveUserLogginData(email: x.email, photoUrl: nil, uid:   x.id , name : x.name)
+                            
+                            //                        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+                            //                        let x = storyb.instantiateViewController(withIdentifier: "MainPageVC")
+                            //                        let navb = UINavigationController(rootViewController: x)
+                            //                        self.present(navb, animated: true, completion: nil)
+                            weakSelf?.timer?.invalidate()
+                            ad.fcm()
+                            
+                            weakSelf?.dismissVCs()
+                            
+                            //                        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main )
+                            //                        let xy = storyboard.instantiateViewController(withIdentifier: "MainPageVC")
+                            //                        let navb = UINavigationController()
+                            //                        navb.setViewControllers([xy ], animated: true)
+                            //                        weakSelf?.present(navb, animated: true, completion: nil)
+                            
                         }
+                        weakSelf?.setUIEnabled(enabled: true)
+                    }else if let data = data.3 , let id = data["id"] as? Int  , let name = data["name"] as? String{
+                        let vc = CheckPhoneValidVC(nibName: "CheckPhoneValidVC", bundle: nil)
+                        vc.modalTransitionStyle = .crossDissolve
+                        vc.userId = id
+                        vc.userName = name
+                        vc.codeVerfication = true
+                        weakSelf?.present(vc, animated: true, completion: nil)
+                        //                    weakSelf?.passwordAppeared = false
+                        //                    weakSelf?.codeVerfication = true
+                        weakSelf?.setUIEnabled(enabled: true)
+                        
                     }else {
-                        DispatchQueue.main.async {
-                            ad.showAlert( langDicClass().getLocalizedTitle(" Network Time out "), "")
+                        if data.2 == "User not found" {
+                            DispatchQueue.main.async {
+                                ad.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
+                            }
+                        }else {
+                            DispatchQueue.main.async {
+                                ad.showAlert( langDicClass().getLocalizedTitle(" Network Time out "), "")
+                            }
                         }
+                        
                     }
-                    
                 }
-            }
-//            passwordText
+                //            passwordText
             }else { // resend
                 guard let mobile = confirmationCodeTxt.text ,mobile.validPhoneNumber else {
                     ad.showAlert( langDicClass().getLocalizedTitle("Invalid username or password"), "")
                     return }
                 setUIEnabled(enabled: false )
-                user.postForgotPassword(mobile: mobile) {[ weak weakSelf = self ] (sms, state) in
+                user.postForgotPassword(mobile: mobile) {[ unowned self ] (sms, state) in
                     
                     if state {
-                        weakSelf?.count = 60
-                        weakSelf?.timer = Timer.scheduledTimer(timeInterval: 1.0, target: weakSelf, selector: #selector(weakSelf?.update), userInfo: nil, repeats: true)
+                        self.count = 60
+                        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
                     }else {
                         ad.showAlert("", langDicClass().getLocalizedTitle("Error with ") + "\(sms)")
                     }
-                    weakSelf?.setUIEnabled(enabled: true)
+                    self.setUIEnabled(enabled: true)
                     
                 }
             }
-    }
+        }
     }
     
     func dismissVCs() {
@@ -239,19 +237,19 @@ class CheckPhoneValidVC: UIViewController {
         transition.subtype = kCATransitionFromRight
         self.view.window?.layer.add(transition, forKey: nil)
         ad.reload()
-//        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
-//           
-//            x.dismiss(animated: false , completion: nil)
-//        }
-//        else if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
-//          
-//            x.dismiss(animated: false , completion: nil)
-//        }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
-////            print("YOYOOY 3 Views ")
-//            y.dismiss(animated: true, completion: nil)
-//            
-////             ad.reload()
-//        }
+        //        if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 5 Views
+        //
+        //            x.dismiss(animated: false , completion: nil)
+        //        }
+        //        else if let x = self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController   { //Dismiss 4 Views {Sidemenu : Certificate}
+        //
+        //            x.dismiss(animated: false , completion: nil)
+        //        }else if let y =  self.presentingViewController?.presentingViewController?.presentingViewController {
+        ////            print("YOYOOY 3 Views ")
+        //            y.dismiss(animated: true, completion: nil)
+        //
+        ////             ad.reload()
+        //        }
     }
     
     @IBAction func sendPhoneNumBtnAct(_ sender: UIButtonX) {
@@ -275,14 +273,13 @@ class CheckPhoneValidVC: UIViewController {
                 ad.showAlert("", langDicClass().getLocalizedTitle("Error with ") + "\(sms)")
             }
             weakSelf?.setUIEnabled(enabled: true)
-
+            
         }
-      
+        
     }
     
     func setupPassword() {
-//        passwordCenterX.constant -= view.bounds.width
-
+        //        passwordCenterX.constant -= view.bounds.width
     }
     
     
@@ -297,12 +294,12 @@ class CheckPhoneValidVC: UIViewController {
         if let id = userId   {
             userModel.getPhoneConfirmation(user_id: id , code :code, completed: { [weak weakSelf = self ] (state, sms) in
                 
-//                print("that's the state :\(state), and that's sms : \(sms)")
+                //                print("that's the state :\(state), and that's sms : \(sms)")
                 if state {
-                      weakSelf?.timer?.invalidate()
+                    weakSelf?.timer?.invalidate()
                     ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:"default")
                     ad.fcm()
-                     weakSelf?.dismissVCs()
+                    weakSelf?.dismissVCs()
                     
                 }else {
                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle(""), message: langDicClass().getLocalizedTitle("Error with ") + "\(sms)" , type: .warning)
@@ -313,10 +310,10 @@ class CheckPhoneValidVC: UIViewController {
         }
     }
     @IBAction func resetAppBtnAct(_ sender: UIButton) {
-         self.view.endEditing(true)
-          timer?.invalidate()
+        self.view.endEditing(true)
+        timer?.invalidate()
         ad.saveUserLogginData(email: nil, photoUrl: nil, uid: nil, name: nil)
-dismissVCs()
+        dismissVCs()
     }
     
     

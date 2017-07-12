@@ -124,6 +124,7 @@ class PointsViewController: UIViewController {
     }
     
     func fetchData() {
+        self.view.squareLoading.setSquareSize(Float(self.view.bounds.size.height * 0.08))
         self.view.squareLoading.start(0)
         getPointClass.getPointsData { [weak self] (dataArray, sms, state) in
             guard state , let data = dataArray , data.count > 2 else {

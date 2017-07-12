@@ -131,6 +131,8 @@ class LanguagesDict {
                          "Delete Image" : "مسح الصوره",
                          "Photo Gallery" : "البوم الصور",
                          "Pick Your Profile Image" : "اختر صوره  للحساب",
+                         "Mobile number not exist." : "رقم الهاتف غير مسجل",
+                         "User not confirmed." : "لم يتم بعد تفعيل حسابك"        
                          
          //                             "":"",
         //                             "":"",

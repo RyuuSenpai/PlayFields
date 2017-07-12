@@ -76,7 +76,7 @@ class ProfileVC: ToSideMenuClass{
             guard let url = URL(string: imageUrl ) else { return }
             profileImage.af_setImage(
                 withURL: url,
-                placeholderImage: UIImage(named: "nobody_m.original"),
+                placeholderImage: profileImage.image,
                 filter: nil,
                 imageTransition: .crossDissolve(0.2)
             )
@@ -130,20 +130,19 @@ class ProfileVC: ToSideMenuClass{
         
         setupPickerV()
         
-
+        fetchdata()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchdata()
-        self.editUserDataBtnAct()
+        
     }
     
   
     
-    func setupViewData(_ data : PostLoginVars) {
-        
+    func setupViewData(_ _data : PostLoginVars?) {
+        guard let data = _data else { return }
         self.userName.text = data.name
         self.snapCTxt.text = data.snapChat
         self.birthDateTxt.text = data.birth_date
@@ -221,6 +220,8 @@ class ProfileVC: ToSideMenuClass{
     override func toSidemenuVC() {
         super.toSidemenuVC()
         ad.sideMenuTrigger(self,"Profile")
+        self.editUserDataBtnAct()
+        setupViewData(profileData)
         //        x.modalTransitionStyle = .partialCurl
         
     }
@@ -260,10 +261,8 @@ class ProfileVC: ToSideMenuClass{
            
         }else {
         editUserDataBtnAct()
-            if let data = profileData  {
-                setupViewData(data)
-            }
-        }
+                 setupViewData(profileData)
+         }
     }
     
     func editUserDataBtnAct() {
@@ -279,13 +278,14 @@ class ProfileVC: ToSideMenuClass{
     @IBAction func doneBtnAct(_ sender: UIButton) {
         setUIEnabled(enabled: false )
         //        print("that's the  url : \(imageUrl)\n Base64 : \(base64String)\n changedImage: \(changedImage) ")
-        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageResponse ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](state, sms) in
+        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageResponse ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](data,state, sms) in
             
             if state {
                 DispatchQueue.main.async {
                     
                     let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Done"), message:"" , type: .success)
                     alert.show()
+
                     self?.editProfileBtn.setImage(UIImage(named:"Edit User Male_5d5e61_32"), for: .normal)
                     self?.editProfileBtn.isSelected = false
                     self?.setUIEnabled(enabled: true)
@@ -297,7 +297,7 @@ class ProfileVC: ToSideMenuClass{
                     self?.disableTxts = true
                     self?.changedImage = false
                     UserDefaults.standard.setValue(self?.userName.text, forKey: "usreName")
-                    
+                    self?.profileData = data
 //                    let changedImageBool = self?.changedImage
 //                    if changedImageBool != nil , x {
 //                        self?.profileImageDelegate?.delegateUpdate()

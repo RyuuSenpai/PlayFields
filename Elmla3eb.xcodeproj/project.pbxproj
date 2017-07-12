@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3E826A0BCF82D109FAB7318C /* Pods_Elmla3eb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4DF0D51150F418F4C07941 /* Pods_Elmla3eb.framework */; };
-		5200449B1EC1C31F0030B772 /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5200449D1EC1C31F0030B772 /* ProfileVC.xib */; };
 		520044A01EC1C34C0030B772 /* MenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044A21EC1C34C0030B772 /* MenuVC.xib */; };
 		520044A51EC1CAAC0030B772 /* ForgotPasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */; };
 		520044AA1EC1D5060030B772 /* SearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 520044AC1EC1D5060030B772 /* SearchVC.xib */; };
@@ -113,8 +112,6 @@
 		0E7A2FD4FF139B4131499DE1 /* Pods-Elmla3eb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elmla3eb.release.xcconfig"; path = "Pods/Target Support Files/Pods-Elmla3eb/Pods-Elmla3eb.release.xcconfig"; sourceTree = "<group>"; };
 		1D4DF0D51150F418F4C07941 /* Pods_Elmla3eb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elmla3eb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		520044921EC1C0B10030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5200449C1EC1C31F0030B772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProfileVC.xib; sourceTree = "<group>"; };
-		5200449F1EC1C3400030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ProfileVC.strings; sourceTree = "<group>"; };
 		520044A11EC1C34C0030B772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuVC.xib; sourceTree = "<group>"; };
 		520044A41EC1C34F0030B772 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MenuVC.strings; sourceTree = "<group>"; };
 		520044A61EC1CAAC0030B772 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ForgotPasswordVC.xib; sourceTree = "<group>"; };
@@ -528,7 +525,6 @@
 			isa = PBXGroup;
 			children = (
 				52F985831EB6016E001DA530 /* Cells */,
-				5200449D1EC1C31F0030B772 /* ProfileVC.xib */,
 				528623241EDD8EAF0048E95F /* SearchResultVC.xib */,
 				520044A71EC1CAAC0030B772 /* ForgotPasswordVC.xib */,
 				520044A21EC1C34C0030B772 /* MenuVC.xib */,
@@ -722,7 +718,6 @@
 				714AECF11E6303EF001127CE /* Main.storyboard in Resources */,
 				52257B331EF7FDC2004CF2A9 /* FieldsCell.xib in Resources */,
 				71F06C631E65D042008FBD28 /* soccer-player-aged-pixel.jpg in Resources */,
-				5200449B1EC1C31F0030B772 /* ProfileVC.xib in Resources */,
 				52BBF11D1ECB3659002AE6EA /* GoogleService-Info.plist in Resources */,
 				52B716571EDC69EB006B1A79 /* CheckPhoneValidVC.xib in Resources */,
 			);
@@ -871,15 +866,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5200449D1EC1C31F0030B772 /* ProfileVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5200449C1EC1C31F0030B772 /* Base */,
-				5200449F1EC1C3400030B772 /* ar */,
-			);
-			name = ProfileVC.xib;
-			sourceTree = "<group>";
-		};
 		520044A21EC1C34C0030B772 /* MenuVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

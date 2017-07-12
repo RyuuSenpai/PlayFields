@@ -192,7 +192,6 @@ class ReservationModel {
 //                print("KILLVA: getSearchData STATUS:\(state) , sms: \(sms) data : \(data) \n")
                 
                 //                let xUser = PostLoginVars(jsonData: data)
-                
                 completed(sms,state)
                 
                 break

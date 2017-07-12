@@ -20,17 +20,17 @@ class MUserData {
     
     func postLoginData(mobileNum: String , userPassword:String ,completed : @escaping ((PostLoginVars?,Bool,String,[String:Any]?,String))->()) {
         let parameters : Parameters = [ parSource.mobile : mobileNum , parSource.password : userPassword ]
-        print("that is the parameters in postLoginData : \(parameters)")
+//        print("that is the parameters in postLoginData : \(parameters)")
         
         
 //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
         
 //        let alamofireManager = Alamofire.SessionManager(configuration: CONFIGURATION)
         let url = source.POST_login_USER_DATA + source.API_TOKEN
-        print("URL: is postLoginData RL : \(url)")
+//        print("URL: is postLoginData RL : \(url)")
 
         Alamofire.request(url , method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
@@ -89,7 +89,7 @@ class MUserData {
                     let json = String(data: data, encoding: String.Encoding.utf8)
 //                    print("Failure Response: \(json)")
                 }
-                print("that is fail i n getting the Login data Mate : \(response.result.error?.localizedDescription)")
+//                print("that is fail i n getting the Login data Mate : \(response.result.error?.localizedDescription)")
  
                 completed((nil,false, "Network Time out",nil ,"Network Time out"))
                 break
@@ -361,7 +361,7 @@ class MUserData {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-//                print("that is  postResendVerificationCode getting the data Mate : %@", response.result.value!)
+                print("that is  postResendVerificationCode getting the data Mate : %@", response.result.value!)
                 
                 
 //                let data = json["data"]
@@ -375,7 +375,7 @@ class MUserData {
                 completed(sms,state)
                 break
             case .failure(_) :
-//                print("that is fail i n getting the postResendVerificationCode data Mate : \(response.result.error)")
+                print("that is fail i n getting the postResendVerificationCode data Mate : \(response.result.error?.localizedDescription)")
                 completed( langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -396,7 +396,7 @@ class MUserData {
          }
         
         let url = source.POST_FORGOT_PASSWORD  + source.API_TOKEN
-//        print("postForgotPassword URL: \(url)")
+        print("postForgotPassword URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
@@ -418,8 +418,8 @@ class MUserData {
                 //                let data = json["data"]
                 
                 let success = json[self.parSource.success].intValue
-//                let sms = json[self.parSource.message].stringValue
-                let sms = langDicClass().getLocalizedTitle("Wrong Old Password")
+                let sms = json[self.parSource.message].stringValue
+//                let sms = langDicClass().getLocalizedTitle("Wrong Old Password")
                 let  state =  success == 1 ? true : false
 //                print("KILLVA: postForgotPassword STATUS:\(state) , sms: \(sms) \n")
                 
@@ -427,7 +427,7 @@ class MUserData {
                 completed(sms,state)
                 break
             case .failure(_) :
-//                print("that is fail i n getting the postForgotPassword data Mate : \(response.result.error)")
+//                print("that is fail i n getting the postForgotPassword data Mate : \(response.result.error?.localizedDescription)")
                 completed( langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -447,7 +447,7 @@ class MUserData {
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            print(response.result)
+//            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {

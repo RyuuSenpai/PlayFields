@@ -28,7 +28,7 @@
     @IBOutlet weak var loadingVC: UIView!
     @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
     
-    var isCityPicker = true
+     var isCityPicker = true
     var searchModel = Search_Model()
     var cities = [String]()
     let rateList = ["1","2","3","4","5"]
@@ -52,7 +52,15 @@
         toTxt.delegate = self
         
         setupPicker()
-        
+        if  L102Language.currentAppleLanguage() == "ar"{
+            fieldNameTxt.textAlignment = .right
+            cityTxt.textAlignment = .right
+            rateTxt.textAlignment = .right
+            fromTxt.textAlignment = .right
+            toTxt.textAlignment = .right
+        }
+
+        self.view.squareLoading.setSquareSize(Float(self.view.bounds.size.height * 0.08))
         self.view.squareLoading.start(0)
          searchModel.getCitiesList { [weak self] (_data, sms, state) in
             guard let data = _data else {
@@ -87,6 +95,14 @@
 //            }
 //        })
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        citiesPickerV.selectRow(0, inComponent: 0, animated: true)
+        ratePickerV.selectRow(0, inComponent: 0, animated: true)
+
+
     }
     
     override func toSidemenuVC() {
@@ -227,6 +243,7 @@
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         if   textField == toTxt || textField == fromTxt  ,  textField.text == "" {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
@@ -242,7 +259,11 @@
             
             if textField == fromTxt {
             }
-        } /*else if  textField == cityTxt ,  textField.text == "" {
+        }else  if  textField == cityTxt {
+            citiesPickerV.selectRow(0, inComponent: 0, animated: true)
+        }else  if  textField == rateTxt {
+            ratePickerV.selectRow(0, inComponent: 0, animated: true)
+        }/*else if  textField == cityTxt ,  textField.text == "" {
          textField.text = cities[0]
          
          }else  if  textField == rateTxt ,  textField.text == "" {
