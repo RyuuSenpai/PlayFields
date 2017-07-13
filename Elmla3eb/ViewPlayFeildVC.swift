@@ -305,25 +305,25 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
             
             //            self.playFieldInfo = data
             //            print("that is the data : \(self.playFieldInfo?.pg_id) , \(self.playFieldInfo?.light_available) , \(self.playFieldInfo?.ground_type)")
-            
-        }
-        
-        if bookNowCellTrigger {
-            self.activityIndicator.startAnimating()
-            self.view.isUserInteractionEnabled = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.vanisher()
-           
-            self.theView = self.bookNowView
-            //            self.theView.accessibilityIdentifier = "bookNowView"
-            self.bookNowTableChildView.view.isHidden =  false
-            self.theCurBtn = self.datesBtn
-            self.CurrBtnLine = self.datesBtnLine
-             self.animateDefaultView()
-                self.activityIndicator.stopAnimating()
-                  self.view.isUserInteractionEnabled = true 
+             DispatchQueue.main.async {
+            if let x = weakSelf?.bookNowCellTrigger , x {
+                weakSelf?.activityIndicator.startAnimating()
+                weakSelf?.view.isUserInteractionEnabled = false
+                weakSelf?.vanisher()
+                
+                weakSelf?.theView = weakSelf?.bookNowView
+                //            self.theView.accessibilityIdentifier = "bookNowView"
+                weakSelf?.bookNowTableChildView.view.isHidden =  false
+                weakSelf?.theCurBtn = weakSelf?.datesBtn
+                weakSelf?.CurrBtnLine = weakSelf?.datesBtnLine
+                weakSelf?.animateDefaultView()
+                weakSelf?.activityIndicator.stopAnimating()
+                weakSelf?.view.isUserInteractionEnabled = true
+            }
             }
         }
+        
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -461,7 +461,8 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                             alert.isUserInteractionEnabled = false
                             self?.activityIndicator.stopAnimating()
                             alert.show()
-                        }
+
+                                                    }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             alert.hide(animations: nil, isPopupAnimated: true )
@@ -477,6 +478,7 @@ class ViewPlayFeildVC: UIViewController , UITableViewDelegate,UITableViewDataSou
                             self?.view.isUserInteractionEnabled = true
                             sender?.isEnabled = true
                             sender?.alpha = 1
+                            self?.navigationController?.popViewController(animated: true )
                         }
                     }
                     

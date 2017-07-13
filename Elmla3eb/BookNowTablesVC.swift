@@ -17,6 +17,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     
     @IBOutlet weak var datesStackView: UIStackView!
     
+    @IBOutlet weak var noPmAmTimes: UILabel!
     @IBOutlet weak var daysView: UIView!
     
     @IBOutlet weak var datesView: UIView!
@@ -30,7 +31,11 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
     
     var isOwner = false
     let  vplaygVC = ViewPlayFeildVC()
-    var  currentArray = [String ]()
+    var  currentArray = [String ](){
+        didSet {
+              self.noPmAmTimes.alpha = self.currentArray.count > 0 ? 0 : 1
+        }
+    }
     var dayAvailable = [String]()
     var am = ["from 1 to 2 ","from 2 to 3 ","from 3 to 4 ","from 4 to 5 ","from 5 to 6 "]
     var pm = ["from 6 : 8 " , "from 8 : 12 "]
@@ -96,7 +101,7 @@ class BookNowTablesVC: UIViewController ,UITableViewDelegate , UITableViewDataSo
         if L102Language.currentAppleLanguage() == "ar" {
             isAraLang = true
             backToDatesTableBtnOL.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi ))
-            
+                 self.noPmAmTimes.text = "لا يوجد مواعيد للحجز"
         }
         if let sms = times_msg, sms != "" {
             if isAraLang {

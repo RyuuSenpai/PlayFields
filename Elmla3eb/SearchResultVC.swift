@@ -11,7 +11,7 @@ import UIKit
 class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var tableView: UITableView!
 
-    var searchResultData : [Search_Data]?
+    var searchResultData : [Search_Data]? 
     
    
     

@@ -513,6 +513,8 @@ class ProfileVC: ToSideMenuClass{
         self.newPassTxt.text = ""
         showNewPassBtn.isSelected = false
         showOldPassBtn.isSelected = false
+        self.oldPassTxt.isSecureTextEntry = true
+        self.newPassTxt.isSecureTextEntry = true
         showNewPassBtn.setImage(#imageLiteral(resourceName: "hidePass"), for: .normal)
         showOldPassBtn.setImage(#imageLiteral(resourceName: "hidePass"), for: .normal)
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [], animations: {

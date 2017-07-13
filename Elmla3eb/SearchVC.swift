@@ -41,6 +41,7 @@
     fileprivate var ratePickerV: UIPickerView!
     var isFromDate = true
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title =  langDicClass().getLocalizedTitle("Search")

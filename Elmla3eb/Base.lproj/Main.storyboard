@@ -665,13 +665,13 @@
                                                 <rect key="frame" x="0.0" y="52.5" width="359" height="38"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calender_icon" translatesAutoresizingMaskIntoConstraints="NO" id="5N6-Wb-QTi">
-                                                        <rect key="frame" x="10" y="10" width="17.5" height="18"/>
+                                                        <rect key="frame" x="10" y="10" width="17" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="5N6-Wb-QTi" secondAttribute="height" multiplier="1:1" id="0zq-t5-aJ6"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="XbG-BR-vK1">
-                                                        <rect key="frame" x="35.5" y="10" width="89.5" height="18"/>
+                                                        <rect key="frame" x="35" y="10" width="89.5" height="18"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -680,7 +680,7 @@
                                                         </variation>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="......" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="SRX-hJ-OVR" customClass="UITextFieldX" customModule="Elmla3eb" customModuleProvider="target">
-                                                        <rect key="frame" x="128" y="4" width="229" height="30"/>
+                                                        <rect key="frame" x="127.5" y="4" width="229.5" height="30"/>
                                                         <color key="backgroundColor" red="0.80609840150000001" green="0.84683185819999995" blue="0.85591924190000002" alpha="0.075717037670000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -2317,7 +2317,7 @@
                                                         <rect key="frame" x="0.0" y="121.5" width="345" height="45.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRS-iE-eIT">
-                                                                <rect key="frame" x="8" y="4" width="329" height="39.5"/>
+                                                                <rect key="frame" x="8" y="3.5" width="329" height="39.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="B8B-O1-YHV">
                                                                         <rect key="frame" x="0.0" y="0.5" width="100" height="39.5"/>
@@ -2953,7 +2953,7 @@
                                                                 <rect key="frame" x="0.0" y="28" width="345" height="253"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XwW-t9-ehN" id="zHr-JE-GkX">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="253"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="252"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a9-9F-43S">
@@ -2980,14 +2980,14 @@
                                                                                     <rect key="frame" x="225" y="0.0" width="120" height="47"/>
                                                                                     <subviews>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKy-d6-U22">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="120" height="47"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="58" height="47"/>
                                                                                             <color key="backgroundColor" red="0.28977522249999998" green="0.54629486800000004" blue="0.12660208340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <state key="normal" title="am">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
                                                                                         </button>
                                                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEg-pZ-hi0">
-                                                                                            <rect key="frame" x="120" y="0.0" width="0.0" height="47"/>
+                                                                                            <rect key="frame" x="62" y="0.0" width="58" height="47"/>
                                                                                             <state key="normal" title="pm">
                                                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                             </state>
@@ -3368,10 +3368,25 @@
                                                 </connections>
                                             </tableView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="7th-Fe-a28" secondAttribute="trailing" id="439-od-l1Y"/>
+                                            <constraint firstItem="7th-Fe-a28" firstAttribute="leading" secondItem="Ff1-Sl-WFJ" secondAttribute="leading" id="W6F-kw-KdU"/>
+                                            <constraint firstItem="7th-Fe-a28" firstAttribute="top" secondItem="Tey-H9-p7e" secondAttribute="bottom" id="vNb-aJ-JRo"/>
+                                        </constraints>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Times To Book" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8u-Fb-1k4">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="N8u-Fb-1k4" firstAttribute="height" secondItem="7th-Fe-a28" secondAttribute="height" id="E1c-xg-CJw"/>
+                                    <constraint firstItem="N8u-Fb-1k4" firstAttribute="centerY" secondItem="7th-Fe-a28" secondAttribute="centerY" id="Fxs-f2-Wmh"/>
+                                    <constraint firstItem="N8u-Fb-1k4" firstAttribute="centerX" secondItem="7th-Fe-a28" secondAttribute="centerX" id="UR1-TJ-k3L"/>
+                                    <constraint firstItem="N8u-Fb-1k4" firstAttribute="width" secondItem="7th-Fe-a28" secondAttribute="width" id="WYK-9a-xb0"/>
                                     <constraint firstItem="Ff1-Sl-WFJ" firstAttribute="top" secondItem="5tb-oK-0w5" secondAttribute="top" id="Yyf-2t-j8b"/>
                                     <constraint firstAttribute="trailing" secondItem="Ff1-Sl-WFJ" secondAttribute="trailing" id="cbw-yA-D1u"/>
                                     <constraint firstItem="Ff1-Sl-WFJ" firstAttribute="leading" secondItem="5tb-oK-0w5" secondAttribute="leading" id="cu7-kn-wOF"/>
@@ -3390,7 +3405,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xb-ZJ-7Gw" id="O1X-lQ-hbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-QM-GgM">
@@ -3484,6 +3499,7 @@
                         <outlet property="daysTableView" destination="upL-kz-hEN" id="cpS-xB-Ehf"/>
                         <outlet property="daysView" destination="LX1-VU-DQa" id="2pp-El-XYs"/>
                         <outlet property="invalidDaysLbl" destination="NZO-rw-mfG" id="zFB-K4-141"/>
+                        <outlet property="noPmAmTimes" destination="N8u-Fb-1k4" id="dY6-f9-vE1"/>
                         <outlet property="pmBtn" destination="LEN-cL-3Hl" id="tIA-YF-Hsy"/>
                     </connections>
                 </viewController>
