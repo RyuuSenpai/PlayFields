@@ -137,17 +137,22 @@ extension PlayFieldsVC : UITableViewDataSource {
 
 
                 DispatchQueue.main.async {
-
-                    self?.unconfirmedP_G?.remove(at: sender.tag)
-                    self?.view.isUserInteractionEnabled = true
-                    self?.activityIndector.stopAnimating()
-                    ad.showAlert("√", "")
+                    self?.deleteRequest(sender.tag)
                 }
                  }
             }
 //
         }
     }
+    }
+    
+    func deleteRequest(_ tag : Int ) {
+        
+        self.unconfirmedP_G?.remove(at: tag)
+        self.view.isUserInteractionEnabled = true
+        self.activityIndector.stopAnimating()
+        ad.showAlert("√", "")
+
     }
     
     func bookNow(_ sender: UIButton) {

@@ -41,6 +41,7 @@ class LanguagesDict {
                          "Something Went Wrong With" : "حدث خطأ حيث" ,
                          "You didn't pick Booking Date":"لم تختر معاد للحجز",
                          " Points ":"نقطه",
+                         "Points" : "النقاط" ,
                          "Invalid username or password":"خطا في رقم الهاتف او كلمة المرور",
                          "Phone Number Already Exists":"رقم الهاتف مستخدم من قبل",
                          "There's no Dates to pick":"لا توجد اوقات متوفره حاليا",

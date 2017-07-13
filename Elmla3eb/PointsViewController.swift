@@ -120,7 +120,7 @@ class PointsViewController: UIViewController {
 
         fetchData()
         
-        
+        title? = langDicClass().getLocalizedTitle("Points")
     }
     
     func fetchData() {
