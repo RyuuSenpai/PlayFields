@@ -100,6 +100,11 @@
         MainPageVC.mainStaticVC = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         self.navigationItem.title = langDicClass().getLocalizedTitle("Main")
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         firstLaunchMainpage = false

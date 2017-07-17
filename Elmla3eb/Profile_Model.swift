@@ -101,7 +101,7 @@ class Profile_Model {
                 }else {
                     imageUrl = ""
                 }
-                print("That's the new im,age : \(imageUrl)")
+//                print("That's the new im,age : \(imageUrl)")
                 let  state =  success == 1 ? true : false
 //                print("KILLVA: postProfileData success : \(success) STATUS:\(state) , sms: \(sms)\n data :  \(json)")
                 
@@ -212,8 +212,8 @@ class Profile_Model {
         }
     }
     
-    func post_PointsReward(points : Int ,completed : @escaping (Int?,Bool,String)->()) {
-        let parameters : Parameters = [parSource.user_id : USER_ID , "points" : points ]
+    func post_PointsReward(points : Int , _ id : Int  ,completed : @escaping (Int?,Bool,String)->()) {
+        let parameters : Parameters = [parSource.user_id : USER_ID , "points" : points , "gift_id" : id ]
 //        print("that is the parameters in post_PointsReward : \(parameters)")
         
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
@@ -297,7 +297,8 @@ class Points_Data {
     private var _img_achieved  : String?
     private var _img_unachieved  : String?
     private var _points : Int?
-    
+    private var _id : Int?
+    private var _name : String?
     
 
     
@@ -322,6 +323,16 @@ class Points_Data {
         guard let x = _points else { return 0 }
         return x
     }
+    var gift_id : Int {
+        //        print("that's the points : \(_points)")
+        guard let x = _id else { return 0 }
+        return x
+    }
+    var gift_name : String {
+        //        print("that's the points : \(_points)")
+        guard let x = _name else { return "" }
+        return x
+    }
     //]
     
     //    init(name : String?,mobile:String?, city:String?,area:String?,ph_type:String?, map_lon:Double?,map_lat:Double?,email:String?,password:String?,rememberToken:String?,apiToken:String?,createdAt:String?,updatedAt:String?,deletedAt:String?,success:Bool?,message:String?) {
@@ -335,7 +346,8 @@ class Points_Data {
         self._img_achieved = jsonData["img_achieved"].stringValue
         self._img_unachieved = jsonData["img_unachieved"].stringValue
         self._points = jsonData["points"].intValue
-        
+        self._id = jsonData["id"].intValue
+        self._name = jsonData["name"].stringValue
     }
     
     

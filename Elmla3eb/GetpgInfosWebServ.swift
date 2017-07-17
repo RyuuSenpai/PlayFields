@@ -130,7 +130,7 @@ class GetpgInfosWebServ  {
                 completed(pgData)
                 break
             case .failure(_) :
-//                print("that is fail i n getting the data Mate : \(response.result.error)")
+//                print("that is fail i n getting the data Mate : \(response.result.error?.localizedDescription)")
                 completed(nil)
                 break
             }

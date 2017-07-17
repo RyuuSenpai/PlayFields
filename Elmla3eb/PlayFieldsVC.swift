@@ -82,7 +82,7 @@ class PlayFieldsVC: ToSideMenuClass, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.alpha = 0
-        
+        title = langDicClass().getLocalizedTitle("Nearby Fields")
     }
     
     override func viewDidAppear(_ animated: Bool) {

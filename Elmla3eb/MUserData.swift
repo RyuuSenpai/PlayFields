@@ -349,7 +349,7 @@ class MUserData {
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-//            print(response.result)
+            print(response.result)
             switch(response.result) {
             case .success(_):
                 guard response.result.error == nil else {
@@ -361,7 +361,7 @@ class MUserData {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                print("that is  postResendVerificationCode getting the data Mate : %@", response.result.value!)
+//                print("that is  postResendVerificationCode getting the data Mate : %@", response.result.value!)
                 
                 
 //                let data = json["data"]
@@ -375,7 +375,7 @@ class MUserData {
                 completed(sms,state)
                 break
             case .failure(_) :
-                print("that is fail i n getting the postResendVerificationCode data Mate : \(response.result.error?.localizedDescription)")
+//                print("that is fail i n getting the postResendVerificationCode data Mate : \(response.result.error?.localizedDescription)")
                 completed( langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
@@ -396,7 +396,7 @@ class MUserData {
          }
         
         let url = source.POST_FORGOT_PASSWORD  + source.API_TOKEN
-        print("postForgotPassword URL: \(url)")
+//        print("postForgotPassword URL: \(url)")
         //        let request = GLOBAL.alamoRequest(query_url: url)
         
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in

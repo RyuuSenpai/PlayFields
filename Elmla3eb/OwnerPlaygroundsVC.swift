@@ -48,6 +48,11 @@ self.view.squareLoading.start(0)
         getOwnerData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.title = langDicClass().getLocalizedTitle("Management")
+    }
+    
     override func toSidemenuVC() {
         super.toSidemenuVC()
         ad.sideMenuTrigger(self,"NearBy")

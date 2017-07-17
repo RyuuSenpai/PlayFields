@@ -37,6 +37,7 @@ class PointsViewController: UIViewController {
     @IBOutlet weak var firstSlider: UISlider!
     @IBOutlet weak var secondSlider: UISlider!
 
+    private var currentGiftIndex : Int?
       let gray = UIColor(colorLiteralRed: 204/255, green: 204/255, blue: 204/255, alpha: 1)     //   #989898
     weak var delegate : pointsDelegateUpdateProfile?
    private  let getPointClass = Profile_Model()
@@ -55,7 +56,7 @@ class PointsViewController: UIViewController {
             self.points10000.text = "\(data[2].points)"
 
 //            print("that is the points : \(data[0].points , data[0])")
-            guard currentPoints > data[0].points else {
+            guard currentPoints >= data[0].points else {
                 undo1rdSenaryo()
                 myRewardPointReached = nil
                 firstSlider?.value = 0
@@ -63,27 +64,31 @@ class PointsViewController: UIViewController {
                 return
             }
             
-            guard currentPoints < data[2].points else {
+            guard currentPoints < data[2].points else { // points > the 3rd Prize
 //                myRewardPointReached = data[2].points
                 myRewardPointReached =  data[2].points
                 firstSlider?.value = Float(data[1].points)
                 secondSlider?.value = Float( data[2].points)
                 thirdSenaryo()
+                self.currentGiftIndex = 2
                 self.view?.squareLoading.stop(0)
                 return
             }
             
-            if currentPoints < data[1].points , currentPoints >= data[0].points {
+            if currentPoints < data[1].points , currentPoints >= data[0].points { // Got the 1st Gift
                 myRewardPointReached = data[0].points
                 undo2rdSenaryo()
                 firstSenaryo()
                 firstSlider.value = Float(currentPoints)
-            }else if currentPoints >= data[1].points {
+                self.currentGiftIndex = 0
+           
+            }else if currentPoints >= data[1].points { // Got the 2nd Gift
                 undo3rdSenaryo()
                 secondSenaryo()
                  myRewardPointReached = data[1].points
                 firstSlider?.value = Float(data[1].points)
                 secondSlider?.value = Float(currentPoints - data[1].points )
+                self.currentGiftIndex = 1
             }
                  self.view?.squareLoading.stop(0)
          }
@@ -119,9 +124,9 @@ class PointsViewController: UIViewController {
         // Do any additional setup after loading the view.
 
         fetchData()
-        
-        title? = langDicClass().getLocalizedTitle("Points")
-    }
+        self.navigationItem.title = langDicClass().getLocalizedTitle("Points")
+//        title? = langDicClass().getLocalizedTitle("Points")
+     }
     
     func fetchData() {
         self.view.squareLoading.setSquareSize(Float(self.view.bounds.size.height * 0.08))
@@ -157,8 +162,12 @@ class PointsViewController: UIViewController {
             return }
         let points =  abs(currentPoints - point)
         self.loadingActivity.startAnimating()
+        guard let index = currentGiftIndex else {
+            ad.showAlert("X", "")
+            self.presentingViewController?.dismiss(animated: true)
+            return }
 //        print("that's my currentPoints : \(currentPoints)\n myRewardPointReached : \(point)\n new Points : \(points)")
-        getPointClass.post_PointsReward(points: points) { [weak self] (points , state, sms) in
+        getPointClass.post_PointsReward(points: points , data[index].gift_id ) { [weak self] (points , state, sms) in
             guard state else {
                 DispatchQueue.main.async {
                     

@@ -156,7 +156,7 @@ class CheckPhoneValidVC: UIViewController {
                 })
             }
         }else {
-            if sender.tag == 0 {
+            if sender.tag == 0 { 
                 guard let mobile = confirmationCodeTxt.text ,mobile.validPhoneNumber,let password = passwordText.text , password.isValidPassword else {
                     ad.showAlert( langDicClass().getLocalizedTitle("All Fields are Required"), "")
                     return }
@@ -294,7 +294,7 @@ class CheckPhoneValidVC: UIViewController {
         if let id = userId   {
             userModel.getPhoneConfirmation(user_id: id , code :code, completed: { [weak weakSelf = self ] (state, sms) in
                 
-                //                print("that's the state :\(state), and that's sms : \(sms)")
+                                print("that's the state :\(state), and that's sms : \(sms)")
                 if state {
                     weakSelf?.timer?.invalidate()
                     ad.saveUserLogginData(email: nil, photoUrl: nil, uid: id,name:"default")

@@ -81,7 +81,7 @@ class LanguagesDict {
                          "price has to be only written in numbers" : "يجب ان يحتوي السعر علي ارقام فقط",
                          "Nearby Fields & bookings" : "الملاعب القريبه / المحجوزه",
                          "Playground Management" : "إدارة الملاعب",
-                         "Verification Code has been Sent": "تم ارسال رمز التفعيل",
+                         "Verification Code has been Sent": "تم التسجيل بنجاح وسيتم ارسال كود التفعيل فى رساله نصيه",
                          "Player" : "لاعب",
                          "Owner" : "صاحب ملعب",
                          "Ok" : "تم",
@@ -133,7 +133,12 @@ class LanguagesDict {
                          "Photo Gallery" : "البوم الصور",
                          "Pick Your Profile Image" : "اختر صوره  للحساب",
                          "Mobile number not exist." : "رقم الهاتف غير مسجل",
-                         "User not confirmed." : "لم يتم بعد تفعيل حسابك"        
+                         "User not confirmed." : "لم يتم بعد تفعيل حسابك" ,
+                         "Reservation already confirmed" : "لا يمكن الغاء طلب تم تاكيده من صاحب الملعب",
+                         "Reservation already canceled by owner." : "تم الغاء الحجز من قبل صاحب الملعب",
+                         "Main" : "الصفحه الرئيسيه" ,
+                         "Nearby Fields" : "الملاعب القريبه",
+                         "Management" : "إداره الملاعب"
                          
          //                             "":"",
         //                             "":"",

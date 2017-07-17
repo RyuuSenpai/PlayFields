@@ -116,6 +116,13 @@ extension PlayFieldsVC : UITableViewDataSource {
             
             guard state else {
 //                print(" ❗️ State is False ❗️")
+                guard !sms.contains("already confirmed") , !sms.contains("already canceled") else {
+                    DispatchQueue.main.async {
+                          ad.showAlert("X", langDicClass().getLocalizedTitle(sms))
+                        self?.deleteRequest(sender.tag)
+                    }
+                    return
+                }
                 DispatchQueue.main.async {
                     self?.view.isUserInteractionEnabled = true
                 self?.activityIndector.stopAnimating()
@@ -138,6 +145,7 @@ extension PlayFieldsVC : UITableViewDataSource {
 
                 DispatchQueue.main.async {
                     self?.deleteRequest(sender.tag)
+                       ad.showAlert("√", "")
                 }
                  }
             }
@@ -151,7 +159,7 @@ extension PlayFieldsVC : UITableViewDataSource {
         self.unconfirmedP_G?.remove(at: tag)
         self.view.isUserInteractionEnabled = true
         self.activityIndector.stopAnimating()
-        ad.showAlert("√", "")
+     
 
     }
     

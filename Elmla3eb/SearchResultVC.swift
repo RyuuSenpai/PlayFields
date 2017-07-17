@@ -27,10 +27,12 @@ class SearchResultVC: UIViewController , UITableViewDelegate,UITableViewDataSour
         
         tableView.register(nib, forCellReuseIdentifier: "cell")
         // Do any additional setup after loading the view.
-        title = langDicClass().getLocalizedTitle("Search Result")
     }
 
-   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = langDicClass().getLocalizedTitle("Search Result")
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

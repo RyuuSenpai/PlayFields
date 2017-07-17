@@ -152,7 +152,7 @@ extension LoginVC  :   FBSDKLoginButtonDelegate  {
 //        }
 
         user.postFaceBLogin(mobile: mobile, image: image, fbID:id , completed: { [weak weakSelf = self ] (data, codeVerification, sms ,state) in
-//            print("that's the sms : \(sms), and that's the state : \(state)")
+            print("that's the sms : \(sms), and that's the state : \(state)")
             if sms.contains("New user")  {
                 DispatchQueue.main.async {
                     weakSelf?.setupfbMobileNumView()

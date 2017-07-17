@@ -44,7 +44,6 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title =  langDicClass().getLocalizedTitle("Search")
         
         cityTxt.delegate = self
         fieldNameTxt.delegate = self
@@ -100,6 +99,8 @@
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title =  langDicClass().getLocalizedTitle("Search")
+
         citiesPickerV.selectRow(0, inComponent: 0, animated: true)
         ratePickerV.selectRow(0, inComponent: 0, animated: true)
 

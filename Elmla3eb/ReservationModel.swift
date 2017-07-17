@@ -135,7 +135,7 @@ class ReservationModel {
                 let succe = parSource.success; let sm = parSource.message; let dataa = parSource.data
                 
                 let json = JSON( response.result.value!) // SwiftyJSON
-//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value!)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value)
                 let data = json[dataa]
                 
                 let success = json[succe].intValue
@@ -150,7 +150,7 @@ class ReservationModel {
                 
                 break
             case .failure(_) :
-//                print("that is fail postCancelRequest i n getting the data Mate : \(response.result.error)")
+//                print("that is fail postCancelRequest i n getting the data Mate : \(response.result.error?.localizedDescription)")
                 completed(langDicClass().getLocalizedTitle("Network timeout"),false)
                 break
             }
