@@ -58,17 +58,17 @@ class TestBackEnd {
             
             
         }
-        playgNews.getPgNewsByID(id: 1) { (data) in
-            
-            guard let data = data else {
-//                print("error getting pg news by id data is empty");
-                return }
-            
-            for x in data {
-//            print("that is arabic sentince : \(x.content)")
-//            print("that is arabic sentince : \(x.title)")
-            }
-        }
+//        playgNews.getPgNewsByID(id: 1) { (data) in
+//            
+//            guard let data = data else {
+////                print("error getting pg news by id data is empty");
+//                return }
+//            
+//            for x in data {
+////            print("that is arabic sentince : \(x.content)")
+////            print("that is arabic sentince : \(x.title)")
+//            }
+//        }
 //        print("--------------------------")
 //        playgNews.callWebService()
        
@@ -148,15 +148,15 @@ class TestBackEnd {
     static func User() {
         let user = MUserData()
         
-        user.postRegisterUser(name: "eslam", mobile: "0123123122", city: "cairo", area: "51", pgType: 1, email: "eslam@gmail.com", password: "1234§") {  (isIt) in
-            
-            
-        }
+//        user.postRegisterUser(name: "eslam", mobile: "0123123122", city: "cairo", area: "51", pgType: 1, email: "eslam@gmail.com", password: "1234§") {  (isIt) in
+//            
+//            
+//        }
         
-        user.postLoginData(mobileNum: "", userPassword: "") { (data) in
-            
-            
-        }
+//        user.postLoginData(mobileNum: "", userPassword: "") { (data) in
+//            
+//            
+//        }
     }
     
     

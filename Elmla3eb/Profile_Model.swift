@@ -63,10 +63,9 @@ class Profile_Model {
     
     
     
-    func postProfileData(  name :String?,mobile:String?,city : String?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String?,position:String? , completed : @escaping (PostLoginVars?,Bool,String) -> ()) {
+    func postProfileData(  name :String?,mobile:String?,city : Int?,team : String?,birthD : String?,lon : String?,lat : String?,image : String?,snap_chat : String?,position:String? , completed : @escaping (PostLoginVars?,Bool,String) -> ()) {
         let parameters : Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "", parSource.image : image ?? "",parSource.snap_chat : snap_chat ?? "",parSource.position : position ?? ""]
-        
-        // for printing
+         // for printing
 //        let printIt :Parameters = [parSource.user_id : USER_ID , parSource.name :name ?? "", parSource.mobile : mobile ?? "",parSource.city : city ?? "", parSource.team : team ?? "",parSource.birth_date:birthD ?? "",parSource.map_lon:lon ?? "",parSource.map_lat:lat ?? "",parSource.password : "", parSource.image : image ?? "nil",parSource.snap_chat : snap_chat ?? "",parSource.position : position] as [String : Any]
 //         print("that is the parameters in postProfileData : \(parameters)")
 //
@@ -86,7 +85,7 @@ class Profile_Model {
                     
                 }
                 let json = JSON( response.result.value!) // SwiftyJSON
-                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value)
+//                                print("that is  postUserData_LOGIN getting the data Mate : %@", response.result.value)
                 
                 
                 

@@ -88,6 +88,7 @@ class ProfileVC: ToSideMenuClass{
     fileprivate var positionPickerV: UIPickerView!
     let user = Profile_Model()
     var cities = [String]()
+    var cityDic = [String:Int]()
     var imageResponse = ""
     var disableTxts = false  {
         didSet {
@@ -187,10 +188,13 @@ class ProfileVC: ToSideMenuClass{
                         if  L102Language.currentAppleLanguage() == "ar"{
                             for city in data {
                                  self?.cities.append(city.name_ar)
+                                self?.cityDic[city.name_ar] = city.id
+                               
                             }
                         }else {
                             for city in data {
                                  self?.cities.append(city.name_en)
+                                 self?.cityDic[city.name_en] = city.id
                             }
                         }
                         
@@ -276,9 +280,13 @@ class ProfileVC: ToSideMenuClass{
     }
     
     @IBAction func doneBtnAct(_ sender: UIButton) {
+        var cityId : Int?
+        if  let citytxt = cityTxt.text ,  let cityid = cityDic[citytxt]  {
+            cityId = cityid
+        }
         setUIEnabled(enabled: false )
         //        print("that's the  url : \(imageUrl)\n Base64 : \(base64String)\n changedImage: \(changedImage) ")
-        user.postProfileData(name: userName.text, mobile: nil, city: cityLbl.text, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageResponse ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](data,state, sms) in
+        user.postProfileData(name: userName.text, mobile: nil, city: cityId, team: teamName.text, birthD: birthDateTxt.text, lon: nil, lat: nil, image: changedImage ? base64String : imageResponse ,snap_chat:snapCTxt.text,position:positionTxt.text) { [weak self](data,state, sms) in
             
             if state {
                 DispatchQueue.main.async {

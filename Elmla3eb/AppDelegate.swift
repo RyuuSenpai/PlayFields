@@ -115,35 +115,35 @@ UNUserNotificationCenterDelegate, FIRMessagingDelegate  {
     func fcm() {
         guard let userID = UserDefaults.standard.value(forKey: "userId") as? Int else {
             UserDefaults.standard.setValue(nil, forKey: "FCMToken")
-//            print("⚠️No userID Found  ❌ ");
+            print("⚠️No userID Found  ❌ ");
             return }
         
         guard  let refreshedToken = FIRInstanceID.instanceID().token() else {
-//            print("⚠️No Token Returned From FCM  ❌ ");
+            print("⚠️No Token Returned From FCM  ❌ ");
             return }
-//        print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
+        print("☢️☣️InstanceID token: 📴📳\(refreshedToken)📴📳")
         
         if     UserDefaults.standard.value(forKey: "FCMToken") as? String != refreshedToken {
-//            print("✅Updating Token ✳️found  userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? String))\n ,FCMToken \(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String))\n, refreshedToken \(refreshedToken)\n")
+            print("✅Updating Token ✳️found  userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? String))\n ,FCMToken \(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String))\n, so updating it with refreshedToken \(refreshedToken)\n and userID : \(userID)")
             
             let userFCM = MUserData()
             userFCM.userFCMToken(userID: userID, token: refreshedToken, completed: { (state,sms) in
                 
                 if state {
                     UserDefaults.standard.setValue(refreshedToken, forKey: "FCMToken")
-//                    print("✅Updated Token  ✅ ")
+                    print("✅Updated Token  ✅ ")
                     
                 }
             })
         }else {
-//            print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? Int))\n ,♎️FCMTokenNSDefault  📴📳\(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String)) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
+            print("❌ Won't Update Token,it's Already in UserDefauls⚠️That's userId: \(String(describing: UserDefaults.standard.value(forKey: "userId") as? Int))\n ,♎️FCMTokenNSDefault  📴📳\(String(describing: UserDefaults.standard.value(forKey: "FCMToken") as? String)) 📴📳\n, ♎️updatedInstanceID token: 📴📳\(refreshedToken)📴📳\n")
         }
         
     }
     //    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
     //        print(error.localizedDescription)
     //    }
-    
+
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
 //        print("that's the userInfo : \(userInfo)")
 //        print("that's the message Id  : \(String(describing: userInfo["gcm_message_id"]))")

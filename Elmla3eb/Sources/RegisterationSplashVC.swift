@@ -46,6 +46,8 @@ import CDAlertView
         self.ownerViewBtn.isEnabled = true
     }
     var cities = [String]()
+    var cityDic = [String:Int]()
+
 //    let districts = ["1","2","3","4"]
     fileprivate var citiesPickerV: UIPickerView!
     fileprivate var districtsPickerV: UIPickerView!
@@ -74,10 +76,12 @@ import CDAlertView
             if  L102Language.currentAppleLanguage() == "ar"{
                 for city in data {
                     self?.cities.append(city.name_ar)
+                    self?.cityDic[city.name_ar] = city.id
                 }
             }else {
                 for city in data {
                     self?.cities.append(city.name_en)
+                    self?.cityDic[city.name_en] = city.id
                 }
             }
             
@@ -286,8 +290,12 @@ import CDAlertView
 //        guard mobile.doesNOTcontainSpecialCharacters else { return "PhoneNumber Contain Special Chars" }
 
         let user = MUserData()
+        var cityId : Int = 0 
+        if   let cityid = cityDic[city]  {
+            cityId = cityid
+        }
         
-        user.postRegisterUser(name: userName, mobile: mobile, city: city, area: district, pgType: self.playFieldType, email: "", password: password) {  (data) in
+        user.postRegisterUser(name: userName, mobile: mobile, city: cityId, area: district, pgType: self.playFieldType, email: "", password: password) {  (data) in
             print("that is the registeration response : \(data)")
             guard data.1 else {
                 let alert = CDAlertView(title: langDicClass().getLocalizedTitle("Error with ") + "\(data.2)", message: "", type: .error)

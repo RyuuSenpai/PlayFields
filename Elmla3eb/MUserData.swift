@@ -97,7 +97,7 @@ class MUserData {
         }
     }
     
-    func postRegisterUser(name:String , mobile:String, city:String, area: String, pgType: Int,email:String,password:String  , completed:@escaping ((PostLoginVars?,Bool,String,[String:Any]?)) -> ()) {
+    func postRegisterUser(name:String , mobile:String, city:Int, area: String, pgType: Int,email:String,password:String  , completed:@escaping ((PostLoginVars?,Bool,String,[String:Any]?)) -> ()) {
         var parameters : Parameters!
         if ad.production {
               parameters  = [parSource.name : name , parSource.mobile : mobile,parSource.city : city , parSource.area :area , parSource.type : pgType == 0 ? "player" : "pg_owner"   , parSource.birth_date : "" ,parSource.email : email, parSource.password : password  ]
@@ -107,8 +107,7 @@ class MUserData {
 
         }
 
-        
-//        print("that is the parameters in getReviewRequesData : \(parameters)")
+ //        print("that is the parameters in getReviewRequesData : \(parameters)")
         
 //        print("that's the postRegisterUser parameteres: \(parameters)")
         //        CONFIGURATION.timeoutIntervalForResource = 10 // seconds
